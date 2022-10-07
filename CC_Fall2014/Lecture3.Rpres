@@ -1,0 +1,123 @@
+<style type="text/css">
+.small-code pre code {
+font-size: 1.3em;
+}
+</style>
+
+Climate Change: Day 3
+=====================
+date: September 2, 2014
+
+Readings: [National Climate Assessment](http://nca2014.globalchange.gov/)
+
+For the first exam, read the entire *Highlights* section. In the *Report* section read the subsection entitled *Our Changing Climate* including the *Climate Science Supplement* (PDF).
+
+Term project: **graph and interpret climate change data**. Bellamy 35 computer lab. R/RStudio installed. Email Shawn Lewers (slewers@fsu.edu)
+
+Today
+=====
+
+[Poll Everywhere](http://www.polleverywhere.com/)
+
++ Heat
++ Structure & Composition of the Atmosphere
++ Temperature graphs
+
+Global Warming is About Heat
+============================
+Heat is proportional to the kinetic (motion) energy of the molecules.
+
+Energy ~ d/2 x k T, 
+
+where T is temperature, k is the Boltzmann constant and d is the degrees of freedom of the molecule.
+
+### Why is CO2 a greenhouse gas, but not Argon?
+Ar (d = 3), O2/N2 (d = 6, 1 vibrational, 2 twisting), CO2 (d = 9)
+
+Insulating thermal pane windows.
+
+Pressure and Temperature
+========================
+The atmosphere is primarily a mixture of gases. N2, O2, Ar, water vapor, CO2, etc. 
++ The early atmosphere gases included water vapor, CO2, and ammonia (NH3). From where? What happened?
+
+Under pressure: *Why doesn't the sky fall?* 
++ Balance of forces
++ What forces?
+
+Temperature lapse rates.
+
+Temperature Graphs
+==================
+### Online resources
+[How hot has the summer been?](http://www.climatecentral.org/news/us-summer-temperatures-comparison-17942)
+
+### Using R
+[Get R](http://vimeo.com/104869860)
+
+[Get RStudio](https://vimeo.com/104872028)
+
+Get Temperature Data
+====================
+[National Climate Assessment](http://nca2014.globalchange.gov/)
+
+R Code
+======
+class: small-code
+```{r}
+L1 = 'ftp://ftp.ncdc.noaa.gov/pub/data/'
+L2 = 'mlost/operational/products/aravg'
+L3 = '.ann.land.00N.90N.v3.5.4.201407.asc'
+L = paste(L1, L2, L3, sep = "")
+df = read.table(L)
+names(df) = c("Year", "Temperature", "Anom")
+df[1:3, 1:2]
+```
+
+Install Plotting Package
+========================
+class: small-code
+```{r, eval=FALSE}
+chooseCRANmirror(ind = 1)
+install.packages('ggplot2')
+library(ggplot2)
+```
+
+Plot Temperature Data
+=====================
+class: small-code
+```{r fig.align='center'}
+library(ggplot2)
+ggplot(df, aes(x = Year, y = Temperature)) +
+  geom_line() 
+```
+
+Improve Plot
+============
+class: small-code
+```{r fig.align='center', out.width=700, out.height=550}
+ggplot(df, aes(x = Year, y = Temperature)) +
+  geom_line() + geom_smooth() +
+  ylab("Temperature Anomaly (C)")
+```
+
+Not Just the Average
+====================
+class: small-code
+
+Temperature distribution, exceedance frequency, correlation.
+```{r fig.align='center', out.width=600, out.height=400}
+ggplot(df, aes(Temperature)) +
+  geom_histogram(binwidth = .25, fill = "red") +
+  xlab("Temperature Anomaly (C)")
+```
+
+Is Florida Getting Warmer?
+==========================
+class: small-code
+```{r fig.align='center', out.width=700, out.height=550}
+L = 'http://myweb.fsu.edu/jelsner/data/FLMonthlyT.txt'
+df = read.table(L, header = TRUE)
+ggplot(df, aes(x = Year, y = Annual)) +
+  geom_line() + ylab("Annual Temperature (F)")
+```

@@ -1,0 +1,31 @@
+```{r}
+L = "http://myweb.fsu.edu/jelsner/data/TLHT.txt"
+TLH = read.table(L, header = TRUE)
+```
+
+Bar plot of the number days at or above 100F by year.
+```{r}
+library(dplyr)
+library(ggplot2)
+#TLH = tbl_df(TLH)
+TLH %>%
+  group_by(Year) %>%
+  summarise(N100 = sum(Tmax >= 100),
+            avgTmax = mean(Tmax)) %>%
+ggplot(., aes(x = Year, y = avgTmax)) +
+  theme_bw() +
+  geom_point(size = 3) +
+  geom_line() +
+  ylab("Average Annual Temperature in Tallahassee, FL (F)")
+```
+
+ggplot(TLH.df2, aes(x = Year, y = N100, fill = N100)) + 
+  theme_bw() + 
+  geom_bar(stat='identity') + 
+  scale_fill_continuous(low='orange', high='red') +
+  geom_text(aes(label = N100), vjust = 1.5, size = 3) +
+  scale_x_continuous(breaks = seq(1950, 2013, 10)) +
+  ylab(expression(paste("Number of days in Tallahassee, FL at or above 100", {}^o, " F"))) +
+  xlab("") +
+  theme(axis.text.x  = element_text(size=11), legend.position="none")
+```

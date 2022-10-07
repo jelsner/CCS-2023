@@ -1,0 +1,58 @@
+My Term Project
+===============
+author: My Name
+
+My term project is worth 30% of my semester grade. It will be graded on a 100 point scale.
+
+I rename the file replacing "MyName" in the MyName_TermProject.Rmd file name to my name. **This is worth 5 points.**
+
+Next to the word author: change My Name to my name. **This is worth 5 points.**
+
+Note: Select the Packages tab (lower right) > Install. Type: ggplot2, then click install to install the needed package.
+
+Basic idea behind R markdown (Rmd): code + narrative = scientific report (computer language [R] + authoring language [MD])
+
+### 1. Introduction
+
+Here is where I type a description of my dataset. **This is worth 10 points.**
+
+### 2. Get the Data
+
+Here is where I show the code used to get the data in R. **This is worth 20 points.**
+
+```{r}
+L = 'http://myweb.fsu.edu/jelsner/data/FLMonthlyT.txt'
+df = read.table(L, header = TRUE)
+head(df)
+```
+
+### 3. Graph the Data
+
+Here is where I show the code to make a graph of the data. I will make sure I label the axes appropriately. **This is worth 20 points.**
+
+```{r}
+library(ggplot2)
+ggplot(df, aes(x = Year, y = Annual)) +
+  geom_line() + 
+  ylab("Temperature Anomaly (C)")
+```
+
+### 4. Draw a Trend Line
+
+Here is where I show the code that adds a trend line to the graph. **This is worth 20 points.**
+
+```{r}
+ggplot(df, aes(x = Year, y = Annual)) +
+  geom_line() + geom_smooth() +
+  ylab("Temperature Anomaly (C)")
+```
+
+### 5. Describe the Graph
+
+Here is where I write a few sentences describing the graph and trend line. **This is worth 10 points.**
+
+### 6. Generate an HTML file and send it to jelsner@fsu.edu
+
+Here is where I select the Knit HTML button above. I then open my email client and send the HTML file to Professor Elsner. 
+
+**Note: If I can't produce an HTML file, I send the Rmd file instead.**

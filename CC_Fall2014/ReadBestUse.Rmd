@@ -1,0 +1,21 @@
+---
+title: "ReadBestUse.Rmd"
+output: html_document
+---
+
+```{r}
+load("best.use.2013.RData")
+library(dplyr)
+library(magrittr)
+AllTracks.df = tbl_df(best.use)
+C1 = AllTracks.df %>% 
+  filter(WmaxS >= 34) %>%
+  group_by(SYear) %>%
+  summarize(nTS = length(unique(Sid)))
+C2 = AllTracks.df %>%
+  filter(WmaxS >= 64) %>%
+  group_by(SYear) %>%
+  summarize(nH = length(unique(Sid)))
+AnnualCounts.df = merge(C1, C2)     
+write.table(AnnualCounts.df, "AnnualCounts.txt")
+```

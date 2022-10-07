@@ -1,0 +1,106 @@
+Climate Change: Day 9
+=====================
+date: September 23, 2014
+
+Last Time
+
+Exam 1, Grade distribution and summary statistics
+
+```{r}
+Exam1 = read.table("http://myweb.fsu.edu/jelsner/Exam1.txt", 
+                   header = TRUE)
+library(ggplot2)
+ggplot(Exam1, aes(factor(Score))) + 
+  geom_histogram() +
+  xlab("Exam Score") +
+  ylab("Number of Students")
+round(mean(Exam1$Score), 1)
+round(median(Exam1$Score), 0)
+round(sd(Exam1$Score), 2)
+```
+
+Today
+=====
+### Tropical vs extra-tropical cyclones and the jet stream: 
+
+[Tropical Cyclone Forecast Models](http://moe.met.fsu.edu/tcgengifs/)
+
+#### What's the difference? latent heat release vs temperature difference, what causes the jet stream? How is it changing? Arctic amplification, more extremely hot days.
+
+![alt text](Jetstream1.jpg)
+![alt text](Jetstream2.jpg)
+
+[Understanding the Jet Stream](https://www.youtube.com/watch?v=_nzwJg4Ebzo)
+
+### Is It Getting Hotter Here?
+
+First, get your data into R. The first line of code sets the location of the data as a string of characters (letters, slashes, etc). The second line of code inputs the data as a data frame. The argument header = TRUE lets R know that the dataset has a top row that identifies the columns by name (header record).
+```{r}
+L = 'http://myweb.fsu.edu/jelsner/data/TLHT.txt'
+df = read.table(L, header = TRUE)
+```
+
+Check that the data are available by selecting the df object under the Environment tab.
+
+Next load the functions that make it easy to manipulate the data and to make a graph.
+```{r, message=FALSE}
+library(ggplot2)
+library(dplyr)
+```
+
+Arrange the data. To make a new data frame (Annual) take the data frame (df) then (%>%) group by year then average the daily high temperatures.
+```{r}
+Annual = df %>% 
+  group_by(Year) %>%
+  summarize(Avg = mean(Tmax))
+```
+
+Make the graph. Use the ggplot() to graph the data in the Annual data frame.
+```{r}
+ggplot(Annual, aes(x = Year, y = Avg)) +
+  geom_point() + 
+  geom_line() +
+  geom_smooth(method = lm, size = 3) +
+  ylab("Annual Average Temperature in Tallahassee (F)")
+```
+
+Quantify the trend.
+```{r}
+trModel = lm(Avg ~ Year, data = Annual)
+coef(trModel)[2]
+```
+
+### Are There Now More Extremely Hot Days?
+
+Here we define a hot day as one in which the high temperatures reaches 100F.
+
+```{r}
+df %>%
+  group_by(Year) %>%
+  summarise(N100 = sum(Tmax >= 100)) %>%
+ggplot(., aes(x = Year, y = N100)) +
+  geom_bar(stat = "identity") +
+  ylab("Number of days in Tallahassee at or exceeding 100F")
+```
+
+Make it prettier.
+```{r}
+df %>%
+  group_by(Year) %>%
+  summarise(N100 = sum(Tmax >= 100)) %>%  
+ggplot(., aes(x = Year, y = N100, fill = N100)) +
+  geom_bar(stat = "identity") +
+  theme_bw() +
+  scale_fill_continuous(low = 'orange', high = 'red') +
+  geom_text(aes(label = N100), vjust = 1.5, size = 3) +
+  ylab("Number of days in Tallahassee at or exceeding 100F") +
+  scale_x_continuous(breaks = seq(1950, 2013, 10)) +
+  xlab("") +
+  theme(axis.text.x  = element_text(size = 11), 
+        legend.position = "none")
+```
+
+Lede: The hots are getting hotter.
+
+[More Heat](http://www.wunderground.com/climate/videos.asp?video=extreme_weather_101_heat)
+

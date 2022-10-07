@@ -1,0 +1,29 @@
+Mapping Tornadoes
+=================
+
+Last week we learned how to make a base map in R using the functions from the **ggmap** package.
+
+This week we add the locations of tornadoes onto the map.
+
+```{r}
+download.file(url = "http://www.spc.noaa.gov/gis/svrgis/zipped/tornado.zip",
+              destfile = "tornado.zip")
+unzip("tornado.zip")
+library("rgdal")
+TornL = readOGR(dsn = "torn", layer = "torn", 
+                stringsAsFactors = FALSE)
+df = as.data.frame(TornL)
+library("dplyr")
+df = df %>%
+  filter(st == "KS", mag >= 1)
+loc = geocode("Kansas")
+Map = get_map(location = loc, 
+              source = "google",
+              zoom = 7,
+              color = "bw",
+              maptype = "terrain")
+ggmap(Map, dev = "extent") +
+    labs(x = expression(paste("Longitude (", degree, "W)")), 
+       y = expression(paste("Latitude (", degree, "N)"))) +
+  geom_point(mapping = aes(x = slon, y = slat, size = mag), data = df, alpha = .3)
+```

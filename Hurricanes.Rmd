@@ -1,0 +1,35 @@
+Hurricane Frequency
+====================
+
+We now turn to hurricanes.
+
+As we did with the Florida temperature data we get the hurricane data into R using two lines of code (code chunk). 
+```{r}
+L = 'http://myweb.fsu.edu/jelsner/data/US.txt'
+df = read.table(L, header = TRUE)
+```
+
+Recall L locates the data sheet (US.txt) on a server. The data is read into R using the read.table function. The first argument to the read.table function is L. The result is a data frame called df.
+
+To see what the data look like click on df in the Environment window. Data frames have rows and columns. Rows are the observations and columns are the variables. 
+
+All is the number of hurricanes hitting the United States by year. MUS is the number of major (Cat3+) hitting the U.S., G is the number of hurricanes hitting the Gulf coast, FL is the number hitting Florida, and E is the number hitting the East coast.
+
+To see the range of years spanned by the data frame, type
+```{r}
+range(df$Year)
+```
+
+To see the distribution of Florida hurricane counts, type
+```{r}
+table(df$FL)
+```
+
+To see if there is any change over time we make a plot as before.
+```{r}
+library("ggplot2")
+ggplot(df, aes(x = Year, y = FL)) +
+  geom_point() +
+  geom_smooth(method = lm)
+```
+

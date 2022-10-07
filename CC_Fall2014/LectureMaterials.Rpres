@@ -1,0 +1,160 @@
+Lecture Materials
+=====================
+
+====
+[Samaras Lightning](https://www.youtube.com/watch?v=a_MuaWDg5Z0)
+
+[Storm chasing tours](http://www.stormchasingusa.com/)
+
+
+
+```{r}
+L = "http://myweb.fsu.edu/jelsner/data/TLH_TC.txt"
+df = read.table(L, header = TRUE)
+library(quantreg)
+df %>%
+  filter(WmaxS >= 34, SYear >= 1967) %>%
+  group_by(SYear, Sid) %>%
+  group_by(SYear, Sid) %>%
+  summarize(RMI = max(WmaxS)) %>%
+ggplot(., aes(x = SYear, y = RMI)) +
+  geom_point() +
+  geom_quantile(quantiles = c(.5, .75, .95)) +
+  theme_bw()
+```
+
+[Clustered Tornadoes](https://umano.me/c/62Kn6/tornadoes-are-now-ganging-up-in-the-united-states)
+
+[Slow Motion Moore 2013](https://www.youtube.com/watch?v=NOIahbf5uy0)
+
+[Upclose](https://www.youtube.com/watch?v=sPxOSmX_jfY)
+
+[What we know and don’t know about tornado formation](http://scitation.aip.org/content/aip/magazine/physicstoday/article/67/9/10.1063/PT.3.2514)
+
+[Science Nation Tornadoes](https://www.youtube.com/watch?v=iLij-nU_DjA)
+
+[Storm Chasers](http://www.theweathernetwork.com/stormhunters)
+
+[James Spann](https://www.youtube.com/watch?v=lmWh9jV_1ac)
+
+[NSSL Tornado Info](http://www.nssl.noaa.gov/education/svrwx101/tornadoes/)
+
+[National Geographic Magazine Extreme Weather](http://ngm.nationalgeographic.com/2012/09/extreme-weather/miller-text)
+[Earlier Tornadoes?](http://www.dailyclimate.org/tdc-newsroom/2014/09/tornado-activity)
+
+
+
+[Jeff Donnelly](https://www.youtube.com/watch?v=dvvuMnjBgA8)
+![alt text](tropical_cyclone_map_lrg.gif)
+![alt text](6monthhurricaneorigins.gif)
+[Hot towers](https://www.youtube.com/watch?v=rU0Y7qjoacA)
+[Storm scapes](https://www.youtube.com/watch?v=r1xohS2u69E#t=12)
+[Coriolis effect](https://www.youtube.com/watch?v=i2mec3vgeaI)
+
+Comparing Disasters ![alt text](EffectsToGDPperPerson.png)
+[Heavier Rainstorms](http://www.wunderground.com/climate/videos.asp?video=extreme_weather_101_rainstorms)
+
+
+
+[My Disaster is Worse Than Yours](http://thevane.gawker.com/stop-being-a-pretentious-disaster-snob-1627242686/+dennismersereau)
+
+[Old Weather Records](http://www.npr.org/player/v2/mediaPlayer.html?action=1&t=1&islist=false&id=341697516&m=345428587)
+
+class: small-code
+```{r fig.align='center', out.width=700, out.height=550}
+library(dplyr)
+df %>%
+  arrange(desc(Annual)) %>%
+  mutate(Rank = length(Annual):1) %>%
+  ggplot(., aes(x = Rank, y = Annual, color = Rank)) +
+  geom_point() + 
+  ylab("Annual Temperature (F)") +
+  scale_color_gradient(low = "blue", high = "red")
+```
+
+```{r, fig.width = 15}
+L = "http://myweb.fsu.edu/jelsner/ATL_H.txt"
+df = read.table(L, header = TRUE)
+head(df)
+ggplot(df, aes(x = Year, y = nH)) +
+  geom_bar(stat = "identity") +
+  ylab("Number of Atlantic Hurricanes")
+```
+
+Not Just the Average
+====================
+class: small-code
+
+Temperature distribution, exceedance frequency, correlation.
+```{r fig.align='center', out.width=600, out.height=400}
+ggplot(df, aes(Temperature)) +
+  geom_histogram(binwidth = .25, fill = "red") +
+  xlab("Temperature Anomaly (C)")
+```
+
+Tallahassee Temperatures
+========================
+Tallahassee: USH00088758 ytd
+```{r}
+con = 'http://www.ncdc.noaa.gov/cag/time-series/us/08/USH00088758/tavg/ytd/12/1895-2014.csv'
+all = readLines(con)
+all = all[-(1:2)]
+df = read.csv(textConnection(all), 
+               header = TRUE)
+ggplot(df, aes(x = Date, y = Value)) +
+  geom_line()
+```
+
+Plot CO2 Data
+=============
+[CO2 data](ftp://aftp.cmdl.noaa.gov/products/trends/co2/co2_annmean_mlo.txt)
+
+```{r fig.align='center', out.width=700, out.height=550}
+con = 'http://myweb.fsu.edu/jelsner/CO2.txt'
+df = read.table(con, header = TRUE)
+ggplot(df, aes(x = Year, y = CO2)) +
+  geom_line() +
+  ylab("Annual CO2 (ppm)") +
+  theme_bw()
+df2 = data.frame(Year = df$Year[-1], GrowthRate = diff(df$CO2))
+ggplot(df2, aes(x = Year, y = GrowthRate)) +
+  geom_line() +
+  ylab("Annual CO2 Growth Rate (ppm/yr)") +
+  theme_bw()
+```
+
+[Sea Ice Data](http://nsidc.org/data/seaice_index/archives.html)
+
+[plotly](https://plot.ly/plot)
+
+"Statistically significant" is one of those phrases scientists would love to take back and rename.
+
+"Significant" suggests importance; but the test of statistical significance, developed by the British statistician R.A. Fisher, doesn't measure the importance or size of an effect; only whether we are able to distinguish it, using our keenest statistical tools, from zero. 
+
+"Statistically noticeable" or "Statistically discernable" would be much better.
+
+[Tornado Data](http://www.spc.noaa.gov/wcm/#data)
+
+[Cloudy With a Chance of Joy (11 min)](http://www.ted.com/talks/gavin_pretor_pinney_cloudy_with_a_chance_of_joy.html)
+
+[The tornado we missed May 18th (12 min)](http://skydiary.com/gallery/chase2013/051813/)
+
+[COD Chasing 2014](http://weather.cod.edu/chasing/trips.html)
+
+```{r}
+library(dplyr)
+library(ggplot2)
+load("best.use.2013.RData")
+df = tbl_df(best.use)
+df
+ATL = df %>%
+  group_by(Yr) %>%
+  filter(Wmax > 64) %>%
+  summarise(nH = n_distinct(Sid))
+ATL$Year = ATL$Yr
+ggplot(ATL, aes(x = Yr, y = nH)) +
+  geom_bar(stat = "identity") +
+  ylab("Number of Atlantic Hurricanes")
+write.table(ATL, file = "NATL.txt", row.names = FALSE)
+```
+

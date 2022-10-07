@@ -1,0 +1,98 @@
+<html>
+<head>
+<title>Ohio Lung Cancer Data</title>
+<LINK HREF="style.css" type=text/css rel=STYLESHEET>
+</head>
+<body>
+
+<H1>Ohio Lung Cancer Data</H1>
+
+<p><i>Data provided "as is," no warranties.</i></p>
+
+<hr />
+
+<p><b>File Description</b><br />
+
+<table>
+<tbody>
+   <tr>
+      <td> ohdat.dbf:</td>
+      <td> Data set with lung mortality for Ohio (OH) counties, 1968, 1978, 1988 (for joining with OH base map); 88 observations, 39 variables</td>
+   </tr>
+   <tr>
+      <td> ohioutmbnd.txt:</td>
+      <td> Ohio County ASCII boundary files in UTM Zone 17 projection</td>
+   </tr>
+      <tr>
+      <td> ohutm.shp shx dbf:</td>
+      <td> Shape file constructed from ohioutmbnd.txt (contains no data); 88 observations, 4 variables</td>
+   </tr>
+      <tr>
+      <td>ohlung.shp shx dbf:</td>
+      <td> Shape file for OH counties with all data; 88 observations, 42 variables</td>
+   </tr>
+</tbody>
+</table>
+
+<p>Type = Polygon shape files</p>
+
+<p><b>Source</b><br />
+Boundary file: Data manipulation by Luc Anselin and through GeoDa.<br />
+Lung cancer mortality data from Brad Carlin's web site (file ohio.dat), available at  http://www.biostat.umn.edu/~brad/data2.html. Conversion to GeoDa input format by Luc Anselin.</p>
+
+<p><b>Reference</b><br />
+Xia, Hong and Bradley P. Carlin (1998). Spatio-temporal models with errors in covariates: mapping Ohio lung cancer mortality. <i>Statistics in Medicine</i> 17, 2025-043.</p>
+
+<table>
+<thead>
+   <tr>
+      <th>Variable</th>
+      <th>Description</th>
+   </tr>
+</thead>
+<tbody>
+   <tr>
+      <td> CountyID </td>
+      <td> Sequential county ID (alphabetic order) </td>
+   </tr>
+   <tr>
+      <td> Name </td>
+      <td> County name </td>
+   </tr>
+      <tr>
+      <td> FIPSNO </td>
+      <td> Fips code as numeric </td>
+   </tr>
+      <tr>
+      <td> </td>
+      <td><b>For each year, there are 12 variables:</b></td>
+   </tr>
+      <tr>
+      <td> LGRyy </td>
+      <td> Lung cancer cases for gender G (M or F) and race R (W or B) in year yy (1968, 1978, 1988) </td>
+   </tr>
+      <tr>
+      <td> POPGRyy </td>
+      <td> Population at risk for gender G (M or F) and race R (W or B) in year yy (1968, 1978, 1988) </td>
+   </tr>
+      <tr>
+      <td> LGyy </td>
+      <td> Total male and female lung cancer cases for each year </td>
+   </tr>
+      <tr>
+      <td> POPGyy </td>
+      <td> Total population at risk by gender </td>
+   </tr>
+  </tbody>
+</table>
+
+
+
+<br />
+<hr />
+<p>Prepared by <a href="mailto:anselin@uiuc.edu">Luc Anselin</a></p>
+<p><a href="http://sal.agecon.uiuc.edu">UIUC-ACE Spatial Analysis Laboratory</a></p>
+<p>Last updated June 3, 2004</p>
+
+</body>
+</html>
