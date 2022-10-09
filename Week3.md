@@ -1,9 +1,0 @@
-Basic system dynamics
-=====================
-
-This week we first watch a short movie explaining why understanding climate change is so important. Please [CLICK HERE to watch the video](https://youtu.be/8YQIaOldDU8)
-
-Next we continue with an explanation of basic system dynamics.
-
-Please click on the link below and watch the video; then take the accompanied quiz
-[CLICK HERE to watch the video about basic system dynamics](https://youtu.be/qlRM1JlxfkU)
