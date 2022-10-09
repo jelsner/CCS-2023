@@ -1,0 +1,69 @@
+---
+title: "Where do you find data on past tropical cyclones and how do you get the data into a format that you can work with?"
+format:
+  revealjs:
+    highlight-style: github
+    slide-number: c/t
+    code-fold: false
+    chalkboard: true
+bibliography: References.bib
+editor: source
+---
+
+## International Best Track Archive for Climate Stewardship (IBTraCS)
+
+Import the IBTrACS version 4 data
+
+[Shapefiles are available here](https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r00/access/shapefile/IBTrACS.NA.list.v04r00.lines.zip)
+
+First you need to
+
+:::{.incremental}
+1. Download and unzip the data file
+2. Get the data file into R
+3. Glimpse contents
+:::
+
+## Download and unzip the data file
+
+```{r}
+#| echo: true
+l <- "https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r00/access/shapefile/IBTrACS.NA.list.v04r00.lines.zip"
+  
+if(!"IBTrACS.NA.list.v04r00.lines.zip" %in% list.files(here::here("data"))) {
+download.file(url = l,
+              destfile = here::here("data",
+                                    "IBTrACS.NA.list.v04r00.lines.zip"))
+unzip(here::here("data", "IBTrACS.NA.list.v04r00.lines.zip"),
+      exdir = here::here("data"))
+}
+```
+
+## Get the data file into R
+
+```{r}
+#| echo: true
+TC.sf <- sf::st_read(dsn = here::here("data"), 
+                     layer = "IBTrACS.NA.list.v04r00.lines")
+```
+
+## Glimpse the contents {.smaller}
+
+```{r}
+#| echo: true
+TC.sf |>
+  dplyr::glimpse()
+```
+
+## Filter and add new variables
+
+```{r, eval=FALSE}
+NA.df <- NA.df %>%
+  filter(SEASON != "Year") %>%
+  mutate(Season = as.integer(SEASON)) %>%
+  filter(Season >= 1981) %>%
+  mutate(Time = as.Date(ISO_TIME),
+         WindKt = as.numeric(USA_WIND),
+         WindMS = WindKt * .5144447) %>%
+  select(SID, Season, NUMBER, BASIN, NAME, ISO_TIME, Time, WindKt, WindMS)
+```
