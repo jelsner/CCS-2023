@@ -2,7 +2,6 @@
 title: "Tropical cyclone data from around the world"
 format:
   revealjs:
-    highlight-style: github
     slide-number: c/t
     code-fold: false
     chalkboard: true
@@ -27,10 +26,6 @@ These data are available [here](https://www.nhc.noaa.gov/data/).
 
 ## International Best Track Archive for Climate Stewardship (IBTraCS)
 
-:::{.callout-note}
-Historical tropical cyclone data from around the world in CSV, netCDF, and shapefiles are available from the International Best-Track Archive for Climate Stewardship. [Click here](https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r00/access)
-:::
-
 Working with the IBTrACS version 4 data set
 
 First you need to
@@ -39,6 +34,10 @@ First you need to
 1. Download and unzip the data file
 2. Get the data file into R
 3. Glimpse contents
+:::
+
+:::{.callout-note}
+Historical tropical cyclone data from around the world in CSV, netCDF, and shapefiles are available from the International Best-Track Archive for Climate Stewardship. [Here](https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r00/access)
 :::
 
 ## Download and unzip the data file
@@ -72,15 +71,37 @@ TC.sf |>
   dplyr::glimpse()
 ```
 
-## Filter and add new variables
+Each row is a separate three-hourly estimate.
 
-```{r, eval=FALSE}
-NA.df <- NA.df %>%
-  filter(SEASON != "Year") %>%
-  mutate(Season = as.integer(SEASON)) %>%
-  filter(Season >= 1981) %>%
-  mutate(Time = as.Date(ISO_TIME),
-         WindKt = as.numeric(USA_WIND),
-         WindMS = WindKt * .5144447) %>%
-  select(SID, Season, NUMBER, BASIN, NAME, ISO_TIME, Time, WindKt, WindMS)
+## Hurricane Michael (2018)
+
+Hurricane Michael was a very powerful and destructive tropical cyclone that became the first Category 5 hurricane to make landfall in the contiguous United States since Andrew in 1992.[^1]
+
+[^1]: [Read more](https://en.wikipedia.org/wiki/Hurricane_Michael).
+
+##
+
+Here you remove all rows from `TC.sf` except those corresponding to Hurricane Michael in 2018.
+
+```{r}
+#| echo: true
+One.sf <- TC.sf |>
+  dplyr::filter(SEASON >= 2018 & NAME == "MICHAEL") |>
+  dplyr::select(NAME, USA_WIND)
 ```
+
+You've removed all rows from `TC.sf` and all columns except `NAME` and `USA_WIND`.
+
+So the new data `One.sf` contains `r nrow(One.sf)` rows and `r ncol(One.sf)` columns.
+
+##
+
+You overlay the track of Hurricane Michael colored by wind speed onto [Leaflet](https://openmaptiles.org/docs/website/leaflet/) map tiles.
+
+```{r}
+#| echo: true
+tmap::tmap_mode("view")
+tmap::tm_shape(One.sf) +
+  tmap::tm_lines(col = "USA_WIND", lwd = 3)
+```
+
