@@ -1,5 +1,5 @@
 ---
-title: "Where do you find data on past tropical cyclones and how do you get the data into a format that you can work with?"
+title: "Tropical cyclone data from around the world"
 format:
   revealjs:
     highlight-style: github
@@ -10,11 +10,28 @@ bibliography: References.bib
 editor: source
 ---
 
+## Data on past tropical cyclones
+
+* Where do you find data on past tropical cyclones?
+* How do you get the data into a format that you can work with?
+
+##
+
+![Map showing the tracks and intensities of all tropical cyclones over the North Atlantic during the 2019 hurricane season](https://www.nhc.noaa.gov/data/tracks/tracks-at-2019.png){#fig-tracks}
+
+##
+
+The National Hurricane Center has data on all tropical cyclones occurring in the North Atlantic and western North Pacific. 
+
+These data are available [here](https://www.nhc.noaa.gov/data/).
+
 ## International Best Track Archive for Climate Stewardship (IBTraCS)
 
-Import the IBTrACS version 4 data
+:::{.callout-note}
+Historical tropical cyclone data from around the world in CSV, netCDF, and shapefiles are available from the International Best-Track Archive for Climate Stewardship. [Click here](https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r00/access)
+:::
 
-[Shapefiles are available here](https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r00/access/shapefile/IBTrACS.NA.list.v04r00.lines.zip)
+Working with the IBTrACS version 4 data set
 
 First you need to
 
