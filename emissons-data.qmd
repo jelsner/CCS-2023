@@ -1,0 +1,51 @@
+---
+title: "Greenhouse gas emissions"
+format: 
+  revealjs:
+    slide-number: c/t
+    code-fold: false
+    chalkboard: true
+bibliography: References.bib
+editor: source
+---
+
+
+## Get the emissions data
+
+Download the emissions data using the `get_emissions()` function from the {hockeystick} package.
+
+```{r}
+#| echo: true
+library(hockeystick)
+
+emits <- hockeystick::get_emissions(write_cache = TRUE)
+```
+
+##
+
+Look at the first six rows of the data frame using the `head()` function.
+
+```{r}
+#| echo: true
+emits |>
+  head()
+```
+
+## Make a time-series plot
+
+```{r}
+#| echo: true
+#| fig-cap: "Annual total emissions worldwide"
+hockeystick::plot_emissions(emits)
+```
+
+## By country/region in 2020
+```{r}
+#| echo: true
+emits |>
+  dplyr::filter(year == 2020) |>
+  dplyr::select(country, co2, co2_per_capita) |>
+  dplyr::arrange(desc(co2))
+```
+
+China, United States, India, Russia, Japan, Iran, Germany, Saudi Arabia, South Korea, Indonesia, Canada, Brazil, South Africa, Turkey, Australia, United Kingdom, Italy, Poland, Kazakhstan, France, Taiwan, Malaysia

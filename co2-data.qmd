@@ -1,0 +1,84 @@
+---
+title: "Climate data"
+format: 
+  revealjs:
+    slide-number: c/t
+    code-fold: false
+    chalkboard: true
+bibliography: References.bib
+editor: source
+---
+
+## Download and view climate data
+
+* The package _hockeystick_ has functions that make climate data easily available for you. 
+
+* You can download the latest raw data from authoritative sources as well as view it with pre-defined charts.
+
+* The name of the package stems from the well-known [hockey stick](https://en.wikipedia.org/wiki/Hockey_stick_graph) temperature chart.
+
+## Install the package
+
+```{r}
+#| echo: true
+install.packages("hockeystick",
+                 repo = "https://cloud.r-project.org")
+```
+
+## Get the CO~2~ data
+
+Download the CO~2~ data using the `get_carbon()` function from the {hockeystick} package. The data are atmospheric CO~2~ measurements at Mauna Loa Observatory, Hawaii.
+
+```{r}
+#| echo: true
+library(hockeystick)
+
+ml_co2 <- hockeystick::get_carbon(write_cache = TRUE)
+```
+
+##
+
+Take a look at the first six rows of the data frame using the `head()` function.
+
+```{r}
+#| echo: true
+ml_co2 |>
+  head()
+```
+
+## Make a time-series plot
+
+```{r}
+#| echo: true
+hockeystick::plot_carbon(ml_co2)
+```
+
+## 
+```{r}
+#| echo: true
+( ml_co2a <- ml_co2 |>
+  dplyr::rename(CO2_ppm = average) |>
+  dplyr::mutate(Year = lubridate::year(date),
+                Month = lubridate::month(month, label = T)) |>
+  dplyr::select(Year, Month, CO2_ppm) )
+```
+
+## Seasonal change
+
+```{r}
+#| echo: true
+#| output-location: slide 
+#| fig-cap: "Seasonal change in carbon dioxide at Mauna Loa"
+
+library(ggplot2)
+
+ml_co2a |>
+  dplyr::group_by(Month) |>
+  dplyr::summarize(Avg_ppm = mean(CO2_ppm)) |>
+  ggplot(mapping = aes(x = Month, y = Avg_ppm)) +
+    geom_point() +
+    ylab("Parts per million") +
+    theme_minimal()
+```
+
+

@@ -1,0 +1,32 @@
+---
+title: "Carbon Dioxide data"
+format:
+  revealjs:
+    slide-number: c/t
+    code-fold: false
+    chalkboard: true
+bibliography: References.bib
+editor: source
+---
+
+## CO2 data from Mauna Loa
+
+<https://gml.noaa.gov/ccgg/trends/data.html>
+
+```{r}
+cn <- c("Year", "Month", "DDate", "CO2_ppm",
+        "X1", "X2", "X3", "X4")
+CO2 <- readr::read_table(file = here::here("data", "co2_mm_mlo.txt"), col_names = cn) |>
+  dplyr::select(Year:CO2_ppm) |>
+  dplyr::mutate(Date = paste("01", month.abb[Month], Year)) |>
+  dplyr::mutate(Date = as.Date(Date, format = "%d %b %Y"))
+```
+
+```{r}
+library(ggplot2)
+
+ggplot(data = CO2,
+       mapping = aes(x = Date, y = CO2_ppm)) +
+  geom_line()
+```
+
