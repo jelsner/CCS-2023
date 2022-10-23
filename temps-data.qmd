@@ -68,3 +68,9 @@ tempsL |>
   geom_smooth(method = lm, color = "red") +
   facet_wrap(~ Month, ncol = 12)
 ```
+
+##
+
+```{r}
+warming_stripes(temps)
+```
