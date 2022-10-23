@@ -1,0 +1,70 @@
+---
+title: "Global temperatures"
+format: 
+  revealjs:
+    slide-number: c/t
+    code-fold: false
+    chalkboard: true
+bibliography: References.bib
+editor: source
+---
+
+
+## Get the temperature data
+
+Download the emissions data using the `get_temp()` function from the {hockeystick} package.
+
+```{r}
+#| echo: true
+library(hockeystick)
+
+temps <- hockeystick::get_temp(write_cache = TRUE)
+```
+
+##
+
+Look at the first six rows of the data frame using the `head()` function.
+
+```{r}
+#| echo: true
+temps |>
+  head()
+```
+
+## Make a time-series plot
+
+```{r}
+#| echo: true
+#| fig-cap: "Annual total emissions worldwide"
+hockeystick::plot_temp(temps)
+```
+
+## Convert wide data to long data
+```{r}
+#| echo: true
+tempsL <- temps |>
+  dplyr::select(Year, month.abb) |>
+  tidyr::pivot_longer(cols = month.abb,
+                      names_to = "Month",
+                      values_to = "Anom_C") |>
+  dplyr::mutate(Year = lubridate::year(Year),
+                Month = factor(Month, 
+                               levels = month.abb))
+
+head(tempsL)
+```
+
+## Plot temperature anomalies by month
+```{r}
+#| echo: true
+library(ggplot2)
+
+tempsL |>
+  na.omit() |>
+  dplyr::filter(Year >= 1980) |>
+  ggplot(mapping = aes(x = Year, 
+                       y = Anom_C)) +
+#  geom_line() +
+  geom_smooth(method = lm, color = "red") +
+  facet_wrap(~ Month, ncol = 12)
+```
