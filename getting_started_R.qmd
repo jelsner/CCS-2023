@@ -1,0 +1,9 @@
+---
+title: "Getting started with R/RStudio"
+format: revealjs
+editor: source
+---
+
+## GitHub
+
+Watch this tutorial <https://www.youtube.com/watch?v=MdmnE3AnkQE>
