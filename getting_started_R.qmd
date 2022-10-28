@@ -12,6 +12,10 @@ link-citations: yes
 editor: source
 ---
 
+## Getting started with data in R
+
+<https://moderndive.netlify.app/1-getting-started.html>
+
 ## Quarto
 
 Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
@@ -30,6 +34,10 @@ When you click the **Render** button a presentation will be generated that inclu
 1 + 1
 ```
 
-## GitHub
+## Connecting RStudio and GitHub
 
-Watch this tutorial <https://www.youtube.com/watch?v=MdmnE3AnkQE>
+{{< video https://www.youtube.com/embed/MdmnE3AnkQE >}}
+
+## Climate change explained
+
+{{< video https://www.youtube.com/embed/CGoNpwN0mrs >}}
