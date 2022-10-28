@@ -1,0 +1,45 @@
+---
+title: "Sea level data"
+format: 
+  revealjs:
+    slide-number: c/t
+    code-fold: false
+    chalkboard: true
+    theme: white
+    footer: "GEO4251 Climate Change & Storms"
+bibliography: References.bib
+editor: source
+---
+
+
+## Get the sea level data
+
+Download the sea level data using the `get_sealevel()` function from the {hockeystick} package.
+
+```{r}
+#| echo: true
+library(hockeystick)
+
+gmsl <- get_sealevel(write_cache = TRUE)
+```
+
+##
+
+Look at the first & last six rows of using the `head()` function.
+
+```{r}
+#| echo: true
+gmsl |>
+  head()
+
+gmsl |>
+  tail()
+```
+
+## Make a time-series plot
+
+```{r}
+#| echo: true
+gmsl |>
+  plot_sealevel()
+```
