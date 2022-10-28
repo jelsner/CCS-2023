@@ -1,0 +1,108 @@
+---
+title: "Climate change & storms: Outline"
+format: 
+  revealjs:
+    code-fold: false
+    theme: white
+    footer: "GEO4251 Climate Change & Storms"
+    chalkboard: true
+bibliography: References.bib
+link-citations: yes
+#csl: apa-single-spaced.csl
+editor: source
+---
+
+## Getting started:
+
+* Installing R and RStudio
+* Connecting to GitHub
+* Introduction to coding
+* Writing code: translating the problem into code that can be used to provide insights 
+* Reproducibility 
+
+## Show me the data:
+
+* CO2 concentrations 
+* Sea levels
+* Temperatures: oceans, land, global vs local 
+* Storms: hurricanes, tornadoes: frequency vs intensity 
+* Proxy data: sediment cores, trees 
+
+## Data science:
+
+* Statistics vs observations 
+* Plots and graphs 
+* Data models: regression trends 
+* Space vs time 
+* Uncertainty: classical vs Bayesian 
+
+## Weather and climate models: 
+
+* Detection vs attribution 
+* Prediction vs predictability 
+
+ 
+## Take an existing R project and put it on GitHub
+
+{{< video https://youtu.be/bUoN85QvC10 >}}
+
+##
+
+Autobiographic journey of my scientific career. Before “data science” 
+
+Prelude: The science of global warming 
+
+https://www.edx.org/course/global-warming-science, Kerry Emanuel 
+
+https://sdgacademy.org/course/climate-change-the-science-and-global-impact/, Michael Mann 
+
+##
+
+"Climate change is an irresistible convenience, for it can be blamed on nobody in particular, and this spares official Florida the burden of its complicity in the larger-scale ruin of the land of our state."--Wendell Berry 
+
+How does/might climate change affect X? X: Hurricanes, tornadoes, winter storms, heat waves 
+
+## Climate change & storms
+
+Scientists can make the connection between climate change and extreme weather better today than they could 10-20 years ago
+
+1) Huge methodological advances in science of attribution 
+2) More years of data = stronger evidence 
+3) Being smarter about how to explain the connection 
+
+## 
+https://climatefeedback.org/how-climate-change-impacts-hurricanes/  
+https://physicstoday.scitation.org/doi/10.1063/PT.3.5038 
+
+##
+
+{{< video https://www.youtube.com/embed/VDkNIq1cTYs >}}
+{{< video https://www.youtube.com/embed/MuwA3wWQ538 >}}
+
+##
+
+https://www.youtube.com/watch?v=tcj9IGY6Etg 
+https://youtu.be/CGoNpwN0mrs 
+https://www.youtube.com/watch?v=mEdN7gGfAZU 
+https://youtu.be/AMV6758nosU 
+https://youtu.be/qw5zzrOpo2s 
+https://youtu.be/5W84bi9YEGY 
+https://www.youtube.com/watch?v=pkTpfLqtSpQ 
+
+##
+
+https://www.youtube.com/watch?v=RcZdg3I2Pso 
+https://youtu.be/JXhif3E3l2s 
+https://www.youtube.com/watch?v=hqRdu2riNlg 
+https://www.youtube.com/watch?v=PMHArzta2Ak 
+https://www.realclimate.org/index.php/archives/2022/09/watching-the-detections  Detection vs attribution 
+https://www.climate.columbia.edu/content/predictions-projections-or-portents-weather-and-climate-modelling 
+
+ 
+
+
+ 
+
+ 
+
+ 
