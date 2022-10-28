@@ -5,6 +5,8 @@ format:
     slide-number: c/t
     code-fold: false
     chalkboard: true
+    theme: white
+    footer: "GEO4251 Climate Change & Storms"
 bibliography: References.bib
 editor: source
 ---
@@ -12,7 +14,7 @@ editor: source
 
 ## Get the temperature data
 
-Download the emissions data using the `get_temp()` function from the {hockeystick} package.
+Download the temperature data using the `get_temp()` function from the {hockeystick} package.
 
 ```{r}
 #| echo: true
@@ -23,7 +25,7 @@ temps <- hockeystick::get_temp(write_cache = TRUE)
 
 ##
 
-Look at the first six rows of the data frame using the `head()` function.
+Look at the first six rows using the `head()` function.
 
 ```{r}
 #| echo: true
@@ -35,8 +37,16 @@ temps |>
 
 ```{r}
 #| echo: true
-#| fig-cap: "Annual total emissions worldwide"
-hockeystick::plot_temp(temps)
+#| fig-cap: "Annual global land-ocean temperature index"
+temps |>
+  plot_temp()
+```
+
+##
+
+```{r}
+temps |>
+  warming_stripes()
 ```
 
 ## Convert wide data to long data
@@ -54,7 +64,7 @@ tempsL <- temps |>
 head(tempsL)
 ```
 
-## Plot temperature anomalies by month
+## Plot temperatures by month
 ```{r}
 #| echo: true
 library(ggplot2)
@@ -66,11 +76,7 @@ tempsL |>
                        y = Anom_C)) +
 #  geom_line() +
   geom_smooth(method = lm, color = "red") +
-  facet_wrap(~ Month, ncol = 12)
+  facet_wrap(~ Month, ncol = 4)
 ```
 
-##
 
-```{r}
-warming_stripes(temps)
-```

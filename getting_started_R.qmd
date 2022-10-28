@@ -1,7 +1,5 @@
 ---
 title: "Getting started with R/RStudio"
-date: today
-#author: James B. Elsner
 format: 
   revealjs:
     code-fold: false
@@ -17,8 +15,6 @@ editor: source
 ## Quarto
 
 Quarto enables you to weave together content and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
-
-## Bullets
 
 When you click the **Render** button a document will be generated that includes:
 
