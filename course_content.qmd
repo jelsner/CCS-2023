@@ -17,7 +17,7 @@ editor: source
 * Installing R and RStudio
 * Connecting to GitHub
 * Introduction to coding
-* Writing code: translating the problem into code that can be used to provide insights 
+* Translating the problem into code
 * Reproducibility 
 
 ## Show me the data:
@@ -28,7 +28,7 @@ editor: source
 * Storms: hurricanes, tornadoes: frequency vs intensity 
 * Proxy data: sediment cores, trees 
 
-## Data science:
+## Climate change & data science:
 
 * Statistics vs observations 
 * Plots and graphs 
@@ -39,7 +39,8 @@ editor: source
 ## Weather and climate models: 
 
 * Detection vs attribution 
-* Prediction vs predictability 
+* Prediction vs predictability
+* Prediction markets
 
  
 ## Take an existing R project and put it on GitHub
