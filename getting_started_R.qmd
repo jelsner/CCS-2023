@@ -38,6 +38,8 @@ When you click the **Render** button a presentation will be generated that inclu
 
 {{< video https://www.youtube.com/embed/MdmnE3AnkQE >}}
 
-## Climate change explained
+## 
 
-{{< video https://www.youtube.com/embed/CGoNpwN0mrs >}}
+Take an existing R project and put it on GitHub
+
+{{< video https://www.youtube/embed/bUoN85QvC10 >}}

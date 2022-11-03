@@ -1,0 +1,39 @@
+---
+title: "Climate change courses"
+format: 
+  revealjs:
+    code-fold: false
+    theme: white
+    footer: "GEO4251 Climate Change & Storms"
+    chalkboard: true
+bibliography: References.bib
+link-citations: yes
+#csl: apa-single-spaced.csl
+editor: source
+---
+
+## Kerry Emanuel
+
+::: {style="text-align: left; margin-top: 2em"}
+[The science of global warming](https://www.edx.org/course/global-warming-science){preview-link="true" style="text-align: center"}
+:::
+
+## Michael Mann
+
+::: {style="text-align: left; margin-top: 2em"}
+[Climate change: Science and Impacts](https://sdgacademy.org/course/climate-change-the-science-and-global-impact/){preview-link="true" style="text-align: center"}
+:::
+
+
+## Emanuel, Mann, Elsner, et al.
+
+::: {style="text-align: left; margin-top: 2em"}
+[Hurricanes and Climate: The U.S. CLIVAR Working Group on Hurricanes](https://journals.ametsoc.org/view/journals/bams/96/6/bams-d-13-00242.1.xml){preview-link="true" style="text-align: center"}
+:::
+
+## Climate change explained
+
+{{< video https://www.youtube.com/embed/CGoNpwN0mrs >}}
+
+
+

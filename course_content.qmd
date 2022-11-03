@@ -16,19 +16,20 @@ editor: source
 
 * Installing R and RStudio
 * Connecting to GitHub
-* Introduction to coding
 * Translating the problem into code
-* Reproducibility 
+* Reproducing your results 
+
+## The changing climate in graphs:
 
 ## Show me the data:
 
 * CO2 concentrations 
 * Sea levels
 * Temperatures: oceans, land, global vs local 
+* Proxy data: sediment cores, tree rings
 * Storms: hurricanes, tornadoes: frequency vs intensity 
-* Proxy data: sediment cores, trees 
 
-## Climate change & data science:
+## Analyzing and modeling the data:
 
 * Statistics vs observations 
 * Plots and graphs 
@@ -46,16 +47,6 @@ editor: source
 ## Take an existing R project and put it on GitHub
 
 {{< video https://youtu.be/bUoN85QvC10 >}}
-
-##
-
-Autobiographic journey of my scientific career. Before “data science” 
-
-Prelude: The science of global warming 
-
-https://www.edx.org/course/global-warming-science, Kerry Emanuel 
-
-https://sdgacademy.org/course/climate-change-the-science-and-global-impact/, Michael Mann 
 
 ##
 

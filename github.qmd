@@ -1,0 +1,25 @@
+---
+title: "Learn GitHub"
+format: 
+  revealjs:
+    code-fold: false
+    theme: white
+    footer: "GEO4251 Climate Change & Storms"
+    chalkboard: true
+bibliography: References.bib
+link-citations: yes
+#csl: apa-single-spaced.csl
+editor: source
+---
+
+## 
+Connecting RStudio and GitHub
+
+{{< video https://www.youtube.com/embed/MdmnE3AnkQE >}}
+
+## 
+
+Take an existing R project and put it on GitHub
+
+{{< video https://youtu.be/bUoN85QvC10 >}}
+

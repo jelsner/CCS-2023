@@ -1,0 +1,26 @@
+---
+title: "Analyzed data"
+format: 
+  revealjs:
+    code-fold: false
+    theme: white
+    footer: "GEO4251 Climate Change & Storms"
+    chalkboard: true
+bibliography: References.bib
+link-citations: yes
+#csl: apa-single-spaced.csl
+editor: source
+---
+
+##
+
+::: {style="text-align: center; margin-top: 1em"}
+[Climate Reanalyzer](https://climatereanalyzer.org/wx/DailySummary/#t2){preview-link="true" style="text-align: center"}
+:::
+
+##
+
+::: {style="text-align: center; margin-top: 1em"}
+[Climate Change Indicators](https://zacklabe.com/climate-change-indicators/){preview-link="true" style="text-align: center"}
+:::
+
