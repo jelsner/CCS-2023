@@ -23,10 +23,11 @@ editor: source
 
 ## Show me the data:
 
-* CO2 concentrations 
+* CO2 concentration
+* Sea ice
 * Sea levels
-* Temperatures: oceans, land, global vs local 
-* Proxy data: sediment cores, tree rings
+* Temperature: ocean, land, global vs local 
+* Proxy data: sediments, trees
 * Storms: hurricanes, tornadoes: frequency vs intensity 
 
 ## Analyzing and modeling the data:
