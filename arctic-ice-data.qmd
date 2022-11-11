@@ -1,5 +1,5 @@
 ---
-title: "Sea ice data"
+title: "Arctic ice data"
 format: 
   revealjs:
     slide-number: c/t
@@ -12,15 +12,15 @@ editor: source
 ---
 
 
-## Get the sea ice data
+## Get the Arctic ice data
 
-Download the sea ice data using the `get_seaice()` function from the {hockeystick} package.
+Download the Arctic ice data using the `get_icecurves()` function from the {hockeystick} package.
 
 ```{r}
 #| echo: true
 library(hockeystick)
 
-seaice <- get_seaice(write_cache = TRUE)
+arcticice <- get_icecurves()
 ```
 
 ##
@@ -29,16 +29,22 @@ Look at the data using the `head()` function.
 
 ```{r}
 #| echo: true
-seaice |>
+arcticice |>
   head()
  
 ```
-Sea ice extent in millions of square kilometers every July 31 since 1979.
+Arctic ice extent in millions of square kilometers every month since 1979.
 
 ## Make a time-series plot
 
 ```{r}
 #| echo: true
-seaice |>
-  plot_seaice()
+arcticice |>
+  plot_icecurves()
+```
+
+## All together
+
+```{r}
+climate_grid()
 ```
