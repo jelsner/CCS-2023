@@ -1,0 +1,38 @@
+---
+title: "Atlantic basin hurricanes"
+format: 
+  revealjs:
+    slide-number: c/t
+    code-fold: false
+    chalkboard: true
+    theme: white
+    footer: "GEO4251 Climate Change & Storms"
+bibliography: References.bib
+editor: source
+---
+
+##
+
+```{r}
+#| echo: true
+library(hockeystick)
+
+atlhur <- get_hurricanes()
+
+atlhur |>
+  head()
+```
+
+##
+
+```{r}
+#| echo: true
+atlhur |>
+  plot_hurricanes()
+```
+
+```{r}
+#| echo: true
+atlhur |>
+  plot_hurricane_nrg()
+```
