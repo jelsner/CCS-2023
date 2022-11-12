@@ -1,0 +1,31 @@
+---
+title: "El Nino"
+format:
+  revealjs:
+    slide-number: c/t
+    code-fold: false
+    chalkboard: true
+bibliography: References.bib
+editor: source
+---
+
+##
+
+<ttps://www.metoffice.gov.uk/research/climate/seasonal-to-decadal/gpc-outlooks/el-nino-la-nina/enso-description>
+
+## 
+
+How El Nino works
+
+{{< video https://www.youtube.com/embed/WPA-KpldDVc >}}
+
+<https://youtu.be/WPA-KpldDVc>
+
+##
+
+The Southern Oscillation Index (SOI) is calculated from the monthly or seasonal fluctuations in the air pressure difference between Tahiti and Darwin.
+
+Sustained negative values of the SOI often indicate El Nino episodes. These negative values are usually accompanied by sustained warming of the central and eastern tropical Pacific Ocean, a decrease in the strength of the Pacific Trade Winds, and a reduction in rainfall over eastern and northern Australia. The most recent strong El Nino was in 1997/98.
+
+Positive values of the SOI are associated with stronger Pacific trade winds and warmer sea temperatures to the north of Australia, popularly known as a La Nina episode. Waters in the central and eastern tropical Pacific Ocean become cooler during this time. Together these give an increased probability that eastern and northern Australia will be wetter than normal.
+

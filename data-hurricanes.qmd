@@ -1,5 +1,5 @@
 ---
-title: "Tropical cyclone data from around the world"
+title: "Tropical cyclone data around the world"
 format:
   revealjs:
     slide-number: c/t

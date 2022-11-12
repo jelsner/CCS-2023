@@ -1,0 +1,26 @@
+---
+title: "Humidity data"
+format:
+  revealjs:
+    slide-number: c/t
+    code-fold: false
+    chalkboard: true
+bibliography: References.bib
+editor: source
+---
+
+## Global humidity data
+
+<https://climate.metoffice.cloud/humidity.html#datasets>
+
+##
+
+```{r}
+#| echo: TRUE
+
+q.df <- readr::read_csv(here::here("data", "humidity_q_HadISDH blend q.csv"))
+
+str(q.df)
+```
+
+

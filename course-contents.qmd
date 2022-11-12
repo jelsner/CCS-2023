@@ -12,39 +12,48 @@ link-citations: yes
 editor: source
 ---
 
-## Getting started:
+Title: Climate Change & Storms
+
+Theme: Tracking the relationships between the changing climate and storminess with observations
+
+
+## Getting started
 
 * Installing R and RStudio
 * Connecting to GitHub
-* Translating the problem into code
-* Reproducing your results 
+* Learning to code
+* Generating reports
 
-## The changing climate in graphs:
+## Getting climate data
 
-## Show me the data:
-
+* Pre-analyzed data
 * CO2 concentration
-* Sea ice
-* Sea levels
-* Temperature: ocean, land, global vs local 
-* Proxy data: sediments, trees
-* Storms: hurricanes, tornadoes: frequency vs intensity 
+* Sea ice and sea levels
+* Temperatures: ocean, land, global vs local 
+* Proxy data: ice cores, over-wash sediment deposits, tree rings
+* Humidity 
+* Storms: hurricanes, tornadoes
+* Modes of variability
 
-## Analyzing and modeling the data:
+## Analyzing the climate data
 
 * Statistics vs observations 
-* Plots and graphs 
-* Data models: regression trends 
-* Space vs time 
-* Uncertainty: classical vs Bayesian 
+* Detection vs attribution
+* Plots and graphs
+* Frequency vs intensity
 
-## Weather and climate models: 
+## Modeling the climate data
+
+* Regression trends
+* Uncertainty: classical vs Bayesian 
+* Space vs time 
+
+## Climate models
 
 * Detection vs attribution 
 * Prediction vs predictability
 * Prediction markets
 
- 
 ## Take an existing R project and put it on GitHub
 
 {{< video https://youtu.be/bUoN85QvC10 >}}
@@ -57,11 +66,11 @@ How does/might climate change affect X? X: Hurricanes, tornadoes, winter storms,
 
 ## Climate change & storms
 
-Scientists can make the connection between climate change and extreme weather better today than they could 10-20 years ago
+Scientists can make the connection between climate change and storms better today than they could only a few years ago
 
-1) Huge methodological advances in science of attribution 
-2) More years of data = stronger evidence 
-3) Being smarter about how to explain the connection 
+1) Methodological advances in science of attribution 
+2) More years of data means stronger evidence 
+3) Physical connections leading to better ways to explain the connections
 
 ## 
 https://climatefeedback.org/how-climate-change-impacts-hurricanes/  
