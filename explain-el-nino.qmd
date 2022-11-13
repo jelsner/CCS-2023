@@ -20,20 +20,26 @@ How El Niño works
 
 ##
 
-Three-month mean sea-surface temperature anomalies (relative to 1961-1990) in degrees Celsius for an area in the east tropical Pacific. The values are in the file `enso_ONI.csv` in the directory `data`.
+The Ocean Niño Index (ONI) gives and indication of the development and intensity of El Niño using temperatures at the ocean's surface across the east tropical Pacific.
+
+Specifically the ONI is a three-month mean sea-surface temperature anomalies (relative to 1961-1990) in degrees Celsius for an area in the east tropical Pacific. 
+
+##
+
+The values are in the file `enso_ONI.csv` in the directory `data`. 
 
 Get the data into your R session using the `read_csv()` function from the {readr} package.
 
 ```{r}
 #| echo: true
-df <- readr::read_csv(here::here("data", "enso_ONI.csv")) |>
+oni.df <- readr::read_csv(here::here("data", "enso_ONI.csv")) |>
   data.frame()
 ```
 Add a date column using the `as.Date()` function.
 
 ```{r}
 #| echo: true
-df <- df |>
+oni.df <- oni.df |>
   dplyr::mutate(Date = as.Date(paste0(Year, "-", Month, "-01")))
 ```
 
@@ -46,7 +52,7 @@ Make a time-series plot.
 #| output-location: slide
 library(ggplot2)
 
-ggplot(data = df,
+ggplot(data = oni.df,
        mapping = aes(x = Date, 
                      y = ONI_C)) +
   geom_line() +
@@ -57,13 +63,15 @@ ggplot(data = df,
 
 ##
 
-The Southern Oscillation Index (SOI) gives an indication of the development and intensity of El Niño or La Niña events in the Pacific Ocean. The SOI is calculated from the monthly fluctuations in the air pressure between Tahiti and Darwin, Australia.
+The Southern Oscillation Index (SOI) gives an indication of the development and intensity of El Niño and La Niña events using air pressure. 
 
-Sustained negative values of the SOI indicate El Niño episodes. These negative values are accompanied by sustained warming of the central and eastern tropical Pacific Ocean.
+The SOI is calculated from the monthly fluctuations in the air pressure between Tahiti and Darwin, Australia.
+
+Sustained negative values of the SOI indicate El Niño episodes.
 
 ##
 
-The SOI is a standardized anomaly of the mean sea level pressure difference. The base period is 60 years (1933–1992).
+The SOI is a _standardized anomaly_ of the mean sea level pressure difference. The averaging (base) period is the 60 years (1933–1992).
 
 Let $\Delta$ = $P_{Tahiti} - P_{Darwin}$, then for each month $j = 1,2, \ldots, 12$
 
@@ -72,6 +80,8 @@ $$
 $$
 
 where $\bar{\Delta_j}$ is the 60-year average pressure difference for month $j$.
+
+##
 
 Data source: <http://www.bom.gov.au/climate/enso/soi_monthly.txt>
 
@@ -85,12 +95,11 @@ soi.df <- readr::read_csv(file = here::here("data", "SOI.txt")) |>
                 Date = as.Date(paste0(Year, "-", Month, "-01")))
 ```
 
-##
-
 Make a time-series plot.
 
 ```{r}
 #| echo: true
+#| output-location: slide
 ggplot(data = soi.df,
        mapping = aes(x = Date, y = SOI_times10sd / 10)) +
   geom_line() +
@@ -100,7 +109,41 @@ ggplot(data = soi.df,
 
 ## 
 
-Use left_join on Date and then compute correlation between SOI and ONI after removing NA.
+Use the `left_join()` function to create a new data frame containing both the ONI and SOI for the months that have both values.
+
+```{r}
+#| echo: true
+df <- oni.df |>
+  dplyr::left_join(soi.df) |>
+  dplyr::select(Date, ONI_C, SOI_times10sd) |>
+  na.omit()
+
+head(df)
+```
+
+##
+
+Based on what you know about how El Niño works what do you think the correlation between the ONI and SOI will be?
+
+Compute the correlation between the ONI and SOI.
+
+```{r}
+#| echo: true
+cor(df$ONI_C, df$SOI_times10sd)
+```
+
+Make a plot.
+```{r}
+#| echo: true
+#| output-location: slide
+ggplot(data = df,
+       mapping = aes(x = ONI_C, 
+                     y = SOI_times10sd / 10)) +
+  geom_point() +
+  geom_smooth(method = lm) +
+  labs(x = "ONI (C)", y = "SOI (s.d.)") +
+  theme_minimal()
+```
 
 ##
 
