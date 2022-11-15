@@ -1,0 +1,93 @@
+---
+title: "U.S. tornado data in csv format"
+format:
+  revealjs:
+    slide-number: c/t
+    code-fold: false
+    chalkboard: true
+bibliography: References.bib
+editor: source
+---
+
+## Data on past tornadoes
+
+-   Where do you find data on past tornadoes?
+-   How do you get the data into a format that you can work with?
+
+## 
+
+![Tornado tracks](https://farm8.staticflickr.com/7090/7157010997_2a92fa603c_o.jpg)
+
+## 
+
+The Storm Prediction Center has data on all tornadoes in the U.S. back to 1950.
+
+These data are available [here](https://www.spc.noaa.gov/wcm/).
+
+For example, consider the regularly updated reports of tornadoes in the United States. The data repository is the Storm Prediction Center (SPC) <https://www.spc.noaa.gov/wcm/index.html#data>.
+
+Here you are interested in the file called `1950-2021_actual_tornadoes.csv`. First download the file from the site with the `download.file()` function specifying the location (`url =`) and a name you want the file to be called on your computer (`destfile =`).
+
+```{r}
+download.file(url = "http://www.spc.noaa.gov/wcm/data/1950-2021_actual_tornadoes.csv",
+              destfile = here::here("data", "Tornadoes.csv"))
+```
+
+A file called `Tornadoes.csv` should now be located in the directory `data`. Click on the *Files* tab in the lower-right panel, then select the `data` folder.
+
+Next you read (import) the file as a data frame using the `readr::read_csv()` function from the {tidyverse} group of packages.
+
+```{r}
+Torn.df <- readr::read_csv(file = here::here("data", "Tornadoes.csv"))
+```
+
+You preview the data frame using the `head()` function.
+
+```{r}
+head(Torn.df)
+```
+
+Each row is a unique tornado report. Observations for each report include the day and time, the state (`st`), the maximum EF rating (`mag`), the number of injuries (`inj`), the number of fatalities (`fat`), estimated property losses (`loss`), estimated crop losses (`closs`), start and end locations in decimal degrees longitude and latitude, length of the damage path in miles (`len`), width of the damage in yards (`wid`).
+
+The total number of tornado reports in the data set is returned using the `nrow()` function.
+
+```{r}
+nrow(Torn.df)
+```
+
+To create a subset of the data frame that contains only tornadoes in years (`yr`) since 2001, you include the logical operator `yr >= 2001` inside the `dplyr::filter()` function.
+
+```{r}
+Torn2.df <- Torn.df |>
+  dplyr::filter(yr >= 2001)
+```
+
+You see that there are fewer rows (tornado reports) in this new data frame assigned the object name `Torn2.df`.
+
+You subset again, keeping only tornadoes with EF ratings (`mag` variable) greater than zero. Here you *recycle* the name `Torn2.df`.
+
+```{r}
+Torn2.df <- Torn2.df |>
+  dplyr::filter(mag > 0)
+```
+
+Now you compute the correlation between EF rating (`mag`) and path length (`len`) with the `cor()` function. The first argument is the vector of EF ratings and the second argument is the vector of path lengths.
+
+```{r}
+cor(Torn2.df$mag, Torn2.df$len)
+```
+
+Path length is recorded in miles and path width in yards and the EF damage rating variable `mag` is numeric. Here you convert path length to kilometers, path width to meters, and the EF rating to a factor and include these changes as new columns in the data frame.
+
+```{r}
+Torn2.df$Length <- Torn2.df$len * 1609.34
+Torn2.df$Width <- Torn2.df$wid * .9144
+Torn2.df$EF <- factor(Torn2.df$mag)
+```
+
+Create side-by-side box plots of path length (in kilometers) by EF rating.
+
+```{r}
+plot(x = Torn2.df$EF, 
+     y = Torn2.df$Length/1000)
+```

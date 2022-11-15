@@ -14,97 +14,82 @@ editor: source
 
 Title: Climate Change & Storms
 
-Theme: Tracking the relationships between the changing climate and storminess with observations
-
+Theme: Tracking the relationships between a changing climate & storminess with observations
 
 ## Getting started
 
-* Installing R and RStudio
-* Connecting to GitHub
-* Learning to code
-* Generating reports
+-   Installing R and RStudio
+-   Connecting to GitHub
+-   Learning to code
+-   Generating reports
 
 ## Getting climate data
 
-* Pre-analyzed data
-* CO2 concentration
-* Sea ice and sea levels
-* Temperatures: ocean, land, global vs local 
-* Proxy data: ice cores, over-wash sediment deposits, tree rings
-* Humidity 
-* Storms: hurricanes, tornadoes
-* Modes of variability
+-   Pre-analyzed data
+-   CO2 concentration
+-   Sea ice and sea levels
+-   Temperatures: ocean, land, global vs local
+-   Proxy data: ice cores, over-wash sediment deposits, tree rings
+-   Humidity
+-   Storms: hurricanes, tornadoes
+-   Modes of variability
 
 ## Analyzing the climate data
 
-* Statistics vs observations 
-* Detection vs attribution
-* Plots and graphs
-* Frequency vs intensity
+-   Statistics vs observations
+-   Detection vs attribution
+-   Plots and graphs
+-   Frequency vs intensity
 
 ## Modeling the climate data
 
-* Regression trends
-* Uncertainty: classical vs Bayesian 
-* Space vs time 
+-   Regression trends
+-   Uncertainty: classical vs Bayesian
+-   Space vs time
 
 ## Climate models
 
-* Detection vs attribution 
-* Prediction vs predictability
-* Prediction markets
+-   Detection vs attribution
+-   Prediction vs predictability
+-   Prediction markets
 
 ## Take an existing R project and put it on GitHub
 
 {{< video https://youtu.be/bUoN85QvC10 >}}
 
-##
+## 
 
-"Climate change is an irresistible convenience, for it can be blamed on nobody in particular, and this spares official Florida the burden of its complicity in the larger-scale ruin of the land of our state."--Wendell Berry 
+"Climate change is an irresistible convenience, for it can be blamed on nobody in particular, and this spares official Florida the burden of its complicity in the larger-scale ruin of the land of our state."--Wendell Berry
 
-How does/might climate change affect X? X: Hurricanes, tornadoes, winter storms, heat waves 
+How does/might climate change affect X? X: Hurricanes, tornadoes, winter storms, heat waves
 
 ## Climate change & storms
 
 Scientists can make the connection between climate change and storms better today than they could only a few years ago
 
-1) Methodological advances in science of attribution 
-2) More years of data means stronger evidence 
-3) Physical connections leading to better ways to explain the connections
+1)  Methodological advances in science of attribution
+2)  More years of data means stronger evidence
+3)  Physical connections leading to better ways to explain the connections
 
 ## 
-https://climatefeedback.org/how-climate-change-impacts-hurricanes/  
-https://physicstoday.scitation.org/doi/10.1063/PT.3.5038 
 
-##
+https://climatefeedback.org/how-climate-change-impacts-hurricanes/\
+https://physicstoday.scitation.org/doi/10.1063/PT.3.5038
 
-{{< video https://www.youtube.com/embed/VDkNIq1cTYs >}}
-{{< video https://www.youtube.com/embed/MuwA3wWQ538 >}}
+## 
 
-##
+{{< video https://www.youtube.com/embed/VDkNIq1cTYs >}} {{< video https://www.youtube.com/embed/MuwA3wWQ538 >}}
 
-https://www.youtube.com/watch?v=tcj9IGY6Etg 
-https://youtu.be/CGoNpwN0mrs 
-https://www.youtube.com/watch?v=mEdN7gGfAZU 
-https://youtu.be/AMV6758nosU 
-https://youtu.be/qw5zzrOpo2s 
-https://youtu.be/5W84bi9YEGY 
-https://www.youtube.com/watch?v=pkTpfLqtSpQ 
+## 
 
-##
+https://public.wmo.int/en/our-mandate/climate/wmo-statement-state-of-global-climate https://www.youtube.com/watch?v=tcj9IGY6Etg https://youtu.be/CGoNpwN0mrs https://www.youtube.com/watch?v=mEdN7gGfAZU https://youtu.be/AMV6758nosU https://youtu.be/qw5zzrOpo2s https://youtu.be/5W84bi9YEGY https://www.youtube.com/watch?v=pkTpfLqtSpQ
 
-https://www.youtube.com/watch?v=RcZdg3I2Pso 
-https://youtu.be/JXhif3E3l2s 
-https://www.youtube.com/watch?v=hqRdu2riNlg 
-https://www.youtube.com/watch?v=PMHArzta2Ak 
-https://www.realclimate.org/index.php/archives/2022/09/watching-the-detections  Detection vs attribution 
-https://www.climate.columbia.edu/content/predictions-projections-or-portents-weather-and-climate-modelling 
+## 
 
- 
+https://www.youtube.com/watch?v=RcZdg3I2Pso https://youtu.be/JXhif3E3l2s https://www.youtube.com/watch?v=hqRdu2riNlg https://www.youtube.com/watch?v=PMHArzta2Ak https://www.realclimate.org/index.php/archives/2022/09/watching-the-detections Detection vs attribution https://www.climate.columbia.edu/content/predictions-projections-or-portents-weather-and-climate-modelling
 
+## 
 
- 
-
- 
-
- 
+::: {.column width="100%"}
+![Average precipitable water by month](figures/PWByMonth.png){fig-alt="Average precipitable water by month"}
+:::
