@@ -1,0 +1,118 @@
+---
+title: "Syllabus"
+format: 
+  revealjs:
+    code-fold: false
+    theme: white
+    footer: "GEO4251 Climate Change & Storms"
+    chalkboard: true
+bibliography: References.bib
+link-citations: yes
+#csl: apa-single-spaced.csl
+editor: source
+---
+
+## GEO4251: Climate Change & Storms
+
+Understanding the relationships between the changing climate & storminess through the analysis of data
+
+## Contact information
+
+-   Professor James B. Elsner (he/his/him)
+-   Bellamy Building, Room 314
+-   Lesson Hours: MW 3:05-4:20 p.m.
+-   Student Hours: TR 9:15-10:30 a.m.
+
+Email: [jelsner\@fsu.edu](mailto:jelsner@fsu.edu){.email}
+
+## Who am I?
+
+-   [Website](http://myweb.fsu.edu/jelsner/_site/)
+-   [GitHub](https://github.com/jelsner/)
+-   [Mastodon](@jelsner@fediscience.org)
+
+## Course description
+
+This course is for students who want to learn about the relationships between climate change and Earth's most powerful storms through the analysis and modeling of data.
+
+All the course content is available on GitHub <https://github.com/jelsner/CS-2023>
+
+## Expected learning outcomes
+
+On successful completion of this course, you will be able to:
+
+1. Appraise the fundamental concepts, principles, theories, and terminology used in discussing the relationships between climate change and storminess
+2. Apply the principles of data science to make effective graphs, tables and inferences
+3. Contribute to contemporary scientific debates on this topic with empirical evidence
+
+## Materials and class meetings {.unnumbered}
+
+-   Access to the internet and a computer
+-   All course materials are available through GitHub <https://github.com/jelsner/CS-2023>
+-   No textbook is required
+
+## Class meetings
+
+Each class period I will prepare a set of slides using [Quarto](https://quarto.org/). Quarto is an open-source scientific publishing system. 
+
+Quarto allows me to weave together narrative text and code to produce elegantly formatted output. Quarto documents are fully reproducible.
+
+The slides (`_.qmd` files) will be available on GitHub. The slide files are opened using the RStudio application. 
+
+Lessons will be held in this classroom (Bellamy 208).
+
+## Grading
+
+You are responsible for:
+
+1.  Reading and working through the lesson files. You can do this during the lessons as I talk or outside of class. I will not take attendance
+2.  Completing and returning the in-class exercises on time
+
+Grades are determined by how well you do on the in-class exercises using the following standard.
+
+## Grading standard
+
+-   A: Outstanding: few, in any, errors/omissions
+-   B: Good: only minor errors/omissions
+-   C: Satisfactory: minor omissions, at least one major error/omission
+-   D: Poor: several major errors/omissions
+-   F: Fail: many major errors/omissions
+
+I'll use the +/- grading system.
+
+## Getting started
+
+-   Installing R and RStudio
+-   Connecting to GitHub
+-   Learning to code
+-   Generating reports
+
+## Getting climate data
+
+-   Pre-analyzed data
+-   CO2 concentration
+-   Sea ice and sea levels
+-   Temperatures: ocean, land, global vs local
+-   Proxy data: ice cores, over-wash sediment deposits, tree rings
+-   Humidity
+-   Storms: hurricanes, tornadoes
+-   Modes of variability
+
+## Analyzing the climate data
+
+-   Statistics vs observations
+-   Detection vs attribution
+-   Plots and graphs
+-   Frequency vs intensity
+
+## Modeling the climate data
+
+-   Regression trends
+-   Uncertainty: classical vs Bayesian
+-   Space vs time
+
+## Climate models
+
+-   Detection vs attribution
+-   Prediction vs predictability
+-   Prediction markets

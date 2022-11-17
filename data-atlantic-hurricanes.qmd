@@ -31,8 +31,19 @@ atlhur |>
   plot_hurricanes()
 ```
 
+##
+
 ```{r}
 #| echo: true
 atlhur |>
   plot_hurricane_nrg()
+```
+
+##
+
+```{r}
+#| echo: true
+atlhur |>
+  plot_hurricane_nrg() +
+  ggplot2::geom_smooth(span = .5, col = "green")
 ```
