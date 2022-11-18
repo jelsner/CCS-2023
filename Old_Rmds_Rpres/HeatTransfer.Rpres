@@ -1,4 +1,0 @@
-Heat Transfer
-=============
-
-Watch this video by Chris Doner on heat transfer then answer the questions on the quiz.

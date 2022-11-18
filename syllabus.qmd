@@ -100,7 +100,7 @@ Outline of topics
 -   Storms: hurricanes, tornadoes
 -   Modes of variability
 
-## Analyzing the climate data
+## Analyzing climate data
 
 -   Statistics vs observations
 -   Detection vs attribution
