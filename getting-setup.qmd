@@ -1,0 +1,75 @@
+---
+title: "Getting you set up"
+format: 
+  revealjs:
+    code-fold: false
+    theme: white
+    footer: "GEO4251 Climate Change & Storms"
+    chalkboard: true
+bibliography: References.bib
+link-citations: yes
+#csl: apa-single-spaced.csl
+editor: source
+---
+
+## Hardware and software
+
+* You will need a laptop computer running Windows, Mac, or Linux. I use a Mac.
+
+* The class notes live on _GitHub_. Updates will be available on _Canvas_.
+
+* Class notes are on slides made with an open-source scientific publishing system called _Quarto_.
+
+* Coding will be done in _R_ through _RStudio_.
+
+## Do this 1st
+
+Download the course slides from GitHub <https://github.com/jelsner>. 
+
+![](figures/GitHubLanding.png){width="2000"}
+
+* Click on the link _jelsner/CCS-2023_.
+
+##
+
+![](figures/GitHubCodePage.png){width="4000"}
+
+* Select the green Code button then select _Download ZIP_.
+
+* Once the zip file is downloaded, expand (unzip) it.
+
+## Do this 2nd
+
+Download and install Quarto by going to <https://quarto.org/docs/get-started/>.
+
+Quarto lets you to weave together content (text, images, videos) and executable code into a finished presentation. 
+
+To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>.
+
+## Do this 3rd
+
+Download and install R by going to <https://cloud.r-project.org/>.
+
+-   If you are a Windows user: Click on *Download R for Windows*, then click on *base*, then click on the *Download* link.
+
+-   If you are macOS user: Click on *Download R for (Mac) OS X*, then under *Latest release:* click on *R-X.X.X.pkg*, where R-X.X.X is the version number.
+
+For example, the latest version of R as of November 18, 2022 was R-4.2.2.
+
+## Do this 4th
+
+Download and install RStudio desktop by going to <https://posit.co/download/rstudio-desktop/> *Step 2:*
+
+* Scroll down to find your computer's operating system and select the appropriate file to download.
+
+* Click on the downloaded file to install
+
+## Render the slides
+
+* On your computer navigate to the folder called `CSS-2023-main`
+
+* Click on the file called `CCS-2023.Rproj` file.
+
+* Select the _Files_ tab (lower right panel) and select the `syllabus.qmd` file.
+
+* Click the **Render** button

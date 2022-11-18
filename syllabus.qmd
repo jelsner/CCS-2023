@@ -35,37 +35,37 @@ Email: [jelsner\@fsu.edu](mailto:jelsner@fsu.edu){.email}
 
 This course is for students who want to learn about the relationships between climate change and Earth's most powerful storms through the analysis and modeling of data.
 
-All the course content is available on GitHub <https://github.com/jelsner/CS-2023>
+All the course slides are available on GitHub <https://github.com/jelsner/CS-2023>
 
 ## Expected learning outcomes
 
 On successful completion of this course, you will be able to:
 
 1. Appraise the fundamental concepts, principles, theories, and terminology used in discussing the relationships between climate change and storminess
-2. Apply the principles of data science to make effective graphs, tables and inferences
+2. Apply the principles of data science to make effective graphs, tables and inferences on this topic
 3. Contribute to contemporary scientific debates on this topic with empirical evidence
 
 ## Materials and class meetings {.unnumbered}
 
 -   Access to the internet and a computer
--   All course materials are available through GitHub <https://github.com/jelsner/CS-2023>
+-   Course slides are available through GitHub  <https://github.com/jelsner/CS-2023>
 -   No textbook is required
 
 ## Class meetings
 
 Each class period I will prepare a set of slides using [Quarto](https://quarto.org/). Quarto is an open-source scientific publishing system. 
 
-Quarto allows me to weave together narrative text and code to produce elegantly formatted output. Quarto documents are fully reproducible.
+Quarto allows me to weave together narrative text and code to produce formatted output. Quarto documents are reproducible.
 
-The slides (`_.qmd` files) will be available on GitHub. The slide files are opened using the RStudio application. 
+The slides (`_.qmd` files) are available on GitHub. The slide files are opened using the RStudio application. 
 
-Lessons will be held in this classroom (Bellamy 208).
+In-person lessons will be held in this classroom (Bellamy 208).
 
 ## Grading
 
 You are responsible for:
 
-1.  Reading and working through the lesson files. You can do this during the lessons as I talk or outside of class. I will not take attendance
+1.  Reading and working through the lesson slides. You can do this during the lessons as I talk or outside of class. I will not take attendance
 2.  Completing and returning the in-class exercises on time
 
 Grades are determined by how well you do on the in-class exercises using the following standard.
@@ -80,14 +80,16 @@ Grades are determined by how well you do on the in-class exercises using the fol
 
 I'll use the +/- system.
 
-## Getting started
+Outline of topics
 
--   Installing R and RStudio
--   Connecting to GitHub
--   Learning to code
--   Generating reports
+## Getting comfortable
 
-## Getting climate data
+-   Getting set up
+-   R & RStudio
+-   Scientific workflow
+-   Data science
+
+## Climate data
 
 -   Pre-analyzed data
 -   CO2 concentration
@@ -105,7 +107,7 @@ I'll use the +/- system.
 -   Plots and graphs
 -   Frequency vs intensity
 
-## Modeling the climate data
+## Modeling climate data
 
 -   Regression trends
 -   Uncertainty: classical vs Bayesian
