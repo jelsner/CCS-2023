@@ -1,5 +1,5 @@
 ---
-title: "Getting started with R/RStudio"
+title: "Getting started with R"
 format: 
   revealjs:
     code-fold: false
@@ -11,10 +11,63 @@ link-citations: yes
 #csl: apa-single-spaced.csl
 editor: source
 ---
+##
+
+Some of the material is modified from
+<https://moderndive.netlify.app/1-getting-started.html>
 
 ## Getting started with data in R
 
-<https://moderndive.netlify.app/1-getting-started.html>
+Before you can start exploring data in R, there are some key concepts to understand first:
+
+1.  What are R and RStudio?
+2.  How do I code in R?
+3.  What are R packages?
+
+## What are R and RStudio?
+
+R is like a car's engine while RStudio is like a car's dashboard.
+
+![Analogy of difference between R and RStudio.](figures/EngineDashboard.png){width="5000"}
+
+## 
+
+More precisely, R is a programming language that runs computations, while RStudio is an *integrated development environment* (IDE) that provides an interface by adding many convenient features and tools.
+
+So just as the way of having access to a speedometer, rear view mirrors, and a navigation system makes driving much easier, using RStudio's interface makes using R much easier as well.
+
+## Do this first: Install R
+
+Download and install R by going to <https://cloud.r-project.org/>.
+
+-   If you are a Windows user: Click on *Download R for Windows*, then click on *base*, then click on the *Download* link.
+
+-   If you are macOS user: Click on *Download R for (Mac) OS X*, then under *Latest release:* click on *R-X.X.X.pkg*, where R-X.X.X is the version number.
+
+For example, the latest version of R as of November 18, 2022 was R-4.2.2.
+
+## Do this second: Install RStudio
+
+Download and install RStudio desktop by going to <https://posit.co/download/rstudio-desktop/> *Step 2:*
+
+Scroll down to find your computer's operating system.
+
+## Using R via RStudio
+
+Just as you don't drive a car by interacting directly with the engine but rather by interacting with elements on the car's dashboard, you won't be using R directly but rather you will use RStudio's interface.
+
+After you install R and RStudio on your computer, you'll have two new programs (applications) you can open. You will always work in RStudio and not in the R application.
+
+![](figures/RvsRStudio.png){width="5000"}
+
+## How to videos
+
+Install R and RStudio for Windows
+{{< video https://www.youtube.com/embed/TFGYlKvQEQ4 >}}
+
+Install R and RStudio for Macs
+{{< video https://www.youtube.com/embed/JqV-USGR6AA >}}
+
 
 ## Quarto
 
@@ -38,8 +91,6 @@ When you click the **Render** button a presentation will be generated that inclu
 
 {{< video https://www.youtube.com/embed/MdmnE3AnkQE >}}
 
-## 
+## Put an existing project on GitHub
 
-Take an existing R project and put it on GitHub
-
-{{< video https://www.youtube/embed/bUoN85QvC10 >}}
+{{< video https://www.youtube.com/embed/bUoN85QvC10 >}}

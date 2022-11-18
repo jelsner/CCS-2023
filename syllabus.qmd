@@ -70,7 +70,7 @@ You are responsible for:
 
 Grades are determined by how well you do on the in-class exercises using the following standard.
 
-## Grading standard
+## Standard
 
 -   A: Outstanding: few, in any, errors/omissions
 -   B: Good: only minor errors/omissions
@@ -78,7 +78,7 @@ Grades are determined by how well you do on the in-class exercises using the fol
 -   D: Poor: several major errors/omissions
 -   F: Fail: many major errors/omissions
 
-I'll use the +/- grading system.
+I'll use the +/- system.
 
 ## Getting started
 
