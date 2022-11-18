@@ -6,7 +6,6 @@ format:
     theme: white
     footer: "GEO4251 Climate Change & Storms"
     chalkboard: true
-bibliography: References.bib
 link-citations: yes
 #csl: apa-single-spaced.csl
 editor: source

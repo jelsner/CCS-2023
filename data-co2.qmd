@@ -5,7 +5,6 @@ format:
     slide-number: c/t
     code-fold: false
     chalkboard: true
-bibliography: References.bib
 editor: source
 ---
 

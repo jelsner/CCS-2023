@@ -7,7 +7,6 @@ format:
     chalkboard: true
     theme: white
     footer: "GEO4251 Climate Change & Storms"
-bibliography: References.bib
 editor: source
 ---
 
