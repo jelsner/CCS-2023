@@ -69,7 +69,7 @@ Download and install RStudio desktop by going to <https://posit.co/download/rstu
 
 * Click on the downloaded file to install
 
-## Render the slides
+## Generate the slides
 
 * On your computer navigate to the folder {{< fa folder >}} called `CSS-2023-main`
 
@@ -77,4 +77,14 @@ Download and install RStudio desktop by going to <https://posit.co/download/rstu
 
 * Select the _Files_ tab (lower right panel) and select the `syllabus.qmd` file
 
-* Click the **Render** button
+* Click the `Render` button
+
+## How to videos
+
+Need more help?
+
+Install {{< fa brands r-project >}} and RStudio for {{< fa brands windows >}}
+{{< video https://www.youtube.com/embed/TFGYlKvQEQ4 >}}
+
+Install {{< fa brands r-project >}} and RStudio for {{< fa brands apple >}}
+{{< video https://www.youtube.com/embed/JqV-USGR6AA >}}

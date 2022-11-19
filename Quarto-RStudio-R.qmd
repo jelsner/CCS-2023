@@ -11,53 +11,41 @@ editor: source
 
 ## What is Quarto?
 
-Quarto is an open-source scientific and technical publishing system built on a document converter called Pandoc
+Quarto is an open-source publishing system built on a document converter (Pandoc). When you click on the file `Quarto-RStudio-R.qmd` you should see something like ![](figures/RStudio.png){width="500"}
 
-When you click on the lesson `.qmd` (Quarto markdown) file it opens RStudio. It looks (something) like this
+Quarto files begin with a YAML between the two lines each with three dashes.
 
 
-## What are R and RStudio?
+
+## What is RStudio?
+
+* RStudio is an *integrated development environment* (IDE). An IDE is like a toolbox. An organized collection of tools for developing scientific content, text, images, video, executable code.
+
+* Four panels: Editor, Environment/History, Console/Terminal, Files etc
+
+* The Quarto markdown source file is shown in the Editor panel. Click on the `Render` button to generate the slides for today's lesson
+
+##
 
 If Quarto is a car, then RStudio is the dashboard, and R is the engine
 
-![Analogy of difference between R and RStudio.](figures/EngineDashboard.png){width="5000"}
+![Analogy of difference between R and RStudio](figures/EngineDashboard.png){width="5000"}
 
 ## 
 
-More precisely, R is a programming language that runs code, while RStudio is an *integrated development environment* (IDE) that provides an interface by adding many convenient features and tools.
+More precisely, {{< fa brands r-project >}} is a programming language that runs code
 
-So just as the way of having access to a speedometer, rear view mirrors, and a navigation system makes driving much easier, using RStudio's interface makes using R much easier as well.
-
-## Using R via RStudio
-
-Just as you don't drive a car by interacting directly with the engine but rather by interacting with elements on the car's dashboard, you won't use R directly but rather you will use RStudio's interface.
-
-After you install R and RStudio on your computer, you'll have two new programs (applications) you can open. You will always work in RStudio and not in the R application.
-
-![](figures/RvsRStudio.png){width="5000"}
-
-## How to videos
-
-Install R and RStudio for Windows
-{{< video https://www.youtube.com/embed/TFGYlKvQEQ4 >}}
-
-Install R and RStudio for Macs
-{{< video https://www.youtube.com/embed/JqV-USGR6AA >}}
-
+So just as the way of having access to a speedometer, rear view mirrors, and a navigation system makes driving much easier, using RStudio's interface makes using {{< fa brands r-project >}} much easier as well.
 
 ## Code
 
-When you click the **Render** button a presentation will be generated that includes both content and the output of embedded code. You can embed code like this:
+When you click the **Render** button a presentation is generated that includes content and the output of embedded code. You embed code like this
 
 ```{r}
 #| echo: true
 1 + 1
 ```
 
-## Connecting RStudio and GitHub
+## Poke around in RStudio
 
-{{< video https://www.youtube.com/embed/MdmnE3AnkQE >}}
-
-## Put an existing project on GitHub
-
-{{< video https://www.youtube.com/embed/bUoN85QvC10 >}}
+![RStudio](figures/RStudio.png){width="800"}
