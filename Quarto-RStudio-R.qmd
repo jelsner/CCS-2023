@@ -1,26 +1,30 @@
 ---
-title: "R and RStudio"
+title: "Quarto, RStudio, and R"
 format: 
   revealjs:
     code-fold: false
     theme: white
     footer: "GEO4251 Climate Change & Storms"
     chalkboard: true
-bibliography: References.bib
-link-citations: yes
-#csl: apa-single-spaced.csl
 editor: source
 ---
 
+## What is Quarto?
+
+Quarto is an open-source scientific and technical publishing system built on a document converter called Pandoc
+
+When you click on the lesson `.qmd` (Quarto markdown) file it opens RStudio. It looks (something) like this
+
+
 ## What are R and RStudio?
 
-R is like a car's engine while RStudio is like a car's dashboard.
+If Quarto is a car, then RStudio is the dashboard, and R is the engine
 
 ![Analogy of difference between R and RStudio.](figures/EngineDashboard.png){width="5000"}
 
 ## 
 
-More precisely, R is a programming language that runs computations, while RStudio is an *integrated development environment* (IDE) that provides an interface by adding many convenient features and tools.
+More precisely, R is a programming language that runs code, while RStudio is an *integrated development environment* (IDE) that provides an interface by adding many convenient features and tools.
 
 So just as the way of having access to a speedometer, rear view mirrors, and a navigation system makes driving much easier, using RStudio's interface makes using R much easier as well.
 
