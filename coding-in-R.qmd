@@ -1,0 +1,44 @@
+---
+title: "Coding in R"
+format: 
+  revealjs:
+    code-fold: false
+    theme: white
+    footer: "GEO4251 Climate Change & Storms"
+    chalkboard: true
+editor: source
+---
+
+## How do I code in R?
+
+* Now that you’re set up you are probably asking “OK. Now how do I use R?”. The first thing to note is that unlike other software programs like Excel or SPSS that provide point-and-click interfaces, {{< fa brands r-project >}} is an interpreted language
+
+* This means you have to type in commands written in {{< fa brands r-project >}} code. In other words, you have to code/program. I use the terms “coding” and “programming” interchangeably
+
+* There is a set of basic concepts that you need to understand
+
+##
+
+* Console pane: where you enter in commands
+* Running code: the act of telling {{< fa brands r-project >}} to perform actions by giving it commands in the console
+* Objects: where values are saved. Here you assign values 2 and 1, 2, 3, and 4 to objects `a` and `b` respectively
+```{r}
+#| echo: true
+a <- 2
+b <- 1:4
+```
+
+##
+
+* You print out the values of `a` and `b` and the product `a` $\times$ `b`
+```{r}
+#| echo: true
+a
+b
+a * b
+```
+
+
+##
+
+Data types: integers, doubles/numerics, logicals, and characters. Integers are values like -1, 0, 2, 4092. Doubles or numerics are a larger set of values containing both the integers but also fractions and decimal values like -24.932 and 0.8. Logicals are either TRUE or FALSE while characters are text such as “cabbage”, “Hamilton”, “The Wire is the greatest TV show ever”, and “This ramen is delicious.” Note that characters are often denoted with the quotation marks around them.
