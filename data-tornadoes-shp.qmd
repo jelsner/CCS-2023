@@ -34,3 +34,7 @@ Torn.sf <- sf::st_read(dsn = here::here("data", "1950-2020-torn-aspath"),
 ```
 
 The geometry type is line string representing the straight-line approximate track of each tornado. The coordinate reference system (CRS) is WGS84.
+
+## Damage assessment toolkit
+
+<https://apps.dat.noaa.gov/stormdamage/damageviewer/>

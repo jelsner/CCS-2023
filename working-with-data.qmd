@@ -1,0 +1,33 @@
+---
+title: "Working with a data frame"
+format: 
+  revealjs:
+    code-fold: false
+    theme: white
+    footer: "GEO4251 Climate Change & Storms"
+    chalkboard: true
+editor: source
+---
+
+## 
+
+* Throughout the semester you'll focus on data that are saved in a “spreadsheet”-type format called a _data frame_
+
+* In a _data frame_ rows are observations and columns are variables
+
+* You start be considering a data frame listing hurricane counts by year in the United States
+
+* <http://myweb.fsu.edu/jelsner/US.txt>
+
+* The data are updated annually. For example, last year there was hurricane's Ian and Nicole hit Florida
+
+##
+
+```{r}
+#| echo: true
+L <- "http://myweb.fsu.edu/jelsner/US.txt"
+LH.df <- readr::read_table(file = L)
+
+LH.df |>
+  head()
+```

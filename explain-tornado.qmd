@@ -5,8 +5,6 @@ format:
     slide-number: c/t
     code-fold: false
     chalkboard: true
-bibliography: References.bib
-editor: source
 ---
 
 ## 
@@ -19,6 +17,16 @@ How do tornadoes form?
 
 {{< video https://www.youtube.com/embed/uH9A-7Y3lL0 >}}
 
+##
 
+Tornadoes in Europe
+
+{{< video https://www.youtube.com/embed/VA2ePX6KIeM >}}
+
+##
+
+Tornadoes in East Asia
+
+{{< video https://www.youtube.com/embed/gVuv40-5RgQ >}}
 
 

@@ -1,0 +1,98 @@
+---
+title: "Coding in R 2"
+format: 
+  revealjs:
+    code-fold: false
+    theme: white
+    footer: "GEO4251 Climate Change & Storms"
+    chalkboard: true
+editor: source
+---
+
+## Errors
+
+R reports errors, warnings, and messages in a red font
+
+-   Errors: When the red text starts with `Error in ...` it will continue with an explanation of what went wrong and the code will not run
+
+For example, if you see `Error in ggplot(...) : could not find function "ggplot"`, it means that the `ggplot()` function is not accessible because the package {ggplot2} that contains the function was not loaded with `library(ggplot2)`. Thus you cannot use the `ggplot()` function without the package being loaded first
+
+## 
+
+Copy to clipboard and paste the code below into your RStudio console
+
+```{r, eval=FALSE}
+#| echo: true
+
+df <- data.frame(a = 1:10, 
+                 b = rnorm(10, mean = 0))
+
+ggplot(data = df,
+       mapping = aes(x = a, y = b)) +
+  geom_point()
+```
+
+## Warnings
+
+-   Warnings: When the red text is a warning, it will be prefaced with `Warning:`. Your code will still work
+
+For example, if you create a plot based on a dataset where two of the rows of data have missing entries that would be needed to create points in the plot, you will see this warning: `Warning: Removed 2 rows containing missing values (geom_point)`. R will still produce the plot with all the remaining non-missing values, but it is warning you that two of the points aren't there
+
+## 
+
+Copy to clipboard and paste the code below into your RStudio console
+
+```{r, eval=FALSE}
+#| echo: true
+library(ggplot2)
+
+df <- data.frame(a = c(1:10, NA, NA), 
+                 b = rnorm(12, mean = 0))
+
+ggplot(data = df,
+       mapping = aes(x = a, y = b)) +
+  geom_point()
+```
+
+## Messages
+
+-   Messages: When the red text doesn't start with either `Error` or `Warning`, it's just a friendly message. You'll see these messages when you load R packages or when you import data
+
+These are helpful diagnostic messages and they don't stop your code from working. Additionally, you'll see these messages when you install packages too using `install.packages()`
+
+## 
+
+Copy to clipboard and paste the code below into your RStudio console
+
+```{r, eval=FALSE}
+#| echo: true
+install.packages("tidyverse")
+```
+
+## Tips
+
+-   Copy, paste, and tweak: it is easier to take existing code that you know works and modify it to suit your ends as opposed to trying to type out the code from scratch
+
+-   Learn by doing: coding is easier when you have a goal in mind, like analyzing data that is important to you
+
+-   Practice: practice will improve your coding skills. Experiment by making small changes to the code I write in these notes
+
+## Packages
+
+-   Packages provide functions. They are written by a worldwide community and can be downloaded for free.
+
+-   The package {ggplot2} has functions for making plots. We will also use the package {hockeystick} that has functions for downloading a plotting climate data.
+
+```{r}
+#| echo: true
+install.packages(pkgs = "hockeystick",
+                 repos = "https://cloud.r-project.org")
+```
+
+##
+
+![](figures/install-packages.png)
+
+##
+
+Download and install the {tidyverse} set of packages
