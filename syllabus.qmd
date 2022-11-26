@@ -86,9 +86,9 @@ Grades are determined by how well you do on the in-class exercises using the fol
 
 I will use the +/- system.
 
-Outline of topics
+Topics
 
-## Getting comfortable
+## Getting ready
 
 -   Getting set up
 -   R & RStudio
@@ -118,9 +118,14 @@ Outline of topics
 -   Regression trends
 -   Uncertainty: classical vs Bayesian
 -   Space vs time
+-   Artificial intelligence and machine learning
 
 ## Climate models
 
--   Detection vs attribution
 -   Prediction vs predictability
+-   Prediction vs explanation (etiology, causes)
 -   Prediction markets
+
+## Global warming
+
+{{< video https://www.youtube.com/embed/haBG2IIbwbA >}}
