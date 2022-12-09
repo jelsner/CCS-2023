@@ -6,6 +6,8 @@ format:
     theme: white
     footer: "GEO4251 Climate Change & Storms"
     chalkboard: true
+    filters:
+      - snow
 editor: source
 ---
 
