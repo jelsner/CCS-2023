@@ -1,0 +1,16 @@
+---
+title: "Lab 1"
+author: "Your Name"
+format: pdf
+editor: source
+---
+
+## 1 
+Write code below to download and install the {ggplot2} package
+
+## 2 
+Write code below to get the tornado data into your environment as a data frame called `Torn.df`
+
+## 3 
+Write code below that finds the average tornado path length in miles. The path length variable is called `len` in `Torn.df`
+

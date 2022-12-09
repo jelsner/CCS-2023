@@ -46,3 +46,9 @@ If Quarto is a car, then RStudio is the dashboard, and R is the engine
 ## Getting to know RStudio and R
 
 ![RStudio](figures/RStudio.png){width="800"}
+
+## Create PDFs
+
+To create PDFs you will need to install LaTeX. You can install with the following command in the Terminal window of RStudio
+
+quarto install tool tinytex

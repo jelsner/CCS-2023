@@ -1,0 +1,72 @@
+---
+title: "Working with a data frame"
+format: 
+  revealjs:
+    code-fold: false
+    theme: simple
+    footer: "GEO4251 Climate Change & Storms"
+    chalkboard: true
+editor: source
+---
+
+## 
+
+* Throughout the semester you'll focus on data that are saved in a “spreadsheet”-type format within your environment called a _data frame_
+
+* Inside a _data frame_ rows are observations and columns are variables
+
+* You start be considering a data frame listing hurricane counts by year in the United States
+
+* <http://myweb.fsu.edu/jelsner/US.txt>
+
+* The data are updated annually. For example, last year both Hurricane Ian and Hurricane Nicole hit Florida
+
+##
+
+```{r}
+#| echo: true
+L <- "http://myweb.fsu.edu/jelsner/US.txt"
+LH.df <- readr::read_table(file = L)
+
+LH.df |>
+  head()
+```
+
+`Year`, `All`, `MUS`, `G`, `FL` and `E` are different columns in the data frame. These are the variables. Each row is an observation over an entire year.
+
+##
+
+Using the `View()` function brings up RStudio's built-in data viewer
+```{r, eval=FALSE}
+#| echo: true
+LH.df |>
+  View()
+```
+
+## {.smaller}
+
+The `dplyr::glimpse()` function is used to view all the columns
+```{r}
+#| echo: true
+LH.df |>
+  dplyr::glimpse()
+```
+
+## {.smaller}
+
+Recall the tornado data. Note the different variable types `<dbl>`, `<chr>`, ...
+```{r}
+#| echo: true
+"http://www.spc.noaa.gov/wcm/data/1950-2021_actual_tornadoes.csv" |>
+  readr::read_csv(show_col_types = FALSE) |>
+  dplyr::glimpse()
+```
+
+## {.smaller}
+
+The `$` extraction operator is used to view single variables/columns
+
+```{r}
+#| echo: true
+LH.df$FL
+```

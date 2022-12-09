@@ -81,7 +81,7 @@ install.packages("tidyverse")
 
 -   Packages provide functions. They are written by a worldwide community and can be downloaded for free.
 
--   The package {ggplot2} has functions for making plots. We will also use the package {hockeystick} that has functions for downloading a plotting climate data.
+-   The package {ggplot2} has functions for making plots. We will also use the package {hockeystick} that has functions for downloading and plotting climate data.
 
 ```{r}
 #| echo: true
@@ -95,4 +95,4 @@ install.packages(pkgs = "hockeystick",
 
 ##
 
-Download and install the {tidyverse} set of packages
+Download and install the {sf} package

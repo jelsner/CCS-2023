@@ -15,7 +15,7 @@ editor: source
 
 * All the course slides are available on GitHub {{< fa brands github >}}  <https://github.com/jelsner/CS-2023>
 
-* Grades are determined by how well you do on the in-class exercises
+* Grades are determined by how well you do on the in-class labs
 
 * I expect you to read the notes, watch the videos, and run the code within the lesson slides. I expect you to complete and return the in-class exercises on time
 

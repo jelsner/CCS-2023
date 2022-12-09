@@ -74,9 +74,9 @@ In-person lessons will be held in this room (Bellamy 208)
 You are responsible for:
 
 1.  Reading, watching, and running code in the lesson slides. You can do this during class  or outside the classroom. I will not take attendance
-2.  Completing and returning the in-class exercises on time
+2.  Completing and returning the in-class labs on time
 
-Grades are determined by how well you do on the in-class exercises using the following standard
+Grades are determined by how well you do on the in-class labs using the following standard
 
 ## Standard
 

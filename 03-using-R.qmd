@@ -139,7 +139,7 @@ DamageRating |>
 
 * Data in {{< fa brands r-project >}} where rows are observations and columns are variables that describe the observations. They are rectangular spreadsheets
 
-* You will get data into R as a data frame with the function `readr::read_csv()`
+* You will get data into your R environment as a data frame with the function `readr::read_csv()`
 ```{r}
 #| echo: true
 L <- "http://www.spc.noaa.gov/wcm/data/1950-2021_actual_tornadoes.csv"
