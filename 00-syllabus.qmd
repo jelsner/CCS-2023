@@ -6,6 +6,8 @@ format:
     theme: white
     footer: "GEO4251 Climate Change & Storms"
     chalkboard: true
+    filters:
+      - snow
 editor: source
 ---
 
@@ -48,12 +50,12 @@ All the course slides are available on GitHub {{< fa brands github >}}  <https:/
 On successful completion of this course, you will be able to:
 
 1. Appraise the fundamental concepts, principles, theories, and terminology used in discussing the relationships between climate change and storminess
-2. Apply the principles of data science to make effective graphs, tables and inferences on this topic
-3. Contribute to contemporary scientific debates on this topic with empirical evidence
+2. Apply the principles of data science to make effective graphs, tables and inferences
+3. Contribute to contemporary scientific debates with empirical evidence
 
 ## Materials and class meetings {.unnumbered}
 
--   Access to the internet and a computer
+-   Computer and access to the internet
 -   Course slides are available through GitHub  <https://github.com/jelsner/CS-2023>
 -   No textbook is required
 
@@ -71,7 +73,7 @@ In-person lessons will be held in this room (Bellamy 208)
 
 You are responsible for:
 
-1.  Reading, watching, and running code in the lesson slides. You can do this during class as I talk or outside the classroom. I will not take attendance
+1.  Reading, watching, and running code in the lesson slides. You can do this during class  or outside the classroom. I will not take attendance
 2.  Completing and returning the in-class exercises on time
 
 Grades are determined by how well you do on the in-class exercises using the following standard
@@ -86,14 +88,12 @@ Grades are determined by how well you do on the in-class exercises using the fol
 
 I will use the +/- system.
 
-Topics
-
 ## Getting ready
 
 -   Getting set up
--   R & RStudio
--   Scientific workflow
--   Data science
+-   RStudio & R
+-   Using R
+-   Making graphs
 
 ## Climate data
 
@@ -109,8 +109,8 @@ Topics
 ## Analyzing climate data
 
 -   Statistics vs observations
+-   Trends
 -   Detection vs attribution
--   Plots and graphs
 -   Frequency vs intensity
 
 ## Modeling climate data

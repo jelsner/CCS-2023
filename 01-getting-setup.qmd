@@ -6,8 +6,6 @@ format:
     theme: white
     footer: "GEO4251 Climate Change & Storms"
     chalkboard: true
-    filters:
-      - snow
 editor: source
 ---
 
@@ -19,7 +17,7 @@ editor: source
 
 * Grades are determined by how well you do on the in-class exercises
 
-* I expect you to read, watch the videos, and run the code within the lesson slides. You can do this during class as I talk or outside the classroom. I expect you to complete and return the in-class exercises on time
+* I expect you to read the notes, watch the videos, and run the code within the lesson slides. I expect you to complete and return the in-class exercises on time
 
 ## Hardware and software
 
