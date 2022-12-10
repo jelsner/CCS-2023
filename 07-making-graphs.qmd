@@ -11,3 +11,26 @@ editor: source
 
 ## 
 
+* By graphing data, you gain insights not available by just looking at the data values initially obtain from just looking at the raw data values
+
+* You will use the {ggplot2} package, as it has functions for easily making graphs rooted in the theory known as the grammar of graphics
+
+* A graph is a mapping of variables (columns) in your data frame to aesthetic attributes of geometric objects
+
+* A graph has three components `data`: data frame, `geom`: geometric object like a point or a line, and `aes`: aesthetic attribute like color shape, and size
+
+##
+
+```{r}
+#| echo: true
+Rain.df <- readr::read_table(here::here("data", "NWFL_MonthlyRain.txt"))
+
+library(ggplot2)
+
+ggplot(data = Rain.df, 
+       mapping = aes(x = Year, y = Mar)) +
+  geom_line() +
+  ylab("Inches") +
+  ggtitle(label = "March Rain in Northwest Florida",
+          subtitle = "1895-2021")
+```

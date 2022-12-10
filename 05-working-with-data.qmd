@@ -1,5 +1,5 @@
 ---
-title: "Working with a data frame"
+title: "Working with data frames"
 format: 
   revealjs:
     code-fold: false
@@ -174,7 +174,7 @@ Casualties.df |>
   head(n = 8)
 ```
 
-## Group by and summarize {.smaller}
+## Group by, summarize, and arrange {.smaller}
 
 How many tornado fatalities in each state?
 
@@ -182,5 +182,6 @@ How many tornado fatalities in each state?
 #| echo: true
 Torn.df |>
   dplyr::group_by(st) |>
-  dplyr::summarize(nFatalties = sum(fat))
+  dplyr::summarize(nFatalities = sum(fat)) |>
+  dplyr::arrange(desc(nFatalities))
 ```
