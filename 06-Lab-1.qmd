@@ -12,5 +12,7 @@ Write code below to download and install the {ggplot2} package
 Write code below to get the tornado data into your environment as a data frame called `Torn.df`
 
 ## 3 
-Write code below that finds the average tornado path length in miles. The path length variable is called `len` in `Torn.df`
+Write code below that finds the average tornado path length in miles. The path length variable is `len` in `Torn.df`
+
+## 4
 

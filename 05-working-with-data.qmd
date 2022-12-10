@@ -149,7 +149,7 @@ Torn.df$st |>
   table()
 ```
 
-## Filter
+## Filter {.smaller}
 
 Create a new data frame with only tornadoes from Florida
 ```{r}
@@ -161,3 +161,26 @@ FL_Torn.df |>
   head()
 ```
 
+## Mutate and select
+
+Add a new column to the data frame as the sum of the injuries and fatalities
+```{r}
+#| echo: true
+Casualties.df <- Torn.df |>
+  dplyr::mutate(casualties = inj + fat) |>
+  dplyr::select(inj, fat, casualties)
+  
+Casualties.df |>
+  head(n = 8)
+```
+
+## Group by and summarize {.smaller}
+
+How many tornado fatalities in each state?
+
+```{r}
+#| echo: true
+Torn.df |>
+  dplyr::group_by(st) |>
+  dplyr::summarize(nFatalties = sum(fat))
+```
