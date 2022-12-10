@@ -11,17 +11,17 @@ editor: source
 
 ## 
 
-* Throughout the semester you'll focus on data that are saved in a “spreadsheet”-type format within your environment called a _data frame_
+* Through the semester you'll work with data saved in a spreadsheet-type format in your environment called a _data frame_
 
-* Inside a _data frame_ rows are observations and columns are variables
+* Inside a _data frame_ rows are observations and columns are variables. All columns have the same number of rows
 
-* You start be considering a data frame listing hurricane counts by year in the United States
+* Start be considering a data frame listing hurricane counts by year in the United States
 
 * <http://myweb.fsu.edu/jelsner/US.txt>
 
 * The data are updated annually. For example, last year both Hurricane Ian and Hurricane Nicole hit Florida
 
-##
+## 
 
 ```{r}
 #| echo: true
@@ -32,7 +32,17 @@ LH.df |>
   head()
 ```
 
-`Year`, `All`, `MUS`, `G`, `FL` and `E` are different columns in the data frame. These are the variables. Each row is an observation over an entire year.
+You assign it to the data frame `LH.df` for land-falling hurricanes. `Year`, `All`, `MUS`, `G`, `FL` and `E` are different columns in the data frame. These are the variables. Each row is an observation for that year
+
+##
+
+The `dim()` function returns the size of the data frame in terms of how many rows (first number) and how many columns
+
+```{r}
+#| echo: true
+LH.df |>
+  dim()
+```
 
 ##
 
@@ -70,3 +80,84 @@ The `$` extraction operator is used to view single variables/columns
 #| echo: true
 LH.df$FL
 ```
+
+How many more hurricanes have hit Florida than the East Coast?
+
+## 
+
+The number of years with 0, 1, 2, ... Florida hurricanes is obtained by typing
+
+```{r}
+#| echo: true
+LH.df$FL |>
+  table()
+```
+There are 95 years without a FL hurricane, 46 years with one hurricanes, 25 years with two hurricanes, and so on
+
+##
+
+Returning to the rainfall data from Northwest Florida
+
+```{r}
+#| echo: true
+Rain.df <- readr::read_table(here::here("data", "FL_Div1_MonthlyRain.txt"))
+```
+
+Consider rainfall during the month of June. Use the `sort()` function on the June values (column indicated by the label `Jun`).
+
+```{r}
+#| echo: true
+Rain.df$Jun |>
+  sort()
+```
+
+##
+
+* Quantiles cut a set of ordered data into equal-sized parts
+
+* The median is the value that cuts the ordered data into 2 equal halves. Fifty percent of the data have values less than or equal to the median value. The median is the 50th percentile (.5 quantile)
+
+```{r}
+#| echo: true
+Rain.df$Jun |>
+  median()
+```
+##
+
+* Quantiles corresponding to cutting the ordered data into quarters are called *quartiles*. The lower (first) quartile cuts the data into the lower 25% and upper 75% of the data. The lower quartile is the .25 quantile or the 25th percentile indicating that 25% of the data have values less than this quantile value. The upper (third) quartile corresponding to the .75 quantile (75th percentile), indicates that 75% of the data have values less than this quantile value
+
+```{r}
+#| echo: true
+Rain.df$Jun |>
+  quantile(probs = c(.25, .5, .75))
+```
+
+## {.smaller}
+
+Get the tornado data set
+```{r}
+#| echo: true
+L <- "http://www.spc.noaa.gov/wcm/data/1950-2021_actual_tornadoes.csv"
+Torn.df <- readr::read_csv(file = L,
+                           show_col_types = FALSE)
+```
+
+Create a table showing the number of tornadoes by state
+```{r}
+#| echo: true
+Torn.df$st |>
+  table()
+```
+
+## Filter
+
+Create a new data frame with only tornadoes from Florida
+```{r}
+#| echo: true
+FL_Torn.df <- Torn.df |>
+  dplyr::filter(st == "FL")
+
+FL_Torn.df |>
+  head()
+```
+

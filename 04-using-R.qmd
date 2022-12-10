@@ -81,7 +81,7 @@ install.packages("tidyverse")
 
 -   Packages provide functions. They are written by a worldwide community and can be downloaded for free.
 
--   The package {ggplot2} has functions for making plots. We will also use the package {hockeystick} that has functions for downloading and plotting climate data.
+-   The package {ggplot2} has functions for making plots. You will also use the package {hockeystick} that has functions for downloading and plotting climate data
 
 ```{r}
 #| echo: true
@@ -93,6 +93,14 @@ install.packages(pkgs = "hockeystick",
 
 ![](figures/install-packages.png)
 
-##
+## Your turn
 
 Download and install the {sf} package
+
+## Getting data into R from your computer
+
+Consider monthly rainfall from the state of Florida from  <http://www.esrl.noaa.gov/psd/data/timeseries/timeseries1.pl>. Using this portal I downloaded monthly average rainfall for division 1 (Northwest FL) and uploaded the file to GitHub
+
+```{r}
+Rain.df <- readr::read_table(here::here("data", "FL_Div1_MonthlyRain.txt"))
+```
