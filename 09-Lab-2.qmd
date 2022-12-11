@@ -6,13 +6,12 @@ editor: source
 ---
 
 ## 1 
-  
+Write code to make a line plot of December rain in Northwest California (`NWCA_MonthlyRain.txt`)
 
 ## 2 
-Write code below to get the tornado data into your environment as a data frame called `Torn.df`
+Add a trend line to the graph
 
 ## 3 
-Write code below that finds the average tornado path length in miles. The path length variable is `len` in `Torn.df`
 
 ## 4
 
