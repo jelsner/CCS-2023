@@ -100,7 +100,7 @@ Returning to the rainfall data from Northwest Florida
 
 ```{r}
 #| echo: true
-Rain.df <- readr::read_table(here::here("data", "FL_Div1_MonthlyRain.txt"))
+Rain.df <- readr::read_table(here::here("data", "NWFL_MonthlyRain.txt"))
 ```
 
 Consider rainfall during the month of June. Use the `sort()` function on the June values (column indicated by the label `Jun`).
@@ -115,7 +115,7 @@ Rain.df$Jun |>
 
 * Quantiles cut a set of ordered data into equal-sized parts
 
-* The median is the value that cuts the ordered data into 2 equal halves. Fifty percent of the data have values less than or equal to the median value. The median is the 50th percentile (.5 quantile)
+* The median is the value that cuts the ordered data into 2 equal halves. Half the values are less than or equal to the median value.
 
 ```{r}
 #| echo: true
@@ -124,7 +124,11 @@ Rain.df$Jun |>
 ```
 ##
 
-* Quantiles corresponding to cutting the ordered data into quarters are called *quartiles*. The lower (first) quartile cuts the data into the lower 25% and upper 75% of the data. The lower quartile is the .25 quantile or the 25th percentile indicating that 25% of the data have values less than this quantile value. The upper (third) quartile corresponding to the .75 quantile (75th percentile), indicates that 75% of the data have values less than this quantile value
+* Quartile is the value the cuts the ordered data into 4 equal quarters
+
+* The lower (first) quartile cuts the data into the lower 25% and upper 75% of the values
+
+* The upper (third) quartile cuts the data into the lower 75% and upper 25% the values
 
 ```{r}
 #| echo: true

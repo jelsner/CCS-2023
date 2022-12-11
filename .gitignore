@@ -3,6 +3,3 @@
 .RData
 .Ruserdata
 .DS_Store
-data/
-*.html
-*_files

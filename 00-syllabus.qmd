@@ -6,16 +6,16 @@ format:
     theme: white
     footer: "GEO4251 Climate Change & Storms"
     chalkboard: true
-    filters:
-      - snow
 editor: source
 ---
 
 ## GEO4251: Climate Change & Storms
 
-Understanding connections between our changing climate & storminess through analysis of data
+* Understanding our changing climate & storminess through analysis of data
 
-If the flap of a butterfly's wings in Brazil can set off a tornado in Texas then why can't a single person make a difference across the globe?
+* If the flap of a butterfly's wings in Brazil can set off a tornado in Texas why can't a single person make a difference across the globe?
+
+* Science is a way of discovering
 
 ## Contact information
 
@@ -55,7 +55,7 @@ On successful completion of this course, you will be able to:
 2. Apply the principles of data science to make effective graphs, tables and inferences
 3. Contribute to contemporary scientific debates with empirical evidence
 
-## Materials and class meetings {.unnumbered}
+## Materials and class meetings
 
 -   Computer and access to the internet
 -   Course slides are available through GitHub  <https://github.com/jelsner/CS-2023>

@@ -1,0 +1,18 @@
+---
+title: "Lab 2"
+author: "Your Name"
+format: pdf
+editor: source
+---
+
+## 1 
+  
+
+## 2 
+Write code below to get the tornado data into your environment as a data frame called `Torn.df`
+
+## 3 
+Write code below that finds the average tornado path length in miles. The path length variable is `len` in `Torn.df`
+
+## 4
+

@@ -1,0 +1,126 @@
+---
+title: "Adding a trend line"
+format: 
+  revealjs:
+    code-fold: false
+    theme: simple
+    footer: "GEO4251 Climate Change & Storms"
+    chalkboard: true
+editor: source
+---
+
+##
+
+Returning to the rainfall data from Northwest Florida
+
+```{r}
+#| echo: true
+Rain.df <- readr::read_table(here::here("data", "NWFL_MonthlyRain.txt")) |>
+  dplyr::select(Year, Rain_in = Jun) |>
+  dplyr::mutate(Year, Rain_cm = Rain_in * 2.54)
+
+library(ggplot2)
+
+ggplot(data = Rain.df,
+       mapping = aes(x = Year, y = Rain_cm)) +
+  geom_line() +
+  geom_smooth(method = lm, se = FALSE) +
+  ylab("Rain (cm)")
+```
+##
+
+```{r}
+#| echo: true
+
+```
+
+## {.smaller}
+
+Import the IBTrACS version 4 data as a csv file
+
+```{r, eval=FALSE}
+#| echo: true
+L <- "https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r00/access/csv/ibtracs.NA.list.v04r00.csv"
+
+NA.df <- readr::read_csv(file = L,
+                         show_col_types = FALSE) |>
+  dplyr::filter(SEASON != "Year") |>
+  dplyr::mutate(Season = as.integer(SEASON)) |>
+  dplyr::filter(Season >= 1981) |>
+  dplyr::mutate(Time = as.Date(ISO_TIME),
+                W_kt = as.numeric(USA_WIND),
+                W_mps = W_kt * .5144447) |>
+  dplyr::select(SID, Season, BASIN, NAME, Time, W_kt, W_mps)
+
+readr::write_csv(NA.df, 
+                 file = here::here("data", "NA.csv"))
+```
+
+##
+
+Get wind speed quantiles for tropical cyclones with winds at least 33 m/s. First get per storm fastest wind speed
+```{r}
+#| echo: true
+NA.df <- readr::read_csv(file = here::here("data", "NA.csv"))
+
+LMI.df <- NA.df |>
+  dplyr::group_by(SID) |>
+  dplyr::summarize(Year = dplyr::first(Season),
+                   Name = dplyr::first(NAME),
+                   MaxW_mps = max(W_mps, na.rm = TRUE)) |>
+  dplyr::filter(MaxW_mps >= 33)
+```
+
+##
+
+```{r}
+LMI.df |>
+  dplyr::group_by(Year) |>
+  dplyr::summarize(q90 = quantile(MaxW_mps, probs = .9),
+                   nH = dplyr::n()) |>
+  ggplot(mapping = aes(x = Year, y = q90)) +
+    geom_point() +
+    geom_smooth(method = lm) +
+    geom_text(mapping = aes(x = Year, y = 38, label = nH))
+```
+##
+
+```{r}
+LMI.df |>
+  dplyr::group_by(Year) |>
+  dplyr::summarize(q90 = quantile(MaxW_mps, probs = .9),
+                   nH = dplyr::n()) |>
+  ggplot(mapping = aes(x = Year, y = nH)) +
+    geom_point() +
+    geom_smooth(method = lm) 
+```
+
+##
+
+```{r}
+#| echo: true
+library(ggplot2)
+
+ggplot(data = LMI.df,
+       mapping = aes(x = Year, y = MaxW_mps)) +
+  geom_point() +
+  geom_smooth(method = lm)
+```
+
+##
+
+```{r}
+#| echo: true
+
+ggplot(data = LMI.df,
+       mapping = aes(y = MaxW_mps, x = Year, group = Year)) +
+  geom_boxplot()
+```
+
+```{r}
+#| echo: true
+
+summary(quantreg::rq(MaxW_mps ~ Year, tau = .9, data = LMI.df))
+
+plot(quantreg::rq(MaxW_mps ~ Year, tau = -1, data = LMI.df))
+```

@@ -99,8 +99,8 @@ Download and install the {sf} package
 
 ## Getting data into R from your computer
 
-Consider monthly rainfall from the state of Florida from  <http://www.esrl.noaa.gov/psd/data/timeseries/timeseries1.pl>. Using this portal I downloaded monthly average rainfall for division 1 (Northwest FL) and uploaded the file to GitHub
+Consider monthly rainfall from the state of Florida from  <http://www.esrl.noaa.gov/psd/data/timeseries>. Using this portal I downloaded monthly average rainfall for division 1 (Northwest FL) and uploaded the file to GitHub
 
 ```{r}
-Rain.df <- readr::read_table(here::here("data", "FL_Div1_MonthlyRain.txt"))
+Rain.df <- readr::read_table(here::here("data", "NWFL_MonthlyRain.txt"))
 ```

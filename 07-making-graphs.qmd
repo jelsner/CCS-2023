@@ -11,19 +11,20 @@ editor: source
 
 ## 
 
-* By graphing data, you gain insights not available by just looking at the data values initially obtain from just looking at the raw data values
+-   Graphs help you understand the processes that generated your data
 
-* You will use the {ggplot2} package, as it has functions for easily making graphs rooted in the theory known as the grammar of graphics
+-   The {ggplot2} package has functions to make graphs that are rooted in theory (grammar of graphics)
 
-* A graph is a mapping of variables (columns) in your data frame to aesthetic attributes of geometric objects
+-   A graph maps variables (columns in your data frame) to aesthetic attributes of geometric objects
 
-* A graph has three components `data`: data frame, `geom`: geometric object like a point or a line, and `aes`: aesthetic attribute like color shape, and size
+-   A graph requires `data`: data frame, `geom`: geometric object like a point or a line, and `aes`: aesthetic attribute like color shape, and size
 
-##
+## 
 
 ```{r}
 #| echo: true
-Rain.df <- readr::read_table(here::here("data", "NWFL_MonthlyRain.txt"))
+Rain.df <- readr::read_table(here::here("data", "NWFL_MonthlyRain.txt"),
+                             show_col_types = FALSE)
 
 library(ggplot2)
 
@@ -33,4 +34,111 @@ ggplot(data = Rain.df,
   ylab("Inches") +
   ggtitle(label = "March Rain in Northwest Florida",
           subtitle = "1895-2021")
+```
+
+##  {.smaller}
+
+```{r}
+#| echo: true
+ggplot(data = Rain.df, 
+       mapping = aes(x = Year, y = Mar)) +
+  geom_line() +
+  ylab("Inches") +
+  ggtitle(label = "March Rain in Northwest Florida",
+          subtitle = "1895-2021")
+```
+
+-   The data frame is `Rain.df`
+
+-   The data column `Year` gets mapped to the `x` position aesthetic of the line
+
+-   The data column `Mar` gets mapped to the `y` position aesthetic of the line
+
+-   The `geom_line()` describes the geometric object as a line
+
+## 
+
+```{r}
+#| echo: true
+#| code-line-numbers: 2-3
+ggplot(data = Rain.df, 
+       mapping = aes(x = Year, y = Mar, color = Mar)) +
+  geom_point() +
+  ylab("Inches") +
+  ggtitle(label = "March Rain in Northwest Florida",
+          subtitle = "1895-2021")
+```
+
+## Scatter plot
+
+-   A common scientific graph is the scatter plot
+-   It maps one variable to the `x` aesthetic and another variable to the `y` aesthetic
+-   Here you create a scatter plot mapping January rain to the `x` aesthetic and May rain to the `y` aesthetic
+
+```{r}
+#| echo: true
+#| output-location: slide
+#| code-line-numbers: 1-3,6-9
+#| fig-width: 6
+#| fig-height: 6
+ggplot(data = Rain.df, 
+       mapping = aes(x = Jan, y = May)) +
+  geom_point(color = "green") +
+  scale_x_continuous(limits = c(0, 17)) +
+  scale_y_continuous(limits = c(0, 17)) +
+  xlab("January Rain (in)") + 
+  ylab("May Rain (in)") +
+  ggtitle(label = "January vs May Rain in Northwest Florida",
+          subtitle = "Do you see a relationship? Can you think of a cause?")
+```
+
+## Histogram
+
+```{r, eval=FALSE}
+ggplot(data = Rain.df,
+       mapping = aes(x = Jan, y = 0)) +
+  geom_point(color = "green") +
+  scale_y_continuous(limits = c(0, 1)) +
+  xlab("Rain (in)")
+```
+
+![January rainfall (in) in NW Florida 1895-2021](figures/JanuaryRain.png){fig-alt="January rainfall (in) in NW Florida 1895-2021"}
+
+```{r}
+#| echo: true
+#| fig-height: 3
+ggplot(data = Rain.df,
+       mapping = aes(x = Jan)) +
+  geom_histogram(bins = 12, fill = "darkgreen", color = "gray") +
+  xlab("Rain (in)")
+```
+
+## Small multiples
+
+-   Suppose you want to plot a histogram of rain for each month of the year all on the same graph
+-   First convert the data frame from wide to long with the `tidyr::pivot_longer()` function
+
+```{r}
+#| echo: true
+RainL.df <- Rain.df |>
+  tidyr::pivot_longer(cols = 2:13, 
+                      names_to = "Month", 
+                      values_to = "Rain_in") |>
+  dplyr::mutate(Month = factor(Month, levels = month.abb))
+```
+
+-   Compare `RainL.df` with `Rain.df` using `View()`
+
+##
+
+-   Second include `facet_wrap()` as part of the plot code
+
+```{r}
+#| echo: true
+#| code-line-numbers: 1-2,5
+ggplot(data = RainL.df,
+       mapping = aes(x = Rain_in)) +
+  geom_histogram(bins = 12, fill = "darkgreen", color = "gray") +
+  xlab("Rain (in)") +
+  facet_wrap(~ Month)
 ```
