@@ -6,12 +6,13 @@ editor: source
 ---
 
 ## 1 
-Write code to make a line plot of December rain in Northwest California (`NWCA_MonthlyRain.txt`)
+Write code to make a time series plot of December rain in Northwest California (`NWCA_MonthlyRain.txt`)
 
 ## 2 
 Add a trend line to the graph
 
 ## 3 
+Quantify the amount of change
 
 ## 4
 

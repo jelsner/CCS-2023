@@ -1,18 +1,39 @@
 ---
 title: "Lab 1"
-author: "Your Name"
+author: "ANSWERS"
 format: pdf
 editor: source
 ---
 
 ## 1 
 Write code below to download and install the {ggplot2} package
+```{r, eval=FALSE}
+#| echo: true
+install.packages("ggplot2")
+library(ggplot2)
+```
 
 ## 2 
 Write code below to get the tornado data into your environment as a data frame called `Torn.df`
+```{r}
+#| echo: true
+L <- "http://www.spc.noaa.gov/wcm/data/1950-2021_actual_tornadoes.csv"
+Torn.df <- readr::read_csv(file = L,
+                           show_col_types = FALSE)
+```
 
 ## 3 
 Write code below to get the average tornado path length. The path length variable is `len` in `Torn.df`
+```{r}
+#| echo: true
+Torn.df$len |>
+  mean()
+```
 
 ## 4
 Write code below to get the number of tornadoes in each state. Hint: use the `table()` function on the variable `st`
+```{r}
+#| echo: true
+Torn.df$st |>
+  table()
+```

@@ -11,32 +11,42 @@ editor: source
 
 ##
 
-Returning to the rainfall data from Northwest Florida
+Returning to the rain data from Northwest Florida 
+
+-   Convert the June rain values to have units of centimeters
+-   Make a time series plot showing the values over the years
+-   Include a trend line
 
 ```{r}
 #| echo: true
+#| output-location: slide
 Rain.df <- readr::read_table(here::here("data", "NWFL_MonthlyRain.txt")) |>
   dplyr::select(Year, Rain_in = Jun) |>
-  dplyr::mutate(Year, Rain_cm = Rain_in * 2.54)
+  dplyr::mutate(Rain_cm = Rain_in * 2.54)
 
 library(ggplot2)
 
 ggplot(data = Rain.df,
        mapping = aes(x = Year, y = Rain_cm)) +
-  geom_line() +
+  geom_line() + scale_x_continuous(breaks = seq(1900, 2020, 20)) +
   geom_smooth(method = lm, se = FALSE) +
   ylab("Rain (cm)")
 ```
 ##
 
+-   The slope of the blue line is the average magnitude of change over the years
+-   You quantify this change using the following code
+
 ```{r}
 #| echo: true
-
+lm(Rain_cm ~ Year, data = Rain.df)
 ```
+-   The value below `Year` is the increase in the amount of rain in centimeters per year
+-   This value of .023 cm per year amounts to 2.3 cm per 100 years
 
 ## {.smaller}
 
-Import the IBTrACS version 4 data as a csv file
+Import the IBTrACS Atlantic hurricane csv file
 
 ```{r, eval=FALSE}
 #| echo: true
@@ -46,7 +56,7 @@ NA.df <- readr::read_csv(file = L,
                          show_col_types = FALSE) |>
   dplyr::filter(SEASON != "Year") |>
   dplyr::mutate(Season = as.integer(SEASON)) |>
-  dplyr::filter(Season >= 1981) |>
+  dplyr::filter(Season >= 1950) |>
   dplyr::mutate(Time = as.Date(ISO_TIME),
                 W_kt = as.numeric(USA_WIND),
                 W_mps = W_kt * .5144447) |>
@@ -61,38 +71,56 @@ readr::write_csv(NA.df,
 Get wind speed quantiles for tropical cyclones with winds at least 33 m/s. First get per storm fastest wind speed
 ```{r}
 #| echo: true
-NA.df <- readr::read_csv(file = here::here("data", "NA.csv"))
+NA.df <- readr::read_csv(file = here::here("data", "NA.csv"),
+                         show_col_types = FALSE)
 
 LMI.df <- NA.df |>
   dplyr::group_by(SID) |>
   dplyr::summarize(Year = dplyr::first(Season),
                    Name = dplyr::first(NAME),
-                   MaxW_mps = max(W_mps, na.rm = TRUE)) |>
+                   MaxW_mps = max(W_mps)) |>
   dplyr::filter(MaxW_mps >= 33)
 ```
 
-##
+## Frequency
 
 ```{r}
-LMI.df |>
+Frequency.df <- LMI.df |>
   dplyr::group_by(Year) |>
-  dplyr::summarize(q90 = quantile(MaxW_mps, probs = .9),
-                   nH = dplyr::n()) |>
-  ggplot(mapping = aes(x = Year, y = q90)) +
-    geom_point() +
-    geom_smooth(method = lm) +
-    geom_text(mapping = aes(x = Year, y = 38, label = nH))
+  dplyr::summarize(nH = dplyr::n())
+
+ggplot(data = Frequency.df,
+       mapping = aes(x = Year, y = nH)) +
+  geom_line() +
+  geom_smooth(method = lm) 
 ```
 ##
 
+Increases in the number of hurricanes 
+
 ```{r}
-LMI.df |>
+#| echo: true
+glm(nH ~ Year, data = Frequency.df, family = poisson)
+```
+
+Multiply .004 by 100 to get .4 percent per year or 4% per decade.
+
+## Intensity
+
+```{r}
+#| echo: true
+Intensity.df <- LMI.df |>
   dplyr::group_by(Year) |>
   dplyr::summarize(q90 = quantile(MaxW_mps, probs = .9),
-                   nH = dplyr::n()) |>
-  ggplot(mapping = aes(x = Year, y = nH)) +
-    geom_point() +
-    geom_smooth(method = lm) 
+                   q75 = quantile(MaxW_mps, probs = .75),
+                   q50 = quantile(MaxW_mps, probs = .5)) |>
+  tidyr::pivot_longer(cols = 2:4, names_to = "Level", values_to = "Quantile")
+
+
+ggplot(data = Intensity.df,
+       mapping = aes(x = Year, y = Quantile, color = Level)) +
+  geom_point() +
+  geom_smooth(method = lm, se = FALSE) 
 ```
 
 ##

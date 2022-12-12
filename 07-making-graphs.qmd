@@ -63,7 +63,7 @@ ggplot(data = Rain.df,
 #| code-line-numbers: 2-3
 ggplot(data = Rain.df, 
        mapping = aes(x = Year, y = Mar, color = Mar)) +
-  geom_point() +
+  geom_point() + scale_x_continuous(breaks = seq(1900, 2020, 20)) +
   ylab("Inches") +
   ggtitle(label = "March Rain in Northwest Florida",
           subtitle = "1895-2021")
