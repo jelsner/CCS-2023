@@ -1,0 +1,131 @@
+---
+title: "Increasing concentrations of greenhouse gases"
+format: 
+  revealjs:
+    slide-number: c/t
+    code-fold: false
+    chalkboard: true
+editor: source
+---
+
+## Carbon dioxide (CO~2~) data from NOAA
+
+<https://gml.noaa.gov/ccgg/trends/data.html>
+
+```{r}
+#| echo: true
+co2.df <- readr::read_table(file = here::here("data", "co2_mm_mlo.txt"), 
+                            show_col_types = FALSE) |>
+  dplyr::select(Year, Month, CO2_ppm) |>
+  dplyr::mutate(Date = paste("01", month.abb[Month], Year)) |>
+  dplyr::mutate(Date = as.Date(Date, format = "%d %b %Y"))
+
+co2.df |>
+  head()
+```
+
+##
+
+```{r}
+#| echo: true
+library(ggplot2)
+
+ggplot(data = co2.df,
+       mapping = aes(x = Date, y = CO2_ppm)) +
+  geom_line()
+```
+
+## Methane (CH~4~) data from NOAA 
+
+<https://gml.noaa.gov/webdata/ccgg/trends/ch4/ch4_mm_gl.txt>
+
+```{r}
+#| echo: true
+ch4.df <- readr::read_table(file = here::here("data", "ch4_mm_gl.txt"), 
+                             show_col_types = FALSE) |>
+  dplyr::select(Year, Month, CH4_ppb) |>
+  dplyr::mutate(Date = paste("01", month.abb[Month], Year)) |>
+  dplyr::mutate(Date = as.Date(Date, format = "%d %b %Y"))
+
+ch4.df |>
+  head()
+```
+
+##
+
+```{r}
+#| echo: true
+ggplot(data = ch4.df,
+       mapping = aes(x = Date, y = CH4_ppb)) +
+  geom_line()
+```
+
+<https://www.climate.gov/news-features/understanding-climate/after-2000-era-plateau-global-methane-levels-hitting-new-highs>
+
+## {hockeystick} package
+
+-   The package *hockeystick* has functions that make climate data easily available to you
+
+-   You can download the latest raw data from authoritative sources as well as view it with pre-defined charts
+
+-   The name of the package stems from the well-known [hockey stick](https://en.wikipedia.org/wiki/Hockey_stick_graph) temperature chart
+
+```{r}
+#| echo: true
+install.packages("hockeystick",
+                 repo = "https://cloud.r-project.org")
+```
+
+## Get the lastest CO~2~ data
+
+Download the CO~2~ data using the `get_carbon()` function from the {hockeystick} package. The data are atmospheric CO~2~ measurements at Mauna Loa Observatory, Hawaii
+
+```{r}
+#| echo: true
+library(hockeystick)
+
+co2.df2 <- hockeystick::get_carbon(write_cache = TRUE)
+```
+
+## 
+
+Take a look at the first six rows of the data frame using the `head()` function.
+
+```{r}
+#| echo: true
+co2.df2 |>
+  head()
+```
+
+## Make a time series plot
+
+```{r}
+#| echo: true
+hockeystick::plot_carbon(co2.df2)
+```
+
+## 
+
+```{r}
+#| echo: true
+( co2.df3 <- co2.df2 |>
+  dplyr::rename(CO2_ppm = average) |>
+  dplyr::mutate(Year = lubridate::year(date),
+                Month = lubridate::month(month, label = TRUE)) |>
+  dplyr::select(Year, Month, CO2_ppm) )
+```
+
+## Seasonal change
+
+```{r}
+#| echo: true
+#| output-location: slide 
+#| fig-cap: "Seasonal change in carbon dioxide at Mauna Loa"
+co2.df3 |>
+  dplyr::group_by(Month) |>
+  dplyr::summarize(Avg_ppm = mean(CO2_ppm)) |>
+  ggplot(mapping = aes(x = Month, y = Avg_ppm)) +
+    geom_point() +
+    ylab("Parts per million") +
+    theme_minimal()
+```

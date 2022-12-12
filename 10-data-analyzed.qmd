@@ -1,5 +1,5 @@
 ---
-title: "Analyzed data"
+title: "Globally analyzed weather and climate data"
 format: 
   revealjs:
     code-fold: false
@@ -11,15 +11,16 @@ link-citations: yes
 editor: source
 ---
 
-##
+## Sources for climate data
+
+## 
 
 ::: {style="text-align: center; margin-top: 1em"}
-[Climate Reanalyzer](https://climatereanalyzer.org/wx/DailySummary/#t2){preview-link="true" style="text-align: center"}
+[Today's weather maps](https://climatereanalyzer.org/wx/todays-weather/){preview-link="true" style="text-align: center"}
 :::
 
-##
+## 
 
 ::: {style="text-align: center; margin-top: 1em"}
 [Climate Change Indicators](https://zacklabe.com/climate-change-indicators/){preview-link="true" style="text-align: center"}
 :::
-

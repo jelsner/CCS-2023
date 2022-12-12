@@ -49,6 +49,12 @@ If Quarto is a car, then RStudio is the dashboard, and R is the engine
 
 ## Create PDFs
 
-To create PDFs you will need to install LaTeX. You can install with the following command in the Terminal window of RStudio
+-   To create PDFs you will need to install LaTeX 
+-   You can install with the following command in the Terminal window of RStudio
+-   Click on the `Terminal` tab and then type
 
 quarto install tool tinytex
+
+## How climate change works
+
+{{< video https://www.youtube.com/embed/CGoNpwN0mrs >}}
