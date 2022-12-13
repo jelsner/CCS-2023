@@ -1,0 +1,73 @@
+---
+title: "Bigger tornado outbreaks"
+format: 
+  revealjs:
+    code-fold: false
+    theme: white
+    footer: "GEO4251 Climate Change & Storms"
+    chalkboard: true
+editor: source
+editor_options: 
+  chunk_output_type: console
+---
+
+## 
+
+Tornadoes come in bunches called 'outbreaks'
+
+<https://www.spc.noaa.gov/climo/reports/221129_prt_rpts.html>
+<https://www.spc.noaa.gov/climo/reports/221104_prt_rpts.html>
+
+## {.smaller}
+
+-   Import the file as a data frame using the `readr::read_csv()` function 
+```{r}
+#| echo: true
+Torn.df <- readr::read_csv(file = here::here("data", "Tornadoes.csv"))
+
+Torn.df |>
+  head()
+```
+
+##
+-   Count the number of tornadoes (damage rating 1 or worse) reported in each day since 1950
+
+```{r}
+#| echo: true
+DailyCount.df <- Torn.df |>
+  dplyr::filter(mag >= 1) |>
+  dplyr::group_by(date) |>
+  dplyr::summarize(nT = dplyr::n(),
+                   Year = dplyr::last(yr))
+
+DailyCount.df |>
+  head()
+```
+
+##
+
+```{r}
+#| echo: true
+N <- 10
+AnnualCount.df <- DailyCount.df |>
+  dplyr::mutate(BigDay = nT >= N) |>
+  dplyr::group_by(Year) |>
+  dplyr::summarize(ALL_T = sum(nT),
+                   NBD = sum(BigDay),
+                   NBD_T = sum(nT[BigDay])) |>
+  dplyr::mutate(Proportion = NBD_T / ALL_T)
+```
+
+##
+
+```{r}
+#| echo: true
+
+library(ggplot2)
+
+ggplot(data = AnnualCount.df,
+       mapping = aes(x = Year, y = Proportion)) +
+  geom_point() +
+  geom_smooth(method = lm, se = FALSE) +
+  labs(title = "Proportion of all tornadoes occurring on days with at least 10 tornadoes")
+```

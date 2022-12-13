@@ -1,5 +1,5 @@
 ---
-title: "Climate change & storms: Content"
+title: "Content"
 format: 
   revealjs:
     code-fold: false
@@ -10,7 +10,7 @@ link-citations: yes
 editor: source
 ---
 
-## Climate change & storms
+##
 
 Scientists can make the connection between climate change and storms better today than they could only a few years ago
 
@@ -34,6 +34,11 @@ https://public.wmo.int/en/our-mandate/climate/wmo-statement-state-of-global-clim
 https://www.youtube.com/watch?v=tcj9IGY6Etg Safest place to live in U.S. under climate change
 https://www.youtube.com/watch?v=mEdN7gGfAZU  National Geographic storm chasing and climate change
 https://youtu.be/AMV6758nosU Hurricane Dorian long play
+
+##
+
+Things not covered directly in this class
+
 https://youtu.be/qw5zzrOpo2s US Climate Bill
 https://youtu.be/5W84bi9YEGY More snow with global warming
 https://www.youtube.com/watch?v=pkTpfLqtSpQ  Urban heat island

@@ -99,4 +99,4 @@ anomaly2k |>
 
 ##
 
-{{< video https://www.youtube.com/embed/JKrkiZM1asQ >}}
+{{< video https://www.youtube.com/embed/JKrkiZM1asQ >}} 5 minutes

@@ -16,6 +16,45 @@ editor: source
 
 ##
 
+Atlantic hurricanes from the {hockeystick} package
+
+```{r}
+#| echo: true
+library(hockeystick)
+
+atlhur <- get_hurricanes()
+
+atlhur |>
+  head()
+```
+
+##
+
+```{r}
+#| echo: true
+atlhur |>
+  plot_hurricanes()
+```
+
+##
+
+```{r}
+#| echo: true
+atlhur |>
+  plot_hurricane_nrg()
+```
+
+##
+
+```{r}
+#| echo: true
+atlhur |>
+  plot_hurricane_nrg() +
+  ggplot2::geom_smooth(span = .5, col = "green")
+```
+
+##
+
 ![Map showing the tracks and intensities of all tropical cyclones over the North Atlantic during the 2019 hurricane season](https://www.nhc.noaa.gov/data/tracks/tracks-at-2019.png){#fig-tracks}
 
 ##

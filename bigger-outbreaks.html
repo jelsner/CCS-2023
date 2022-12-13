@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="learn-github_files/libs/clipboard/clipboard.min.js"></script>
-<script src="learn-github_files/libs/quarto-html/tabby.min.js"></script>
-<script src="learn-github_files/libs/quarto-html/popper.min.js"></script>
-<script src="learn-github_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="learn-github_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="learn-github_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="learn-github_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="bigger-outbreaks_files/libs/clipboard/clipboard.min.js"></script>
+<script src="bigger-outbreaks_files/libs/quarto-html/tabby.min.js"></script>
+<script src="bigger-outbreaks_files/libs/quarto-html/popper.min.js"></script>
+<script src="bigger-outbreaks_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="bigger-outbreaks_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="bigger-outbreaks_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="bigger-outbreaks_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.2.269">
 
-  <title>Learn GitHub</title>
+  <title>Bigger tornado outbreaks</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="learn-github_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="learn-github_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="bigger-outbreaks_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="bigger-outbreaks_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -27,14 +27,78 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="learn-github_files/libs/revealjs/dist/theme/quarto.css" id="theme">
-  <link href="learn-github_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="learn-github_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="learn-github_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="learn-github_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="learn-github_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
-  <link href="learn-github_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="bigger-outbreaks_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link href="bigger-outbreaks_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="bigger-outbreaks_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="bigger-outbreaks_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="bigger-outbreaks_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="bigger-outbreaks_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="bigger-outbreaks_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -325,7 +389,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Learn GitHub</h1>
+  <h1 class="title">Bigger tornado outbreaks</h1>
 
 <div class="quarto-title-authors">
 </div>
@@ -333,13 +397,38 @@
 </section>
 <section id="section" class="slide level2">
 <h2></h2>
-<p>Connecting RStudio and GitHub</p>
-<iframe src="https://www.youtube.com/embed/MdmnE3AnkQE" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+<ul>
+<li>Import the file as a data frame using the <code>readr::read_csv()</code> function</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>Torn.df <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"Tornadoes.csv"</span>))</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a>Torn.df <span class="sc">|&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 29
+     om    yr mo    dy    date       time      tz st    stf     stn   mag   inj
+  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;date&gt;     &lt;time&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1   192  1950 10    01    1950-10-01 21:00      3 OK    40       23     1     0
+2   193  1950 10    09    1950-10-09 02:15      3 NC    37        9     3     3
+3   195  1950 11    20    1950-11-20 02:20      3 KY    21        1     2     0
+4   196  1950 11    20    1950-11-20 04:00      3 KY    21        2     1     0
+5   197  1950 11    20    1950-11-20 07:30      3 MS    28       14     1     3
+6   194  1950 11    04    1950-11-04 17:00      3 PA    42        5     3     1
+# … with 17 more variables: fat &lt;dbl&gt;, loss &lt;dbl&gt;, closs &lt;dbl&gt;, slat &lt;dbl&gt;,
+#   slon &lt;dbl&gt;, elat &lt;dbl&gt;, elon &lt;dbl&gt;, len &lt;dbl&gt;, wid &lt;dbl&gt;, ns &lt;dbl&gt;,
+#   sn &lt;dbl&gt;, sg &lt;dbl&gt;, f1 &lt;dbl&gt;, f2 &lt;dbl&gt;, f3 &lt;dbl&gt;, f4 &lt;dbl&gt;, fc &lt;dbl&gt;</code></pre>
+</div>
+</div>
 </section>
 <section id="section-1" class="slide level2">
 <h2></h2>
-<p>Take an existing R project and put it on GitHub</p>
-<iframe src="https://www.youtube.com/embed/bUoN85QvC10" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+<ul>
+<li>Count the number of tornadoes (damage rating 1 or worse) reported in each day since 1950</li>
+</ul>
+<div class="cell">
+
+</div>
 <div class="footer footer-default">
 <p>GEO4251 Climate Change &amp; Storms</p>
 </div>
@@ -348,20 +437,20 @@
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="learn-github_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="bigger-outbreaks_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="learn-github_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="learn-github_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="learn-github_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="learn-github_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="learn-github_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
-  <script src="learn-github_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="bigger-outbreaks_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="bigger-outbreaks_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="bigger-outbreaks_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="bigger-outbreaks_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="bigger-outbreaks_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="bigger-outbreaks_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="learn-github_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="learn-github_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="learn-github_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="learn-github_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="bigger-outbreaks_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="bigger-outbreaks_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="bigger-outbreaks_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="bigger-outbreaks_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
@@ -557,6 +646,44 @@
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

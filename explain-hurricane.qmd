@@ -1,0 +1,22 @@
+---
+title: "Hurricane formation"
+format:
+  revealjs:
+    slide-number: c/t
+    code-fold: false
+    chalkboard: true
+---
+
+## 
+
+How do hurricanes form?
+
+{{< video https://www.youtube.com/embed/LlXVikDkyTg >}} 3 minutes
+
+{{< video https://www.youtube.com/embed/5m68_07Sav4 >}} 7 minutes
+
+{{< video https://www.youtube.com/embed/Xtu2_ziBI_w >}} 6 minutes
+
+
+
+

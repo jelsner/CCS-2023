@@ -7,23 +7,23 @@ format:
     chalkboard: true
 ---
 
-## 
+## Formation and structure
 
 How do tornadoes form?
 
-{{< video https://www.youtube.com/embed/aacHWoB7cmY >}}
+{{< video https://www.youtube.com/embed/aacHWoB7cmY >}} 6 minutes
 
-{{< video https://www.youtube.com/embed/wUNAXGSWVv4 >}}
+{{< video https://www.youtube.com/embed/wUNAXGSWVv4 >}} 30 minutes
 
-{{< video https://www.youtube.com/embed/uH9A-7Y3lL0 >}}
+{{< video https://www.youtube.com/embed/uH9A-7Y3lL0 >}} 7 minutes
 
-##
+{{< video https://www.youtube.com/embed/bq0-QXXtOro >}} 45 minutes
+
+## Climatology
 
 Tornadoes in Europe
 
-{{< video https://www.youtube.com/embed/VA2ePX6KIeM >}}
-
-##
+{{< video https://www.youtube.com/embed/VA2ePX6KIeM >}} 40 minutes
 
 Tornadoes in East Asia
 

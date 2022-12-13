@@ -9,7 +9,7 @@ format:
 editor: source
 ---
 
-##
+## 
 
 -   Where do you find data on past tornadoes?
 -   How do you get the data into a format you can work with?
@@ -30,7 +30,7 @@ download.file(url = "http://www.spc.noaa.gov/wcm/data/1950-2021_actual_tornadoes
 
 -   A file called `Tornadoes.csv` should now be located in the directory `data`. Click on the *Files* tab in the lower-right panel, then select the `data` folder
 
-## {.smaller}
+##  {.smaller}
 
 -   You import the file as a data frame using the `readr::read_csv()` function and then preview it with the `head()` function
 
@@ -43,6 +43,10 @@ Torn.df |>
 ```
 
 -   Each row is a separate tornado report. Observations in each report include the day and time, the state (`st`), the maximum EF rating (`mag`), the number of injuries (`inj`), the number of fatalities (`fat`), estimated property losses (`loss`), estimated crop losses (`closs`), start and end locations in decimal degrees longitude and latitude, length of the damage path in miles (`len`), width of the damage in yards (`wid`)
+
+## 
+
+![Birmingham, AL tornado](figures/BirminghamDamagePath.jpg)
 
 ##
 
@@ -65,7 +69,7 @@ Torn2.df |>
   dim()
 ```
 
-##
+## 
 
 -   Here you subset again keeping only tornadoes with EF ratings (`mag` variable) greater than zero. You *recycle* the name `Torn2.df`
 
@@ -83,7 +87,7 @@ cor(Torn2.df$mag, Torn2.df$len) |>
   round(digits = 3)
 ```
 
-##
+## 
 
 -   Path length is recorded in miles and path width in yards and the EF damage rating variable `mag` is numeric
 -   Convert path length to kilometers, path width to meters, and the EF rating to a factor and include these changes as new columns in the data frame
@@ -110,5 +114,35 @@ ggplot(data = Torn2.df,
 ```
 
 ##
+
+Download the data and put it into the folder called `data`.
+
+```{r}
+#| echo: true
+loc <- "http://www.spc.noaa.gov/gis/svrgis/zipped/1950-2021-torn-aspath.zip"
+
+download.file(url = loc,
+              destfile = here::here("data", "1950-2021-torn-aspath.zip"))
+
+unzip(zipfile = here::here("data", "1950-2021-torn-aspath.zip"), 
+      exdir = here::here("data"))
+```
+
+##
+
+Get the data into your R session.
+```{r}
+#| echo: true
+Torn.sf <- sf::st_read(dsn = here::here("data", "1950-2021-torn-aspath"), 
+                       layer = "1950-2021-torn-aspath") 
+```
+
+The geometry type is line string representing the straight-line approximate track of each tornado. The coordinate reference system (CRS) is WGS84.
+
+## Damage assessment toolkit
+
+<https://apps.dat.noaa.gov/stormdamage/damageviewer/>
+
+## 
 
 {{< video https://www.youtube.com/embed/jcIR9Hl62yo >}} 22 minutes

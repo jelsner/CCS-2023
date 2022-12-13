@@ -1,20 +1,20 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="get-tornado-data_files/libs/clipboard/clipboard.min.js"></script>
-<script src="get-tornado-data_files/libs/quarto-html/tabby.min.js"></script>
-<script src="get-tornado-data_files/libs/quarto-html/popper.min.js"></script>
-<script src="get-tornado-data_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="get-tornado-data_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="get-tornado-data_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="get-tornado-data_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="explain-hurricane_files/libs/clipboard/clipboard.min.js"></script>
+<script src="explain-hurricane_files/libs/quarto-html/tabby.min.js"></script>
+<script src="explain-hurricane_files/libs/quarto-html/popper.min.js"></script>
+<script src="explain-hurricane_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="explain-hurricane_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="explain-hurricane_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="explain-hurricane_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.2.269">
 
-  <title>Get tornado data</title>
+  <title>Hurricane formation</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="get-tornado-data_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="get-tornado-data_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="explain-hurricane_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="explain-hurricane_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -27,78 +27,14 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
-    pre > code.sourceCode { white-space: pre; position: relative; }
-    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
-    pre > code.sourceCode > span:empty { height: 1.2em; }
-    .sourceCode { overflow: visible; }
-    code.sourceCode > span { color: inherit; text-decoration: inherit; }
-    div.sourceCode { margin: 1em 0; }
-    pre.sourceCode { margin: 0; }
-    @media screen {
-    div.sourceCode { overflow: auto; }
-    }
-    @media print {
-    pre > code.sourceCode { white-space: pre-wrap; }
-    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
-    }
-    pre.numberSource code
-      { counter-reset: source-line 0; }
-    pre.numberSource code > span
-      { position: relative; left: -4em; counter-increment: source-line; }
-    pre.numberSource code > span > a:first-child::before
-      { content: counter(source-line);
-        position: relative; left: -1em; text-align: right; vertical-align: baseline;
-        border: none; display: inline-block;
-        -webkit-touch-callout: none; -webkit-user-select: none;
-        -khtml-user-select: none; -moz-user-select: none;
-        -ms-user-select: none; user-select: none;
-        padding: 0 4px; width: 4em;
-        color: #aaaaaa;
-      }
-    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
-    div.sourceCode
-      { color: #003b4f; background-color: #f1f3f5; }
-    @media screen {
-    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-    }
-    code span { color: #003b4f; } /* Normal */
-    code span.al { color: #ad0000; } /* Alert */
-    code span.an { color: #5e5e5e; } /* Annotation */
-    code span.at { color: #657422; } /* Attribute */
-    code span.bn { color: #ad0000; } /* BaseN */
-    code span.bu { } /* BuiltIn */
-    code span.cf { color: #003b4f; } /* ControlFlow */
-    code span.ch { color: #20794d; } /* Char */
-    code span.cn { color: #8f5902; } /* Constant */
-    code span.co { color: #5e5e5e; } /* Comment */
-    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
-    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
-    code span.dt { color: #ad0000; } /* DataType */
-    code span.dv { color: #ad0000; } /* DecVal */
-    code span.er { color: #ad0000; } /* Error */
-    code span.ex { } /* Extension */
-    code span.fl { color: #ad0000; } /* Float */
-    code span.fu { color: #4758ab; } /* Function */
-    code span.im { color: #00769e; } /* Import */
-    code span.in { color: #5e5e5e; } /* Information */
-    code span.kw { color: #003b4f; } /* Keyword */
-    code span.op { color: #5e5e5e; } /* Operator */
-    code span.ot { color: #003b4f; } /* Other */
-    code span.pp { color: #ad0000; } /* Preprocessor */
-    code span.sc { color: #5e5e5e; } /* SpecialChar */
-    code span.ss { color: #20794d; } /* SpecialString */
-    code span.st { color: #20794d; } /* String */
-    code span.va { color: #111111; } /* Variable */
-    code span.vs { color: #20794d; } /* VerbatimString */
-    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="get-tornado-data_files/libs/revealjs/dist/theme/quarto.css" id="theme">
-  <link href="get-tornado-data_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="get-tornado-data_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="get-tornado-data_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="get-tornado-data_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="get-tornado-data_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
-  <link href="get-tornado-data_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="explain-hurricane_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link href="explain-hurricane_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="explain-hurricane_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="explain-hurricane_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="explain-hurricane_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="explain-hurricane_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="explain-hurricane_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -389,7 +325,7 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Get tornado data</h1>
+  <h1 class="title">Hurricane formation</h1>
 
 <div class="quarto-title-authors">
 </div>
@@ -397,151 +333,32 @@
 </section>
 <section id="section" class="slide level2">
 <h2></h2>
-<ul>
-<li>Where do you find data on past tornadoes?</li>
-<li>How do you get the data into a format you can work with?</li>
-</ul>
-
-<img data-src="https://farm8.staticflickr.com/7090/7157010997_2a92fa603c_o.jpg" class="r-stretch quarto-figure-center"><p class="caption">Tornado tracks</p></section>
-<section id="section-1" class="slide level2">
-<h2></h2>
-<ul>
-<li><p>The Storm Prediction Center has data on all tornadoes in the U.S. back to 1950. The data are available <a href="https://www.spc.noaa.gov/wcm/">here</a></p></li>
-<li><p>Here you are interested in the file called <code>1950-2021_actual_tornadoes.csv</code>. First download the file from the site with the <code>download.file()</code> function specifying the location (<code>url =</code>) and a name you want the file to be called on your computer (<code>destfile =</code>)</p></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">download.file</span>(<span class="at">url =</span> <span class="st">"http://www.spc.noaa.gov/wcm/data/1950-2021_actual_tornadoes.csv"</span>,</span>
-<span id="cb1-2"><a href="#cb1-2"></a>              <span class="at">destfile =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"Tornadoes.csv"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>A file called <code>Tornadoes.csv</code> should now be located in the directory <code>data</code>. Click on the <em>Files</em> tab in the lower-right panel, then select the <code>data</code> folder</li>
-</ul>
-</section>
-<section id="section-2" class="slide level2 smaller">
-<h2></h2>
-<ul>
-<li>You import the file as a data frame using the <code>readr::read_csv()</code> function and then preview it with the <code>head()</code> function</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>Torn.df <span class="ot">&lt;-</span> readr<span class="sc">::</span><span class="fu">read_csv</span>(<span class="at">file =</span> here<span class="sc">::</span><span class="fu">here</span>(<span class="st">"data"</span>, <span class="st">"Tornadoes.csv"</span>))</span>
-<span id="cb2-2"><a href="#cb2-2"></a></span>
-<span id="cb2-3"><a href="#cb2-3"></a>Torn.df <span class="sc">|&gt;</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 6 × 29
-     om    yr mo    dy    date       time      tz st    stf     stn   mag   inj
-  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;date&gt;     &lt;time&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1   192  1950 10    01    1950-10-01 21:00      3 OK    40       23     1     0
-2   193  1950 10    09    1950-10-09 02:15      3 NC    37        9     3     3
-3   195  1950 11    20    1950-11-20 02:20      3 KY    21        1     2     0
-4   196  1950 11    20    1950-11-20 04:00      3 KY    21        2     1     0
-5   197  1950 11    20    1950-11-20 07:30      3 MS    28       14     1     3
-6   194  1950 11    04    1950-11-04 17:00      3 PA    42        5     3     1
-# … with 17 more variables: fat &lt;dbl&gt;, loss &lt;dbl&gt;, closs &lt;dbl&gt;, slat &lt;dbl&gt;,
-#   slon &lt;dbl&gt;, elat &lt;dbl&gt;, elon &lt;dbl&gt;, len &lt;dbl&gt;, wid &lt;dbl&gt;, ns &lt;dbl&gt;,
-#   sn &lt;dbl&gt;, sg &lt;dbl&gt;, f1 &lt;dbl&gt;, f2 &lt;dbl&gt;, f3 &lt;dbl&gt;, f4 &lt;dbl&gt;, fc &lt;dbl&gt;</code></pre>
-</div>
-</div>
-<ul>
-<li>Each row is a separate tornado report. Observations in each report include the day and time, the state (<code>st</code>), the maximum EF rating (<code>mag</code>), the number of injuries (<code>inj</code>), the number of fatalities (<code>fat</code>), estimated property losses (<code>loss</code>), estimated crop losses (<code>closs</code>), start and end locations in decimal degrees longitude and latitude, length of the damage path in miles (<code>len</code>), width of the damage in yards (<code>wid</code>)</li>
-</ul>
-</section>
-<section id="section-3" class="slide level2">
-<h2></h2>
-<ul>
-<li>The total number of tornado reports in the data set is returned using the <code>nrow()</code> function</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>Torn.df <span class="sc">|&gt;</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>  <span class="fu">nrow</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 67558</code></pre>
-</div>
-</div>
-<p>You create a subset of the data frame that contains only tornadoes in the years (<code>yr</code>) since 2001 by including the logical operator <code>yr &gt;= 2001</code> inside the <code>dplyr::filter()</code> function</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>Torn2.df <span class="ot">&lt;-</span> Torn.df <span class="sc">|&gt;</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(yr <span class="sc">&gt;=</span> <span class="dv">2001</span>)</span>
-<span id="cb6-3"><a href="#cb6-3"></a></span>
-<span id="cb6-4"><a href="#cb6-4"></a>Torn2.df <span class="sc">|&gt;</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a>  <span class="fu">dim</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 25968    29</code></pre>
-</div>
-</div>
-</section>
-<section id="section-4" class="slide level2">
-<h2></h2>
-<ul>
-<li>Here you subset again keeping only tornadoes with EF ratings (<code>mag</code> variable) greater than zero. You <em>recycle</em> the name <code>Torn2.df</code></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>Torn2.df <span class="ot">&lt;-</span> Torn2.df <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(mag <span class="sc">&gt;</span> <span class="dv">0</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>Now you compute the correlation between EF rating (<code>mag</code>) and path length (<code>len</code>) with the <code>cor()</code> function</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">cor</span>(Torn2.df<span class="sc">$</span>mag, Torn2.df<span class="sc">$</span>len) <span class="sc">|&gt;</span></span>
-<span id="cb9-2"><a href="#cb9-2"></a>  <span class="fu">round</span>(<span class="at">digits =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.487</code></pre>
-</div>
-</div>
-</section>
-<section id="section-5" class="slide level2">
-<h2></h2>
-<ul>
-<li>Path length is recorded in miles and path width in yards and the EF damage rating variable <code>mag</code> is numeric</li>
-<li>Convert path length to kilometers, path width to meters, and the EF rating to a factor and include these changes as new columns in the data frame</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>Torn2.df <span class="ot">&lt;-</span> Torn2.df <span class="sc">|&gt;</span></span>
-<span id="cb11-2"><a href="#cb11-2"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">Length =</span> len <span class="sc">*</span> <span class="fl">1.60934</span>,</span>
-<span id="cb11-3"><a href="#cb11-3"></a>                <span class="at">Width =</span> wid <span class="sc">*</span> .<span class="dv">9144</span>,</span>
-<span id="cb11-4"><a href="#cb11-4"></a>                <span class="at">EF =</span> <span class="fu">factor</span>(mag))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>Create box plots of path length by EF rating</li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb12-2"><a href="#cb12-2"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Torn2.df,</span>
-<span id="cb12-3"><a href="#cb12-3"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> EF, <span class="at">y =</span> Length)) <span class="sc">+</span></span>
-<span id="cb12-4"><a href="#cb12-4"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-
-</section>
-<section id="section-5-output" class="slide level2 output-location-slide"><h2></h2><div class="cell output-location-slide">
-<div class="cell-output-display">
-<p><img data-src="get-tornado-data_files/figure-revealjs/unnamed-chunk-8-1.png" width="576"></p>
-</div>
-</div></section><section id="section-6" class="slide level2">
-<h2></h2>
-<iframe src="https://www.youtube.com/embed/jcIR9Hl62yo" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+<p>How do hurricanes form?</p>
+<p><iframe src="https://www.youtube.com/embed/LlXVikDkyTg" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe> 3 minutes</p>
+<p><iframe src="https://www.youtube.com/embed/5m68_07Sav4" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe> 7 minutes</p>
+<p><iframe src="https://www.youtube.com/embed/Xtu2_ziBI_w" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe> 6 minutes</p>
 <div class="footer footer-default">
-<p>GEO4251 Climate Change &amp; Storms</p>
+
 </div>
 </section>
     </div>
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="get-tornado-data_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="explain-hurricane_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="get-tornado-data_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="get-tornado-data_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="get-tornado-data_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="get-tornado-data_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="get-tornado-data_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
-  <script src="get-tornado-data_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="explain-hurricane_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="explain-hurricane_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="explain-hurricane_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="explain-hurricane_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="explain-hurricane_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="explain-hurricane_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="get-tornado-data_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="get-tornado-data_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="get-tornado-data_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="get-tornado-data_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="explain-hurricane_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="explain-hurricane_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="explain-hurricane_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="explain-hurricane_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
@@ -578,7 +395,7 @@
         progress: true,
 
         // Display the page number of the current slide
-        slideNumber: false,
+        slideNumber: 'c/t',
 
         // 'all', 'print', or 'speaker'
         showSlideNumber: 'all',
@@ -737,44 +554,6 @@
         ]
       });
     </script>
-    
-    <script>
-      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-      // slide changes (different for each slide format).
-      (function () {
-        // dispatch for htmlwidgets
-        function fireSlideEnter() {
-          const event = window.document.createEvent("Event");
-          event.initEvent("slideenter", true, true);
-          window.document.dispatchEvent(event);
-        }
-
-        function fireSlideChanged(previousSlide, currentSlide) {
-          fireSlideEnter();
-
-          // dispatch for shiny
-          if (window.jQuery) {
-            if (previousSlide) {
-              window.jQuery(previousSlide).trigger("hidden");
-            }
-            if (currentSlide) {
-              window.jQuery(currentSlide).trigger("shown");
-            }
-          }
-        }
-
-        // hookup for slidy
-        if (window.w3c_slidy) {
-          window.w3c_slidy.add_observer(function (slide_num) {
-            // slide_num starts at position 1
-            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-          });
-        }
-
-      })();
-    </script>
-
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {
