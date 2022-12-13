@@ -13,14 +13,45 @@ editor: source
 
 <https://climate.metoffice.cloud/humidity.html#datasets>
 
+Specific humidity (q in g/kg)
+```{r}
+#| echo: true
+download.file(url = "https://climate.metoffice.cloud/formatted_data/humidity_q_HadISDH%20blend%20q.csv",
+              destfile = here::here("data", "q.csv"))
+
+q.df <- readr::read_csv(here::here("data", "q.csv"))
+
+q.df |>
+  head()
+```
+
 ##
+
+Relative humidity
 
 ```{r}
 #| echo: TRUE
+download.file(url = "https://climate.metoffice.cloud/formatted_data/humidity_RH_HadISDH%20blend%20RH.csv",
+              destfile = here::here("data", "RH.csv"))
 
-q.df <- readr::read_csv(here::here("data", "humidity_q_HadISDH blend q.csv"))
+RH.df <- readr::read_csv(here::here("data", "RH.csv"))
 
-str(q.df)
+RH.df |>
+  head()
 ```
 
+##
+
+Dew point temperature
+
+```{r}
+#| echo: TRUE
+download.file(url = "https://climate.metoffice.cloud/formatted_data/humidity_Td_HadISDH%20blend%20Td.csv",
+              destfile = here::here("data", "Td.csv"))
+
+Td.df <- readr::read_csv(here::here("data", "Td.csv"))
+
+Td.df |>
+  head()
+```
 

@@ -1,5 +1,5 @@
 ---
-title: "Climate change & storms: Outline"
+title: "Climate change & storms: Content"
 format: 
   revealjs:
     code-fold: false
@@ -7,68 +7,16 @@ format:
     footer: "GEO4251 Climate Change & Storms"
     chalkboard: true
 link-citations: yes
-#csl: apa-single-spaced.csl
 editor: source
 ---
-
-Title: Climate Change & Storms
-
-Theme: Tracking the relationships between a changing climate & storminess with observations
-
-## Getting started
-
--   Installing R and RStudio
--   Connecting to GitHub
--   Learning to code
--   Generating reports
-
-## Getting climate data
-
--   Pre-analyzed data
--   CO2 concentration
--   Sea ice and sea levels
--   Temperatures: ocean, land, global vs local
--   Proxy data: ice cores, over-wash sediment deposits, tree rings
--   Humidity
--   Storms: hurricanes, tornadoes
--   Modes of variability
-
-## Analyzing the climate data
-
--   Statistics vs observations
--   Detection vs attribution
--   Plots and graphs
--   Frequency vs intensity
-
-## Modeling the climate data
-
--   Regression trends
--   Uncertainty: classical vs Bayesian
--   Space vs time
-
-## Climate models
-
--   Detection vs attribution
--   Prediction vs predictability
--   Prediction markets
-
-## Take an existing R project and put it on GitHub
-
-{{< video https://youtu.be/bUoN85QvC10 >}}
-
-## 
-
-"Climate change is an irresistible convenience, for it can be blamed on nobody in particular, and this spares official Florida the burden of its complicity in the larger-scale ruin of the land of our state."--Wendell Berry
-
-How does/might climate change affect X? X: Hurricanes, tornadoes, winter storms, heat waves
 
 ## Climate change & storms
 
 Scientists can make the connection between climate change and storms better today than they could only a few years ago
 
-1)  Methodological advances in science of attribution
-2)  More years of data means stronger evidence
-3)  Physical connections leading to better ways to explain the connections
+1)  Advances in the science of attribution
+2)  More years of data providing stronger evidence
+3)  Better physical understanding leading to clearer ways to explain what is happening
 
 ## 
 
@@ -81,11 +29,23 @@ https://physicstoday.scitation.org/doi/10.1063/PT.3.5038
 
 ## 
 
-https://public.wmo.int/en/our-mandate/climate/wmo-statement-state-of-global-climate https://www.youtube.com/watch?v=tcj9IGY6Etg https://youtu.be/CGoNpwN0mrs https://www.youtube.com/watch?v=mEdN7gGfAZU https://youtu.be/AMV6758nosU https://youtu.be/qw5zzrOpo2s https://youtu.be/5W84bi9YEGY https://www.youtube.com/watch?v=pkTpfLqtSpQ
+https://public.wmo.int/en/our-mandate/climate/wmo-statement-state-of-global-climate
+
+https://www.youtube.com/watch?v=tcj9IGY6Etg Safest place to live in U.S. under climate change
+https://www.youtube.com/watch?v=mEdN7gGfAZU  National Geographic storm chasing and climate change
+https://youtu.be/AMV6758nosU Hurricane Dorian long play
+https://youtu.be/qw5zzrOpo2s US Climate Bill
+https://youtu.be/5W84bi9YEGY More snow with global warming
+https://www.youtube.com/watch?v=pkTpfLqtSpQ  Urban heat island
 
 ## 
 
-https://www.youtube.com/watch?v=RcZdg3I2Pso https://youtu.be/JXhif3E3l2s https://www.youtube.com/watch?v=hqRdu2riNlg https://www.youtube.com/watch?v=PMHArzta2Ak https://www.realclimate.org/index.php/archives/2022/09/watching-the-detections Detection vs attribution https://www.climate.columbia.edu/content/predictions-projections-or-portents-weather-and-climate-modelling
+https://www.youtube.com/watch?v=RcZdg3I2Pso Pecos Hank top 10 up close tornado encounters
+https://youtu.be/JXhif3E3l2s Pecos Hank on lightning
+https://www.youtube.com/watch?v=hqRdu2riNlg Arctic warming faster
+https://www.youtube.com/watch?v=PMHArzta2Ak Why Hurricane and Typhoon Create Tornadoes: Are They Strong?
+
+https://www.realclimate.org/index.php/archives/2022/09/watching-the-detections Detection vs attribution https://www.climate.columbia.edu/content/predictions-projections-or-portents-weather-and-climate-modelling
 
 ## 
 

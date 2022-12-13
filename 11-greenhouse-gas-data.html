@@ -9,7 +9,7 @@
 <link href="11-greenhouse-gas-data_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.2.269">
 
-  <title>Increasing concentrations of greenhouse gases</title>
+  <title>Increasing greenhouse gases</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -389,11 +389,19 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Increasing concentrations of greenhouse gases</h1>
+  <h1 class="title">Increasing greenhouse gases</h1>
 
 <div class="quarto-title-authors">
 </div>
 
+</section>
+<section id="section" class="slide level2">
+<h2></h2>
+<ul>
+<li>A greenhouse gas (GHG) is a gas that absorbs and emits radiant energy within the thermal infrared range, causing the greenhouse effect</li>
+<li>The primary greenhouse gases in Earth’s atmosphere are water vapor (H<sub>2</sub>O), carbon dioxide (CO<sub>2</sub>), methane (CH<sub>4</sub>), nitrous oxide (N<sub>2</sub>O), and ozone (O<sub>3</sub>)</li>
+<li>Without greenhouse gases, the average temperature of Earth’s surface would be about −18°C (0°F), rather than the present average of 15°C (59°F)</li>
+</ul>
 </section>
 <section id="carbon-dioxide-co2-data-from-noaa" class="slide level2">
 <h2>Carbon dioxide (CO<sub>2</sub>) data from NOAA</h2>
@@ -420,7 +428,7 @@
 </div>
 </div>
 </section>
-<section id="section" class="slide level2">
+<section id="section-1" class="slide level2">
 <h2></h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(ggplot2)</span>
@@ -456,7 +464,7 @@
 </div>
 </div>
 </section>
-<section id="section-1" class="slide level2">
+<section id="section-2" class="slide level2">
 <h2></h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> ch4.df,</span>
@@ -479,7 +487,7 @@
 <div class="cell-output cell-output-stdout">
 <pre><code>
 The downloaded binary packages are in
-    /var/folders/3p/w97fwkv90dn3scvpcdk49zq40000gn/T//RtmpCJkRwQ/downloaded_packages</code></pre>
+    /var/folders/3p/w97fwkv90dn3scvpcdk49zq40000gn/T//Rtmp3o0jzK/downloaded_packages</code></pre>
 </div>
 </div>
 </section>
@@ -492,7 +500,7 @@ The downloaded binary packages are in
 <span id="cb9-3"><a href="#cb9-3"></a>co2.df2 <span class="ot">&lt;-</span> hockeystick<span class="sc">::</span><span class="fu">get_carbon</span>(<span class="at">write_cache =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
-<section id="section-2" class="slide level2">
+<section id="section-3" class="slide level2">
 <h2></h2>
 <p>Take a look at the first six rows of the data frame using the <code>head()</code> function.</p>
 <div class="cell">
@@ -518,7 +526,7 @@ The downloaded binary packages are in
 
 </div>
 <img data-src="11-greenhouse-gas-data_files/figure-revealjs/unnamed-chunk-8-1.png" width="960" class="r-stretch"></section>
-<section id="section-3" class="slide level2">
+<section id="section-4" class="slide level2">
 <h2></h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>( co2.df3 <span class="ot">&lt;-</span> co2.df2 <span class="sc">|&gt;</span></span>

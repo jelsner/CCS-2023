@@ -1,0 +1,190 @@
+---
+title: "More greenhouse gas"
+format: 
+  revealjs:
+    code-fold: false
+    theme: white
+    footer: "GEO4251 Climate Change & Storms"
+    chalkboard: true
+---
+
+## How climate change works
+
+{{< video https://www.youtube.com/embed/CGoNpwN0mrs >}}
+
+##
+
+-   A greenhouse gas (GHG) is air that absorbs and emits radiant energy within the thermal infrared range, causing the greenhouse effect
+-   The primary greenhouse gases in Earth's atmosphere are water vapor (H~2~O), carbon dioxide (CO~2~), methane (CH~4~), nitrous oxide (N~2~O), and ozone (O~3~)
+-   Without greenhouse gases, the average temperature of Earth's surface would be about −18°C (0°F), rather than the present average of 15°C (59°F)
+
+##
+
+-   Human activities since the beginning of the Industrial Revolution (around 1750) have increased the atmospheric concentration of carbon dioxide by over 50%, from 280 ppm in 1750 to 421 ppm in 2022
+-   The last time the atmospheric concentration of carbon dioxide was this high was over 3 million years ago
+-   The vast majority of anthropogenic carbon dioxide emissions come from combustion of fossil fuels, principally coal, petroleum (including oil) and natural gas, with additional contributions from cement manufacturing, fertilizer production, deforestation and other changes in land use
+-   The most abundant greenhouse gases in Earth's atmosphere are water vapor, carbon dioxide, and methane
+
+
+## Carbon dioxide (CO~2~) data from NOAA
+
+<https://gml.noaa.gov/ccgg/trends/data.html>
+
+```{r}
+#| echo: true
+co2.df <- readr::read_table(file = here::here("data", "co2_mm_mlo.txt"), 
+                            show_col_types = FALSE) |>
+  dplyr::select(Year, Month, CO2_ppm) |>
+  dplyr::mutate(Date = paste("01", month.abb[Month], Year)) |>
+  dplyr::mutate(Date = as.Date(Date, format = "%d %b %Y"))
+
+co2.df |>
+  head()
+```
+
+##
+
+```{r}
+#| echo: true
+library(ggplot2)
+
+ggplot(data = co2.df,
+       mapping = aes(x = Date, y = CO2_ppm)) +
+  geom_line()
+```
+
+## Methane (CH~4~) data from NOAA 
+
+<https://gml.noaa.gov/webdata/ccgg/trends/ch4/ch4_mm_gl.txt>
+
+```{r}
+#| echo: true
+ch4.df <- readr::read_table(file = here::here("data", "ch4_mm_gl.txt"), 
+                             show_col_types = FALSE) |>
+  dplyr::select(Year, Month, CH4_ppb) |>
+  dplyr::mutate(Date = paste("01", month.abb[Month], Year)) |>
+  dplyr::mutate(Date = as.Date(Date, format = "%d %b %Y"))
+
+ch4.df |>
+  head()
+```
+
+##
+
+```{r}
+#| echo: true
+ggplot(data = ch4.df,
+       mapping = aes(x = Date, y = CH4_ppb)) +
+  geom_line()
+```
+
+<https://www.climate.gov/news-features/understanding-climate/after-2000-era-plateau-global-methane-levels-hitting-new-highs>
+
+## {hockeystick} package
+
+-   The package *hockeystick* has functions that make climate data easily available to you
+
+-   You can download the latest raw data from authoritative sources as well as view it with pre-defined charts
+
+-   The name of the package stems from the well-known [hockey stick](https://en.wikipedia.org/wiki/Hockey_stick_graph) temperature chart
+
+```{r}
+#| echo: true
+install.packages("hockeystick",
+                 repo = "https://cloud.r-project.org")
+```
+
+## Get the lastest CO~2~ data
+
+Download the CO~2~ data using the `get_carbon()` function from the {hockeystick} package. The data are atmospheric CO~2~ measurements at Mauna Loa Observatory, Hawaii
+
+```{r}
+#| echo: true
+library(hockeystick)
+
+co2.df2 <- hockeystick::get_carbon(write_cache = TRUE)
+```
+
+## 
+
+Take a look at the first six rows of the data frame using the `head()` function.
+
+```{r}
+#| echo: true
+co2.df2 |>
+  head()
+```
+
+## Make a time series plot
+
+```{r}
+#| echo: true
+hockeystick::plot_carbon(co2.df2)
+```
+
+## 
+
+```{r}
+#| echo: true
+( co2.df3 <- co2.df2 |>
+  dplyr::rename(CO2_ppm = average) |>
+  dplyr::mutate(Year = lubridate::year(date),
+                Month = lubridate::month(month, label = TRUE)) |>
+  dplyr::select(Year, Month, CO2_ppm) )
+```
+
+## Seasonal change
+
+```{r}
+#| echo: true
+#| output-location: slide 
+#| fig-cap: "Seasonal change in carbon dioxide at Mauna Loa"
+co2.df3 |>
+  dplyr::group_by(Month) |>
+  dplyr::summarize(Avg_ppm = mean(CO2_ppm)) |>
+  ggplot(mapping = aes(x = Month, y = Avg_ppm)) +
+    geom_point() +
+    ylab("Parts per million") +
+    theme_minimal()
+```
+
+## Get the emissions data
+
+Download the emissions data using the `get_emissions()` function from the {hockeystick} package.
+
+```{r}
+#| echo: true
+library(hockeystick)
+
+emits.df <- hockeystick::get_emissions(write_cache = TRUE)
+```
+
+##
+
+Look at the first six rows of the data frame using the `head()` function.
+
+```{r}
+#| echo: true
+emits.df |>
+  head()
+```
+
+## Make a time-series plot
+
+```{r}
+#| echo: true
+#| fig-cap: "Annual total emissions worldwide"
+emits.df |>
+  hockeystick::plot_emissions()
+```
+
+## By country/region in 2020
+```{r}
+#| echo: true
+emits.df |>
+  dplyr::filter(year == 2020) |>
+  dplyr::select(country, co2, co2_per_capita) |>
+  dplyr::arrange(desc(co2))
+```
+
+China, United States, India, Russia, Japan, Iran, Germany, Saudi Arabia, South Korea, Indonesia, Canada, Brazil, South Africa, Turkey, Australia, United Kingdom, Italy, Poland, Kazakhstan, France, Taiwan, Malaysia

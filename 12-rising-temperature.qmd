@@ -1,0 +1,98 @@
+---
+title: "Rising global temperature"
+format: 
+  revealjs:
+    slide-number: c/t
+    code-fold: false
+    chalkboard: true
+    theme: white
+    footer: "GEO4251 Climate Change & Storms"
+editor: source
+---
+
+## Get the temperature data
+
+Download the temperature data using the `get_temp()` function from the {hockeystick} package.
+
+```{r}
+#| echo: true
+library(hockeystick)
+
+temps <- hockeystick::get_temp(write_cache = TRUE)
+```
+
+##
+
+Look at the first six rows using the `head()` function.
+
+```{r}
+#| echo: true
+temps |>
+  head()
+```
+
+## Make a time-series plot
+
+```{r}
+#| echo: true
+#| fig-cap: "Annual global land-ocean temperature index"
+temps |>
+  plot_temp()
+```
+
+##
+
+```{r}
+temps |>
+  warming_stripes()
+```
+
+## Convert wide data to long data
+```{r}
+#| echo: true
+tempsL <- temps |>
+  dplyr::select(Year, month.abb) |>
+  tidyr::pivot_longer(cols = month.abb,
+                      names_to = "Month",
+                      values_to = "Anom_C") |>
+  dplyr::mutate(Year = lubridate::year(Year),
+                Month = factor(Month, 
+                               levels = month.abb))
+
+head(tempsL)
+```
+
+## Plot temperatures by month
+```{r}
+#| echo: true
+library(ggplot2)
+
+tempsL |>
+  na.omit() |>
+  dplyr::filter(Year >= 1980) |>
+  ggplot(mapping = aes(x = Year, 
+                       y = Anom_C)) +
+#  geom_line() +
+  geom_smooth(method = lm, color = "red") +
+  facet_wrap(~ Month, ncol = 4)
+```
+
+## Common era temperatures
+
+```{r}
+#| echo: true
+library(hockeystick)
+
+anomaly2k <- get_temp2k()
+
+anomaly2k |>
+  head()
+```
+
+##
+
+```{r}
+#| echo: true
+anomaly2k |>
+  plot_temp2k()
+```

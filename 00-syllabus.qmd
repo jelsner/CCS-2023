@@ -96,11 +96,12 @@ I will use the +/- system.
 -   RStudio & R
 -   Using R
 -   Making graphs
+-   Trends
 
 ## Climate data
 
--   Pre-analyzed data
--   CO2 concentration
+-   Weather and climate data
+-   Increasing greenhouse gases
 -   Sea ice and sea levels
 -   Temperatures: ocean, land, global vs local
 -   Proxy data: ice cores, over-wash sediment deposits, tree rings
@@ -111,13 +112,11 @@ I will use the +/- system.
 ## Analyzing climate data
 
 -   Statistics vs observations
--   Trends
 -   Detection vs attribution
 -   Frequency vs intensity
 
 ## Modeling climate data
 
--   Regression trends
 -   Uncertainty: classical vs Bayesian
 -   Space vs time
 -   Artificial intelligence and machine learning
