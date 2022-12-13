@@ -18,7 +18,7 @@ Download the temperature data using the `get_temp()` function from the {hockeyst
 #| echo: true
 library(hockeystick)
 
-temps <- hockeystick::get_temp(write_cache = TRUE)
+t.df <- hockeystick::get_temp(write_cache = TRUE)
 ```
 
 ##
@@ -27,7 +27,7 @@ Look at the first six rows using the `head()` function.
 
 ```{r}
 #| echo: true
-temps |>
+t.df |>
   head()
 ```
 
@@ -36,21 +36,21 @@ temps |>
 ```{r}
 #| echo: true
 #| fig-cap: "Annual global land-ocean temperature index"
-temps |>
+t.df |>
   plot_temp()
 ```
 
 ##
 
 ```{r}
-temps |>
+t.df |>
   warming_stripes()
 ```
 
 ## Convert wide data to long data
 ```{r}
 #| echo: true
-tempsL <- temps |>
+t.dfL <- t.df |>
   dplyr::select(Year, month.abb) |>
   tidyr::pivot_longer(cols = month.abb,
                       names_to = "Month",
@@ -59,7 +59,7 @@ tempsL <- temps |>
                 Month = factor(Month, 
                                levels = month.abb))
 
-head(tempsL)
+head(t.dfL)
 ```
 
 ## Plot temperatures by month
@@ -67,7 +67,7 @@ head(tempsL)
 #| echo: true
 library(ggplot2)
 
-tempsL |>
+t.dfL |>
   na.omit() |>
   dplyr::filter(Year >= 1980) |>
   ggplot(mapping = aes(x = Year, 
@@ -96,3 +96,7 @@ anomaly2k |>
 anomaly2k |>
   plot_temp2k()
 ```
+
+##
+
+{{< video https://www.youtube.com/embed/JKrkiZM1asQ >}}

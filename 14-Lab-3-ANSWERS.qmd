@@ -26,6 +26,20 @@ emits.df |>
 ```
 
 ## 3 
+Write code to download and import the latest global air temperature data and make a time series plot of showing July temperatures across the years
+```{r}
+t.df <- hockeystick::get_temp()
+
+library(ggplot2)
+
+ggplot(data = t.df,
+       mapping = aes(x = Year, y = Jul)) +
+  geom_line()
+```
 
 ## 4
+Write code to quantify the increase per year in global temperatures during July
 
+```{r}
+lm(Jul ~ Year, data = t.df) # note: this will be per day so need to multiply by 365.25
+```
