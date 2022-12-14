@@ -44,111 +44,98 @@ lm(Rain_cm ~ Year, data = Rain.df)
 -   The value below `Year` is the increase in the amount of rain in centimeters per year
 -   This value of .023 cm per year amounts to 2.3 cm per 100 years
 
-## {.smaller}
+## A key climate indicator
 
-Import the IBTrACS Atlantic hurricane csv file
+-   Temperature is a key climate indicator. Temperature measurements made on land and in water across the globe tell us how temperature has changed over years, decades and centuries. They also tell us how temperature varies from one place to another
 
-```{r, eval=FALSE}
+-   Global temperature is an aggregate over all the local temperature changes. It is a summary of the overall tendency in surface temperature and it is probably the longest instrumental series of global climate change that we have
+
+-   Global temperatures from various research labs <https://climate.metoffice.cloud/temperature.html#datasets>
+
+-   Annual global mean temperatures expressed as a difference from pre-industrial conditions (anomalies). Four data sets are available and there is good agreement between them
+
+-   Anomalies are calculated relative to a 1981 to 2010 baseline and offset by 0.69°C, which is the best estimate difference for that period from the 1850-1900 average given in the IPCC sixth assessment report
+
+## 
+
+Global mean temperature
+
+```{r}
 #| echo: true
-L <- "https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r00/access/csv/ibtracs.NA.list.v04r00.csv"
+L <- "https://climate.metoffice.cloud/formatted_data/gmt_HadCRUT5.csv"
+download.file(url = L,
+              destfile = here::here("data", "T.csv"))
 
-NA.df <- readr::read_csv(file = L,
-                         show_col_types = FALSE) |>
-  dplyr::filter(SEASON != "Year") |>
-  dplyr::mutate(Season = as.integer(SEASON)) |>
-  dplyr::filter(Season >= 1950) |>
-  dplyr::mutate(Time = as.Date(ISO_TIME),
-                W_kt = as.numeric(USA_WIND),
-                W_mps = W_kt * .5144447) |>
-  dplyr::select(SID, Season, BASIN, NAME, Time, W_kt, W_mps)
+T.df <- readr::read_csv(here::here("data", "T.csv"),
+                        show_col_types = FALSE)
+names(T.df) <- c("Year", "T_C", "u")
 
-readr::write_csv(NA.df, 
-                 file = here::here("data", "NA.csv"))
+T.df |>
+  head()
 ```
 
 ##
 
-Get wind speed quantiles for tropical cyclones with winds at least 33 m/s. First get per storm fastest wind speed
+Create a time series graph and add a ribbon indicating the uncertainty around the estimated values
+
 ```{r}
 #| echo: true
-NA.df <- readr::read_csv(file = here::here("data", "NA.csv"),
-                         show_col_types = FALSE)
-
-LMI.df <- NA.df |>
-  dplyr::group_by(SID) |>
-  dplyr::summarize(Year = dplyr::first(Season),
-                   Name = dplyr::first(NAME),
-                   MaxW_mps = max(W_mps)) |>
-  dplyr::filter(MaxW_mps >= 33)
-```
-
-## Frequency
-
-```{r}
-Frequency.df <- LMI.df |>
-  dplyr::group_by(Year) |>
-  dplyr::summarize(nH = dplyr::n())
-
-ggplot(data = Frequency.df,
-       mapping = aes(x = Year, y = nH)) +
+ggplot(data = T.df,
+       mapping = aes(x = Year, y = T_C, ymin = T_C-u, ymax = T_C+u)) +
+  geom_ribbon(fill = "gray") + 
   geom_line() +
-  geom_smooth(method = lm) 
-```
-##
-
-Increases in the number of hurricanes 
-
-```{r}
-#| echo: true
-glm(nH ~ Year, data = Frequency.df, family = poisson)
-```
-
-Multiply .004 by 100 to get .4 percent per year or 4% per decade.
-
-## Intensity
-
-```{r}
-#| echo: true
-Intensity.df <- LMI.df |>
-  dplyr::group_by(Year) |>
-  dplyr::summarize(q90 = quantile(MaxW_mps, probs = .9),
-                   q75 = quantile(MaxW_mps, probs = .75),
-                   q50 = quantile(MaxW_mps, probs = .5)) |>
-  tidyr::pivot_longer(cols = 2:4, names_to = "Level", values_to = "Quantile")
-
-
-ggplot(data = Intensity.df,
-       mapping = aes(x = Year, y = Quantile, color = Level)) +
-  geom_point() +
-  geom_smooth(method = lm, se = FALSE) 
+  scale_x_continuous(breaks = seq(1860, 2020, 20)) +
+  ylab("°C")
 ```
 
 ##
 
+## 
+
+Global humidity
+
+<https://climate.metoffice.cloud/humidity.html#datasets>
+
+Specific humidity (q in g/kg)
 ```{r}
 #| echo: true
-library(ggplot2)
+L <- "https://climate.metoffice.cloud/formatted_data/humidity_q_HadISDH%20blend%20q.csv"
+download.file(url = L,
+              destfile = here::here("data", "q.csv"))
 
-ggplot(data = LMI.df,
-       mapping = aes(x = Year, y = MaxW_mps)) +
-  geom_point() +
-  geom_smooth(method = lm)
+q.df <- readr::read_csv(here::here("data", "q.csv"))
+
+q.df |>
+  head()
 ```
 
 ##
 
-```{r}
-#| echo: true
-
-ggplot(data = LMI.df,
-       mapping = aes(y = MaxW_mps, x = Year, group = Year)) +
-  geom_boxplot()
-```
+Relative humidity
 
 ```{r}
-#| echo: true
+#| echo: TRUE
+download.file(url = "https://climate.metoffice.cloud/formatted_data/humidity_RH_HadISDH%20blend%20RH.csv",
+              destfile = here::here("data", "RH.csv"))
 
-summary(quantreg::rq(MaxW_mps ~ Year, tau = .9, data = LMI.df))
+RH.df <- readr::read_csv(here::here("data", "RH.csv"))
 
-plot(quantreg::rq(MaxW_mps ~ Year, tau = -1, data = LMI.df))
+RH.df |>
+  head()
 ```
+
+##
+
+Dew point temperature
+
+```{r}
+#| echo: TRUE
+download.file(url = "https://climate.metoffice.cloud/formatted_data/humidity_Td_HadISDH%20blend%20Td.csv",
+              destfile = here::here("data", "Td.csv"))
+
+Td.df <- readr::read_csv(here::here("data", "Td.csv"))
+
+Td.df |>
+  head()
+```
+
