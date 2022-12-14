@@ -1,0 +1,47 @@
+---
+title: "Weather and climate data"
+format: 
+  revealjs:
+    code-fold: false
+    theme: white
+    footer: "GEO4251 Climate Change & Storms"
+    chalkboard: true
+editor: source
+---
+
+## 
+
+::: {style="text-align: center; margin-top: 1em"}
+[Today's weather maps](https://climatereanalyzer.org/wx/todays-weather/){preview-link="true" style="text-align: center"}
+:::
+
+##
+
+::: {style="text-align: center; margin-top: 1em"}
+[Tropical weather resources](https://www.tropicaltidbits.com/analysis/models/){preview-link="true" style="text-align: center"}
+:::
+
+## 
+
+::: {style="text-align: center; margin-top: 1em"}
+[Climate change indicators](https://zacklabe.com/climate-change-indicators/){preview-link="true" style="text-align: center"}
+:::
+
+
+##
+
+::: {style="text-align: center; margin-top: 1em"}
+[Tracking the changing climate with Earth observations](https://climate.metoffice.cloud/){preview-link="true" style="text-align: center"}
+:::
+
+##
+
+::: {style="text-align: center; margin-top: 1em"}
+[International Best Track Archive for Climate Stewardship (IBTrACS)](https://www.ncei.noaa.gov/products/international-best-track-archive){preview-link="true" style="text-align: center"}
+:::
+
+##
+
+::: {style="text-align: center; margin-top: 1em"}
+[NOAA NWS Storm Prediction Center](https://www.spc.noaa.gov/){preview-link="true" style="text-align: center"}
+:::
