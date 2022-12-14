@@ -9,6 +9,12 @@ format:
 editor: source
 ---
 
+##
+
+Tornadoes and climate change
+
+{{< video https://www.youtube.com/embed/jqzU9ECKP5A >}} 45 minutes
+
 ## 
 
 -   Where do you find data on past tornadoes?
