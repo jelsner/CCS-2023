@@ -1,5 +1,5 @@
 ---
-title: "Get tornado data"
+title: "Tornado data analysis"
 format: 
   revealjs:
     code-fold: false
@@ -15,9 +15,15 @@ Tornadoes and climate change
 
 {{< video https://www.youtube.com/embed/jqzU9ECKP5A >}} 45 minutes
 
+##
+
+-   More clustering
+-   Shifting location
+-   Stronger
+
 ## 
 
--   Where do you find data on past tornadoes?
+-   Where do you find data on tornadoes?
 -   How do you get the data into a format you can work with?
 
 ![Tornado tracks](https://farm8.staticflickr.com/7090/7157010997_2a92fa603c_o.jpg)

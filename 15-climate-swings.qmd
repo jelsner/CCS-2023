@@ -148,6 +148,12 @@ ggplot(data = df,
 
 More information <https://www.metoffice.gov.uk/research/climate/seasonal-to-decadal/gpc-outlooks/el-nino-la-nina/enso-description>
 
+## 
+
+Experts at FSU discuss the relationship between hurricanes and El Niño
+
+{{< video https://www.youtube.com/embed/Z41VCN5phTM >}} 21 minutes
+
 ## North Atlantic Oscillation
 
 {{< video https://www.youtube.com/embed/KOYJG7j4Iy8 >}} 3 minutes

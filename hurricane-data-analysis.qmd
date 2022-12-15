@@ -1,5 +1,5 @@
 ---
-title: "Tropical cyclone data around the world"
+title: "Hurricane data analysis"
 format:
   revealjs:
     slide-number: c/t
@@ -9,10 +9,16 @@ bibliography: References.bib
 editor: source
 ---
 
+##
+
+-   Changing frequency of hurricanes
+-   Stronger hurricanes
+-   More rapid intensification
+
 ## Data on past tropical cyclones
 
-* Where do you find data on past tropical cyclones?
-* How do you get the data into a format that you can work with?
+-    Where do you find data on  tropical cyclones?
+-    How do you get the data into a format that you can work with?
 
 ##
 
