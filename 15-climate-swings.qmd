@@ -8,9 +8,7 @@ format:
 editor: source
 ---
 
-## El Niño
-
-How El Niño works
+## How El Niño works
 
 {{< video https://www.youtube.com/embed/WPA-KpldDVc >}} 4 minutes
 

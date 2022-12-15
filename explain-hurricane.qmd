@@ -7,9 +7,7 @@ format:
     chalkboard: true
 ---
 
-## 
-
-How do hurricanes form?
+## Hurricane formation and structure
 
 {{< video https://www.youtube.com/embed/LlXVikDkyTg >}} 3 minutes
 
@@ -17,6 +15,9 @@ How do hurricanes form?
 
 {{< video https://www.youtube.com/embed/Xtu2_ziBI_w >}} 6 minutes
 
+## Hurricanes and climate change
+
+{{< video https://www.youtube.com/embed/Gtt4DqifHNo >}} 45 minutes
 
 
 

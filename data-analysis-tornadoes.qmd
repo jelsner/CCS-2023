@@ -11,12 +11,6 @@ editor: source
 
 ##
 
-Tornadoes and climate change
-
-{{< video https://www.youtube.com/embed/jqzU9ECKP5A >}} 45 minutes
-
-##
-
 -   More clustering
 -   Shifting location
 -   Stronger
