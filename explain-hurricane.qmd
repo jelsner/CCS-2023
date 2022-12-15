@@ -1,5 +1,5 @@
 ---
-title: "Hurricane formation"
+title: "Hurricanes"
 format:
   revealjs:
     slide-number: c/t
@@ -7,17 +7,15 @@ format:
     chalkboard: true
 ---
 
-## Hurricane formation and structure
+## Hurricane basics
 
-{{< video https://www.youtube.com/embed/LlXVikDkyTg >}} 3 minutes
-
-{{< video https://www.youtube.com/embed/5m68_07Sav4 >}} 7 minutes
-
-{{< video https://www.youtube.com/embed/Xtu2_ziBI_w >}} 6 minutes
+{{< video https://www.youtube.com/embed/LlXVikDkyTg >}} 3 minutes Introduction
+{{< video https://www.youtube.com/embed/Xtu2_ziBI_w >}} 6 minutes Physics/thermodynamics
 
 ## Hurricanes and climate change
 
-{{< video https://www.youtube.com/embed/Gtt4DqifHNo >}} 45 minutes
+{{< video https://www.youtube.com/embed/5m68_07Sav4 >}} 7 minutes Introduction
+{{< video https://www.youtube.com/embed/Gtt4DqifHNo >}} 45 minutes Hurricane-climate change stories
 
 
 

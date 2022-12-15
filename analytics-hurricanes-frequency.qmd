@@ -1,0 +1,189 @@
+---
+title: "Hurricane analytics: frequency"
+format:
+  revealjs:
+    slide-number: c/t
+    code-fold: false
+    chalkboard: true
+editor: source
+editor_options: 
+  chunk_output_type: console
+---
+
+## Hurricane season maps
+
+![Map showing the tracks and intensities of all the tropical cyclones over the North Atlantic basin during a hurricane season](https://www.nhc.noaa.gov/data/tracks/tracks-at-1950.png)
+
+## Topics
+
+-   Changing frequency of hurricanes
+-   Stronger hurricanes
+-   More rapid intensification
+-   Hurricanes occurring farther north
+-   Costlier hurricanes
+
+## Data on past hurricanes
+
+-    Where can you find data on hurricanes?
+-    How can you get the data into a format that is easy to work with?
+
+<https://www.nhc.noaa.gov/data/>
+<https://www.aoml.noaa.gov/hrd/hurdat/Data_Storm.html>
+
+## Annual basin-wide counts
+
+-   The file `NATL_Counts.txt` in the folder `data` contains annual counts of tropical storms, hurricanes, and major hurricanes across the North Atlantic basin back to 1851
+-   Click on it
+-   Get the data into R
+
+```{r}
+NATL.df <- readr::read_table(file = here::here("data", "NATL_Counts.txt"),
+                             show_col_types = FALSE)
+
+NATL.df |>
+  head()
+```
+
+##  {.smaller}
+
+-   Count data is different than measured data, especially when the counts are small
+
+```{r}
+#| echo: true
+NATL.df |>
+  dplyr::pull(H)
+```
+
+--   Large variations from one year to the next
+
+-   You can use the `table()` function on count data
+
+```{r}
+#| echo: true
+NATL.df |>
+  dplyr::pull(H) |>
+  table()
+```
+
+-- What count is most common? What is the average count? What is the variance?
+
+##
+
+-   Summary statistics
+
+```{r}
+#| echo: true
+NATL.df |>
+  dplyr::summarize(NYears = dplyr::n(),
+                   Avg = mean(H),
+                   Var = var(H),
+                   Ratio = Var/Avg)
+```
+
+--    Observations versus statistics
+
+##
+
+-   The distribution of _observed_ counts
+
+```{r}
+#| echo: true
+library(ggplot2)
+
+ggplot(data = NATL.df,
+       mapping = aes(x = H)) +
+  geom_bar(color = "gray") +
+  scale_x_continuous(breaks = 0:15)
+```
+
+## {.smaller}
+
+-   A set of 172 counts having the same average as the hurricane counts
+
+```{r}
+#| echo: true
+( H1 <- rpois(n = 172, lambda = 5.55) )
+```
+
+```{r}
+#| echo: true
+H1 |>
+  table()
+```
+
+-   A proposed model for the counts
+
+##
+
+-   The actual counts are a bit unusual relative to the modeled counts in two ways
+-   Greater variance (dispersion) and serial correlation
+
+```{r}
+#| echo: true
+Ratio <- NULL
+for(i in 1:10000){
+  H <- rpois(n = 172, lambda = 5.55)
+  Ratio <- c(Ratio, var(H)/mean(H)) 
+}
+sum(Ratio > 1.22) / 10000
+```
+
+##
+
+```{r}
+#| echo: true
+NATL.df$H |>
+  acf()
+```
+
+##
+
+```{r}
+#| echo: true
+rpois(n = 172, lambda = 5.55) |>
+  acf()
+```
+
+##
+
+Trends
+
+```{r}
+#| echo: true
+df <- data.frame(Year = rep(NATL.df$Year, times = 2),
+                 Counts = rep(c("Observed", "Modeled"), each = 172),
+                 H = c(NATL.df$H, rpois(n = 172, lambda = 5.55)))
+ggplot(data = df,
+       mapping = aes(x = Year, y = H, color = Counts)) +
+  geom_line() +
+  geom_smooth(method = lm)
+```
+
+##
+
+-   Quantify the increase
+
+```{r}
+#| echo: true
+lm(H ~ Year, data = NATL.df)
+```
+
+-- An increase of .015 hurricanes per year or .015 * 172 = 2.6 more hurricanes on average today than in 1851
+
+-   Using Poisson regression
+
+```{r}
+glm(H ~ Year, data = NA.df, family = poisson)
+```
+
+## Annual U.S. counts
+
+```{r}
+CONUS.df <- readr::read_table(file = here::here("data", "CONUS_Counts.txt"),
+                              show_col_types = FALSE)
+
+CONUS.df |>
+  head()
+```
+
+-   Total (`CONUS`), major (`MUS`), Gulf (`G`), Florida (`FL`), East Coast (`E`)

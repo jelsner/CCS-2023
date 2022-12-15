@@ -1,100 +1,62 @@
 ---
-title: "Hurricane data analysis"
+title: "Hurricane analytics: intensity"
 format:
   revealjs:
     slide-number: c/t
     code-fold: false
     chalkboard: true
-bibliography: References.bib
 editor: source
+editor_options: 
+  chunk_output_type: console
 ---
 
 ##
 
--   Changing frequency of hurricanes
--   Stronger hurricanes
--   More rapid intensification
-
-## Data on past tropical cyclones
-
--    Where do you find data on  tropical cyclones?
--    How do you get the data into a format that you can work with?
+![Map showing the tracks and intensities of all the tropical cyclones over the North Atlantic basin during a hurricane season](https://www.nhc.noaa.gov/data/tracks/tracks-at-2020.png)
 
 ##
 
-Atlantic hurricanes from the {hockeystick} package
-
 ```{r}
 #| echo: true
-library(hockeystick)
 
-atlhur <- get_hurricanes()
+NATL.df <- hockeystick::get_hurricanes()
 
-atlhur |>
-  head()
+NATL.df |>
+  hockeystick::plot_hurricane_nrg()
 ```
 
 ##
 
 ```{r}
 #| echo: true
-atlhur |>
-  plot_hurricanes()
-```
-
-##
-
-```{r}
-#| echo: true
-atlhur |>
-  plot_hurricane_nrg()
-```
-
-##
-
-```{r}
-#| echo: true
-atlhur |>
-  plot_hurricane_nrg() +
+NATL.df |>
+  hockeystick::plot_hurricane_nrg() +
   ggplot2::geom_smooth(span = .5, col = "green")
 ```
 
-##
+## Per hurricane data
 
-![Map showing the tracks and intensities of all tropical cyclones over the North Atlantic during the 2019 hurricane season](https://www.nhc.noaa.gov/data/tracks/tracks-at-2019.png){#fig-tracks}
+-   The National Hurricane Center has data on all tropical cyclones occurring in the North Atlantic and western North Pacific. These data are available [here](https://www.nhc.noaa.gov/data/)
 
-##
+-   The International Best-Track Archive for Climate Stewardship has historical tropical cyclone data from around the world in CSV, netCDF, and shapefiles are available. These data are available [Here](https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r00/access)
 
-The National Hurricane Center has data on all tropical cyclones occurring in the North Atlantic and western North Pacific. 
+## 
 
-These data are available [here](https://www.nhc.noaa.gov/data/).
+-   Working with the IBTrACS version 4 data set
+-   Here you will:
 
-## International Best Track Archive for Climate Stewardship (IBTraCS)
-
-Working with the IBTrACS version 4 data set
-
-First you need to
-
-:::{.incremental}
 1. Download and unzip the data file
 2. Get the data file into R
 3. Glimpse contents
-:::
-
-:::{.callout-note}
-Historical tropical cyclone data from around the world in CSV, netCDF, and shapefiles are available from the International Best-Track Archive for Climate Stewardship. [Here](https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r00/access)
-:::
 
 ## Download and unzip the data file
 
-IBTraCS as shapefile
-
 ```{r}
 #| echo: true
-l <- "https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r00/access/shapefile/IBTrACS.NA.list.v04r00.lines.zip"
+L <- "https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r00/access/shapefile/IBTrACS.NA.list.v04r00.lines.zip"
   
 if(!"IBTrACS.NA.list.v04r00.lines.zip" %in% list.files(here::here("data"))) {
-download.file(url = l,
+download.file(url = L,
               destfile = here::here("data",
                                     "IBTrACS.NA.list.v04r00.lines.zip"))
 unzip(here::here("data", "IBTrACS.NA.list.v04r00.lines.zip"),
@@ -118,17 +80,17 @@ TC.sf |>
   dplyr::glimpse()
 ```
 
-Each row is a separate three-hourly estimate.
+-   Each row is a separate three-hourly observation
 
 ## Hurricane Michael (2018)
 
-Hurricane Michael was a very powerful and destructive tropical cyclone that became the first Category 5 hurricane to make landfall in the contiguous United States since Andrew in 1992.[^1]
+-   Hurricane Michael was a very powerful and destructive tropical cyclone that became the first Category 5 hurricane to make landfall in the contiguous United States since Andrew in 1992 [^1]
 
 [^1]: [Read more](https://en.wikipedia.org/wiki/Hurricane_Michael).
 
 ##
 
-Here you remove all rows from `TC.sf` except those corresponding to Hurricane Michael in 2018.
+-   Here you remove all rows from `TC.sf` except those corresponding to Hurricane Michael in 2018
 
 ```{r}
 #| echo: true
@@ -137,13 +99,13 @@ One.sf <- TC.sf |>
   dplyr::select(NAME, USA_WIND)
 ```
 
-You've removed all rows from `TC.sf` and all columns except `NAME` and `USA_WIND`.
+-   You've removed all rows from `TC.sf` and all columns except `NAME` and `USA_WIND`
 
-So the new data `One.sf` contains `r nrow(One.sf)` rows and `r ncol(One.sf)` columns.
+-   So the new data `One.sf` contains `r nrow(One.sf)` rows and `r ncol(One.sf)` columns
 
 ##
 
-You overlay the track of Hurricane Michael colored by wind speed onto [Leaflet](https://openmaptiles.org/docs/website/leaflet/) map tiles.
+You overlay the track of Hurricane Michael colored by wind speed onto [Leaflet](https://openmaptiles.org/docs/website/leaflet/) map tiles
 
 ```{r}
 #| echo: true
@@ -152,10 +114,9 @@ tmap::tm_shape(One.sf) +
   tmap::tm_lines(col = "USA_WIND", lwd = 3)
 ```
 
-
 ## {.smaller}
 
-Import the IBTrACS Atlantic hurricane csv file
+-   Import the IBTrACS Atlantic hurricane csv file
 
 ```{r, eval=FALSE}
 #| echo: true
@@ -177,7 +138,8 @@ readr::write_csv(NA.df,
 
 ##
 
-Get wind speed quantiles for tropical cyclones with winds at least 33 m/s. First get per storm fastest wind speed
+-   Get wind speed quantiles for tropical cyclones with winds at least 33 m/s. First get per storm fastest wind speed
+
 ```{r}
 #| echo: true
 NA.df <- readr::read_csv(file = here::here("data", "NA.csv"),
@@ -203,6 +165,7 @@ ggplot(data = Frequency.df,
   geom_line() +
   geom_smooth(method = lm) 
 ```
+
 ##
 
 Increases in the number of hurricanes 
@@ -212,7 +175,7 @@ Increases in the number of hurricanes
 glm(nH ~ Year, data = Frequency.df, family = poisson)
 ```
 
-Multiply .004 by 100 to get .4 percent per year or 4% per decade.
+Multiply .004 by 100 to get .4 percent per year or 4% per decade since 1950
 
 ## Intensity
 
