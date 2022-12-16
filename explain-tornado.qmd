@@ -17,6 +17,8 @@ format:
 
 {{< video https://www.youtube.com/embed/bq0-QXXtOro >}} 45 minutes
 
+{{< video https://www.youtube.com/embed/oEyotBDN1YU >}} 50 minutes
+
 ## Climatology
 
 Tornadoes in Europe
