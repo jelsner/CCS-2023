@@ -1,0 +1,260 @@
+---
+title: "Hurricane analytics: tracks"
+format:
+  revealjs:
+    slide-number: c/t
+    code-fold: false
+    chalkboard: true
+editor: source
+editor_options: 
+  chunk_output_type: console
+---
+
+##
+
+![Map showing the tracks and intensities of all the tropical cyclones over the North Atlantic basin during a hurricane season](https://www.nhc.noaa.gov/data/tracks/tracks-at-2020.png)
+
+## Accumulated cyclone energy
+
+-   Accumulated cyclone energy (ACE) is a measure of energy in a tropical cyclone 
+-   It is calculating by summing the square of a TC's maximum sustained winds ($w$), measured (estimated) every six hours
+-   It is multiplied by .0001 to make it more manageable
+-   $\text{ACE} = .0001 \times\sum w^2$
+-   Summing ACE across each tropical cyclone throughout a season is a measure of total season activity
+
+## 
+
+-   Per season ACE values are available from the {hockeystick} package
+
+```{r}
+#| echo: true
+
+library(hockeystick)
+library(ggplot2)
+
+NATL.df <- get_hurricanes()
+
+NATL.df |>
+  plot_hurricane_nrg()
+```
+
+## 
+-   Decrease the span on the smoother (default is .75)
+
+```{r}
+#| echo: true
+NATL.df |>
+  plot_hurricane_nrg() +
+  ggplot2::geom_smooth(span = .5, col = "green")
+```
+
+## Per hurricane data
+
+-   The National Hurricane Center keeps data on all observations of tropical cyclones occurring in the North Atlantic and western North Pacific. These data are available [here](https://www.nhc.noaa.gov/data/)
+-   The International Best-Track Archive for Climate Stewardship has historical tropical cyclone data from around the world in CSV, shapefiles, and netCDF formats. These data are [here](https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r00/access)
+-   Select the `shapefile/` directory
+
+## 
+
+Here you will
+
+1.  Download and unzip the file
+2.  Get the data into R as a data frame
+3.  Glimpse the contents of the data frame
+4.  Filter removing all observations except those from Hurricane Michael (2018)
+5.  Create a map showing Michael's track
+
+## 
+
+-   Download and unzip the shapefile (lines geometry) 
+
+```{r}
+#| echo: true
+L <- "https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r00/access/shapefile/IBTrACS.NA.list.v04r00.lines.zip"
+  
+if(!"IBTrACS.NA.list.v04r00.lines.zip" %in% list.files(here::here("data"))) {
+download.file(url = L,
+              destfile = here::here("data",
+                                    "IBTrACS.NA.list.v04r00.lines.zip"))
+unzip(here::here("data", "IBTrACS.NA.list.v04r00.lines.zip"),
+      exdir = here::here("data"))
+}
+```
+
+-- Line 3 checks to see if the file is already in your `data` directory. If so then skip the download and unzip
+
+## 
+
+-   Get the data file from the `data` directory into R as a data frame
+
+```{r}
+#| echo: true
+TC.sf <- sf::st_read(dsn = here::here("data"), 
+                     layer = "IBTrACS.NA.list.v04r00.lines")
+```
+
+## {.smaller}
+
+-   Glimpse the contents of the data frame
+-   Each row is a separate three-hourly observation
+
+```{r}
+#| echo: true
+TC.sf |>
+  dplyr::glimpse()
+```
+
+## Hurricane Michael (2018) {.smaller}
+
+-   Hurricane Michael was a powerful and destructive tropical cyclone that became the first Category 5 hurricane to make landfall in the contiguous United States since Andrew in 1992
+-   It was the third-most intense Atlantic hurricane to make landfall in the contiguous United States in terms of pressure, behind the 1935 Labor Day hurricane and Hurricane Camille in 1969
+-   It was the first Category 5 hurricane on record to impact the Florida Panhandle, the fourth-strongest landfalling hurricane in the contiguous United States, in terms of wind speed, and the most intense hurricane on record to strike the United States in the month of October [^1]
+
+[^1]: [Read more](https://en.wikipedia.org/wiki/Hurricane_Michael).
+
+## 
+
+-   Here you remove all rows from `TC.sf` except those corresponding to Hurricane Michael in 2018
+
+```{r}
+#| echo: true
+Michael2018.sf <- TC.sf |>
+  dplyr::filter(SEASON >= 2018 & NAME == "MICHAEL") |>
+  dplyr::select(NAME, USA_WIND)
+```
+
+-   You've removed all rows from `TC.sf` and all columns except `NAME` and `USA_WIND`
+-   So the new data `One.sf` contains `r nrow(Michael2018.sf)` rows and `r ncol(Michael2018.sf)` columns
+
+```{r}
+#| echo: true
+Michael2018.sf |>
+  dim()
+```
+
+## 
+
+-   You overlay the track of Hurricane Michael colored by wind speed onto [Leaflet](https://openmaptiles.org/docs/website/leaflet/) map tiles using the following code
+
+```{r}
+#| echo: true
+#| output-location: slide
+tmap::tmap_mode("view")
+tmap::tm_shape(Michael2018.sf) +
+  tmap::tm_lines(col = "USA_WIND", lwd = 3)
+```
+
+##
+
+-   Compute the ACE for Hurricane Michael
+
+```{r}
+#| echo: true
+Michael2018.sf |>
+  sf::st_drop_geometry() |>
+  dplyr::summarize(ACE = .0001 * sum(USA_WIND^2))
+```
+
+##
+
+-   Map all tracks from 2022
+-   Filter and select
+
+```{r}
+#| echo: true
+Season2022.sf <- TC.sf |>
+  dplyr::filter(SEASON == 2022 ) |>
+  dplyr::select(NAME, USA_WIND)
+```
+
+##
+
+-   Create the map
+
+```{r}
+#| echo: true
+tmap::tmap_mode("view")
+tmap::tm_shape(Season2022.sf) +
+  tmap::tm_lines(col = "USA_WIND", lwd = 3)
+```
+
+## {.smaller}
+
+-   Seasonal ACE and percentage by cyclone
+
+```{r}
+#| echo: true
+Season2022.sf |>
+  sf::st_drop_geometry() |>
+  dplyr::group_by(NAME) |>
+  dplyr::summarize(ACE = .0001 * sum(USA_WIND^2)) |>
+  dplyr::mutate(ACEp = ACE / sum(ACE) * 100) |>
+  dplyr::arrange(desc(ACEp))
+```
+
+##
+
+-   Filter by name and hurricane intensity then find the northernmost hurricane by season
+-   10.1038/nature13278
+
+```{r}
+#| echo: true
+X.df <- TC.sf |>
+  sf::st_drop_geometry() |>
+  dplyr::filter(year >= 1980, USA_WIND >= 64) |>
+  dplyr::select(year, USA_WIND, NAME, LAT)
+```
+
+##
+
+```{r}
+#| echo: true
+
+X.df |>
+  dplyr::group_by(year, NAME) |>
+  dplyr::summarize(Wmax = max(USA_WIND),
+                   Lmax = max(LAT[USA_WIND == Wmax])) |>
+  dplyr::group_by(year) |>
+  dplyr::summarize(AvgLmax = mean(Lmax),
+                   nS = dplyr::n()) |>
+ggplot(mapping = aes(x = year, y = AvgLmax, weight = nS)) +
+  geom_point() +
+  geom_smooth(method = lm)
+```
+
+##
+
+Western Pacific typhoons
+
+```{r}
+#| echo: true
+L <- "https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r00/access/shapefile/IBTrACS.WP.list.v04r00.lines.zip"
+  
+if(!"IBTrACS.WP.list.v04r00.lines.zip" %in% list.files(here::here("data"))) {
+download.file(url = L,
+              destfile = here::here("data",
+                                    "IBTrACS.WP.list.v04r00.lines.zip"))
+unzip(here::here("data", "IBTrACS.WP.list.v04r00.lines.zip"),
+      exdir = here::here("data"))
+}
+```
+
+##
+
+```{r}
+#| echo: true
+#| output-location: slide
+sf::st_read(dsn = here::here("data"), 
+            layer = "IBTrACS.WP.list.v04r00.lines") |>
+  sf::st_drop_geometry() |>
+  dplyr::filter(year >= 1980, USA_WIND >= 64) |>
+  dplyr::select(year, USA_WIND, NAME, LAT) |>
+  dplyr::group_by(year, NAME) |>
+  dplyr::summarize(Wmax = max(USA_WIND),
+                   Lmax = max(LAT[USA_WIND == Wmax])) |>
+  dplyr::group_by(year) |>
+  dplyr::summarize(AvgLmax = mean(Lmax)) |>
+ggplot(mapping = aes(x = year, y = AvgLmax)) +
+  geom_point() +
+  geom_smooth(method = lm)
+```

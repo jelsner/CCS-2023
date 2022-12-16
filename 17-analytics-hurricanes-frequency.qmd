@@ -170,11 +170,44 @@ lm(H ~ Year, data = NATL.df)
 
 -- An increase of .015 hurricanes per year or .015 * 172 = 2.6 more hurricanes on average today than in 1851
 
+## Major hurricanes
+
+-   Summary statistics
+
+```{r}
+#| echo: true
+NATL.df |>
+  dplyr::summarize(NYears = dplyr::n(),
+                   Avg = mean(MH),
+                   Var = var(MH),
+                   Ratio = Var/Avg)
+```
+
+##
+
+-   Change over the years in the number of major hurricanes
+
+```{r}
+#| echo: true
+
+ggplot(data = NATL.df,
+       mapping = aes(x = Year, y = MH)) +
+  geom_col() +
+  geom_smooth(method = glm, 
+              method.args = list(family = 'poisson'),
+              se = FALSE)
+```
+
+##
+
+-   Quantify the increase
 -   Using Poisson regression
 
 ```{r}
-glm(H ~ Year, data = NA.df, family = poisson)
+glm(MH ~ Year, data = NATL.df, family = poisson)
 ```
+
+.0074 or .74% increase per year. Over 172 years and starting with 1 MH in 1851 you compute 1 * (1 + .00745)^172 = 3.6 MH in 2022
 
 ## Annual U.S. counts
 
@@ -187,3 +220,4 @@ CONUS.df |>
 ```
 
 -   Total (`CONUS`), major (`MUS`), Gulf (`G`), Florida (`FL`), East Coast (`E`)
+-   Lab 4
