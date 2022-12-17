@@ -32,9 +32,9 @@ editor_options:
 library(hockeystick)
 library(ggplot2)
 
-NATL.df <- get_hurricanes()
+Counts.df <- get_hurricanes()
 
-NATL.df |>
+Counts.df |>
   plot_hurricane_nrg()
 ```
 
@@ -43,7 +43,7 @@ NATL.df |>
 
 ```{r}
 #| echo: true
-NATL.df |>
+Counts.df |>
   plot_hurricane_nrg() +
   ggplot2::geom_smooth(span = .5, col = "green")
 ```
@@ -89,8 +89,8 @@ unzip(here::here("data", "IBTrACS.NA.list.v04r00.lines.zip"),
 
 ```{r}
 #| echo: true
-TC.sf <- sf::st_read(dsn = here::here("data"), 
-                     layer = "IBTrACS.NA.list.v04r00.lines")
+Tracks.sf <- sf::st_read(dsn = here::here("data"), 
+                         layer = "IBTrACS.NA.list.v04r00.lines")
 ```
 
 ## {.smaller}
@@ -100,7 +100,7 @@ TC.sf <- sf::st_read(dsn = here::here("data"),
 
 ```{r}
 #| echo: true
-TC.sf |>
+Tracks.sf |>
   dplyr::glimpse()
 ```
 
@@ -114,11 +114,11 @@ TC.sf |>
 
 ## 
 
--   Here you remove all rows from `TC.sf` except those corresponding to Hurricane Michael in 2018
+-   Here you remove all rows from `Track.sf` except those corresponding to Hurricane Michael in 2018
 
 ```{r}
 #| echo: true
-Michael2018.sf <- TC.sf |>
+Michael_Track.sf <- Tracks.sf |>
   dplyr::filter(SEASON >= 2018 & NAME == "MICHAEL") |>
   dplyr::select(NAME, USA_WIND)
 ```
@@ -128,7 +128,7 @@ Michael2018.sf <- TC.sf |>
 
 ```{r}
 #| echo: true
-Michael2018.sf |>
+Michael_Track.sf |>
   dim()
 ```
 
@@ -140,7 +140,7 @@ Michael2018.sf |>
 #| echo: true
 #| output-location: slide
 tmap::tmap_mode("view")
-tmap::tm_shape(Michael2018.sf) +
+tmap::tm_shape(Michael_Track.sf) +
   tmap::tm_lines(col = "USA_WIND", lwd = 3)
 ```
 
@@ -150,7 +150,7 @@ tmap::tm_shape(Michael2018.sf) +
 
 ```{r}
 #| echo: true
-Michael2018.sf |>
+Michael_Track.sf |>
   sf::st_drop_geometry() |>
   dplyr::summarize(ACE = .0001 * sum(USA_WIND^2))
 ```
@@ -162,7 +162,7 @@ Michael2018.sf |>
 
 ```{r}
 #| echo: true
-Season2022.sf <- TC.sf |>
+Tracks2022.sf <- Tracks.sf |>
   dplyr::filter(SEASON == 2022 ) |>
   dplyr::select(NAME, USA_WIND)
 ```
@@ -174,7 +174,7 @@ Season2022.sf <- TC.sf |>
 ```{r}
 #| echo: true
 tmap::tmap_mode("view")
-tmap::tm_shape(Season2022.sf) +
+tmap::tm_shape(Tracks2022.sf) +
   tmap::tm_lines(col = "USA_WIND", lwd = 3)
 ```
 
@@ -184,7 +184,7 @@ tmap::tm_shape(Season2022.sf) +
 
 ```{r}
 #| echo: true
-Season2022.sf |>
+Tracks2022.sf |>
   sf::st_drop_geometry() |>
   dplyr::group_by(NAME) |>
   dplyr::summarize(ACE = .0001 * sum(USA_WIND^2)) |>
@@ -194,31 +194,33 @@ Season2022.sf |>
 
 ##
 
--   Filter by name and hurricane intensity then find the northernmost hurricane by season
 -   10.1038/nature13278
+-   Keep only observations with winds at or exceeding 64 kn since 1950
 
 ```{r}
 #| echo: true
-X.df <- TC.sf |>
+Hurricane_Obs.df <- Tracks.sf |>
   sf::st_drop_geometry() |>
-  dplyr::filter(year >= 1980, USA_WIND >= 64) |>
-  dplyr::select(year, USA_WIND, NAME, LAT)
+  dplyr::filter(year >= 1970, USA_WIND >= 64) |>
+  dplyr::select(year, USA_WIND, NAME, LAT, LON)
 ```
 
 ##
 
 ```{r}
 #| echo: true
-
-X.df |>
+#| output-location: slide
+Hurricane_Obs.df |>
   dplyr::group_by(year, NAME) |>
   dplyr::summarize(Wmax = max(USA_WIND),
-                   Lmax = max(LAT[USA_WIND == Wmax])) |>
+                   LATmax = max(LAT[USA_WIND == Wmax]),
+                   LONmax = max(LON[USA_WIND == Wmax])) |>
   dplyr::group_by(year) |>
-  dplyr::summarize(AvgLmax = mean(Lmax),
+  dplyr::summarize(AvgLATmax = mean(LATmax),
+                   AvgLONmax = mean(LONmax),
                    nS = dplyr::n()) |>
-ggplot(mapping = aes(x = year, y = AvgLmax, weight = nS)) +
-  geom_point() +
+ggplot(mapping = aes(x = year, y = AvgLATmax, weight = nS)) +
+  geom_point() + 
   geom_smooth(method = lm)
 ```
 
@@ -247,14 +249,16 @@ unzip(here::here("data", "IBTrACS.WP.list.v04r00.lines.zip"),
 sf::st_read(dsn = here::here("data"), 
             layer = "IBTrACS.WP.list.v04r00.lines") |>
   sf::st_drop_geometry() |>
-  dplyr::filter(year >= 1980, USA_WIND >= 64) |>
-  dplyr::select(year, USA_WIND, NAME, LAT) |>
+  dplyr::filter(year >= 1970, USA_WIND >= 64) |>
+  dplyr::select(year, USA_WIND, NAME, LAT, LON) |>
   dplyr::group_by(year, NAME) |>
   dplyr::summarize(Wmax = max(USA_WIND),
-                   Lmax = max(LAT[USA_WIND == Wmax])) |>
+                   LATmax = max(LAT[USA_WIND == Wmax]),
+                   LONmax = max(LON[USA_WIND == Wmax])) |>
   dplyr::group_by(year) |>
-  dplyr::summarize(AvgLmax = mean(Lmax)) |>
-ggplot(mapping = aes(x = year, y = AvgLmax)) +
+  dplyr::summarize(AvgLATmax = mean(LATmax),
+                   AvgLONmax = mean(LONmax)) |>
+ggplot(mapping = aes(x = year, y = AvgLONmax)) +
   geom_point() +
   geom_smooth(method = lm)
 ```

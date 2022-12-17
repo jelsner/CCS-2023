@@ -13,12 +13,13 @@ editor_options:
 ##  {.smaller}
 
 -   Import the IBTrACS Atlantic hurricane csv file
+-   Convert wind speeds to meters per second
 
 ```{r, eval=FALSE}
 #| echo: true
 L <- "https://www.ncei.noaa.gov/data/international-best-track-archive-for-climate-stewardship-ibtracs/v04r00/access/csv/ibtracs.NA.list.v04r00.csv"
 
-NA.df <- readr::read_csv(file = L,
+Tracks.df <- readr::read_csv(file = L,
                          show_col_types = FALSE) |>
   dplyr::filter(SEASON != "Year") |>
   dplyr::mutate(Season = as.integer(SEASON)) |>
@@ -28,20 +29,20 @@ NA.df <- readr::read_csv(file = L,
                 W_mps = W_kt * .5144447) |>
   dplyr::select(SID, Season, BASIN, NAME, Time, W_kt, W_mps)
 
-readr::write_csv(NA.df, 
-                 file = here::here("data", "NA.csv"))
+readr::write_csv(Tracks.df, 
+                 file = here::here("data", "NATL_Tracks.csv"))
 ```
 
 ## 
 
--   Get wind speed quantiles for tropical cyclones with winds at least 33 m/s. First get per storm fastest wind speed
+-   Get wind speed quantiles for tropical cyclones with winds at least 33 m/s (hurricane intensity). First get per storm fastest wind speed
 
 ```{r}
 #| echo: true
-NA.df <- readr::read_csv(file = here::here("data", "NA.csv"),
+Tracks.df <- readr::read_csv(file = here::here("data", "NATL_Tracks.csv"),
                          show_col_types = FALSE)
 
-LMI.df <- NA.df |>
+LMI.df <- Tracks.df |>
   dplyr::group_by(SID) |>
   dplyr::summarize(Year = dplyr::first(Season),
                    Name = dplyr::first(NAME),
@@ -49,7 +50,9 @@ LMI.df <- NA.df |>
   dplyr::filter(MaxW_mps >= 33)
 ```
 
-## Frequency
+##
+
+-   Number of hurricanes
 
 ```{r}
 Frequency.df <- LMI.df |>
@@ -59,7 +62,9 @@ Frequency.df <- LMI.df |>
 ggplot(data = Frequency.df,
        mapping = aes(x = Year, y = nH)) +
   geom_line() +
-  geom_smooth(method = lm) 
+  geom_smooth(method = glm,
+              method.args = list(family = 'poisson'),
+              se = FALSE) 
 ```
 
 ## 
@@ -71,9 +76,27 @@ Increases in the number of hurricanes
 glm(nH ~ Year, data = Frequency.df, family = poisson)
 ```
 
-.004 implies xx \* (1 + .004)\^ny =
+.004 implies that the average of about 5.9 in 1950 increases to 7.9 by 2022 [5.9 * (1 + .004)^73 = 7.9]
 
 ## Intensity
+
+-   Average intensity by year
+
+```{r}
+#| echo: true
+
+LMI.df |>
+  dplyr::group_by(Year) |>
+  dplyr::summarize(AvgMaxW = mean(MaxW_mps),
+                   nH = dplyr::n()) |>
+ggplot(mapping = aes(x = Year, y = AvgMaxW, weight = nH)) +
+  geom_point() +
+  geom_smooth(method = lm)
+```
+
+##
+
+-   Quantile intensities by year
 
 ```{r}
 #| echo: true
@@ -81,39 +104,38 @@ Intensity.df <- LMI.df |>
   dplyr::group_by(Year) |>
   dplyr::summarize(q90 = quantile(MaxW_mps, probs = .9),
                    q75 = quantile(MaxW_mps, probs = .75),
-                   q50 = quantile(MaxW_mps, probs = .5)) |>
-  tidyr::pivot_longer(cols = 2:4, names_to = "Level", values_to = "Quantile")
+                   q50 = quantile(MaxW_mps, probs = .5),
+                   nH = dplyr::n()) |>
+  tidyr::pivot_longer(cols = 2:4, names_to = "Level", values_to = "Quantile") 
 
+Intensity.df |>
+  head()
+```
 
+##
+
+```{r}
+#| echo: true
 ggplot(data = Intensity.df,
-       mapping = aes(x = Year, y = Quantile, color = Level)) +
+       mapping = aes(x = Year, y = Quantile, color = Level, weight = nH)) +
   geom_point() +
-  geom_smooth(method = lm, se = FALSE) 
+  geom_smooth(method = lm, se = FALSE) +
+  ylab("m/s")
 ```
 
 ## 
+-   Quantify the trend at the 90th percentile
 
 ```{r}
 #| echo: true
-ggplot(data = LMI.df,
-       mapping = aes(x = Year, y = MaxW_mps)) +
-  geom_point() +
-  geom_smooth(method = lm)
+quantreg::rq(MaxW_mps ~ Year, tau = .9, data = LMI.df) |>
+  summary()
 ```
 
-## 
+The value of .11 says there has been an average increase of the strongest hurricanes of .11 m/s per year or .11 * 73 = 8 m/s over the period of record
 
-```{r}
-#| echo: true
-ggplot(data = LMI.df,
-       mapping = aes(y = MaxW_mps, x = Year, group = Year)) +
-  geom_boxplot()
-```
+##
 
-```{r}
-#| echo: true
+-   Insured losses from hurricane winds in the United States
 
-summary(quantreg::rq(MaxW_mps ~ Year, tau = .9, data = LMI.df))
 
-plot(quantreg::rq(MaxW_mps ~ Year, tau = -1, data = LMI.df))
-```

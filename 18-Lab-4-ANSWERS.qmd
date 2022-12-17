@@ -8,11 +8,11 @@ editor: source
 ## 1 
 Write code to create a time series graph showing the the number of Florida hurricanes each year
 ```{r}
-CONUS.df <- readr::read_table(file = here::here("data", "CONUS_Counts.txt"),
+Counts.df <- readr::read_table(file = here::here("data", "CONUS_Counts.txt"),
                               show_col_types = FALSE)
 library(ggplot2)
 
-ggplot(data = CONUS.df,
+ggplot(data = Counts.df,
        mapping = aes(x = Year, y = FL)) +
   geom_col()
 ```
@@ -20,7 +20,7 @@ ggplot(data = CONUS.df,
 ## 2 
 Write code to compute the mean, variance, and ratio of the variance to the mean for the annual number of Florida hurricanes
 ```{r}
-CONUS.df |>
+Counts.df |>
   dplyr::summarize(NYears = dplyr::n(),
                    Avg = mean(FL),
                    Var = var(FL),
@@ -30,7 +30,7 @@ CONUS.df |>
 ## 3 
 Write code to determine the total number of hurricanes in each of the three regions (Gulf coast, Florida, or East coast) since 1851 
 ```{r}
-CONUS.df |>
+Counts.df |>
   dplyr::summarize(nH_G = sum(G),
                    nH_FL = sum(FL),
                    nH_E = sum(E))
@@ -39,6 +39,6 @@ CONUS.df |>
 ## 4
 Write code to compute the correlation between the annual count of Gulf coast hurricanes and the annual count of East coast hurricanes
 ```{r}
-CONUS.df |>
+Counts.df |>
   dplyr::summarize(r = cor(G, E))
 ```

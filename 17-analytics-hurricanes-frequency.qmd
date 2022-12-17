@@ -17,9 +17,9 @@ editor_options:
 ## Topics
 
 -   Changing frequency of hurricanes
+-   Changing location
 -   Stronger hurricanes
--   More rapid intensification
--   Hurricanes occurring farther north
+-   Getting stronger faster
 -   Costlier hurricanes
 
 ## Data on past hurricanes
@@ -37,20 +37,20 @@ editor_options:
 -   Get the data into R
 
 ```{r}
-NATL.df <- readr::read_table(file = here::here("data", "NATL_Counts.txt"),
-                             show_col_types = FALSE)
+Counts.df <- readr::read_table(file = here::here("data", "NATL_Counts.txt"),
+                               show_col_types = FALSE)
 
-NATL.df |>
+Counts.df |>
   head()
 ```
 
 ##  {.smaller}
 
--   Count data is different than measured data, especially when the counts are small
+-   Count data is different than measured data, especially when the counts are close to zero
 
 ```{r}
 #| echo: true
-NATL.df |>
+Counts.df |>
   dplyr::pull(H)
 ```
 
@@ -60,7 +60,7 @@ NATL.df |>
 
 ```{r}
 #| echo: true
-NATL.df |>
+Counts.df |>
   dplyr::pull(H) |>
   table()
 ```
@@ -73,7 +73,7 @@ NATL.df |>
 
 ```{r}
 #| echo: true
-NATL.df |>
+Counts.df |>
   dplyr::summarize(NYears = dplyr::n(),
                    Avg = mean(H),
                    Var = var(H),
@@ -90,7 +90,7 @@ NATL.df |>
 #| echo: true
 library(ggplot2)
 
-ggplot(data = NATL.df,
+ggplot(data = Counts.df,
        mapping = aes(x = H)) +
   geom_bar(color = "gray") +
   scale_x_continuous(breaks = 0:15)
@@ -132,7 +132,7 @@ sum(Ratio > 1.22) / 10000
 
 ```{r}
 #| echo: true
-NATL.df$H |>
+Counts.df$H |>
   acf()
 ```
 
@@ -146,13 +146,13 @@ rpois(n = 172, lambda = 5.55) |>
 
 ##
 
-Trends
+-   Change over the years in the number of hurricanes
 
 ```{r}
 #| echo: true
-df <- data.frame(Year = rep(NATL.df$Year, times = 2),
+df <- data.frame(Year = rep(Counts.df$Year, times = 2),
                  Counts = rep(c("Observed", "Modeled"), each = 172),
-                 H = c(NATL.df$H, rpois(n = 172, lambda = 5.55)))
+                 H = c(Counts.df$H, rpois(n = 172, lambda = 5.55)))
 ggplot(data = df,
        mapping = aes(x = Year, y = H, color = Counts)) +
   geom_line() +
@@ -165,7 +165,7 @@ ggplot(data = df,
 
 ```{r}
 #| echo: true
-lm(H ~ Year, data = NATL.df)
+lm(H ~ Year, data = Counts.df)
 ```
 
 -- An increase of .015 hurricanes per year or .015 * 172 = 2.6 more hurricanes on average today than in 1851
@@ -176,7 +176,7 @@ lm(H ~ Year, data = NATL.df)
 
 ```{r}
 #| echo: true
-NATL.df |>
+Counts.df |>
   dplyr::summarize(NYears = dplyr::n(),
                    Avg = mean(MH),
                    Var = var(MH),
@@ -190,7 +190,7 @@ NATL.df |>
 ```{r}
 #| echo: true
 
-ggplot(data = NATL.df,
+ggplot(data = Counts.df,
        mapping = aes(x = Year, y = MH)) +
   geom_col() +
   geom_smooth(method = glm, 
@@ -204,26 +204,26 @@ ggplot(data = NATL.df,
 -   Using Poisson regression
 
 ```{r}
-glm(MH ~ Year, data = NATL.df, family = poisson)
+glm(MH ~ Year, data = Counts.df, family = poisson)
 ```
 
 .0074 or .74% increase per year. Over 172 years and starting with 1 MH in 1851 you compute 1 * (1 + .00745)^172 = 3.6 MH in 2022
 
 ## Seasonal prediction model
 
--   Get and collate the data (annual hurricane counts, SST, ENSO)
--   https://psl.noaa.gov/data/climateindices/list/
+-   Get the data (annual hurricane counts, SST, ENSO) and collate the observations
+-   <https://psl.noaa.gov/data/climateindices/list/>
 
 ```{r}
 #| echo: true
 ENSO.df <- readr::read_table(file = here::here("data", "CENSO.txt"))
 SST.df <- readr::read_table(file = here::here("data", "TNA_SST.txt"))
-NATL.df <- readr::read_table(file = here::here("data", "NATL_Counts.txt")) |>
+Counts.df <- readr::read_table(file = here::here("data", "NATL_Counts.txt")) |>
   dplyr::filter(Year >= 1948)
 
-df <- data.frame(Year = NATL.df$Year,
-                 H = NATL.df$H,
-                 MH = NATL.df$MH,
+df <- data.frame(Year = Counts.df$Year,
+                 H = Counts.df$H,
+                 MH = Counts.df$MH,
                  SST = (SST.df$Aug + SST.df$Sep + SST.df$Oct)/3,
                  ENSO = (ENSO.df$Aug + ENSO.df$Sep + ENSO.df$Oct)/3)
 ```
@@ -258,10 +258,10 @@ ggplot(data = grd,
 ## Annual U.S. counts
 
 ```{r}
-CONUS.df <- readr::read_table(file = here::here("data", "CONUS_Counts.txt"),
+Counts.df <- readr::read_table(file = here::here("data", "CONUS_Counts.txt"),
                               show_col_types = FALSE)
 
-CONUS.df |>
+Counts.df |>
   head()
 ```
 
