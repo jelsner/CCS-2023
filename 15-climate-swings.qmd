@@ -142,6 +142,23 @@ ggplot(data = df,
   theme_minimal()
 ```
 
+##
+
+-   Tropical North Atlantic SST <https://psl.noaa.gov/data/climateindices/list/>
+-   In the file `data/TNA_SST.txt`
+
+```{r}
+#| echo: true
+
+TNA.df <- readr::read_table(file = here::here("data", "TNA_SST.txt"))
+
+ggplot(data = TNA.df,
+       mapping = aes(x = Year, y = Aug)) +
+  geom_line() +
+  labs(y = "°C")
+```
+
+
 ## 
 
 More information <https://www.metoffice.gov.uk/research/climate/seasonal-to-decadal/gpc-outlooks/el-nino-la-nina/enso-description>
