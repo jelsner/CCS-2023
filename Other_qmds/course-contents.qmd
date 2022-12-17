@@ -57,3 +57,5 @@ https://www.realclimate.org/index.php/archives/2022/09/watching-the-detections D
 ::: {.column width="100%"}
 ![Average precipitable water by month](figures/PWByMonth.png){fig-alt="Average precipitable water by month"}
 :::
+
+<https://eos.org/features/are-we-entering-the-golden-age-of-climate-modeling>

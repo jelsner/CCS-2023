@@ -1,0 +1,19 @@
+---
+title: "Lab 5"
+author: "Your Name"
+format: pdf
+editor: source
+---
+
+## 1 
+Write code to create a map of Hurricane Ian from 2022
+
+## 2
+Write code to compute ACE for Hurricane Ian from 2022
+
+## 3
+Write code to graph the 95th percentile wind speeds by year
+
+## 4
+Write code to estimate the amount of change in the 95th percentile wind speed per year
+
