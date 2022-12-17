@@ -59,6 +59,8 @@ Frequency.df <- LMI.df |>
   dplyr::group_by(Year) |>
   dplyr::summarize(nH = dplyr::n())
 
+library(ggplot2)
+
 ggplot(data = Frequency.df,
        mapping = aes(x = Year, y = nH)) +
   geom_line() +
