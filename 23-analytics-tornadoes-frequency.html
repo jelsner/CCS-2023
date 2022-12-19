@@ -462,8 +462,8 @@
 </section>
 <section id="section-4" class="slide level2">
 <h2></h2>
-
-<img data-src="figures/BirminghamDamagePath.jpg" class="r-stretch quarto-figure-center"><p class="caption">Birmingham, AL tornado</p></section>
+<p><img data-src="figures/BirminghamDamagePath.jpg" alt="Birmingham, AL tornado"> <a href="https://en.wikipedia.org/wiki/Enhanced_Fujita_scale">EF rating</a></p>
+</section>
 <section id="section-5" class="slide level2">
 <h2></h2>
 <ul>
@@ -553,7 +553,7 @@ Projected CRS: USA_Contiguous_Albers_Equal_Area_Conic
 <section id="section-9" class="slide level2">
 <h2></h2>
 <ul>
-<li>Annual rate per 100 square kilometers (km<sub>2</sub>)</li>
+<li>Annual rate per 100 square kilometers (km^2)</li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>States.sf <span class="ot">&lt;-</span> States.sf <span class="sc">|&gt;</span></span>
@@ -563,12 +563,79 @@ Projected CRS: USA_Contiguous_Albers_Equal_Area_Conic
 <span id="cb11-5"><a href="#cb11-5"></a></span>
 <span id="cb11-6"><a href="#cb11-6"></a><span class="fu">ggplot</span>(<span class="at">data =</span> States.sf,</span>
 <span id="cb11-7"><a href="#cb11-7"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">fill =</span> AnnualRate)) <span class="sc">+</span></span>
-<span id="cb11-8"><a href="#cb11-8"></a>  <span class="fu">scale_fill_viridis_c</span>() <span class="sc">+</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a>  <span class="fu">scale_fill_viridis_c</span>(<span class="at">option =</span> <span class="st">"cividis"</span>) <span class="sc">+</span></span>
 <span id="cb11-9"><a href="#cb11-9"></a>  <span class="fu">geom_sf</span>(<span class="at">color =</span> <span class="st">"lightgrey"</span>, <span class="at">size =</span> .<span class="dv">1</span>) <span class="sc">+</span></span>
-<span id="cb11-10"><a href="#cb11-10"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Annual tornado rate: 1950-2021 (per 100,000 km)"</span>, <span class="at">fill =</span> <span class="st">""</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-10"><a href="#cb11-10"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Annual tornado rate: 1950-2021 (per 100,000 sq. km)"</span>, </span>
+<span id="cb11-11"><a href="#cb11-11"></a>       <span class="at">fill =</span> <span class="st">""</span>, <span class="at">caption =</span> <span class="st">"Data source: NOAA SPC"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 
 </div>
-<img data-src="23-analytics-tornadoes-frequency_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"><div class="footer footer-default">
+<img data-src="23-analytics-tornadoes-frequency_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
+<section id="section-10" class="slide level2">
+<h2></h2>
+<ul>
+<li>Time series comparing the frequency of tornadoes in Tornado alley and Dixie alley</li>
+<li>Count by states and year</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>Counts.df <span class="ot">&lt;-</span> Torn.df <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(mag <span class="sc">&gt;=</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">Alley =</span> dplyr<span class="sc">::</span><span class="fu">case_when</span>(st <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"KS"</span>, <span class="st">"OK"</span>) <span class="sc">~</span> <span class="st">"Tornado Alley"</span>,</span>
+<span id="cb12-4"><a href="#cb12-4"></a>                                          st <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"MS"</span>, <span class="st">"AL"</span>) <span class="sc">~</span> <span class="st">"Dixie Alley"</span>,</span>
+<span id="cb12-5"><a href="#cb12-5"></a>                                          <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"Outside"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(Alley, yr) <span class="sc">|&gt;</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">nT =</span> dplyr<span class="sc">::</span><span class="fu">n</span>())</span>
+<span id="cb12-8"><a href="#cb12-8"></a></span>
+<span id="cb12-9"><a href="#cb12-9"></a>Counts.df <span class="sc">|&gt;</span></span>
+<span id="cb12-10"><a href="#cb12-10"></a>  <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+# Groups:   Alley [1]
+  Alley          yr    nT
+  &lt;chr&gt;       &lt;dbl&gt; &lt;int&gt;
+1 Dixie Alley  1950    10
+2 Dixie Alley  1951     8
+3 Dixie Alley  1952     7
+4 Dixie Alley  1953    28
+5 Dixie Alley  1954    14
+6 Dixie Alley  1955    10</code></pre>
+</div>
+</div>
+</section>
+<section id="section-11" class="slide level2">
+<h2></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a>Counts.df <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span>Alley <span class="sc">==</span> <span class="st">"Outside"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> yr, <span class="at">y =</span> nT, <span class="at">color =</span> Alley)) <span class="sc">+</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> glm, </span>
+<span id="cb14-6"><a href="#cb14-6"></a>              <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">'poisson'</span>), <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#b87333"</span>, <span class="st">"#478ccc"</span>)) <span class="sc">+</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">1950</span>, <span class="dv">2020</span>, <span class="at">by =</span> <span class="dv">10</span>)) <span class="sc">+</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">""</span>, <span class="at">y =</span> <span class="st">""</span>, <span class="at">color =</span> <span class="st">""</span>,</span>
+<span id="cb14-10"><a href="#cb14-10"></a>       <span class="at">title =</span> <span class="st">"Decreasing number of tornadoes rated as causing significant damage"</span>,</span>
+<span id="cb14-11"><a href="#cb14-11"></a>       <span class="at">subtitle =</span> <span class="st">"Annual number of (E)F2+ tornadoes originating in portions of Dixie Alley (MS, AL) and</span><span class="sc">\n</span><span class="st"> Tornado Alley (OK, KS)"</span>, </span>
+<span id="cb14-12"><a href="#cb14-12"></a>       <span class="at">caption =</span> <span class="st">"Data source: NOAA SPC"</span>) <span class="sc">+</span> <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+</section>
+<section id="section-11-output" class="slide level2 output-location-slide"><h2></h2><div class="cell output-location-slide">
+<div class="cell-output-display">
+<p><img data-src="23-analytics-tornadoes-frequency_files/figure-revealjs/unnamed-chunk-9-1.png" width="960"></p>
+</div>
+</div></section><section id="section-12" class="slide level2">
+<h2></h2>
+<ul>
+<li>Correlation in annual counts</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">cor</span>(Counts.df<span class="sc">$</span>nT[Counts.df<span class="sc">$</span>Alley <span class="sc">==</span> <span class="st">"Tornado Alley"</span>],</span>
+<span id="cb15-2"><a href="#cb15-2"></a>    Counts.df<span class="sc">$</span>nT[Counts.df<span class="sc">$</span>Alley <span class="sc">==</span> <span class="st">"Dixie Alley"</span>])</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1287153</code></pre>
+</div>
+</div>
+<div class="footer footer-default">
 <p>GEO4251 Climate Change &amp; Storms</p>
 </div>
 </section>

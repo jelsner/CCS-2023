@@ -60,6 +60,11 @@ Torn.df |>
 
 ![Birmingham, AL tornado](figures/BirminghamDamagePath.jpg)
 
+## Damage rating
+
+[EF rating](https://en.wikipedia.org/wiki/Enhanced_Fujita_scale)
+
+
 ##
 
 -   The total number of tornado reports in the data set is returned using the `nrow()` function
@@ -136,19 +141,19 @@ ggplot(data = States.sf,
        fill = "", caption = "Data source: NOAA SPC")
 ```
 
-##
+## {.smaller}
 
--   Time series comparing tornado alley with Dixie alley
+-   Time series comparing the frequency of tornadoes in Tornado alley and Dixie alley
 -   Count by states and year
 
 ```{r}
 #| echo: true
 Counts.df <- Torn.df |>
-  dplyr::filter(mag >= 1) |>
-  dplyr::mutate(Alleys = dplyr::case_when(st %in% c("KS", "OK") ~ "Tornado",
-                                          st %in% c("MS", "AL") ~ "Dixie",
+  dplyr::filter(mag >= 2) |>
+  dplyr::mutate(Alley = dplyr::case_when(st %in% c("KS", "OK") ~ "Tornado Alley",
+                                          st %in% c("MS", "AL") ~ "Dixie Alley",
                                           TRUE ~ "Outside")) |>
-  dplyr::group_by(Alleys, yr) |>
+  dplyr::group_by(Alley, yr) |>
   dplyr::summarize(nT = dplyr::n())
 
 Counts.df |>
@@ -158,9 +163,28 @@ Counts.df |>
 ##
 
 ```{r}
+#| echo: true
+#| output-location: slide
 Counts.df |>
-  dplyr::filter(!Alleys == "Outside") |>
-ggplot(mapping = aes(x = yr, y = nT, color = Alleys)) +
-  geom_line() +
-  geom_smooth(method = lm, se = FALSE)
+  dplyr::filter(!Alley == "Outside") |>
+ggplot(mapping = aes(x = yr, y = nT, color = Alley)) +
+  geom_point() + geom_line() +
+  geom_smooth(method = glm, 
+              method.args = list(family = 'poisson'), se = FALSE) +
+  scale_color_manual(values = c("#b87333", "#478ccc")) +
+  scale_x_continuous(breaks = seq(1950, 2020, by = 10)) +
+  labs(x = "", y = "", color = "",
+       title = "Decreasing number of tornadoes rated as causing significant damage",
+       subtitle = "Annual number of (E)F2+ tornadoes originating in portions of Dixie Alley (MS, AL) and\n Tornado Alley (OK, KS)", 
+       caption = "Data source: NOAA SPC") + theme_minimal()
+```
+
+##
+
+-   Correlation in annual counts
+
+```{r}
+#| echo: true
+cor(Counts.df$nT[Counts.df$Alley == "Tornado Alley"],
+    Counts.df$nT[Counts.df$Alley == "Dixie Alley"])
 ```
