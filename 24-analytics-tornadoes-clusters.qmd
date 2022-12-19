@@ -1,5 +1,5 @@
 ---
-title: "Tornado analytics: frequency"
+title: "Tornado analytics: path characteristics & clusters"
 format: 
   revealjs:
     code-fold: false
@@ -8,36 +8,6 @@ format:
     chalkboard: true
 editor: source
 ---
-
-##
-
-![Tornado tracks](https://farm8.staticflickr.com/7090/7157010997_2a92fa603c_o.jpg)
-
-## Topics
-
--   Shifting location
--   More clustering
--   Stronger
-
-## 
-
--   Where do you find data on tornadoes?
--   How do you get the data into a format you can work with?
--   The Storm Prediction Center has data on all tornadoes in the U.S. back to 1950. The data are available [here](https://www.spc.noaa.gov/wcm/)
--   European severe weather data [here](https://www.eswd.eu/?)
-
-##
-
--   You are interested in the file called `1950-2021_actual_tornadoes.csv`. First download the file from the site with the `download.file()` function specifying the location (`url =`) and a name you want the file to be called on your computer (`destfile =`)
-
-```{r, eval=FALSE}
-#| echo: true
-L <- "http://www.spc.noaa.gov/wcm/data/1950-2021_actual_tornadoes.csv"
-download.file(url = L,
-              destfile = here::here("data", "Tornadoes.csv"))
-```
-
--   A file called `Tornadoes.csv` should now be located in the directory `data`. Click on the *Files* tab in the lower-right panel, then select the `data` folder
 
 ##  {.smaller}
 
@@ -54,44 +24,14 @@ Torn.df |>
 
 -   Each row is a separate tornado report. Observations in each report include the day and time, the state (`st`), the maximum EF rating (`mag`), the number of injuries (`inj`), the number of fatalities (`fat`), estimated property losses (`loss`), estimated crop losses (`closs`), start and end locations in decimal degrees longitude and latitude, length of the damage path in miles (`len`), width of the damage in yards (`wid`)
 
-## 
-
-![Birmingham, AL tornado](figures/BirminghamDamagePath.jpg)
-
 ##
 
--   The total number of tornado reports in the data set is returned using the `nrow()` function
-
-```{r}
-#| echo: true
-Torn.df |>
-  nrow()
-```
--   67,558 separate tornado reports since 1950
-
-##
-
--   Count by state
-
-```{r}
-#| echo: true
-state.abb
-```
--- alphabetical list of states by their two-letter abbreviation
-
-```{r}
-ST_Counts.df <- Torn.df |>
-  dplyr::filter(st %in% state.abb) |>
-  dplyr::group_by(st) |>
-  dplyr::summarize(nT = dplyr::n())
-```
-
-You create a subset of the data frame that contains only tornadoes in the years (`yr`) since 2001 by including the logical operator `yr >= 2001` inside the `dplyr::filter()` function
+-   Create a subset of the data frame that contains only tornadoes in the years (`yr`) since 2007 (EF rating implemented) by including the logical operator `yr >= 2007` inside the `dplyr::filter()` function
 
 ```{r}
 #| echo: true
 Torn2.df <- Torn.df |>
-  dplyr::filter(yr >= 2001)
+  dplyr::filter(yr >= 2007)
 
 Torn2.df |>
   dim()
@@ -99,12 +39,12 @@ Torn2.df |>
 
 ## 
 
--   Here you subset again keeping only tornadoes with EF ratings (`mag` variable) greater than zero. You *recycle* the name `Torn2.df`
+-   Subset again keeping only tornadoes with EF ratings (`mag` variable) greater than zero and path length greater than a hundredth of a mile. You *recycle* the name `Torn2.df`
 
 ```{r}
 #| echo: true
 Torn2.df <- Torn2.df |>
-  dplyr::filter(mag > 0)
+  dplyr::filter(mag > 0, len > .01)
 ```
 
 -   Now you compute the correlation between EF rating (`mag`) and path length (`len`) with the `cor()` function
@@ -128,6 +68,8 @@ Torn2.df <- Torn2.df |>
                 EF = factor(mag))
 ```
 
+##
+
 -   Create box plots of path length by EF rating
 
 ```{r}
@@ -136,14 +78,39 @@ Torn2.df <- Torn2.df |>
 #| fig-width: 6
 #| fig-height: 6
 library(ggplot2)
+
 ggplot(data = Torn2.df,
-       mapping = aes(x = EF, y = Length)) +
-  geom_boxplot()
+       mapping = aes(y = EF, x = Length)) +
+  geom_violin(draw_quantiles = .5, size = 1, fill = "#0000ff") +
+  geom_point(size = .1, color = "#ffff00") +
+  scale_x_log10(breaks = c(.1, 1, 10, 100),
+                labels = c(".1 km", "1 km", "10 km", "100 km")) +
+  scale_y_discrete(labels = c("EF1", "EF2", "EF3", "EF4", "EF5")) +
+  labs(x = "", y = "", title = "Tornado damage rating depends on path length")
 ```
 
 ##
 
-Download the data and put it into the folder called `data`.
+-   Changes in average path characteristics by year
+
+```{r}
+Torn2.df |>
+#  dplyr::filter(mag >= 3) |>
+  dplyr::group_by(yr) |>
+  dplyr::summarize(nT = dplyr::n(),
+                   Lq50 = median(Length),
+                   Wq50 = median(Width),
+                   Lq95 = quantile(Length, probs = .95),
+                   Wq95 = quantile(Width, probs = .95)) |>
+  ggplot(mapping = aes(x = yr, y = Lq95)) +
+  geom_point() +
+  geom_smooth(method = lm)
+```
+
+
+## Tracks as spatial lines
+
+-   Download the data and put it into the folder called `data`
 
 ```{r}
 #| echo: true
@@ -158,30 +125,37 @@ unzip(zipfile = here::here("data", "1950-2021-torn-aspath.zip"),
 
 ##
 
-Get the data into your R session.
+-   Get the data into your R session
+
 ```{r}
 #| echo: true
 Torn.sf <- sf::st_read(dsn = here::here("data", "1950-2021-torn-aspath"), 
                        layer = "1950-2021-torn-aspath") 
 ```
 
-The geometry type is line string representing the straight-line approximate track of each tornado. The coordinate reference system (CRS) is WGS84.
+The geometry type is line string representing the straight-line approximate track of each tornado. The coordinate reference system (CRS) is WGS84
 
-## Damage assessment toolkit
+##
 
-<https://apps.dat.noaa.gov/stormdamage/damageviewer/>
+-   Plot the 2011 Tuscaloosa-Birmingham tornado track
 
-## Other severe local storm data
+```{r}
+#| echo: true
+#| output-location: slide
+Birmingham_Track.sf <- Torn.sf |>
+  dplyr::filter(date == "2011-04-27" & mag == 4 & st == "AL", fat == 64)
 
-<https://mesonet.agron.iastate.edu/request/gis/lsrs.phtml>
+tmap::tmap_mode("view")
+tmap::tm_shape(Birmingham_Track.sf) +
+  tmap::tm_lines(lwd = 3)
+```
+##
 
-## 
-
-{{< video https://www.youtube.com/embed/jcIR9Hl62yo >}} 22 minutes
+![Birmingham, AL tornado](figures/BirminghamDamagePath.jpg)
 
 ## Outbreaks
 
-Tornadoes come in bunches called 'outbreaks'
+-   Tornadoes come in bunches called 'outbreaks'
 
 <https://www.spc.noaa.gov/climo/reports/221129_prt_rpts.html>
 <https://www.spc.noaa.gov/climo/reports/221104_prt_rpts.html>
@@ -239,3 +213,15 @@ ggplot(data = AnnualCount.df,
   geom_smooth(method = lm, se = FALSE) +
   labs(title = "Proportion of all tornadoes occurring on days with at least 10 tornadoes")
 ```
+
+## Tornado damage paths from Google Earth
+
+{{< video https://www.youtube.com/embed/jcIR9Hl62yo >}} 22 minutes
+
+## Damage assessment toolkit
+
+<https://apps.dat.noaa.gov/stormdamage/damageviewer/>
+
+## Other severe local storm data
+
+<https://mesonet.agron.iastate.edu/request/gis/lsrs.phtml>
