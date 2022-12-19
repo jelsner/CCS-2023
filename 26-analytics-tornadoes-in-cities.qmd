@@ -1,0 +1,123 @@
+---
+title: "Tornado analytics: in cities"
+format: 
+  revealjs:
+    code-fold: false
+    theme: white
+    footer: "GEO4251 Climate Change & Storms"
+    chalkboard: true
+editor: source
+---
+
+##
+
+-   Geographic variation in the expanding bull's eye: Are we seeing more damaging tornadoes in urban areas?
+- Expanding bull's eye is a conceptual model to illustrate how development sprawl in metropolitan region have led to an increasing number of built ‘targets’ in harm's way
+-   Given a tornado hits a city, what is the chance that it does least EF2 level damage? The assumption is, that all else being equal, the chance will be higher with more targets to damage. The expanding bull's eye model predicts this chance to be higher now then in the past
+
+##
+
+-   [24 USA Cities Most Likely To Be Hit By A Tornado](https://www.thetravel.com/usa-cities-tornado/)
+-   [List of tornadoes striking downtown areas of large cities](https://en.wikipedia.org/wiki/List_of_tornadoes_striking_downtown_areas_of_large_cities)
+-   What cities have seen the largest change in tornado frequency before/after 1985? 
+
+![Miami Tornado 1997](figures/MiamiTornado.png)
+
+##
+
+-   Divide the tornado record into two 36-year epochs: 1986-2021 and 1950-1985 and count the number of tornadoes within each core-based metropolitan statistical area during each epoch
+-   Get CBSA polygons from {tigris}
+
+```{r}
+#| echo: true
+CBSA.sf <- tigris::core_based_statistical_areas(year = 2021, 
+                                                progress_bar = FALSE) |>
+    sf::st_transform(crs = 32615)
+```
+
+##
+
+-   Get the tornado tracks
+
+```{r}
+#| echo: true
+if(!"1950-2021-torn-aspath" %in% list.files(here::here("data"))) {
+download.file(url = "http://www.spc.noaa.gov/gis/svrgis/zipped/1950-2021-torn-aspath.zip",
+              destfile = here::here("data", "1950-2021-torn-aspath.zip"))
+unzip(here::here("data", "1950-2021-torn-aspath.zip"), 
+      exdir = here::here("data"))
+}
+
+Torn.sf <- sf::st_read(dsn = here::here("data", "1950-2021-torn-aspath"), 
+                       layer = "1950-2021-torn-aspath") |>
+  sf::st_transform(crs = sf::st_crs(CBSA.sf)) |>
+  dplyr::filter(yr >= 1950, mag >= 0) |>
+  dplyr::mutate(Late = yr >= 1986)
+```
+
+##
+
+-   Create a map showing one CBSA and the intersecting tornado tracks. Colors from [Color picker](https://image-color-picker.com/hex-code-picker)
+
+```{r}
+#| echo: true
+#| output-location: slide
+Nation.sf <- USAboundaries::us_states() |>
+  dplyr::filter(!state_abbr %in% c("AK", "HI", "PR")) |>
+  sf::st_transform(crs = sf::st_crs(CBSA.sf)) |>
+  sf::st_union()
+
+STATE <- "OK"
+State.sf <- USAboundaries::us_states(states = STATE) |>
+  sf::st_transform(crs = sf::st_crs(CBSA.sf))
+
+CITY <- "Oklahoma City, OK"
+Area.sf <- CBSA.sf |>
+  dplyr::filter(NAME == CITY)
+
+library(ggplot2)
+ggplot(data = Nation.sf) +
+  geom_sf() +
+  geom_sf(data = State.sf) +
+  geom_sf(data = Area.sf, fill = "grey", color = "grey")
+```
+
+##
+
+-   Which tornadoes intersect the grey area?
+
+```{r}
+Intersects <- Area.sf |>
+  sf::st_intersects(Torn.sf) |>
+  unlist()
+
+AreaTors.sf <- Torn.sf[Intersects, ]
+
+AreaTors.sf |>
+  sf::st_drop_geometry() |>
+  dplyr::filter(mag >= 2) |>
+  dplyr::group_by(Late) |>
+  dplyr::summarize(nT = dplyr::n())
+```
+
+##
+
+-   Early vs late counts
+
+```{r}
+Counts <- AreaTors.sf |>
+  dplyr::group_by(Late) |>
+  dplyr::summarize(nT = dplyr::n()) |>
+  dplyr::pull(nT)
+
+ggplot() +
+  geom_sf(data = State.sf, fill = "white") +
+  geom_sf(data = Area.sf, color = "gray70") +
+  geom_sf(data = AreaTors.sf, 
+          mapping = aes(color = Late)) +
+  scale_color_manual(values = c("#9E1FDE", "#5FDE1F"),
+                     guide = "none") +
+  labs(title = paste0("Approximate tracks of significant tornadoes\n", CITY),
+       subtitle = paste0("Totals: 1950-1985 (purple): ", Counts[1], 
+                         paste0(", 1986-2021 (green): ", Counts[2])))
+```
