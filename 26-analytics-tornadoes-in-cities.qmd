@@ -7,25 +7,29 @@ format:
     footer: "GEO4251 Climate Change & Storms"
     chalkboard: true
 editor: source
+editor_options: 
+  chunk_output_type: console
 ---
 
 ##
 
--   Geographic variation in the expanding bull's eye: Are we seeing more damaging tornadoes in urban areas?
-- Expanding bull's eye is a conceptual model to illustrate how development sprawl in metropolitan region have led to an increasing number of built ‘targets’ in harm's way
--   Given a tornado hits a city, what is the chance that it does least EF2 level damage? The assumption is, that all else being equal, the chance will be higher with more targets to damage. The expanding bull's eye model predicts this chance to be higher now then in the past
+-   Are we seeing more damaging tornadoes in urban areas?
+-   Expanding bull's eye is a conceptual model to illustrate how development sprawl in metropolitan region leads to an increasing number of built ‘targets’ (houses, buildings, power lines, etc) in harm's way
+-   Given a tornado hitting a city, what is the chance that it does least EF2 level damage? 
+-   The assumption is, that all else being equal, the chance will be higher with more targets to damage
+-   The expanding bull's eye model predicts this chance to be higher now then in the past
 
 ##
 
 -   [24 USA Cities Most Likely To Be Hit By A Tornado](https://www.thetravel.com/usa-cities-tornado/)
 -   [List of tornadoes striking downtown areas of large cities](https://en.wikipedia.org/wiki/List_of_tornadoes_striking_downtown_areas_of_large_cities)
--   What cities have seen the largest change in tornado frequency before/after 1985? 
+-   What cities have seen the largest change in damaging tornado frequency before and after 1986? 
 
 ![Miami Tornado 1997](figures/MiamiTornado.png)
 
 ##
 
--   Divide the tornado record into two 36-year epochs: 1986-2021 and 1950-1985 and count the number of tornadoes within each core-based metropolitan statistical area during each epoch
+-   Divide the tornado record into two 36-year periods: 1986-2021 and 1950-1985. Count the number of tornadoes within each core-based metropolitan statistical area during each epoch
 -   Get CBSA polygons from {tigris}
 
 ```{r}
@@ -51,13 +55,31 @@ unzip(here::here("data", "1950-2021-torn-aspath.zip"),
 Torn.sf <- sf::st_read(dsn = here::here("data", "1950-2021-torn-aspath"), 
                        layer = "1950-2021-torn-aspath") |>
   sf::st_transform(crs = sf::st_crs(CBSA.sf)) |>
-  dplyr::filter(yr >= 1950, mag >= 0) |>
-  dplyr::mutate(Late = yr >= 1986)
+#  dplyr::filter(yr >= 1950, mag >= 0) |>
+#  dplyr::mutate(Late = yr >= 1986)
+  dplyr::filter(yr >= 1986, mag >= 0) |>
+  dplyr::mutate(Late = yr >= 2004)
 ```
 
 ##
 
--   Create a map showing one CBSA and the intersecting tornado tracks. Colors from [Color picker](https://image-color-picker.com/hex-code-picker)
+-   All (E)F2+ tornadoes by year
+
+```{r}
+Torn.sf |>
+  sf::st_drop_geometry() |>
+  dplyr::group_by(yr) |>
+  dplyr::summarize(nTk = sum(mag >= 2)) |>
+ggplot(mapping = aes(x = yr, y = nTk)) +
+  geom_col() +
+  geom_vline(xintercept = 2003.5, color = "red") +
+  geom_smooth(method = lm)
+```
+
+
+##
+
+-   Create a map showing one CBSA and the intersecting tornado tracks
 
 ```{r}
 #| echo: true
@@ -78,13 +100,110 @@ Area.sf <- CBSA.sf |>
 library(ggplot2)
 ggplot(data = Nation.sf) +
   geom_sf() +
-  geom_sf(data = State.sf) +
-  geom_sf(data = Area.sf, fill = "grey", color = "grey")
+  geom_sf(data = State.sf, fill = "#b87333") +
+  geom_sf(data = Area.sf, fill = "#478ccc", color = "#478ccc")
 ```
 
 ##
 
--   Which tornadoes intersect the grey area?
+-   What tornado tracks intersect the core-based metropolitan statistical area?
+
+```{r}
+#| echo: true
+Intersects <- Area.sf |>
+  sf::st_intersects(Torn.sf) |>
+  unlist()
+
+AreaTors.sf <- Torn.sf[Intersects, ]
+
+( Counts <- AreaTors.sf |>
+  sf::st_drop_geometry() |>
+  dplyr::filter(mag >= 2) |>
+  dplyr::group_by(Late) |>
+  dplyr::summarize(nT = dplyr::n()) )
+```
+
+##
+
+-   Tornado tracks before and after 2004
+
+```{r}
+#| echo: true
+#| output-location: slide
+ggplot() +
+  geom_sf(data = State.sf) +
+  geom_sf(data = Area.sf, fill = "white", color = "gray70") +
+  geom_sf(data = AreaTors.sf[AreaTors.sf$mag >= 2,], 
+          mapping = aes(color = Late)) +
+  scale_color_manual(values = c("#9E1FDE", "#5FDE1F"),
+                     guide = "none") +
+  labs(title = "More structures to damage but fewer damaging tornadoes",
+       caption = "2021 Oklahoma City Core-Based Metropolitan Statistical Area in white",
+       subtitle = "Purple: 1986-2003 (18 years) 33 (E)F2+ tornadoes\nGreen: 2004-2021 (18 years) 19 (E)F2+ tornadoes") +
+  theme_minimal()
+```
+
+##
+
+-   Time series of the number of (E)F2+ tornadoes
+
+```{r}
+#| echo: true
+AreaTors.sf |>
+  sf::st_drop_geometry() |>
+  dplyr::group_by(yr) |>
+  dplyr::summarize(nT = sum(mag >= 0),
+            nTk = sum(mag >= 2),
+            ratio = nTk/nT) |>
+  ggplot(mapping = aes(x = yr, y = nTk)) +
+  geom_col() +
+  scale_y_continuous() +
+  geom_smooth(method = glm,
+              method.args = list(family = 'poisson'))
+```
+
+##
+
+-   Time series of the ratio of (E)F2+ tornadoes to all tornadoes
+
+```{r}
+#| echo: true
+AreaTors.sf |>
+  sf::st_drop_geometry() |>
+  dplyr::group_by(yr) |>
+  dplyr::summarize(nT = sum(mag >= 0),
+            nTk = sum(mag >= 2),
+            ratio = nTk/nT) |>
+  ggplot(mapping = aes(x = yr, y = ratio)) +
+  geom_col() +
+  scale_y_continuous() +
+  geom_smooth(method = glm,
+              method.args = list(family = 'quasibinomial'))
+```
+
+##
+
+-   Repeat for Birmingham, AL
+
+```{r}
+STATE <- "AL"
+State.sf <- USAboundaries::us_states(states = STATE) |>
+  sf::st_transform(crs = sf::st_crs(CBSA.sf))
+
+CITY <- "Birmingham-Hoover, AL"
+Area.sf <- CBSA.sf |>
+  dplyr::filter(NAME == CITY)
+
+library(ggplot2)
+ggplot(data = Nation.sf) +
+  geom_sf() +
+  geom_sf(data = State.sf, fill = "#b87333") +
+  geom_sf(data = Area.sf, fill = "#478ccc", color = "#478ccc")
+```
+
+##
+
+-   What tornado tracks intersect the core-based metropolitan statistical area?
 
 ```{r}
 Intersects <- Area.sf |>
@@ -93,31 +212,202 @@ Intersects <- Area.sf |>
 
 AreaTors.sf <- Torn.sf[Intersects, ]
 
-AreaTors.sf |>
+( Counts <- AreaTors.sf |>
   sf::st_drop_geometry() |>
   dplyr::filter(mag >= 2) |>
   dplyr::group_by(Late) |>
-  dplyr::summarize(nT = dplyr::n())
+  dplyr::summarize(nT = dplyr::n()) )
 ```
 
 ##
 
--   Early vs late counts
+-   Tornado tracks before and after 2004
 
 ```{r}
-Counts <- AreaTors.sf |>
-  dplyr::group_by(Late) |>
-  dplyr::summarize(nT = dplyr::n()) |>
-  dplyr::pull(nT)
-
 ggplot() +
-  geom_sf(data = State.sf, fill = "white") +
-  geom_sf(data = Area.sf, color = "gray70") +
-  geom_sf(data = AreaTors.sf, 
+  geom_sf(data = State.sf) +
+  geom_sf(data = Area.sf, fill = "white", color = "gray70") +
+  geom_sf(data = AreaTors.sf[AreaTors.sf$mag >= 2,], 
           mapping = aes(color = Late)) +
   scale_color_manual(values = c("#9E1FDE", "#5FDE1F"),
                      guide = "none") +
-  labs(title = paste0("Approximate tracks of significant tornadoes\n", CITY),
-       subtitle = paste0("Totals: 1950-1985 (purple): ", Counts[1], 
-                         paste0(", 1986-2021 (green): ", Counts[2])))
+  labs(title = "More structures to damage and more damaging tornadoes",
+       caption = "2021 Birmingham Core-Based Metropolitan Statistical Area in white",
+       subtitle = "Purple: 1986-2003 (18 years) 13 (E)F2+ tornadoes\nGreen: 2004-2021 (18 years) 36 (E)F2+ tornadoes") +
+  theme_minimal()
+```
+
+##
+
+-   Time series of the number of (E)F2+ tornadoes
+
+```{r}
+#| echo: true
+AreaTors.sf |>
+  sf::st_drop_geometry() |>
+  dplyr::group_by(yr) |>
+  dplyr::summarize(nT = sum(mag >= 0),
+            nTk = sum(mag >= 2),
+            ratio = nTk/nT) |>
+  ggplot(mapping = aes(x = yr, y = nTk)) +
+  geom_col() +
+  scale_y_continuous() +
+  geom_smooth(method = glm,
+              method.args = list(family = 'poisson'))
+```
+
+##
+
+-   Time series of the ratio of (E)F2+ tornadoes to all tornadoes
+
+```{r}
+AreaTors.sf |>
+  sf::st_drop_geometry() |>
+  dplyr::group_by(yr) |>
+  dplyr::summarize(nT = sum(mag >= 0),
+            nTk = sum(mag >= 2),
+            ratio = nTk/nT) |>
+  ggplot(mapping = aes(x = yr, y = ratio)) +
+  geom_line() +
+  scale_y_continuous(limits = c(0, 1)) +
+  geom_smooth(method = glm,
+              method.args = list(family = 'quasibinomial'))
+```
+
+##
+
+-   Repeat for Chicago, IL
+
+```{r}
+STATE <- c("IL", "WI", "IN")
+State.sf <- USAboundaries::us_states(states = STATE) |>
+  sf::st_transform(crs = sf::st_crs(CBSA.sf))
+
+CITY <- "Chicago-Naperville-Elgin, IL-IN-WI"
+Area.sf <- CBSA.sf |>
+  dplyr::filter(NAME == CITY)
+
+library(ggplot2)
+ggplot(data = Nation.sf) +
+  geom_sf() +
+  geom_sf(data = State.sf, fill = "#b87333") +
+  geom_sf(data = Area.sf, fill = "#478ccc", color = "#478ccc")
+```
+
+##
+
+-   What tornado tracks intersect the core-based metropolitan statistical area?
+
+```{r}
+Intersects <- Area.sf |>
+  sf::st_intersects(Torn.sf) |>
+  unlist()
+
+AreaTors.sf <- Torn.sf[Intersects, ]
+
+( Counts <- AreaTors.sf |>
+  sf::st_drop_geometry() |>
+  dplyr::filter(mag >= 2) |>
+  dplyr::group_by(Late) |>
+  dplyr::summarize(nT = dplyr::n()) )
+```
+
+##
+
+-   Tornado tracks before and after 2004
+
+```{r}
+ggplot() +
+  geom_sf(data = State.sf) +
+  geom_sf(data = Area.sf, fill = "white", color = "gray70") +
+  geom_sf(data = AreaTors.sf[AreaTors.sf$mag >= 2,], 
+          mapping = aes(color = Late)) +
+  scale_color_manual(values = c("#9E1FDE", "#5FDE1F"),
+                     guide = "none") +
+  labs(title = "More structures to damage and more damaging tornadoes",
+       caption = "2021 Chicago Core-Based Metropolitan Statistical Area in white",
+       subtitle = "Purple: 1986-2003 (18 years) 7 (E)F2+ tornadoes\nGreen: 2004-2021 (18 years) 17 (E)F2+ tornadoes") +
+  theme_minimal()
+```
+
+##
+
+-   Time series of the number of (E)F2+ tornadoes
+
+```{r}
+#| echo: true
+AreaTors.sf |>
+  sf::st_drop_geometry() |>
+  dplyr::group_by(yr) |>
+  dplyr::summarize(nT = sum(mag >= 0),
+            nTk = sum(mag >= 2),
+            ratio = nTk/nT) |>
+  ggplot(mapping = aes(x = yr, y = nTk)) +
+  geom_col() +
+  scale_y_continuous() +
+  geom_smooth(method = glm,
+              method.args = list(family = 'poisson'))
+```
+
+##
+
+-   All core-based metropolitan statistical areas
+
+```{r}
+Intersects <- CBSA.sf |>
+  sf::st_intersects(Torn.sf) |>
+  unlist()
+
+CityTors.sf <- Torn.sf[Intersects, ]
+
+( Counts <- CityTors.sf |>
+  sf::st_drop_geometry() |>
+  dplyr::filter(mag >= 2) |>
+  dplyr::group_by(Late) |>
+  dplyr::summarize(nT = dplyr::n()) )
+
+CityTors.sf |>
+  sf::st_drop_geometry() |>
+  dplyr::group_by(yr) |>
+  dplyr::summarize(nT = sum(mag >= 0),
+            nTk = sum(mag >= 2),
+            ratio = nTk/nT) |>
+  ggplot(mapping = aes(x = yr, y = nTk)) +
+  geom_col() +
+  scale_y_continuous() +
+  geom_smooth(method = glm,
+              method.args = list(family = 'poisson'))
+```
+
+##
+
+-   All non core-based metropolitan statistical areas
+
+```{r}
+RuralTors.sf <- Torn.sf[-Intersects, ]
+
+( Counts <- RuralTors.sf |>
+  sf::st_drop_geometry() |>
+  dplyr::filter(mag >= 2) |>
+  dplyr::group_by(Late) |>
+  dplyr::summarize(nT = dplyr::n()) )
+
+RuralTors.sf |>
+  sf::st_drop_geometry() |>
+  dplyr::group_by(yr) |>
+  dplyr::summarize(nT = sum(mag >= 0),
+            nTk = sum(mag >= 2),
+            ratio = nTk/nT) |>
+  ggplot(mapping = aes(x = yr, y = nTk)) +
+  geom_col() +
+  scale_y_continuous() +
+  geom_smooth(method = glm,
+              method.args = list(family = 'poisson'))
+```
+
+Greensburg, KS tornado of May 4, 2007. Only EF5 not within a current CBSA
+```{r}
+tmap::tmap_mode("view")
+tmap::tm_shape(RuralTors.sf[RuralTors.sf$mag == 5,]) +
+  tmap::tm_lines()
 ```

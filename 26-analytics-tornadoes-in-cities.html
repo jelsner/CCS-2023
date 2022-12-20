@@ -398,9 +398,11 @@
 <section id="section" class="slide level2">
 <h2></h2>
 <ul>
-<li>Geographic variation in the expanding bull’s eye: Are we seeing more damaging tornadoes in urban areas?</li>
-<li>Expanding bull’s eye is a conceptual model to illustrate how development sprawl in metropolitan region have led to and will continue to place ever increasing number of built ‘targets’ in harm’s way</li>
-<li>Chance that a tornado creates at least EF2 level damage. The assumption is, that all else being equal, the chance will be higher with more targets to damage. The expanding bull’s eye model predicts this chance to be higher now then in the past</li>
+<li>Are we seeing more damaging tornadoes in urban areas?</li>
+<li>Expanding bull’s eye is a conceptual model to illustrate how development sprawl in metropolitan region leads to an increasing number of built ‘targets’ (houses, buildings, power lines, etc) in harm’s way</li>
+<li>Given a tornado hitting a city, what is the chance that it does least EF2 level damage?</li>
+<li>The assumption is, that all else being equal, the chance will be higher with more targets to damage</li>
+<li>The expanding bull’s eye model predicts this chance to be higher now then in the past</li>
 </ul>
 </section>
 <section id="section-1" class="slide level2">
@@ -408,14 +410,14 @@
 <ul>
 <li><a href="https://www.thetravel.com/usa-cities-tornado/">24 USA Cities Most Likely To Be Hit By A Tornado</a></li>
 <li><a href="https://en.wikipedia.org/wiki/List_of_tornadoes_striking_downtown_areas_of_large_cities">List of tornadoes striking downtown areas of large cities</a></li>
-<li>What cities have seen the largest change in tornado frequency before/after 1985?</li>
+<li>What cities have seen the largest change in damaging tornado frequency before and after 1986?</li>
 </ul>
 
-<img data-src="figures/MiamiTornado.png" class="r-stretch quarto-figure-center"><p class="caption">Miami Tornado</p></section>
+<img data-src="figures/MiamiTornado.png" class="r-stretch quarto-figure-center"><p class="caption">Miami Tornado 1997</p></section>
 <section id="section-2" class="slide level2">
 <h2></h2>
 <ul>
-<li>Divide the tornado record into two 36-year epochs: 1986-2021 and 1950-1985 and count the number of tornadoes within each core-based metropolitan statistical area during each epoch</li>
+<li>Divide the tornado record into two 36-year periods: 1986-2021 and 1950-1985. Count the number of tornadoes within each core-based metropolitan statistical area during each epoch</li>
 <li>Get CBSA polygons from {tigris}</li>
 </ul>
 <div class="cell">
@@ -457,21 +459,27 @@ Geodetic CRS:  WGS 84</code></pre>
 <section id="section-4" class="slide level2">
 <h2></h2>
 <ul>
-<li>Create a map showing one CBSA and the intersecting tornado tracks. Colors from <a href="https://image-color-picker.com/hex-code-picker">Color picker</a></li>
+<li>Create a map showing one CBSA and the intersecting tornado tracks</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>STATE <span class="ot">&lt;-</span> <span class="st">"OK"</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a>State.sf <span class="ot">&lt;-</span> USAboundaries<span class="sc">::</span><span class="fu">us_states</span>(<span class="at">states =</span> STATE) <span class="sc">|&gt;</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a>  sf<span class="sc">::</span><span class="fu">st_transform</span>(<span class="at">crs =</span> sf<span class="sc">::</span><span class="fu">st_crs</span>(CBSA.sf))</span>
-<span id="cb4-4"><a href="#cb4-4"></a></span>
-<span id="cb4-5"><a href="#cb4-5"></a>CITY <span class="ot">&lt;-</span> <span class="st">"Oklahoma City, OK"</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a>Area.sf <span class="ot">&lt;-</span> CBSA.sf <span class="sc">|&gt;</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(NAME <span class="sc">==</span> CITY)</span>
-<span id="cb4-8"><a href="#cb4-8"></a></span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="fu">ggplot</span>(<span class="at">data =</span> State.sf) <span class="sc">+</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a>  <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> Area.sf)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>Nation.sf <span class="ot">&lt;-</span> USAboundaries<span class="sc">::</span><span class="fu">us_states</span>() <span class="sc">|&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(<span class="sc">!</span>state_abbr <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"AK"</span>, <span class="st">"HI"</span>, <span class="st">"PR"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a>  sf<span class="sc">::</span><span class="fu">st_transform</span>(<span class="at">crs =</span> sf<span class="sc">::</span><span class="fu">st_crs</span>(CBSA.sf)) <span class="sc">|&gt;</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a>  sf<span class="sc">::</span><span class="fu">st_union</span>()</span>
+<span id="cb4-5"><a href="#cb4-5"></a></span>
+<span id="cb4-6"><a href="#cb4-6"></a>STATE <span class="ot">&lt;-</span> <span class="st">"OK"</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a>State.sf <span class="ot">&lt;-</span> USAboundaries<span class="sc">::</span><span class="fu">us_states</span>(<span class="at">states =</span> STATE) <span class="sc">|&gt;</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a>  sf<span class="sc">::</span><span class="fu">st_transform</span>(<span class="at">crs =</span> sf<span class="sc">::</span><span class="fu">st_crs</span>(CBSA.sf))</span>
+<span id="cb4-9"><a href="#cb4-9"></a></span>
+<span id="cb4-10"><a href="#cb4-10"></a>CITY <span class="ot">&lt;-</span> <span class="st">"Oklahoma City, OK"</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a>Area.sf <span class="ot">&lt;-</span> CBSA.sf <span class="sc">|&gt;</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(NAME <span class="sc">==</span> CITY)</span>
+<span id="cb4-13"><a href="#cb4-13"></a></span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb4-15"><a href="#cb4-15"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Nation.sf) <span class="sc">+</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a>  <span class="fu">geom_sf</span>() <span class="sc">+</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> State.sf, <span class="at">fill =</span> <span class="st">"#b87333"</span>) <span class="sc">+</span></span>
+<span id="cb4-18"><a href="#cb4-18"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> Area.sf, <span class="at">fill =</span> <span class="st">"#478ccc"</span>, <span class="at">color =</span> <span class="st">"#478ccc"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
 </section>
@@ -482,9 +490,102 @@ Geodetic CRS:  WGS 84</code></pre>
 </div></section><section id="section-5" class="slide level2">
 <h2></h2>
 <ul>
-<li>Which tornadoes intersect the Area</li>
+<li>What tornado tracks intersect the core-based metropolitan statistical area?</li>
 </ul>
-<div class="footer footer-default">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>Intersects <span class="ot">&lt;-</span> Area.sf <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a>  sf<span class="sc">::</span><span class="fu">st_intersects</span>(Torn.sf) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a>  <span class="fu">unlist</span>()</span>
+<span id="cb5-4"><a href="#cb5-4"></a></span>
+<span id="cb5-5"><a href="#cb5-5"></a>AreaTors.sf <span class="ot">&lt;-</span> Torn.sf[Intersects, ]</span>
+<span id="cb5-6"><a href="#cb5-6"></a></span>
+<span id="cb5-7"><a href="#cb5-7"></a>( Counts <span class="ot">&lt;-</span> AreaTors.sf <span class="sc">|&gt;</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a>  sf<span class="sc">::</span><span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a>  dplyr<span class="sc">::</span><span class="fu">filter</span>(mag <span class="sc">&gt;=</span> <span class="dv">2</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(Late) <span class="sc">|&gt;</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">nT =</span> dplyr<span class="sc">::</span><span class="fu">n</span>()) )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  Late     nT
+  &lt;lgl&gt; &lt;int&gt;
+1 FALSE   106
+2 TRUE     52</code></pre>
+</div>
+</div>
+</section>
+<section id="section-6" class="slide level2">
+<h2></h2>
+<ul>
+<li>Tornado tracks before and after 1986</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> State.sf) <span class="sc">+</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> Area.sf, <span class="at">fill =</span> <span class="st">"gray80"</span>, <span class="at">color =</span> <span class="st">"gray80"</span>) <span class="sc">+</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a>  <span class="fu">geom_sf</span>(<span class="at">data =</span> AreaTors.sf[AreaTors.sf<span class="sc">$</span>mag <span class="sc">&gt;=</span> <span class="dv">2</span>,], </span>
+<span id="cb7-5"><a href="#cb7-5"></a>          <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">color =</span> Late)) <span class="sc">+</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>  <span class="fu">scale_color_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"#9E1FDE"</span>, <span class="st">"#5FDE1F"</span>),</span>
+<span id="cb7-7"><a href="#cb7-7"></a>                     <span class="at">guide =</span> <span class="st">"none"</span>) <span class="sc">+</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"More structures to damage but fewer damaging tornadoes"</span>,</span>
+<span id="cb7-9"><a href="#cb7-9"></a>       <span class="at">caption =</span> <span class="st">"2021 Oklahoma City Core-Based Metropolitan Statistical Area in pink"</span>,</span>
+<span id="cb7-10"><a href="#cb7-10"></a>       <span class="at">subtitle =</span> <span class="st">"Purple: 1950-1985 (36 years) 106 (E)F2+ tornadoes</span><span class="sc">\n</span><span class="st">Green: 1986-2021 (36 years) 52 (E)F2+ tornadoes"</span>) <span class="sc">+</span></span>
+<span id="cb7-11"><a href="#cb7-11"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+
+</section>
+<section id="section-6-output" class="slide level2 output-location-slide"><h2></h2><div class="cell output-location-slide">
+<div class="cell-output-display">
+<p><img data-src="26-analytics-tornadoes-in-cities_files/figure-revealjs/unnamed-chunk-5-1.png" width="960"></p>
+</div>
+</div></section><section id="section-7" class="slide level2">
+<h2></h2>
+<ul>
+<li>Time series of the ratio of (E)F2+ tornadoes to all tornadoes</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>AreaTors.sf <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2"></a>  sf<span class="sc">::</span><span class="fu">st_drop_geometry</span>() <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3"></a>  dplyr<span class="sc">::</span><span class="fu">group_by</span>(yr) <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4"></a>  dplyr<span class="sc">::</span><span class="fu">summarize</span>(<span class="at">nT =</span> <span class="fu">sum</span>(mag <span class="sc">&gt;=</span> <span class="dv">0</span>),</span>
+<span id="cb8-5"><a href="#cb8-5"></a>            <span class="at">nTk =</span> <span class="fu">sum</span>(mag <span class="sc">&gt;=</span> <span class="dv">2</span>),</span>
+<span id="cb8-6"><a href="#cb8-6"></a>            <span class="at">ratio =</span> nTk<span class="sc">/</span>nT) <span class="sc">|&gt;</span></span>
+<span id="cb8-7"><a href="#cb8-7"></a>  <span class="fu">ggplot</span>(<span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> yr, <span class="at">y =</span> ratio)) <span class="sc">+</span></span>
+<span id="cb8-8"><a href="#cb8-8"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb8-9"><a href="#cb8-9"></a>  <span class="fu">scale_y_continuous</span>() <span class="sc">+</span></span>
+<span id="cb8-10"><a href="#cb8-10"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> glm,</span>
+<span id="cb8-11"><a href="#cb8-11"></a>              <span class="at">method.args =</span> <span class="fu">list</span>(<span class="at">family =</span> <span class="st">'quasibinomial'</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+
+</div>
+<img data-src="26-analytics-tornadoes-in-cities_files/figure-revealjs/unnamed-chunk-6-1.png" width="960" class="r-stretch"></section>
+<section id="section-8" class="slide level2">
+<h2></h2>
+<ul>
+<li>Repeat for Birmingham, AL</li>
+</ul>
+
+<img data-src="26-analytics-tornadoes-in-cities_files/figure-revealjs/unnamed-chunk-7-1.png" width="960" class="r-stretch"></section>
+<section id="section-9" class="slide level2">
+<h2></h2>
+<ul>
+<li>What tornado tracks intersect the core-based metropolitan statistical area?</li>
+</ul>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 2
+  Late     nT
+  &lt;lgl&gt; &lt;int&gt;
+1 FALSE    53
+2 TRUE     49</code></pre>
+</div>
+</div>
+</section>
+<section id="section-10" class="slide level2">
+<h2></h2>
+<ul>
+<li>Time series of the ratio of (E)F2+ tornadoes to all tornadoes</li>
+</ul>
+
+<img data-src="26-analytics-tornadoes-in-cities_files/figure-revealjs/unnamed-chunk-9-1.png" width="960" class="r-stretch"><div class="footer footer-default">
 <p>GEO4251 Climate Change &amp; Storms</p>
 </div>
 </section>

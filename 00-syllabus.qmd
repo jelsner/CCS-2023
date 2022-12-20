@@ -11,8 +11,7 @@ editor: source
 
 ## GEO4251: Climate Change & Storms
 
--   Understanding our changing climate & storminess through analysis of data
--   Science is a way of discovering
+-   Understanding our changing climate & storminess through the analysis of data
 
 ## Contact information
 
@@ -40,9 +39,9 @@ Student {{< fa clock >}} TR 9:15-10:30 a.m.
 
 ## Description
 
--   This course is for students who want to learn more about the relationships between climate change and Earth's most powerful storms through the analysis and modeling of data
+-   This course is for students who want to learn about the relationships between climate change and Earth's most powerful storms through the analysis and modeling of data
 
--   All the course slides are available on GitHub {{< fa brands github >}} <https://github.com/jelsner/CS-2023>
+-   All course materials are available on GitHub {{< fa brands github >}} <https://github.com/jelsner/CS-2023>
 
 ## Expected learning outcomes
 
@@ -50,7 +49,7 @@ Student {{< fa clock >}} TR 9:15-10:30 a.m.
 
 1.  Appraise the fundamental concepts, principles, theories, and terminology used in discussing the relationships between climate change and storminess
 2.  Apply the principles of data science to make effective graphs, tables and inferences
-3.  Contribute to contemporary scientific debates with empirical evidence
+3.  Contribute to contemporary scientific debates using empirical evidence
 
 ## Materials and class meetings
 
@@ -96,7 +95,7 @@ I will use the +/- system
 | 2/15-3/1| 10-14  | Weather/climate data, climate change|
 | 3/6-27  | 15-18  | Climate swings, hurricane analytics |
 | 3/29-4/5| 19-21  | Hurricane analytics |
-| 4/10-28 | 22-25  | Tornado analytics |
+| 4/10-26 | 22-26  | Tornado analytics |
 
 ## 
 
