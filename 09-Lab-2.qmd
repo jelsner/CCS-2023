@@ -1,6 +1,6 @@
 ---
 title: "Lab 2"
-author: "Your Name"
+author: "PUT YOUR NAME HERE"
 format: pdf
 editor: source
 ---
@@ -15,4 +15,5 @@ Add a trend line to the graph
 Quantify the amount of change
 
 ## 4
+
 

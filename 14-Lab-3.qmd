@@ -1,0 +1,18 @@
+---
+title: "Lab 3"
+author: "PUT YOUR NAME HERE"
+format: pdf
+editor: source
+---
+
+## 1 
+Write code to download and import the latest greenhouse gas emissions data
+
+## 2 
+Write code to list the largest emitters of methane in the year 2010 by country/region
+
+## 3
+Write code to download and import the latest global air temperature data and make a time series plot of showing July temperatures across the years
+
+## 4
+Write code to quantify the increase per year in global temperatures during July

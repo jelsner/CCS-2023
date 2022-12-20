@@ -1,6 +1,6 @@
 ---
 title: "Lab 3"
-author: "Your Name"
+author: "ANSWERS"
 format: pdf
 editor: source
 ---

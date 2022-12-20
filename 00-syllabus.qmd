@@ -11,7 +11,7 @@ editor: source
 
 ## GEO4251: Climate Change & Storms
 
--   Understanding our changing climate & storminess through the analysis of data
+-   Understanding storms and their relationship to our changing climate through the analysis of data
 
 ## Contact information
 
@@ -99,7 +99,7 @@ I will use the +/- system
 
 ## 
 
-25 dates: 19 lesson days + 6 lab days
+26 dates: 20 lesson days + 6 lab days
 
 | Lab | Date                 | Lessons covered |
 |-----|----------------------|-----------------|
