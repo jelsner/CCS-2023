@@ -110,6 +110,12 @@ I will use the +/- system
 | 5   | Wednesday April 5    | 19-20           |
 | 6   | Wednesday April 19   | 22-24           |
 
+## Getting set up
+
+-   Go to <https://github.com/jelsner/CCS-2023>
+-   Follow instructions in the `README.md` file
+-   I will walk you through this next class
+
 ## Our warming planet
 
 {{< video https://www.youtube.com/embed/haBG2IIbwbA >}}

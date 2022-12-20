@@ -32,6 +32,8 @@ In-person lessons will be held in this room (Bellamy 208)
 
 * Download the course slides from [GitHub](https://github.com/jelsner/)
 * Click on the link _jelsner/CCS-2023_
+* Click on the green `< > Code` button
+* Download ZIP
 
 ## Do this 2nd
 
@@ -42,7 +44,6 @@ In-person lessons will be held in this room (Bellamy 208)
 * Download and install R by going to <https://cloud.r-project.org/>
 -   If you are using Windows: Click on *Download R for Windows*, then click on *base*, then click on the *Download* link
 -   If you are using a Mac: Click on *Download R for (Mac) OS X*, then under *Latest release:* click on *R-X.X.X.pkg*, where R-X.X.X is the version number
-
 
 ## Do this 4th
 

@@ -41,7 +41,7 @@ Download the course slides from GitHub [{{< fa brands github >}}](https://github
 
 ![](figures/GitHubCodePage.png){width="4000"}
 
-* Select the green Code button then select _Download ZIP_
+* Select the green `< > Code` button then select _Download ZIP_
 
 * Once the zip file is downloaded, expand (unzip) it
 
@@ -81,7 +81,7 @@ Download and install RStudio desktop by going to <https://posit.co/download/rstu
 
 ## How to videos
 
-Need more help?
+Need help?
 
 Install {{< fa brands r-project >}} and RStudio for {{< fa brands windows >}}
 {{< video https://www.youtube.com/embed/TFGYlKvQEQ4 >}}
