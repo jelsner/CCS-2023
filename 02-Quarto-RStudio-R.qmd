@@ -11,17 +11,14 @@ editor: source
 
 ## What is Quarto?
 
-Quarto is an open-source publishing system built on a document converter (Pandoc). When you click on the file `Quarto-RStudio-R.qmd` you should see this ![](figures/RStudio.png){width="500"}
-
-Quarto files begin with a YAML between the lines with the three dashes
+-   Quarto is an open-source publishing system built on a document converter (Pandoc). When you click on the file `Quarto-RStudio-R.qmd` you should see this ![](figures/RStudio.png){width="500"}
+-   Quarto files begin with a YAML between the two sets of lines that have three dashes
 
 ## What is RStudio?
 
-* RStudio is an *integrated development environment* (IDE). An IDE is like a toolbox. An organized collection of tools for developing scientific content, text, images, video, executable code
-
-* Four panels: Editor, Environment/History, Console/Terminal, Files etc
-
-* The Quarto markdown source file is shown in the Editor panel. Click on the `Render` button to generate the slides for today's lesson
+-   RStudio is an *integrated development environment* (IDE). An IDE is like a toolbox. An organized collection of tools for developing content, text, images, video, and code
+-   Four panels: Editor, Environment/History, Console/Terminal, Files etc
+-   The Quarto markdown source file is shown in the Editor panel. Click on the `Render` button to generate the slides for today's lesson
 
 ## What is R?
 
@@ -31,30 +28,29 @@ If Quarto is a car, then RStudio is the dashboard, and R is the engine
 
 ## 
 
-* More precisely, {{< fa brands r-project >}} is a programming language that runs code
-
-* In a car you have access to a speedometer, rear view mirrors, and a navigation system makes driving easier. RStudio makes using {{< fa brands r-project >}} easier as well
-
-* In a Quarto markdown file you include code like this
+-   More precisely, {{< fa brands r-project >}} is a programming language that runs code
+-   In a car you have access to a speedometer, rear view mirrors, and a navigation system makes driving easier. RStudio makes using {{< fa brands r-project >}} easier as well
+-   In a Quarto markdown file you include code like this
 ```{r}
 #| echo: true
 1 + 1
 ```
 
-* When you click the **Render** button a presentation is generated that includes content and the output of embedded code
+-   When you click the **Render** button a presentation is generated that includes content and the output of embedded code
 
 ## Getting to know RStudio and R
 
 ![RStudio](figures/RStudio.png){width="800"}
+-   4 panels each with various options. Some of the things I find useful
 
-## Create PDFs
+## Create a PDF
 
--   To create PDFs you will need to install LaTeX 
--   You can install with the following command in the Terminal window of RStudio
+-   To create a PDF you will need to install LaTeX on your computer
+-   You can install a version of LaTex (TinyTex) with the following command in the Terminal window of RStudio
 -   Click on the `Terminal` tab and then type
 
-quarto install tool tinytex
+`quarto install tool tinytex`
 
 ## How climate change works
 
-{{< video https://www.youtube.com/embed/CGoNpwN0mrs >}}
+{{< video https://www.youtube.com/embed/CGoNpwN0mrs >}} 4 minutes

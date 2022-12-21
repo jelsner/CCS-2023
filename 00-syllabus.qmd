@@ -15,27 +15,19 @@ editor: source
 
 ## Contact information
 
-{{< fa chalkboard-user >}} Professor James B. Elsner (he/his/him)
-
-Bellamy {{< fa building >}} Room 314
-
-Lesson {{< fa clock >}} MW 3:05-4:20 p.m.
-
-Student {{< fa clock >}} TR 9:15-10:30 a.m.
-
-{{< fa envelope >}} jelsner@fsu.edu
+-   {{< fa chalkboard-user >}} Professor James B. Elsner (he/his/him)
+-   Bellamy {{< fa building >}} Room 314
+-   Lesson {{< fa clock >}} MW 3:05-4:20 p.m.
+-   Student {{< fa clock >}} TR 9:15-10:30 a.m.
+-   {{< fa envelope >}} jelsner@fsu.edu
 
 ## Who am I?
 
-[{{< fa house size=2x >}}](http://myweb.fsu.edu/jelsner/_site/) Web
-
-[{{< fa graduation-cap size=2x >}}](https://scholar.google.com/citations?user=uF8tRWQAAAAJ) Research
-
-[{{< fa brands github size=2x >}}](https://github.com/jelsner/) Code
-
-[{{< fa brands mastodon size=2x >}}](https://fediscience.org/@jelsner) Social
-
-[[{{< fa brands youtube size=2x >}}](https://www.youtube.com/channel/UCmvKrcWTnNGjoy9OTGTz1qQ)]{style="color:red"} Play
+-   [{{< fa house size=1x >}}](http://myweb.fsu.edu/jelsner/_site/) Web
+-   [{{< fa graduation-cap size=1x >}}](https://scholar.google.com/citations?user=uF8tRWQAAAAJ) Research
+-   [{{< fa brands github size=1x >}}](https://github.com/jelsner/) Code
+-   [{{< fa brands mastodon size=1x >}}](https://fediscience.org/@jelsner) Social
+-   [[{{< fa brands youtube size=1x >}}](https://www.youtube.com/channel/UCmvKrcWTnNGjoy9OTGTz1qQ)]{style="color:red"} Play
 
 ## Description
 
@@ -118,4 +110,4 @@ I will use the +/- system
 
 ## Our warming planet
 
-{{< video https://www.youtube.com/embed/haBG2IIbwbA >}}
+{{< video https://www.youtube.com/embed/haBG2IIbwbA >}} 30 seconds

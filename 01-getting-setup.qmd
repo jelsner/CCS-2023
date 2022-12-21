@@ -9,25 +9,19 @@ format:
 editor: source
 ---
 
-##
+## Summary from the Syllabus
 
-* Climate Change & Storms: Understanding connections between our changing climate & storminess through analysis of data
-
-* All the course slides are available on GitHub {{< fa brands github >}}  <https://github.com/jelsner/CS-2023>
-
-* Grades are determined by how well you do on the in-class labs
-
-* I expect you to read the notes, watch the videos, and run the code within the lesson slides. I expect you to complete and return the in-class exercises on time
+-   Climate Change & Storms: Understanding storms and their relationship to our changing climate through the analysis of data
+-   All the course slides are available on GitHub {{< fa brands github >}}  <https://github.com/jelsner/CS-2023>
+-   Grades are determined by how well you do on the in-class labs
+-   I expect you to read the notes, watch the videos, and run the code within the lesson slides. I expect you to complete and return the in-class exercises on time
 
 ## Hardware and software
 
-* You will need a laptop computer running either {{< fa brands windows >}}, {{< fa brands apple >}}, or {{< fa brands linux >}}. I use a {{< fa brands apple >}}
-
-* The class notes live on {{< fa brands github >}}. Updates will be available on _Canvas_
-
-* Class notes are on slides made with an open-source scientific publishing system called _Quarto_
-
-* Coding will be done in {{< fa brands r-project >}} through _RStudio_
+-   You will need a laptop computer running either {{< fa brands windows >}}, {{< fa brands apple >}}, or {{< fa brands linux >}}. I use a {{< fa brands apple >}}
+-   The class notes live on {{< fa brands github >}}. Updates will be available on _Canvas_
+-   Class notes are on slides made with an open-source scientific publishing system called _Quarto_
+-   Coding will be done in {{< fa brands r-project >}} through _RStudio_
 
 ## Do this 1st
 
@@ -35,19 +29,18 @@ Download the course slides from GitHub [{{< fa brands github >}}](https://github
 
 ![](figures/GitHubLanding.png){width="2000"}
 
-* Click on the link _jelsner/CCS-2023_
+-   Click on the link _jelsner/CCS-2023_
 
 ##
 
 ![](figures/GitHubCodePage.png){width="4000"}
 
-* Select the green `< > Code` button then select _Download ZIP_
-
-* Once the zip file is downloaded, expand (unzip) it
+-   Select the green `< > Code` button then select _Download ZIP_
+-   Once the zip file is downloaded, expand (unzip) it
 
 ## Do this 2nd
 
-Download and install Quarto by going to <https://quarto.org/docs/get-started/>[^1]
+-   Download and install Quarto by going to <https://quarto.org/docs/get-started/>[^1]
 
 [^1]: Quarto lets you to weave together content (text, images, videos) and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>
 
@@ -56,35 +49,27 @@ Download and install Quarto by going to <https://quarto.org/docs/get-started/>[^
 Download and install {{< fa brands r-project >}} by going to <https://cloud.r-project.org/>
 
 -   If you are using {{< fa brands windows >}}: Click on *Download R for Windows*, then click on *base*, then click on the *Download* link
-
 -   If you are using a {{< fa brands apple >}}: Click on *Download R for (Mac) OS X*, then under *Latest release:* click on *R-X.X.X.pkg*, where R-X.X.X is the version number
 
 For example, the latest version of {{< fa brands r-project >}} as of November 18, 2022 is R-4.2.2
 
 ## Do this 4th
 
-Download and install RStudio desktop by going to <https://posit.co/download/rstudio-desktop/> *Step 2:*
-
-* Scroll down to find your computer's operating system and select the appropriate file to download
-
-* Click on the downloaded file to install
+-   Download and install RStudio desktop by going to <https://posit.co/download/rstudio-desktop/> *Step 2:*
+-   Scroll down to find your computer's operating system and select the appropriate file to download
+-   Click on the downloaded file to install
 
 ## Generate the slides
 
-* On your computer navigate to the folder {{< fa folder >}} called `CSS-2023-main`
-
-* Click on the file called `CCS-2023.Rproj`
-
-* Select the _Files_ tab (lower right panel) and select the `syllabus.qmd` file
-
-* Click the `Render` button
+-   On your computer navigate to the folder {{< fa folder >}} called `CSS-2023-main`
+-   Click on the file called `CCS-2023.Rproj`
+-   Select the _Files_ tab (lower right panel) and select the `syllabus.qmd` file
+-   Click the `Render` button
 
 ## How to videos
 
-Need help?
-
-Install {{< fa brands r-project >}} and RStudio for {{< fa brands windows >}}
-{{< video https://www.youtube.com/embed/TFGYlKvQEQ4 >}}
-
-Install {{< fa brands r-project >}} and RStudio for {{< fa brands apple >}}
-{{< video https://www.youtube.com/embed/JqV-USGR6AA >}}
+-   Need help?
+-   Install {{< fa brands r-project >}} and RStudio for {{< fa brands windows >}}
+{{< video https://www.youtube.com/embed/TFGYlKvQEQ4 >}} 5 minutes
+-   Install {{< fa brands r-project >}} and RStudio for {{< fa brands apple >}}
+{{< video https://www.youtube.com/embed/JqV-USGR6AA >}} 4 minutes
