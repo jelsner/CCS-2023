@@ -15,4 +15,4 @@ Write code below to get the tornado data into your environment as a data frame c
 Write code below to get the average tornado path length. The path length variable is `len` in `Torn.df`
 
 ## 4
-Write code below to get the number of tornadoes in each state. Hint: use the `table()` function on the variable `st`
+Write code below to get the number of tornadoes in each state. The state variable is `st`. Hint: use the `table()` function
