@@ -1,20 +1,22 @@
 <!DOCTYPE html>
 <html lang="en"><head>
-<script src="10-data-analyzed_files/libs/clipboard/clipboard.min.js"></script>
-<script src="10-data-analyzed_files/libs/quarto-html/tabby.min.js"></script>
-<script src="10-data-analyzed_files/libs/quarto-html/popper.min.js"></script>
-<script src="10-data-analyzed_files/libs/quarto-html/tippy.umd.min.js"></script>
-<link href="10-data-analyzed_files/libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="10-data-analyzed_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
-<link href="10-data-analyzed_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
+<script src="03-getting-started-with-R_files/libs/clipboard/clipboard.min.js"></script>
+<script src="03-getting-started-with-R_files/libs/quarto-html/tabby.min.js"></script>
+<script src="03-getting-started-with-R_files/libs/quarto-html/popper.min.js"></script>
+<script src="03-getting-started-with-R_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="03-getting-started-with-R_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="03-getting-started-with-R_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="03-getting-started-with-R_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="03-getting-started-with-R_files/libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="03-getting-started-with-R_files/libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet"><meta charset="utf-8">
   <meta name="generator" content="quarto-1.2.269">
 
-  <title>Globally analyzed weather and climate data</title>
+  <title>Getting started with R</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
-  <link rel="stylesheet" href="10-data-analyzed_files/libs/revealjs/dist/reset.css">
-  <link rel="stylesheet" href="10-data-analyzed_files/libs/revealjs/dist/reveal.css">
+  <link rel="stylesheet" href="03-getting-started-with-R_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="03-getting-started-with-R_files/libs/revealjs/dist/reveal.css">
   <style>
     code{white-space: pre-wrap;}
     span.smallcaps{font-variant: small-caps;}
@@ -27,14 +29,78 @@
       margin: 0 0.8em 0.2em -1.6em;
       vertical-align: middle;
     }
+    pre > code.sourceCode { white-space: pre; position: relative; }
+    pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+    pre > code.sourceCode > span:empty { height: 1.2em; }
+    .sourceCode { overflow: visible; }
+    code.sourceCode > span { color: inherit; text-decoration: inherit; }
+    div.sourceCode { margin: 1em 0; }
+    pre.sourceCode { margin: 0; }
+    @media screen {
+    div.sourceCode { overflow: auto; }
+    }
+    @media print {
+    pre > code.sourceCode { white-space: pre-wrap; }
+    pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+    }
+    pre.numberSource code
+      { counter-reset: source-line 0; }
+    pre.numberSource code > span
+      { position: relative; left: -4em; counter-increment: source-line; }
+    pre.numberSource code > span > a:first-child::before
+      { content: counter(source-line);
+        position: relative; left: -1em; text-align: right; vertical-align: baseline;
+        border: none; display: inline-block;
+        -webkit-touch-callout: none; -webkit-user-select: none;
+        -khtml-user-select: none; -moz-user-select: none;
+        -ms-user-select: none; user-select: none;
+        padding: 0 4px; width: 4em;
+        color: #aaaaaa;
+      }
+    pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+    div.sourceCode
+      { color: #003b4f; background-color: #f1f3f5; }
+    @media screen {
+    pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+    }
+    code span { color: #003b4f; } /* Normal */
+    code span.al { color: #ad0000; } /* Alert */
+    code span.an { color: #5e5e5e; } /* Annotation */
+    code span.at { color: #657422; } /* Attribute */
+    code span.bn { color: #ad0000; } /* BaseN */
+    code span.bu { } /* BuiltIn */
+    code span.cf { color: #003b4f; } /* ControlFlow */
+    code span.ch { color: #20794d; } /* Char */
+    code span.cn { color: #8f5902; } /* Constant */
+    code span.co { color: #5e5e5e; } /* Comment */
+    code span.cv { color: #5e5e5e; font-style: italic; } /* CommentVar */
+    code span.do { color: #5e5e5e; font-style: italic; } /* Documentation */
+    code span.dt { color: #ad0000; } /* DataType */
+    code span.dv { color: #ad0000; } /* DecVal */
+    code span.er { color: #ad0000; } /* Error */
+    code span.ex { } /* Extension */
+    code span.fl { color: #ad0000; } /* Float */
+    code span.fu { color: #4758ab; } /* Function */
+    code span.im { color: #00769e; } /* Import */
+    code span.in { color: #5e5e5e; } /* Information */
+    code span.kw { color: #003b4f; } /* Keyword */
+    code span.op { color: #5e5e5e; } /* Operator */
+    code span.ot { color: #003b4f; } /* Other */
+    code span.pp { color: #ad0000; } /* Preprocessor */
+    code span.sc { color: #5e5e5e; } /* SpecialChar */
+    code span.ss { color: #20794d; } /* SpecialString */
+    code span.st { color: #20794d; } /* String */
+    code span.va { color: #111111; } /* Variable */
+    code span.vs { color: #20794d; } /* VerbatimString */
+    code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </style>
-  <link rel="stylesheet" href="10-data-analyzed_files/libs/revealjs/dist/theme/quarto.css" id="theme">
-  <link href="10-data-analyzed_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
-  <link href="10-data-analyzed_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
-  <link href="10-data-analyzed_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
-  <link href="10-data-analyzed_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
-  <link href="10-data-analyzed_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
-  <link href="10-data-analyzed_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <link rel="stylesheet" href="03-getting-started-with-R_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link href="03-getting-started-with-R_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="03-getting-started-with-R_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="03-getting-started-with-R_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="03-getting-started-with-R_files/libs/revealjs/plugin/reveal-chalkboard/font-awesome/css/all.css" rel="stylesheet">
+  <link href="03-getting-started-with-R_files/libs/revealjs/plugin/reveal-chalkboard/style.css" rel="stylesheet">
+  <link href="03-getting-started-with-R_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
   <style type="text/css">
 
   .callout {
@@ -325,29 +391,243 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Globally analyzed weather and climate data</h1>
+  <h1 class="title">Getting started with R</h1>
 
 <div class="quarto-title-authors">
 </div>
 
 </section>
+<section id="how-do-i-code-in-r" class="slide level2">
+<h2>How do I code in R?</h2>
+<ul>
+<li><i class="fa-brands fa-r-project" aria-label="r-project"></i> is an interpreted language unlike Excel or SPSS with point-and-click interaction</li>
+<li>You must type in commands written in <i class="fa-brands fa-r-project" aria-label="r-project"></i> code. In other words, you must code/program. I use “coding” and “programming” interchangeably</li>
+<li>To begin you need some basic concepts</li>
+</ul>
+</section>
 <section id="section" class="slide level2">
 <h2></h2>
-<div style="text-align: center; margin-top: 1em">
-<p><a href="https://climatereanalyzer.org/wx/todays-weather/" data-preview-link="true" style="text-align: center">Today’s weather maps</a></p>
+<ul>
+<li><em>Console pane</em>: where you enter in commands</li>
+<li><em>Running code</em>: the act of telling <i class="fa-brands fa-r-project" aria-label="r-project"></i> to do something by giving it commands</li>
+<li><em>Objects</em>: where values are saved. Here you <em>assign</em> values 2 and 1, 2, 3, and 4 to objects <code>a</code> and <code>b</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>a <span class="ot">&lt;-</span> <span class="dv">2</span></span>
+<span id="cb1-2"><a href="#cb1-2"></a>b <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">4</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<ul>
+<li>The symbol <code>&lt;-</code> is read as ‘assign.’ Assign the value 2 to the object named <code>a</code>. Assign the values 1 through 4 to the object named <code>b</code></li>
+</ul>
 </section>
 <section id="section-1" class="slide level2">
 <h2></h2>
-<div style="text-align: center; margin-top: 1em">
-<p><a href="https://zacklabe.com/climate-change-indicators/" data-preview-link="true" style="text-align: center">Climate Change Indicators</a></p>
+<ul>
+<li>Print out the values of <code>a</code> and <code>b</code> and the product of <code>a</code> and <code>b</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 4</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a>a <span class="sc">*</span> b</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2 4 6 8</code></pre>
+</div>
+</div>
+</section>
+<section id="data-types" class="slide level2">
+<h2>Data types</h2>
+<ul>
+<li>Integers, doubles/numerics, logicals, and characters. Integers are values like -1, 0, 2, 1992</li>
+<li>Doubles/numerics are values that include integers, fractions, and decimal values like -24.932 and 0.8</li>
+<li>Logicals are either <code>TRUE</code> or <code>FALSE</code></li>
+<li>Characters are text such as “EF1”, “Category 3”. Characters are denoted with the quotation marks</li>
+</ul>
+</section>
+<section id="vectors" class="slide level2">
+<h2>Vectors</h2>
+<ul>
+<li>Vectors are a sequence of values. Sequences are created using the <code>c()</code> function, where <code>c()</code> is read as combine</li>
+<li>For example, <code>c(2004, 2005, 2017, 2018, 2022)</code> creates a five element series of positive integer values denoting years with at least one major hurricane hitting the United States</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>Years <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">2004</span>, <span class="dv">2005</span>, <span class="dv">2017</span>, <span class="dv">2018</span>, <span class="dv">2022</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="section-2" class="slide level2">
 <h2></h2>
-<div style="text-align: center; margin-top: 1em">
-<p><a href="https://climate.metoffice.cloud/" data-preview-link="true" style="text-align: center">Tracking the Changing Climate with Earth Observations</a></p>
+<ul>
+<li>You type the name of the object to print the list of years</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>Years</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2004 2005 2017 2018 2022</code></pre>
 </div>
+</div>
+<ul>
+<li>If you want only the 2nd year in the list use square brackets <code>[ ]</code> after the name of the object and include the value 2 inside the brackets</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>Years[<span class="dv">2</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2005</code></pre>
+</div>
+</div>
+<ul>
+<li>If you want to know the number of elements in the vector use the <code>length()</code> function (vector length).</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">length</span>(Years)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+</section>
+<section id="combine-your-functions" class="slide level2">
+<h2>Combine your functions</h2>
+<ul>
+<li>Functions like <code>length()</code> have stuff (arguments) inside the parentheses. Stuff includes data objects and other values</li>
+<li>The vertical line <code>|</code> followed by the greater than symbol <code>&gt;</code> can be used to put the stuff inside functions without placing the stuff inside the parentheses</li>
+<li>The <code>|&gt;</code> is read as <em>then</em></li>
+<li>Suppose there is a function called <code>wake_up()</code>. I can apply the function to the object <code>me</code> using <code>wake_up(me)</code> or as</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>me <span class="sc">|&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="fu">wake_up</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="section-3" class="slide level2">
+<h2></h2>
+<ul>
+<li>The second way requires more typing but it is easier to read. For example if there are two other functions <code>get_dressed()</code> and <code>make_coffee()</code>, it is easier to read as</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>me <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2"></a>  <span class="fu">wake_up</span>() <span class="sc">|&gt;</span></span>
+<span id="cb16-3"><a href="#cb16-3"></a>  <span class="fu">get_dressed</span>() <span class="sc">|&gt;</span></span>
+<span id="cb16-4"><a href="#cb16-4"></a>  <span class="fu">make_coffee</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">make_coffee</span>(<span class="fu">get_dressed</span>(<span class="fu">wake_up</span>(me)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Back to the vector of years</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>Years <span class="sc">|&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>  <span class="fu">length</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+</section>
+<section id="factors" class="slide level2">
+<h2>Factors</h2>
+<ul>
+<li>Categorical data are strings or factors. Objects with the factor class are created with the <code>factor()</code> function</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>DamageRating <span class="ot">&lt;-</span> <span class="fu">factor</span>(<span class="dv">0</span><span class="sc">:</span><span class="dv">5</span>, <span class="at">levels =</span> <span class="dv">0</span><span class="sc">:</span><span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>To print the class</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a>DamageRating <span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="fu">class</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "factor"</code></pre>
+</div>
+</div>
+<ul>
+<li>To print the levels of the factor</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>DamageRating <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a>  <span class="fu">levels</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "0" "1" "2" "3" "4" "5"</code></pre>
+</div>
+</div>
+</section>
+<section id="data-frames" class="slide level2">
+<h2>Data frames</h2>
+<ul>
+<li>Data in <i class="fa-brands fa-r-project" aria-label="r-project"></i> where rows are observations and columns are variables that describe the observations. They are rectangular spreadsheets</li>
+<li>You will get data into your R environment as a data frame with the function <code>readr::read_csv()</code></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a>L <span class="ot">&lt;-</span> <span class="st">"http://www.spc.noaa.gov/wcm/data/1950-2021_actual_tornadoes.csv"</span></span>
+<span id="cb25-2"><a href="#cb25-2"></a></span>
+<span id="cb25-3"><a href="#cb25-3"></a>Torn.df <span class="ot">&lt;-</span> L <span class="sc">|&gt;</span></span>
+<span id="cb25-4"><a href="#cb25-4"></a>  readr<span class="sc">::</span><span class="fu">read_csv</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>The object <code>Torn.df</code> is in your <code>Environment</code>. Click on it to view it.</li>
+</ul>
+</section>
+<section id="conditionals" class="slide level2">
+<h2>Conditionals</h2>
+<ul>
+<li>Testing for equality in R using == (and not =). For example, 2 + 1 == 3 compares 2 + 1 to 3 and is correct R code, while 2 + 1 = 3 will return an error</li>
+<li><code>TRUE</code>/<code>FALSE</code> statements and things such as &lt; (less than), &lt;= (less than or equal), and != (not equal to). For example, 4 + 2 &gt;= 3 will return TRUE, but 3 + 5 &lt;= 1 will return FALSE</li>
+<li>Logicals: <code>&amp;</code> is read ‘and’ while <code>|</code> is read ‘or’. For example, (2 + 1 == 3) &amp; (2 + 1 == 4) returns FALSE since both are not TRUE (only the first is TRUE). On the other hand, (2 + 1 == 3) | (2 + 1 == 4) returns TRUE since at least one of the two conditionals is TRUE</li>
+</ul>
+</section>
+<section id="functions-commands" class="slide level2">
+<h2>Functions (commands)</h2>
+<ul>
+<li><p>Functions perform tasks in R. They take in inputs called arguments and return outputs. You can either manually specify a function’s arguments or use the function’s default values.</p></li>
+<li><p>For example, the function <code>seq()</code> generates a sequence of numbers. It has arguments <code>from =</code> and <code>to =</code>.</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">2</span>, <span class="at">to =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1]  2  3  4  5  6  7  8  9 10</code></pre>
+</div>
+</div>
+<ul>
+<li>You will use functions throughout the semester. When I name a function in the notes, I will include the <code>()</code> after the name so you will know it’s a function</li>
+</ul>
+</section>
+<section id="section-4" class="slide level2">
+<h2></h2>
+<ul>
+<li>This is not an exhaustive list of all the programming concepts and terminology needed to become a savvy R user, but it is a good start</li>
+<li>You will learn more. Mastery of the concepts will build as you practice</li>
+<li>To determine the total number of fatalities in the tornado data frame</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>Torn.df<span class="sc">$</span>fat <span class="sc">|&gt;</span></span>
+<span id="cb28-2"><a href="#cb28-2"></a>  <span class="fu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 6112</code></pre>
+</div>
+</div>
+<p><code>Torn.df$fat</code> is a vector with each element the number of fatalities for each tornado</p>
+</section>
+<section id="common-functions" class="slide level2">
+<h2>Common functions</h2>
+<ul>
+<li><code>c()</code>, <code>seq()</code>, <code>class()</code>, <code>length()</code>, <code>head()</code></li>
+<li><code>mean()</code>, <code>sum()</code>, <code>range()</code>, <code>var()</code></li>
+<li><code>readr::read_csv()</code>, <code>readr::read_table()</code></li>
+<li><code>summary()</code></li>
+</ul>
+</section>
+<section id="your-turn" class="slide level2">
+<h2>Your turn</h2>
+<ul>
+<li>Write code to find how many injuries there in the tornado record</li>
+<li>Write code to find the maximum number of fatalities from a single tornado</li>
+<li>Write code to find the average latitude of all tornadoes</li>
+</ul>
 <div class="footer footer-default">
 <p>GEO4251 Climate Change &amp; Storms</p>
 </div>
@@ -356,20 +636,20 @@
   </div>
 
   <script>window.backupDefine = window.define; window.define = undefined;</script>
-  <script src="10-data-analyzed_files/libs/revealjs/dist/reveal.js"></script>
+  <script src="03-getting-started-with-R_files/libs/revealjs/dist/reveal.js"></script>
   <!-- reveal.js plugins -->
-  <script src="10-data-analyzed_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
-  <script src="10-data-analyzed_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
-  <script src="10-data-analyzed_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
-  <script src="10-data-analyzed_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
-  <script src="10-data-analyzed_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
-  <script src="10-data-analyzed_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  <script src="03-getting-started-with-R_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="03-getting-started-with-R_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="03-getting-started-with-R_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="03-getting-started-with-R_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="03-getting-started-with-R_files/libs/revealjs/plugin/reveal-chalkboard/plugin.js"></script>
+  <script src="03-getting-started-with-R_files/libs/revealjs/plugin/quarto-support/support.js"></script>
   
 
-  <script src="10-data-analyzed_files/libs/revealjs/plugin/notes/notes.js"></script>
-  <script src="10-data-analyzed_files/libs/revealjs/plugin/search/search.js"></script>
-  <script src="10-data-analyzed_files/libs/revealjs/plugin/zoom/zoom.js"></script>
-  <script src="10-data-analyzed_files/libs/revealjs/plugin/math/math.js"></script>
+  <script src="03-getting-started-with-R_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="03-getting-started-with-R_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="03-getting-started-with-R_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="03-getting-started-with-R_files/libs/revealjs/plugin/math/math.js"></script>
   <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
 
   <script>
@@ -565,6 +845,44 @@
         ]
       });
     </script>
+    
+    <script>
+      // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+      // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+      // slide changes (different for each slide format).
+      (function () {
+        // dispatch for htmlwidgets
+        function fireSlideEnter() {
+          const event = window.document.createEvent("Event");
+          event.initEvent("slideenter", true, true);
+          window.document.dispatchEvent(event);
+        }
+
+        function fireSlideChanged(previousSlide, currentSlide) {
+          fireSlideEnter();
+
+          // dispatch for shiny
+          if (window.jQuery) {
+            if (previousSlide) {
+              window.jQuery(previousSlide).trigger("hidden");
+            }
+            if (currentSlide) {
+              window.jQuery(currentSlide).trigger("shown");
+            }
+          }
+        }
+
+        // hookup for slidy
+        if (window.w3c_slidy) {
+          window.w3c_slidy.add_observer(function (slide_num) {
+            // slide_num starts at position 1
+            fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+          });
+        }
+
+      })();
+    </script>
+
     <script id="quarto-html-after-body" type="application/javascript">
     window.document.addEventListener("DOMContentLoaded", function (event) {
       const toggleBodyColorMode = (bsSheetEl) => {

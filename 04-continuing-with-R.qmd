@@ -1,5 +1,5 @@
 ---
-title: "Coding in R 2"
+title: "Continuing with R"
 format: 
   revealjs:
     code-fold: false
@@ -14,12 +14,11 @@ editor: source
 R reports errors, warnings, and messages in a red font
 
 -   Errors: When the red text starts with `Error in ...` it will continue with an explanation of what went wrong and the code will not run
-
-For example, if you see `Error in ggplot(...) : could not find function "ggplot"`, it means that the `ggplot()` function is not accessible because the package {ggplot2} that contains the function was not loaded with `library(ggplot2)`. Thus you cannot use the `ggplot()` function without the package being loaded first
+-   For example, if you see `Error in ggplot(...) : could not find function "ggplot"`, it means that the `ggplot()` function is not accessible because the package {ggplot2} that contains the function was not loaded with `library(ggplot2)`. Thus you cannot use the `ggplot()` function without the package being loaded first
 
 ## 
 
-Copy to clipboard and paste the code below into your RStudio console
+-   Copy to clipboard and paste the code below into your RStudio console
 
 ```{r, eval=FALSE}
 #| echo: true
@@ -35,8 +34,8 @@ ggplot(data = df,
 ## Warnings
 
 -   Warnings: When the red text is a warning, it will be prefaced with `Warning:`. Your code will still work
-
-For example, if you create a plot based on a dataset where two of the rows of data have missing entries that would be needed to create points in the plot, you will see this warning: `Warning: Removed 2 rows containing missing values (geom_point)`. R will still produce the plot with all the remaining non-missing values, but it is warning you that two of the points aren't there
+-   For example, if you create a plot based on a dataset where two of the rows of data have missing entries that would be needed to create points in the plot, you will see this warning: `Warning: Removed 2 rows containing missing values (geom_point)`
+-   R will still produce the plot with all the remaining non-missing values, but it is warning you that two of the points aren't there
 
 ## 
 
@@ -57,12 +56,11 @@ ggplot(data = df,
 ## Messages
 
 -   Messages: When the red text doesn't start with either `Error` or `Warning`, it's just a friendly message. You'll see these messages when you load R packages or when you import data
-
-These are helpful diagnostic messages and they don't stop your code from working. Additionally, you'll see these messages when you install packages too using `install.packages()`
+-   These are helpful diagnostic messages and they don't stop your code from working. Additionally, you'll see these messages when you install packages too using `install.packages()`
 
 ## 
 
-Copy to clipboard and paste the code below into your RStudio console
+-   Copy to clipboard and paste the code below into your RStudio console
 
 ```{r, eval=FALSE}
 #| echo: true
@@ -72,15 +70,12 @@ install.packages("tidyverse")
 ## Tips
 
 -   Copy, paste, and tweak: it is easier to take existing code that you know works and modify it to suit your ends as opposed to trying to type out the code from scratch
-
 -   Learn by doing: coding is easier when you have a goal in mind, like analyzing data that is important to you
-
 -   Practice: practice will improve your coding skills. Experiment by making small changes to the code I write in these notes
 
 ## Packages
 
 -   Packages provide functions. They are written by a worldwide community and can be downloaded for free.
-
 -   The package {ggplot2} has functions for making plots. You will also use the package {hockeystick} that has functions for downloading and plotting climate data
 
 ```{r}
@@ -93,14 +88,15 @@ install.packages(pkgs = "hockeystick",
 
 ![](figures/install-packages.png)
 
-## Your turn
-
-Download and install the {sf} package
-
 ## Getting data into R from your computer
 
-Consider monthly rainfall from the state of Florida from  <http://www.esrl.noaa.gov/psd/data/timeseries>. Using this portal I downloaded monthly average rainfall for division 1 (Northwest FL) and uploaded the file to GitHub
+-   Consider monthly rainfall from the state of Florida from  <http://www.esrl.noaa.gov/psd/data/timeseries>. Using this portal I downloaded monthly average rainfall for division 1 (Northwest FL) and uploaded the file to GitHub
 
 ```{r}
 Rain.df <- readr::read_table(here::here("data", "NWFL_MonthlyRain.txt"))
 ```
+
+## Your turn
+
+-   Download and install the {sf} package
+

@@ -51,7 +51,7 @@ editor: source
 
 ## Class meetings
 
--   Each class period I will prepare a small set of slides using [Quarto](https://quarto.org/). Quarto is an open-source scientific publishing system
+-   Each class period I will prepare a set of slides using [Quarto](https://quarto.org/). Quarto is an open-source scientific publishing system
 
 -   Quarto allows me to weave together narrative text and code to produce formatted output. Quarto documents are reproducible
 
@@ -66,7 +66,7 @@ editor: source
 1.  Reading, watching, and running code in the lesson slides. You can do this during class or outside the classroom. I will not take attendance
 2.  Completing and returning the in-class labs on time
 
--   Grades are determined by how well you do on the in-class labs using the following standard
+-   Grades are determined by how well you do on the labs using the following standard
 
 ## Standard
 
@@ -111,3 +111,5 @@ I will use the +/- system
 ## Our warming planet
 
 {{< video https://www.youtube.com/embed/haBG2IIbwbA >}} 30 seconds
+
+-   First-day attendance sign-in
