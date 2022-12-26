@@ -188,3 +188,58 @@ ggplot(mapping = aes(x = yr, y = nT, color = Alley)) +
 cor(Counts.df$nT[Counts.df$Alley == "Tornado Alley"],
     Counts.df$nT[Counts.df$Alley == "Dixie Alley"])
 ```
+
+##
+
+-   Total annual number of tornadoes by EF rating
+
+```{r}
+AnnualCounts.df <- Torn.df |>
+  dplyr::filter(mag >= 1 & mag <= 4) |>
+  dplyr::group_by(yr, mag) |>
+  dplyr::summarize(nT = dplyr::n()) |>
+  dplyr::rename(Year = yr)
+
+ggplot(data = AnnualCounts.df,
+       mapping = aes(x = yr, y = nT)) +
+  geom_line() +
+  geom_smooth() +
+  facet_wrap(~ mag, scales = "free_y")
+```
+
+##
+
+-   Compare with ENSO
+
+```{r}
+#| echo: true
+oni.df <- readr::read_csv(here::here("data", "ONI.csv")) |>
+  data.frame() |>
+  dplyr::mutate(Date = as.Date(paste0(Year, "-", Month, "-01")))
+```
+
+-   Annual average ONI
+
+```{r}
+AnnualONI.df <- oni.df |>
+  dplyr::group_by(Year) |>
+  dplyr::summarize(AvgONI = mean(ONI_C))
+```
+
+##
+
+-   Join with tornado counts
+
+```{r}
+AnnualCounts.df <- AnnualCounts.df |>
+  dplyr::left_join(AnnualONI.df, by = "Year")
+```
+
+-   Annual correlations by EF rating
+
+```{r}
+AnnualCounts.df |>
+  dplyr::filter(Year > 1985) |>
+  dplyr::group_by(mag) |>
+  dplyr::summarize(r = cor(nT, AvgONI))
+```
