@@ -49,7 +49,7 @@ Download the course slides from GitHub [{{< fa brands github >}}](https://github
 Download and install {{< fa brands r-project >}} by going to <https://cloud.r-project.org/>
 
 -   If you are using {{< fa brands windows >}}: Click on *Download R for Windows*, then click on *base*, then click on the *Download* link
--   If you are using a {{< fa brands apple >}}: Click on *Download R for (Mac) OS X*, then under *Latest release:* click on *R-X.X.X.pkg*, where R-X.X.X is the version number
+-   If you are using a {{< fa brands apple >}}: Click on *Download R for (Mac) OS X*, then under *Latest release:* click on *R-X.X.X.pkg*, where R-X.X.X is the version number. If you have the newer Mac with the Apple silicon chip (M1) use the *R-X.X.X-arm64.pkg*
 
 For example, the latest version of {{< fa brands r-project >}} as of November 18, 2022 is R-4.2.2
 
@@ -63,8 +63,9 @@ For example, the latest version of {{< fa brands r-project >}} as of November 18
 
 -   On your computer navigate to the folder {{< fa folder >}} called `CSS-2023-main`
 -   Click on the file called `CCS-2023.Rproj`
--   Select the _Files_ tab (lower right panel) and select the `syllabus.qmd` file
+-   Select the _Files_ tab (lower right panel) and select the `00-syllabus.qmd` file
 -   Click the `Render` button
+-   Next select the `01-getting-setup.Rmd` file and click on the `Render` button
 
 ## How to videos
 
@@ -73,3 +74,38 @@ For example, the latest version of {{< fa brands r-project >}} as of November 18
 {{< video https://www.youtube.com/embed/TFGYlKvQEQ4 >}} 5 minutes
 -   Install {{< fa brands r-project >}} and RStudio for {{< fa brands apple >}}
 {{< video https://www.youtube.com/embed/JqV-USGR6AA >}} 4 minutes
+
+## Install and configure Git on your computer
+
+-   [Install Git](https://happygitwithr.com/install-git.html)
+-   [Configure Git](https://happygitwithr.com/hello-git.html)
+
+## Sign up for GitHub
+
+-   Go to <https://github.com/>
+-   Click on `Sign up`
+-   Enter your email, Create a password, Enter a username 
+-   Solve the puzzle
+-   Enter code sent to your email
+-   How many team members: 1, Student
+-   Collaborative coding
+-   Continue for free
+
+## Get the updated course notes directly from GitHub
+
+-   Open RStudio. You should now see a `Git` tab
+-   Under `File` > `New Project` select `Version Control`
+-   Select `Git`
+-   Repository URL: `https://github.com/jelsner/CCS-2023.git`
+-   Project directory name: `CCS-2023`
+-   Create a project as a subdirectory of: <Browse to Desktop>
+-   Select Create Project
+
+## At the start of each class 
+
+-   Open the Folder CCS-2023 on your desktop
+-   Click on the file `CC-2023.Rproj`
+-   Under the `Git` tab select `Pull`
+
+
+
