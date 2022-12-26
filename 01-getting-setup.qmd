@@ -106,6 +106,8 @@ For example, the latest version of {{< fa brands r-project >}} as of November 18
 -   Open the Folder CCS-2023 on your desktop
 -   Click on the file `CC-2023.Rproj`
 -   Under the `Git` tab select `Pull`
+-   Select the `XX-name-of-lesson.Rmd` file
+-   Add your own notes to the file and/or `Render`
 
 
 
