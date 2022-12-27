@@ -109,6 +109,6 @@ For example, the latest version of {{< fa brands r-project >}} as of November 18
 -   Select the `XX-name-of-lesson.Rmd` file
 -   Add your own notes to the file and/or `Render`
 
-This class rocks!
+This class sucks!!!
 
 
