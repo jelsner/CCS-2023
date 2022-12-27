@@ -12,22 +12,20 @@ editor: source
 ## Summary from the Syllabus
 
 -   Climate Change & Storms: Understanding storms and their relationship to our changing climate through the analysis of data
--   All the course slides are available on GitHub {{< fa brands github >}}  <https://github.com/jelsner/CS-2023>
--   Grades are determined by how well you do on the in-class labs
--   I expect you to read the notes, watch the videos, and run the code within the lesson slides. I expect you to complete and return the in-class exercises on time
+-   All the course slides are available on GitHub {{< fa brands github >}} <https://github.com/jelsner/CS-2023>
+-   Grades are determined by how well you do on the in-class lab exercises
+-   I expect you to read the notes, watch the videos, and run the code within the lesson slides. I expect you to complete and return the in-class lab exercises on time
 
-## Hardware and software
+## Computer and software
 
--   You will need a laptop computer running either {{< fa brands windows >}}, {{< fa brands apple >}}, or {{< fa brands linux >}}. I use a {{< fa brands apple >}}
+-   You will need a laptop computer running either {{< fa brands windows >}}, {{< fa brands apple >}}, or {{< fa brands linux >}}
 -   The class notes live on {{< fa brands github >}}
--   Class notes are on slides made with an open-source scientific publishing system called _Quarto_
--   Coding will be done in {{< fa brands r-project >}} through _RStudio_
+-   Class notes are on slides made with an open-source scientific publishing system called *Quarto*
+-   Coding will be done in {{< fa brands r-project >}} through *RStudio*
 
 ## Do this 1st
 
--   Download and install Quarto by going to <https://quarto.org/docs/get-started/>[^1]
-
-[^1]: Quarto lets you to weave together content (text, images, videos) and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>
+-   Download and install Quarto by going to <https://quarto.org/docs/get-started/>
 
 ## Do this 2nd
 
@@ -42,12 +40,11 @@ editor: source
 -   Scroll down to find your computer's operating system and select the appropriate file to download
 -   Click on the downloaded file to install
 
-## How to videos
+## How to videos & more about
 
--   Install {{< fa brands r-project >}} and RStudio for {{< fa brands windows >}}
-{{< video https://www.youtube.com/embed/TFGYlKvQEQ4 >}} 5 minutes
--   Install {{< fa brands r-project >}} and RStudio for {{< fa brands apple >}}
-{{< video https://www.youtube.com/embed/JqV-USGR6AA >}} 4 minutes
+-   Install {{< fa brands r-project >}} and RStudio for {{< fa brands windows >}} {{< video https://www.youtube.com/embed/TFGYlKvQEQ4 >}} 5 minutes
+-   Install {{< fa brands r-project >}} and RStudio for {{< fa brands apple >}} {{< video https://www.youtube.com/embed/JqV-USGR6AA >}} 4 minutes
+-   Quarto lets you to weave together content (text, images, videos) and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>
 
 ## Do this 4th
 
@@ -58,7 +55,7 @@ editor: source
 
 -   Go to <https://github.com/>
 -   Click on `Sign up`
--   Enter your email, Create a password, Enter a username 
+-   Enter your email, Create a password, Enter a username
 -   Solve the puzzle
 -   Enter the code sent to your email
 -   How many team members: 1, Student
@@ -75,26 +72,25 @@ editor: source
 
 ## Do this 7th
 
--   Open RStudio. You should now see a `Git` tab
--   Under `File` > `New Project` select `Version Control`
+-   Open RStudio. You should now see a `Git` tab in one of the windows (upper right)
+-   Under `File` \> `New Project` select `Version Control`
 -   Select `Git`
 -   Repository URL: `https://github.com/[your GitHub username]/CCS-2023-[your name].git`
 -   Project directory name: `CCS-2023-[your name]`
 -   Create a project as a subdirectory of: <Browse to Desktop>
 -   Select Create Project
 
-## At the start of each class 
+## At the start of each class
 
 -   Go to `https://github.com/[your GitHub username]`
--   Select the `Sync fork` button under the green `Code` button
--   Click `Update branch`
+-   Select the `Sync fork` button under the green `Code` button then click `Update branch`
 -   Open the Folder `CCS-2023-[your name]` on your Desktop
 -   Open the file `CC-2023.Rproj`
 -   Under the `Git` tab select blue arrow (pointing down) to `Pull` down changes from your GitHub
 -   Select the `XX-name-of-lesson.Rmd` file
 -   Add your own notes to the file and/or `Render`
 
-## Push your notes to your repo
+## Push your notes to your repository
 
 -   Make changes then select check the `Staged` button under the `Git` tab
 -   Then select the `Commit` button
@@ -105,7 +101,11 @@ editor: source
 ## Get a personal access token
 
 -   Go to your GitHub account
--   In the far upper right pull down menu select `Settings` then `Developer settings`
--   In the left menu select `Personal access tokens` > `Tokens (classic)`
--   Follow instructions to generate a PAT
+-   In the far upper-right pull down menu (next to your avatar) select `Settings` then `Developer settings`
+-   In the left menu select `Personal access tokens` \> `Tokens (classic)`
+-   Follow instructions to generate a personal access toke (PAT)
 -   Use your PAT as your password when pushing changes made on your computer to your GitHub account
+
+## Congratulations
+
+![](figures/congrats-1.gif)
