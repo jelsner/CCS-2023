@@ -108,4 +108,4 @@ editor: source
 -   In the far upper right pull down menu select `Settings` then `Developer settings`
 -   In the left menu select `Personal access tokens` > `Tokens (classic)`
 -   Follow instructions to generate a PAT
--   Use that as your password when pushing changes made on your computer to your GitHub account
+-   Use your PAT as your password when pushing changes made on your computer to your GitHub account
