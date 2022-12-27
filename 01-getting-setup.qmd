@@ -19,96 +19,93 @@ editor: source
 ## Hardware and software
 
 -   You will need a laptop computer running either {{< fa brands windows >}}, {{< fa brands apple >}}, or {{< fa brands linux >}}. I use a {{< fa brands apple >}}
--   The class notes live on {{< fa brands github >}}. Updates will be available on _Canvas_
+-   The class notes live on {{< fa brands github >}}
 -   Class notes are on slides made with an open-source scientific publishing system called _Quarto_
 -   Coding will be done in {{< fa brands r-project >}} through _RStudio_
 
 ## Do this 1st
 
-Download the course slides from GitHub [{{< fa brands github >}}](https://github.com/jelsner/)
-
-![](figures/GitHubLanding.png){width="2000"}
-
--   Click on the link _jelsner/CCS-2023_
-
-##
-
-![](figures/GitHubCodePage.png){width="4000"}
-
--   Select the green `< > Code` button then select _Download ZIP_
--   Once the zip file is downloaded, expand (unzip) it
-
-## Do this 2nd
-
 -   Download and install Quarto by going to <https://quarto.org/docs/get-started/>[^1]
 
 [^1]: Quarto lets you to weave together content (text, images, videos) and executable code into a finished presentation. To learn more about Quarto presentations see <https://quarto.org/docs/presentations/>
 
-## Do this 3rd
+## Do this 2nd
 
-Download and install {{< fa brands r-project >}} by going to <https://cloud.r-project.org/>
-
+-   Download and install {{< fa brands r-project >}} by going to <https://cloud.r-project.org/>
 -   If you are using {{< fa brands windows >}}: Click on *Download R for Windows*, then click on *base*, then click on the *Download* link
 -   If you are using a {{< fa brands apple >}}: Click on *Download R for (Mac) OS X*, then under *Latest release:* click on *R-X.X.X.pkg*, where R-X.X.X is the version number. If you have the newer Mac with the Apple silicon chip (M1) use the *R-X.X.X-arm64.pkg*
+-   For example, the latest version of {{< fa brands r-project >}} as of November 18, 2022 is R-4.2.2
 
-For example, the latest version of {{< fa brands r-project >}} as of November 18, 2022 is R-4.2.2
-
-## Do this 4th
+## Do this 3rd
 
 -   Download and install RStudio desktop by going to <https://posit.co/download/rstudio-desktop/> *Step 2:*
 -   Scroll down to find your computer's operating system and select the appropriate file to download
 -   Click on the downloaded file to install
 
-## Generate the slides
-
--   On your computer navigate to the folder {{< fa folder >}} called `CSS-2023-main`
--   Click on the file called `CCS-2023.Rproj`
--   Select the _Files_ tab (lower right panel) and select the `00-syllabus.qmd` file
--   Click the `Render` button
--   Next select the `01-getting-setup.Rmd` file and click on the `Render` button
-
 ## How to videos
 
--   Need help?
 -   Install {{< fa brands r-project >}} and RStudio for {{< fa brands windows >}}
 {{< video https://www.youtube.com/embed/TFGYlKvQEQ4 >}} 5 minutes
 -   Install {{< fa brands r-project >}} and RStudio for {{< fa brands apple >}}
 {{< video https://www.youtube.com/embed/JqV-USGR6AA >}} 4 minutes
 
-## Install and configure Git on your computer
+## Do this 4th
 
 -   [Install Git](https://happygitwithr.com/install-git.html)
 -   [Configure Git](https://happygitwithr.com/hello-git.html)
 
-## Sign up for GitHub
+## Do this 5th
 
 -   Go to <https://github.com/>
 -   Click on `Sign up`
 -   Enter your email, Create a password, Enter a username 
 -   Solve the puzzle
--   Enter code sent to your email
+-   Enter the code sent to your email
 -   How many team members: 1, Student
 -   Collaborative coding
 -   Continue for free
 
-## Get the updated course notes directly from GitHub
+## Do this 6th
+
+-   Go to <https://github.com/jelsner/>
+-   Click on the link `jelsner/CCS-2023`
+-   In the upper right click on scroll down arrow next to `Fork`
+-   Add your name (no spaces) to the `Repository name`
+-   Click on the green `Create fork`
+
+## Do this 7th
 
 -   Open RStudio. You should now see a `Git` tab
 -   Under `File` > `New Project` select `Version Control`
 -   Select `Git`
--   Repository URL: `https://github.com/jelsner/CCS-2023.git`
--   Project directory name: `CCS-2023`
+-   Repository URL: `https://github.com/[your GitHub username]/CCS-2023-[your name].git`
+-   Project directory name: `CCS-2023-[your name]`
 -   Create a project as a subdirectory of: <Browse to Desktop>
 -   Select Create Project
 
 ## At the start of each class 
 
--   Open the Folder CCS-2023 on your desktop
--   Click on the file `CC-2023.Rproj`
--   Under the `Git` tab select `Pull`
+-   Go to `https://github.com/[your GitHub username]`
+-   Select the `Sync fork` button under the green `Code` button
+-   Click `Update branch`
+-   Open the Folder `CCS-2023-[your name]` on your Desktop
+-   Open the file `CC-2023.Rproj`
+-   Under the `Git` tab select blue arrow (pointing down) to `Pull` down changes from your GitHub
 -   Select the `XX-name-of-lesson.Rmd` file
 -   Add your own notes to the file and/or `Render`
 
-This class sucks!!!
+## Push your notes to your repo
 
+-   Make changes then select check the `Staged` button under the `Git` tab
+-   Then select the `Commit` button
+-   Add a note to the `Commit message` section (e.g., my updates from today)
+-   Select the green arrow (pointing up) to `Push` changes to your GitHub
+-   The first time you will need to include your GitHub username and Personal access token
 
+## Get a personal access token
+
+-   Go to your GitHub account
+-   In the far upper right pull down menu select `Settings` then `Developer settings`
+-   In the left menu select `Personal access tokens` > `Tokens (classic)`
+-   Follow instructions to generate a PAT
+-   Use that as your password when pushing changes made on your computer to your GitHub account
