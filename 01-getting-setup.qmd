@@ -102,10 +102,11 @@ editor: source
 
 -   Go to your GitHub account
 -   In the far upper-right pull down menu (next to your avatar) select `Settings` then `Developer settings`
--   In the left menu select `Personal access tokens` \> `Tokens (classic)`
+-   In the left menu select `Personal access tokens > Tokens (classic)`
 -   Follow instructions to generate a personal access toke (PAT)
 -   Use your PAT as your password when pushing changes made on your computer to your GitHub account
 
-## Congratulations
+## 
+-   Reload the page
 
 ![](figures/congrats-1.gif)
