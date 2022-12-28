@@ -1,18 +1,16 @@
 # CCS-2023
 
-This repo contains all the notes for Climate Change & Storms, Florida State University, Spring 2023
+This repository (repo) [directory] contains all the notes for Climate Change & Storms, Florida State University, Spring 2023
 
 ## Contact information
 
-Professor James B. Elsner (he/his/him)
+Professor James B. Elsner ([jelsner\@fsu.edu](mailto:jelsner@fsu.edu))
 
 Bellamy Room 314
 
 Lesson hours MW 3:05-4:20 p.m.
 
 Student hours TR 9:15-10:30 a.m.
-
-[jelsner\@fsu.edu](mailto:jelsner@fsu.edu){.email}
 
 This course is for students who want to learn more about the relationships between climate change and Earth's most powerful storms through the analysis and modeling of data
 
@@ -76,7 +74,7 @@ In-person lessons will be held in this room (Bellamy 208)
 -   Select `Git`
 -   Repository URL: `https://github.com/[your GitHub username]/CCS-2023-[your name].git`
 -   Project directory name: `CCS-2023-[your name]`
--   Create a project as a subdirectory of: <Browse to Desktop>
+-   Create a project as a subdirectory of: e.g., `Browse to Desktop`
 -   Select Create Project
 
 ## At the start of each class 
@@ -86,7 +84,7 @@ In-person lessons will be held in this room (Bellamy 208)
 -   Click `Update branch`
 -   Open the Folder `CCS-2023-[your name]` on your Desktop
 -   Open the file `CC-2023.Rproj`
--   Under the `Git` tab select blue arrow (pointing down) to `Pull` down changes from your GitHub
+-   Under the `Git` tab select blue arrow (pointing down) to `Pull` down changes from your GitHub repository
 -   Select the `XX-name-of-lesson.Rmd` file
 -   Add your own notes to the file and/or `Render`
 
