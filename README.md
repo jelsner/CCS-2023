@@ -74,7 +74,7 @@ In-person lessons will be held in this room (Bellamy 208)
 -   Select `Git`
 -   Repository URL: `https://github.com/[your GitHub username]/CCS-2023-[your name].git`
 -   Project directory name: `CCS-2023-[your name]`
--   Create a project as a subdirectory of: e.g., `Browse to Desktop`
+-   Create a project as a sub-directory of: e.g., `Browse to Desktop`
 -   Select Create Project
 
 ## At the start of each class 
