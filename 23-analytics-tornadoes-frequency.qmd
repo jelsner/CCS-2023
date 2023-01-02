@@ -243,3 +243,50 @@ AnnualCounts.df |>
   dplyr::group_by(mag) |>
   dplyr::summarize(r = cor(nT, AvgONI))
 ```
+
+## Daily sunspot numbers
+
+-   Sunspot numbers <https://www.sidc.be/silso/datafiles#total>
+
+```{r}
+#| echo: true
+ssn.df <- readr::read_table(file = here::here("data", "Sunspots.txt"),
+                            col_names = c("Year", "Month", "Day", "YearF", 
+                                          "SSN", "SSN_error", "Nobs", "X")) |>
+  dplyr::filter(Year >= 1950, Year <= 2021) |>
+  dplyr::mutate(date = as.Date(paste0(Year, "-", Month, "-", Day)))
+```
+
+##
+
+-   Big tornado days and average sunspot numbers
+
+```{r}
+#| echo: true
+Combined.df <- Torn.df |>
+  dplyr::filter(mo %in% c("03", "04", "05", "06", "07", "08", "09")) |>
+  dplyr::group_by(date) |>
+  dplyr::summarize(nT = sum(mag >= 3)) |>
+  dplyr::left_join(ssn.df, by = "date")
+```
+
+##
+
+```{r}
+#| echo: true
+Combined.df |>
+  dplyr::mutate(Big = nT > 16) |>
+  dplyr::group_by(Big) |>
+  dplyr::summarise(AvgSSN = mean(SSN),
+                   nDays = dplyr::n(),
+                   se = sd(SSN)/sqrt(nDays))
+```
+
+##
+
+```{r}
+X <- Combined.df |> 
+  dplyr::mutate(Big = nT > 4) |>
+  dplyr::filter(Big) |>
+  dplyr::arrange(desc(SSN))
+```
