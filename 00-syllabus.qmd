@@ -15,10 +15,10 @@ editor: source
 
 ## Contact information
 
--   {{< fa chalkboard-user >}} Professor James B. Elsner (he/his/him)
+-   {{< fa chalkboard-user >}} Professor James B. Elsner
 -   Bellamy {{< fa building >}} Room 314
 -   Lesson {{< fa clock >}} MW 3:05-4:20 p.m.
--   Student {{< fa clock >}} TR 9:15-10:30 a.m.
+-   Student {{< fa clock >}} TR 9:15-9:45 a.m., MW 2:15-3 p.m.
 -   {{< fa envelope >}} jelsner@fsu.edu
 
 ## Who am I?
