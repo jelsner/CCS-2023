@@ -264,9 +264,9 @@ ssn.df <- readr::read_table(file = here::here("data", "Sunspots.txt"),
 ```{r}
 #| echo: true
 Combined.df <- Torn.df |>
-  dplyr::filter(mo %in% c("03", "04", "05", "06", "07", "08", "09")) |>
+  dplyr::filter(mo %in% c("05", "06", "07", "08")) |>
   dplyr::group_by(date) |>
-  dplyr::summarize(nT = sum(mag >= 3)) |>
+  dplyr::summarize(nT = sum(mag >= 1)) |>
   dplyr::left_join(ssn.df, by = "date")
 ```
 
@@ -275,7 +275,7 @@ Combined.df <- Torn.df |>
 ```{r}
 #| echo: true
 Combined.df |>
-  dplyr::mutate(Big = nT > 16) |>
+  dplyr::mutate(Big = nT > 5) |>
   dplyr::group_by(Big) |>
   dplyr::summarise(AvgSSN = mean(SSN),
                    nDays = dplyr::n(),
@@ -285,8 +285,8 @@ Combined.df |>
 ##
 
 ```{r}
-X <- Combined.df |> 
-  dplyr::mutate(Big = nT > 4) |>
-  dplyr::filter(Big) |>
-  dplyr::arrange(desc(SSN))
+Yearly.df <- Combined.df |> 
+  dplyr::group_by(Year) |>
+  dplyr::summarize(AvgSSN = mean(SSN),
+                   nT = sum(nT))
 ```
