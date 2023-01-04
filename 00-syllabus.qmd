@@ -33,7 +33,7 @@ editor: source
 
 -   This course is for students who want to learn about the relationships between climate change and Earth's most powerful storms through the analysis and modeling of data
 
--   All course materials are available on GitHub {{< fa brands github >}} <https://github.com/jelsner/CS-2023>
+-   All course materials are available on GitHub {{< fa brands github >}} <https://github.com/jelsner/CCS-2023>
 
 ## Expected learning outcomes
 
@@ -46,7 +46,7 @@ editor: source
 ## Materials and class meetings
 
 -   Computer and access to the internet
--   Course slides are available through GitHub <https://github.com/jelsner/CS-2023>
+-   Course slides are available through [GitHub](https://github.com/jelsner/CCS-2023/)
 -   No textbook is required
 
 ## Class meetings
@@ -111,9 +111,9 @@ I will use the +/- system
 
 ## Getting set up
 
--   Go to <https://github.com/jelsner/CCS-2023>
+-   Go to [GitHub](https://github.com/jelsner/CCS-2023)
 -   Follow instructions in the `README.md` file
--   I will walk you through this next class
+-   I will walk you through this on Wednesday
 
 ## Our warming planet
 
