@@ -78,6 +78,18 @@ editor: source
 
 I will use the +/- system
 
+Grades will be posted as they are recorded on [FSU Canvas](https://canvas.fsu.edu)
+
+## Academic honor code
+
+-   <https://fda.fsu.edu/academic-resources/academic-integrity-and-grievances/academic-honor-policy>
+
+-   Americans With Disabilities Act: Students with disabilities needing academic accommodation should: (1) register with and provide documentation to the Student Disability Resource Center; (2) bring a letter indicating the need for accommodation and what type. This should be done during the first week of classes.
+
+## Diversity and inclusiveness
+
+-   It is my intent to present notes and data that are respectful of diversity: gender identity, sexuality, disability, age, socioeconomic status, ethnicity, race, nationality, religion, and culture
+
 ## Schedule
 
 | Dates   | Lessons| Topics  |

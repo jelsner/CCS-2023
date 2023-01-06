@@ -69,7 +69,7 @@ editor: source
 -   Go to <https://github.com/jelsner/>
 -   Click on the link `jelsner/CCS-2023`
 -   In the upper right click on scroll down arrow next to `Fork`
--   Select + Create a new fork
+-   Select "+ Create a new fork"
 -   Add your name (no spaces) to the `Repository name`
 -   Click on the green `Create fork`
 
