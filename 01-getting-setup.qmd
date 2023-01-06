@@ -19,7 +19,7 @@ editor: source
 ## Computer and software
 
 -   You will need a laptop computer running either {{< fa brands windows >}}, {{< fa brands apple >}}, or {{< fa brands linux >}}
--   The class notes live on {{< fa brands github >}}
+-   The class notes live on {{< fa brands github >}} and are updated before each class
 -   Class notes are on slides made with an open-source scientific publishing system called *Quarto*
 -   Coding will be done in {{< fa brands r-project >}} through *RStudio*
 
@@ -49,7 +49,9 @@ editor: source
 ## Do this 4th
 
 -   [Install Git](https://happygitwithr.com/install-git.html)
+-   Open RStudio
 -   [Configure Git](https://happygitwithr.com/hello-git.html)
+-   Close RStudio
 
 ## Do this 5th
 
@@ -67,13 +69,15 @@ editor: source
 -   Go to <https://github.com/jelsner/>
 -   Click on the link `jelsner/CCS-2023`
 -   In the upper right click on scroll down arrow next to `Fork`
+-   Select + Create a new fork
 -   Add your name (no spaces) to the `Repository name`
 -   Click on the green `Create fork`
 
 ## Do this 7th
 
--   Open RStudio. You should now see a `Git` tab in one of the windows (upper right)
--   Under `File` \> `New Project` select `Version Control`
+-   Open RStudio. You should see a `Git` tab in one of the windows (upper right)
+![](figures/Git_tab.png)
+-   Under `File` > `New Project` select `Version Control`
 -   Select `Git`
 -   Repository URL: `https://github.com/[your GitHub username]/CCS-2023-[your name].git`
 -   Project directory name: `CCS-2023-[your name]`
