@@ -111,6 +111,6 @@ editor: source
 -   Use your PAT as your password when pushing changes made on your computer to your GitHub account
 
 ## 
--   Reload the page
+-   Reload this page
 
 ![](figures/congrats-1.gif)
