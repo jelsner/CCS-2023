@@ -116,14 +116,14 @@ Grades will be posted as they are recorded on [FSU Canvas](https://canvas.fsu.ed
 
 ## Hardware and software
 
--   You will need a laptop computer running either {{< fa brands windows >}}, {{< fa brands apple >}}, or {{< fa brands linux >}}. I use a {{< fa brands apple >}}
--   The class notes live on {{< fa brands github >}}
+-   You will need a laptop computer running either Windows, MacOS, or Linux. I use MacOS
+-   The class notes live on [GitHub](https://github.com/jelsner/CCS-2023/)
 -   Class notes are on slides made with an open-source scientific publishing system called _Quarto_
--   Coding will be done in {{< fa brands r-project >}} through _RStudio_
+-   Coding will be done in _R_ through _RStudio_
 
 ## Getting set up
 
--   Go to [GitHub](https://github.com/jelsner/CCS-2023)
+-   Go to https://github.com/jelsner/CCS-2023
 -   Follow instructions in the `README.md` file
 -   I will walk you through this on Wednesday
 
