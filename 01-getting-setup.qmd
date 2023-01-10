@@ -49,6 +49,7 @@ editor: source
 ## Do this 4th
 
 -   [Install Git](https://happygitwithr.com/install-git.html)
+-   Use all the defaults on the Windows install
 -   Open RStudio
 -   [Configure Git](https://happygitwithr.com/hello-git.html)
 -   Close RStudio
