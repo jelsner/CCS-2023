@@ -336,8 +336,8 @@
 <section id="summary-from-the-syllabus" class="slide level2">
 <h2>Summary from the Syllabus</h2>
 <ul>
-<li>Climate Change &amp; Storms: Understanding storms and their relationship to our changing climate through the analysis of data</li>
-<li>All the course material is available on GitHub <i class="fa-brands fa-github" aria-label="github"></i> <a href="https://github.com/jelsner/CS-2023" class="uri">https://github.com/jelsner/CS-2023</a></li>
+<li>Climate Change &amp; Storms: Understanding storms and their relationship to a changing climate through data analysis</li>
+<li>All course material is available on GitHub <i class="fa-brands fa-github" aria-label="github"></i> <a href="https://github.com/jelsner/CS-2023" class="uri">https://github.com/jelsner/CS-2023</a></li>
 <li>Grades are determined by how well you do on the in-class lab exercises</li>
 <li>I expect you to read the notes, watch the videos, and run the code within the lesson slides. I expect you to complete and return the in-class lab exercises on time</li>
 </ul>
@@ -346,7 +346,7 @@
 <h2>Computer and software</h2>
 <ul>
 <li>You will need a laptop computer running either <i class="fa-brands fa-windows" aria-label="windows"></i>, <i class="fa-brands fa-apple" aria-label="apple"></i>, or <i class="fa-brands fa-linux" aria-label="linux"></i></li>
-<li>Class notes are on slides made with an open-source scientific publishing system called <em>Quarto</em></li>
+<li>Class notes are on slides made with <em>Quarto</em></li>
 <li>Coding will be done in <i class="fa-brands fa-r-project" aria-label="r-project"></i> through <em>RStudio</em></li>
 </ul>
 </section>
@@ -362,7 +362,7 @@
 <li>Download and install <i class="fa-brands fa-r-project" aria-label="r-project"></i> by going to <a href="https://cloud.r-project.org/" class="uri">https://cloud.r-project.org/</a></li>
 <li>If you are using <i class="fa-brands fa-windows" aria-label="windows"></i>: Click on <em>Download R for Windows</em>, then click on <em>base</em>, then click on the <em>Download</em> link</li>
 <li>If you are using a <i class="fa-brands fa-apple" aria-label="apple"></i>: Click on <em>Download R for (Mac) OS X</em>, then under <em>Latest release:</em> click on <em>R-X.X.X.pkg</em>, where R-X.X.X is the version number. If you have the newer Mac with the Apple silicon chip (M1) use the <em>R-X.X.X-arm64.pkg</em></li>
-<li>For example, the latest version of <i class="fa-brands fa-r-project" aria-label="r-project"></i> as of November 18, 2022 is R-4.2.2</li>
+<li>For example, the latest version of <i class="fa-brands fa-r-project" aria-label="r-project"></i> as of October 31, 2022 is R-4.2.2</li>
 </ul>
 </section>
 <section id="do-this-3rd" class="slide level2">
@@ -373,19 +373,11 @@
 <li>Click on the downloaded file to install</li>
 </ul>
 </section>
-<section id="how-to-videos-more-about" class="slide level2">
-<h2>How to videos &amp; more about</h2>
-<ul>
-<li>Install <i class="fa-brands fa-r-project" aria-label="r-project"></i> and RStudio for <i class="fa-brands fa-windows" aria-label="windows"></i> <iframe src="https://www.youtube.com/embed/TFGYlKvQEQ4" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe> 5 minutes</li>
-<li>Install <i class="fa-brands fa-r-project" aria-label="r-project"></i> and RStudio for <i class="fa-brands fa-apple" aria-label="apple"></i> <iframe src="https://www.youtube.com/embed/JqV-USGR6AA" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe> 4 minutes</li>
-<li>Quarto lets you to weave together content (text, images, videos) and executable code into a finished presentation. See <a href="https://quarto.org/docs/presentations/" class="uri">https://quarto.org/docs/presentations/</a></li>
-</ul>
-</section>
 <section id="do-this-4th" class="slide level2">
 <h2>Do this 4th</h2>
 <ul>
 <li><a href="https://happygitwithr.com/install-git.html">Install Git</a></li>
-<li>Use all the defaults on the Windows install</li>
+<li>Use all default settings on the Windows install</li>
 <li>Open RStudio</li>
 <li><a href="https://happygitwithr.com/hello-git.html">Configure Git</a></li>
 <li>Close RStudio</li>
@@ -422,51 +414,52 @@
 <li>Under <code>File</code> &gt; <code>New Project</code> select <code>Version Control</code></li>
 <li>Select <code>Git</code></li>
 <li>Repository URL: <code>https://github.com/[your GitHub username]/CCS-2023-[your name].git</code></li>
-<li>Project directory name: <code>CCS-2023-[your name]</code></li>
-<li>Create a project as a subdirectory of: e.g.&nbsp;<code>Browse to Desktop</code></li>
-<li>Select <code>Create Project</code></li>
-</ul>
-</section>
-<section id="at-the-start-of-each-class" class="slide level2">
-<h2>At the start of each class</h2>
-<ul>
-<li>Go to <code>https://github.com/[your GitHub username]</code></li>
-<li>Select the <code>Sync fork</code> button under the green <code>Code</code> button <img data-src="figures/Syncfork.png"></li>
-<li>Click <code>Update branch</code></li>
-<li>Open the Folder <code>CCS-2023-[your name]</code> on your Desktop</li>
-<li>Open the file <code>CCS-2023.Rproj</code></li>
-<li>Under the <code>Git</code> tab select blue arrow (pointing down) to <code>Pull</code> down changes from your GitHub repository</li>
-<li>Select the <code>XX-name-of-lesson.Rmd</code> file</li>
-<li>Select <code>Render</code> to generate the slides</li>
-</ul>
-</section>
-<section id="push-your-notes-to-your-repository-caution" class="slide level2">
-<h2>Push your notes to your repository (CAUTION)</h2>
-<ul>
-<li>Make changes then select check the <code>Staged</code> button under the <code>Git</code> tab</li>
-<li>Then select the <code>Commit</code> button</li>
-<li>Add a note to the <code>Commit message</code> section (e.g., my updates from today)</li>
-<li>Select the green arrow (pointing up) to <code>Push</code> changes to your GitHub</li>
-<li>The first time you do this you need to include your GitHub username and Personal access token</li>
-</ul>
-</section>
-<section id="get-a-personal-access-token" class="slide level2">
-<h2>Get a personal access token</h2>
-<ul>
-<li>Go to your GitHub account</li>
-<li>In the far upper-right pull down menu (next to your avatar) select <code>Settings</code> then <code>Developer settings</code></li>
-<li>In the left menu select <code>Personal access tokens &gt; Tokens (classic)</code></li>
-<li>Follow instructions to generate a personal access toke (PAT)</li>
-<li>Use your PAT as your password when pushing changes made on your computer to your GitHub account</li>
 </ul>
 </section>
 <section id="section" class="slide level2">
 <h2></h2>
 <ul>
+<li>Project directory name: <code>CCS-2023-[your name]</code></li>
+<li>Create a project as a subdirectory of: e.g.&nbsp;<code>Browse to Desktop</code></li>
+<li>Select <code>Create Project</code></li>
+<li>Click on the <code>01-getting-setup.qmd</code></li>
+<li>Select <code>Render</code> to generate the slide deck</li>
+</ul>
+</section>
+<section id="section-1" class="slide level2">
+<h2></h2>
+<ul>
 <li>Reload this page</li>
 </ul>
 
-<img data-src="figures/congrats-1.gif" class="r-stretch"><div class="footer footer-default">
+<img data-src="figures/congrats-1.gif" class="r-stretch"></section>
+<section id="at-the-start-of-each-class" class="slide level2">
+<h2>At the start of each class</h2>
+<ul>
+<li>Go to <code>https://github.com/[your GitHub username]</code></li>
+<li>Select the <code>Sync fork</code> button under the green <code>Code</code> button <img data-src="figures/Syncfork.png"></li>
+</ul>
+</section>
+<section id="section-2" class="slide level2">
+<h2></h2>
+<ul>
+<li>Click <code>Update branch</code></li>
+<li>Open the Folder <code>CCS-2023-[your name]</code> on your Desktop</li>
+<li>Open the file <code>CCS-2023.Rproj</code></li>
+<li>Under the <code>Git</code> tab select blue arrow (pointing down) to <code>Pull</code> down changes from your GitHub repository</li>
+<li>Select the <code>XX-name-of-lesson.Rmd</code> file</li>
+<li>Select <code>Render</code> to generate the slide deck</li>
+</ul>
+</section>
+<section id="dont-push" class="slide level2">
+<h2>Don’t push!</h2>
+<ul>
+<li>You can add notes to the lesson files (<code>_.qmd</code>) on your computer</li>
+<li>You can add new files to your local directory</li>
+<li>These changes stay on your computer only</li>
+<li>Don’t Push them to your GitHub repository!</li>
+</ul>
+<div class="footer footer-default">
 <p>GEO4251 Climate Change &amp; Storms</p>
 </div>
 </section>
