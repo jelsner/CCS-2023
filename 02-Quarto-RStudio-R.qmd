@@ -9,9 +9,61 @@ format:
 editor: source
 ---
 
+## Getting set up continued
+
+Assuming you have Quarto, R, and RStudio installed on your computer AND you have a GitHub account with a copy of my repository <https://github.com/jelsner/CCS-2023> (see `01-getting-setup.qmd` through step 6)
+
+## Do this 7th
+
+-   Open RStudio
+-   Under `File` > `New Project` select `Version Control`
+-   Select `Git`
+-   Repository URL: `https://github.com/[your GitHub username]/CCS-2023-[your name].git`
+
+##
+
+-   Project directory name: `CCS-2023-[your name]`
+-   Create a project as a directory of: e.g. `Browse to Desktop`
+-   Select `Create Project`. You should see a `Git` tab in one of the windows (upper right)
+-   Click on the `02-Quarto-RStudio-R.qmd`
+-   Select `Render` (next to the blue arrow) to generate the slide deck for today's lesson
+
+## At the start of each class
+
+-   Go to `https://github.com/[your GitHub username]`
+-   Select the `Sync fork` button under the green `Code` button 
+![](figures/Syncfork.png)
+
+##
+
+-   Click `Update branch`
+-   Open the Folder `CCS-2023-[your name]` on your Desktop
+-   Open the file `CCS-2023.Rproj`
+-   Under the `Git` tab select blue arrow (pointing down) to `Pull` down changes from your GitHub repository
+-   Select the `XX-name-of-lesson.Rmd` file
+-   Select `Render` to generate the slide deck
+
+## Don't push!
+
+-   You can add notes to the lesson files (`_.qmd`) on your computer
+-   You can add new files to your local directory
+-   These changes stay on your computer only
+-   Don't Push them to your GitHub repository!
+
+## Don't panic!
+
+If you can't get things to work with your GitHub repository and/or your RStudio does not recognize git then you can download my entire repository all at once
+
+-   Go to <https://github.com/jelsner/CCS-2023>
+-   Select the Green code button and scroll to `Download ZIP`
+-   Unzip the file on your Desktop
+-   Open the `CCS-2023.Rproj` file
+-   Select the `XX-name-of-lesson.Rmd` file
+-   Select `Render` to generate the slide deck
+
 ## What is Quarto?
 
--   Quarto is an open-source publishing system built on a document converter (Pandoc). When you click on the file `Quarto-RStudio-R.qmd` you should see this ![](figures/RStudio.png){width="500"}
+-   Quarto is an open-source publishing system built on a document converter (Pandoc). When you click on the file `02-Quarto-RStudio-R.qmd` you should see this ![](figures/RStudio.png){width="500"}
 -   Quarto files begin with a YAML between the two sets of lines that have three dashes
 
 ## What is RStudio?

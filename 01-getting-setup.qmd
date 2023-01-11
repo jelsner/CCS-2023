@@ -71,8 +71,7 @@ editor: source
 
 ## Do this 7th
 
--   Open RStudio. You should see a `Git` tab in one of the windows (upper right)
-![](figures/Git_tab.png)
+-   Open RStudio
 -   Under `File` > `New Project` select `Version Control`
 -   Select `Git`
 -   Repository URL: `https://github.com/[your GitHub username]/CCS-2023-[your name].git`
@@ -81,7 +80,8 @@ editor: source
 
 -   Project directory name: `CCS-2023-[your name]`
 -   Create a project as a directory of: e.g. `Browse to Desktop`
--   Select `Create Project`
+-   Select `Create Project`. You should see a `Git` tab in one of the windows (upper right)
+![](figures/Git_tab.png)
 -   Click on the `01-getting-setup.qmd`
 -   Select `Render` (next to the blue arrow) to generate the slide deck
 
