@@ -9,18 +9,19 @@ format:
 editor: source
 ---
 
-## Summary from the Syllabus
+## Important notes from the syllabus
 
--   Climate Change & Storms: Understanding storms and their relationship to climate change through data analysis
--   All course material is available on GitHub {{< fa brands github >}} <https://github.com/jelsner/CS-2023>
+-   Understanding Earth's most violent storms (hurricanes and tornadoes) and their relationship to climate change through data analysis
 -   Grades are determined by how well you do on the in-class lab exercises
--   I expect you to read the notes, watch the videos, and run the code within the lesson slides. I expect you to complete and return the in-class lab exercises on time
+-   I expect you to complete and return the in-class lab exercises on time
 
-## Computer and software
+## Course materials
 
--   You will need a laptop computer running either {{< fa brands windows >}}, {{< fa brands apple >}}, or {{< fa brands linux >}}
+-   You need a laptop computer running either Windows, MacOS, or Linux
 -   Class notes are on slides made with *Quarto*
--   Coding will be done in {{< fa brands r-project >}} through *RStudio*
+-   Coding is done in *R* through *RStudio*
+-   All course material is available on GitHub
+-   You need to get your computer setup to communicate with GitHub
 
 ## Do this 1st
 
@@ -35,8 +36,9 @@ editor: source
 
 ## Do this 3rd
 
--   Download and install RStudio desktop by going to <https://posit.co/download/rstudio-desktop/> *Step 2:*
--   Scroll down to find your computer's operating system and select the appropriate file to download
+-   Download and install RStudio Desktop by going to <https://posit.co/download/rstudio-desktop/>
+-   Scroll to Step 2
+-   You might need to scroll down to find your operating system and select the appropriate file to download
 -   Click on the downloaded file to install
 
 ## Do this 4th
@@ -78,10 +80,10 @@ editor: source
 ##
 
 -   Project directory name: `CCS-2023-[your name]`
--   Create a project as a subdirectory of: e.g. `Browse to Desktop`
+-   Create a project as a directory of: e.g. `Browse to Desktop`
 -   Select `Create Project`
 -   Click on the `01-getting-setup.qmd`
--   Select `Render` to generate the slide deck
+-   Select `Render` (next to the blue arrow) to generate the slide deck
 
 ## 
 -   Reload this page
