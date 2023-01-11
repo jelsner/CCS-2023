@@ -444,7 +444,7 @@
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3" data-code-line-numbers="2-3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> Rain.df, </span>
 <span id="cb3-2"><a href="#cb3-2"></a>       <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Mar, <span class="at">color =</span> Mar)) <span class="sc">+</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span> <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">seq</span>(<span class="dv">1900</span>, <span class="dv">2020</span>, <span class="dv">20</span>)) <span class="sc">+</span></span>
 <span id="cb3-4"><a href="#cb3-4"></a>  <span class="fu">ylab</span>(<span class="st">"Inches"</span>) <span class="sc">+</span></span>
 <span id="cb3-5"><a href="#cb3-5"></a>  <span class="fu">ggtitle</span>(<span class="at">label =</span> <span class="st">"March Rain in Northwest Florida"</span>,</span>
 <span id="cb3-6"><a href="#cb3-6"></a>          <span class="at">subtitle =</span> <span class="st">"1895-2021"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
