@@ -94,7 +94,7 @@ editor: source
 -   Select the `XX-name-of-lesson.Rmd` file
 -   Add your own notes to the file and/or `Render`
 
-## Push your notes to your repository
+## Push your notes to your repository (CAUTION)
 
 -   Make changes then select check the `Staged` button under the `Git` tab
 -   Then select the `Commit` button
