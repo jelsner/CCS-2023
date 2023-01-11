@@ -11,15 +11,15 @@ editor: source
 
 ## Summary from the Syllabus
 
--   Climate Change & Storms: Understanding storms and their relationship to our changing climate through the analysis of data
--   All the course material is available on GitHub {{< fa brands github >}} <https://github.com/jelsner/CS-2023>
+-   Climate Change & Storms: Understanding storms and their relationship to a changing climate through data analysis
+-   All course material is available on GitHub {{< fa brands github >}} <https://github.com/jelsner/CS-2023>
 -   Grades are determined by how well you do on the in-class lab exercises
 -   I expect you to read the notes, watch the videos, and run the code within the lesson slides. I expect you to complete and return the in-class lab exercises on time
 
 ## Computer and software
 
 -   You will need a laptop computer running either {{< fa brands windows >}}, {{< fa brands apple >}}, or {{< fa brands linux >}}
--   Class notes are on slides made with an open-source scientific publishing system called *Quarto*
+-   Class notes are on slides made with *Quarto*
 -   Coding will be done in {{< fa brands r-project >}} through *RStudio*
 
 ## Do this 1st
@@ -31,7 +31,7 @@ editor: source
 -   Download and install {{< fa brands r-project >}} by going to <https://cloud.r-project.org/>
 -   If you are using {{< fa brands windows >}}: Click on *Download R for Windows*, then click on *base*, then click on the *Download* link
 -   If you are using a {{< fa brands apple >}}: Click on *Download R for (Mac) OS X*, then under *Latest release:* click on *R-X.X.X.pkg*, where R-X.X.X is the version number. If you have the newer Mac with the Apple silicon chip (M1) use the *R-X.X.X-arm64.pkg*
--   For example, the latest version of {{< fa brands r-project >}} as of November 18, 2022 is R-4.2.2
+-   For example, the latest version of {{< fa brands r-project >}} as of October 31, 2022 is R-4.2.2
 
 ## Do this 3rd
 
@@ -39,16 +39,10 @@ editor: source
 -   Scroll down to find your computer's operating system and select the appropriate file to download
 -   Click on the downloaded file to install
 
-## How to videos & more about
-
--   Install {{< fa brands r-project >}} and RStudio for {{< fa brands windows >}} {{< video https://www.youtube.com/embed/TFGYlKvQEQ4 >}} 5 minutes
--   Install {{< fa brands r-project >}} and RStudio for {{< fa brands apple >}} {{< video https://www.youtube.com/embed/JqV-USGR6AA >}} 4 minutes
--   Quarto lets you to weave together content (text, images, videos) and executable code into a finished presentation. See <https://quarto.org/docs/presentations/>
-
 ## Do this 4th
 
 -   [Install Git](https://happygitwithr.com/install-git.html)
--   Use all the defaults on the Windows install
+-   Use all default settings on the Windows install
 -   Open RStudio
 -   [Configure Git](https://happygitwithr.com/hello-git.html)
 -   Close RStudio
@@ -80,37 +74,38 @@ editor: source
 -   Under `File` > `New Project` select `Version Control`
 -   Select `Git`
 -   Repository URL: `https://github.com/[your GitHub username]/CCS-2023-[your name].git`
+
+##
+
 -   Project directory name: `CCS-2023-[your name]`
 -   Create a project as a subdirectory of: e.g. `Browse to Desktop`
 -   Select `Create Project`
-
-## At the start of each class
-
--   Go to `https://github.com/[your GitHub username]`
--   Select the `Sync fork` button under the green `Code` button then click `Update branch`
--   Open the Folder `CCS-2023-[your name]` on your Desktop
--   Open the file `CCS-2023.Rproj`
--   Under the `Git` tab select blue arrow (pointing down) to `Pull` down changes from your GitHub repository
--   Select the `XX-name-of-lesson.Rmd` file
--   Add your own notes to the file and/or `Render`
-
-## Push your notes to your repository (CAUTION)
-
--   Make changes then select check the `Staged` button under the `Git` tab
--   Then select the `Commit` button
--   Add a note to the `Commit message` section (e.g., my updates from today)
--   Select the green arrow (pointing up) to `Push` changes to your GitHub
--   The first time you do this you need to include your GitHub username and Personal access token
-
-## Get a personal access token
-
--   Go to your GitHub account
--   In the far upper-right pull down menu (next to your avatar) select `Settings` then `Developer settings`
--   In the left menu select `Personal access tokens > Tokens (classic)`
--   Follow instructions to generate a personal access toke (PAT)
--   Use your PAT as your password when pushing changes made on your computer to your GitHub account
+-   Click on the `01-getting-setup.qmd`
+-   Select `Render` to generate the slide deck
 
 ## 
 -   Reload this page
 
 ![](figures/congrats-1.gif)
+
+## At the start of each class
+
+-   Go to `https://github.com/[your GitHub username]`
+-   Select the `Sync fork` button under the green `Code` button 
+![](figures/Syncfork.png)
+
+##
+
+-   Click `Update branch`
+-   Open the Folder `CCS-2023-[your name]` on your Desktop
+-   Open the file `CCS-2023.Rproj`
+-   Under the `Git` tab select blue arrow (pointing down) to `Pull` down changes from your GitHub repository
+-   Select the `XX-name-of-lesson.Rmd` file
+-   Select `Render` to generate the slide deck
+
+## Don't push!
+
+-   You can add notes to the lesson files (`_.qmd`) on your computer
+-   You can add new files to your local directory
+-   These changes stay on your computer only
+-   Don't Push them to your GitHub repository!
