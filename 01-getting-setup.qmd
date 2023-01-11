@@ -12,14 +12,13 @@ editor: source
 ## Summary from the Syllabus
 
 -   Climate Change & Storms: Understanding storms and their relationship to our changing climate through the analysis of data
--   All the course slides are available on GitHub {{< fa brands github >}} <https://github.com/jelsner/CS-2023>
+-   All the course material is available on GitHub {{< fa brands github >}} <https://github.com/jelsner/CS-2023>
 -   Grades are determined by how well you do on the in-class lab exercises
 -   I expect you to read the notes, watch the videos, and run the code within the lesson slides. I expect you to complete and return the in-class lab exercises on time
 
 ## Computer and software
 
 -   You will need a laptop computer running either {{< fa brands windows >}}, {{< fa brands apple >}}, or {{< fa brands linux >}}
--   The class notes live on {{< fa brands github >}} and are updated before each class
 -   Class notes are on slides made with an open-source scientific publishing system called *Quarto*
 -   Coding will be done in {{< fa brands r-project >}} through *RStudio*
 
@@ -90,7 +89,7 @@ editor: source
 -   Go to `https://github.com/[your GitHub username]`
 -   Select the `Sync fork` button under the green `Code` button then click `Update branch`
 -   Open the Folder `CCS-2023-[your name]` on your Desktop
--   Open the file `CC-2023.Rproj`
+-   Open the file `CCS-2023.Rproj`
 -   Under the `Git` tab select blue arrow (pointing down) to `Pull` down changes from your GitHub repository
 -   Select the `XX-name-of-lesson.Rmd` file
 -   Add your own notes to the file and/or `Render`
