@@ -40,7 +40,7 @@ Assuming you have Quarto, R, and RStudio installed on your computer AND you have
 -   Open the Folder `CCS-2023-[your name]` on your Desktop
 -   Open the file `CCS-2023.Rproj`
 -   Under the `Git` tab select blue arrow (pointing down) to `Pull` down changes from your GitHub repository
--   Select the `XX-name-of-lesson.Rmd` file
+-   Select the `XX-name-of-lesson.qmd` file
 -   Select `Render` to generate the slide deck
 
 ## Don't push!
@@ -48,18 +48,27 @@ Assuming you have Quarto, R, and RStudio installed on your computer AND you have
 -   You can add notes to the lesson files (`_.qmd`) on your computer
 -   You can add new files to your local directory
 -   These changes stay on your computer only
--   Don't Push them to your GitHub repository!
+-   Don't push them to your GitHub repository!
 
 ## Don't panic!
 
-If you can't get things to work with your GitHub repository and/or your RStudio does not recognize git then you can download my entire repository all at once
+If you can't get things to work with your GitHub repository and/or your RStudio does not recognize git then you can download my entire class repository all at once
 
 -   Go to <https://github.com/jelsner/CCS-2023>
 -   Select the Green code button and scroll to `Download ZIP`
 -   Unzip the file on your Desktop
--   Open the `CCS-2023.Rproj` file
--   Select the `XX-name-of-lesson.Rmd` file
+-   From the `CCS-2023-main` folder open the `CCS-2023.Rproj` file
+-   Select the `XX-name-of-lesson.qmd` file
 -   Select `Render` to generate the slide deck
+
+## Getting individual files off GitHub
+
+To keep the `CCS-2023-main` folder up to date you can get the individual lesson file off GitHub
+
+-   Go to <https://github.com/jelsner/CCS-2023>
+-   Select the individual lesson file (`XX-name-of-lesson.qmd`)
+-   Select the Raw tab then Save page as
+-   Move that file to your folder `CCS-2023-main`
 
 ## What is Quarto?
 
