@@ -281,6 +281,7 @@ lm(Td_C ~ Year, data = Td.df)
 Explore the relationships between humidity and temperature
 
 ```{r}
+#| echo: true
 dplyr::left_join(q.df, T.df, by = "Year") |>
   ggplot(mapping = aes(x = T_C, y = q_gpkg)) +
   geom_point() +
