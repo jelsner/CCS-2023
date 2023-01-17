@@ -5,3 +5,6 @@
 .DS_Store
 data/IBTrACS*
 *-ANSWERS.qmd
+*_files
+*.html
+Other_qmds/
