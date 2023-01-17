@@ -9,26 +9,46 @@ format:
 editor: source
 ---
 
-## Getting set up continued
+## Getting set up
 
-Assuming you have Quarto, R, and RStudio installed on your computer AND you have a GitHub account with a copy of my repository <https://github.com/jelsner/CCS-2023> (see `01-getting-setup.qmd` through step 6)
+-   Install Quarto, R, and RStudio on your laptop
+-   Put the class notes from GitHub into a folder on your computer
 
-## Do this 7th
+## Easiest
+
+-   Go to <https://github.com/jelsner/CCS-2023>
+-   Select the green `Code` button and then Download ZIP
+-   Unzip the file on your laptop
+-   Go to the folder `CCS-2023-main` on your laptop and open the file `02-Quarto-RStudio-R.qmd`
+-   Select `Render` (next to the blue arrow) to generate the slide deck for today's lesson
+
+## Harder {.smaller}
 
 -   Open RStudio
 -   Under `File` > `New Project` select `Version Control`
 -   Select `Git`
--   Repository URL: `https://github.com/[your GitHub username]/CCS-2023-[your name].git`
-
-##
-
--   Project directory name: `CCS-2023-[your name]`
--   Create a project as a directory of: e.g. `Browse to Desktop`
--   Select `Create Project`. You should see a `Git` tab in one of the windows (upper right)
--   Click on the `02-Quarto-RStudio-R.qmd`
+-   In the `Repository URL` type `https://github.com/jelsner/CCS-2023.git`
+-   Note where the project resides on your laptop
+-   Select Create Project
+-   Under `Files` open the file `02-Quarto-RStudio-R.qmd`
 -   Select `Render` (next to the blue arrow) to generate the slide deck for today's lesson
 
+## Hardest {.smaller}
+
+-   Install `Git` on your laptop (Step 4 from last week)
+-   Sign up for `GitHub` (Step 5)
+-   Fork my GitHub repository (Step 6)
+-   Open RStudio
+-   Under `File` > `New Project` select `Version Control` then `Git`
+-   In the `Repository URL` type `https://github.com/[your name]/CCS-2023.git`
+-   Select Create Project
+-   Under `Files` open the file `02-Quarto-RStudio-R.qmd`
+-   Select `Render` (next to the blue arrow) to generate the slide deck for today's lesson
+
+
 ## At the start of each class
+
+-   Go to the 
 
 -   Go to `https://github.com/[your GitHub username]`
 -   Select the `Sync fork` button under the green `Code` button 
