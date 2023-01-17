@@ -69,37 +69,12 @@ In-person lessons will be held in this room (Bellamy 208)
 
 ## Do this 7th
 
--   Open RStudio. You should now see a `Git` tab
+-   Open RStudio
 -   Under `File` > `New Project` select `Version Control`
 -   Select `Git`
 -   Repository URL: `https://github.com/[your GitHub username]/CCS-2023-[your name].git`
 -   Project directory name: `CCS-2023-[your name]`
 -   Create a project as a sub-directory of: e.g., `Browse to Desktop`
 -   Select Create Project
-
-## At the start of each class 
-
--   Go to `https://github.com/[your GitHub username]`
--   Select the `Sync fork` button under the green `Code` button
--   Click `Update branch`
--   Open the Folder `CCS-2023-[your name]` on your Desktop
--   Open the file `CC-2023.Rproj`
--   Under the `Git` tab select blue arrow (pointing down) to `Pull` down changes from your GitHub repository
--   Select the `XX-name-of-lesson.Rmd` file
--   Add your own notes to the file and/or `Render`
-
-## Push your notes to your repo
-
--   Make changes then select check the `Staged` button under the `Git` tab
--   Then select the `Commit` button
--   Add a note to the `Commit message` section (e.g., my updates from today)
--   Select the green arrow (pointing up) to `Push` changes to your GitHub
--   The first time you will need to include your GitHub username and Personal access token
-
-## Get a personal access token
-
--   Go to your GitHub account
--   In the far upper right pull down menu select `Settings` then `Developer settings`
--   In the left menu select `Personal access tokens` > `Tokens (classic)`
--   Follow instructions to generate a PAT
--   Use your PAT as your password when pushing changes made on your computer to your GitHub account
+-   You should now see a `Git` tab
+-   Under the `Git` tab select the blue arrow (pointing down) to `Pull` from your GitHub repository
