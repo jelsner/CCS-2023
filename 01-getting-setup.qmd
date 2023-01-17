@@ -89,27 +89,3 @@ editor: source
 -   Reload this page
 
 ![](figures/congrats-1.gif)
-
-## At the start of each class
-
--   Go to `https://github.com/[your GitHub username]`
--   Select the `Sync fork` button under the green `Code` button 
-![](figures/Syncfork.png)
-
-##
-
--   Click `Update branch`
--   Open the Folder `CCS-2023-[your name]` on your Desktop
--   Open the file `CCS-2023.Rproj`
--   Under the `Git` tab select blue arrow (pointing down) to `Pull` down changes from your GitHub repository
--   Select the `XX-name-of-lesson.Rmd` file
--   Select `Render` to generate the slide deck
-
-## Don't push!
-
--   You can add notes to the lesson files (`_.qmd`) on your computer
--   You can add new files to your local directory
--   These changes stay on your computer only
--   Don't Push them to your GitHub repository!
-
-testing and testing some more
