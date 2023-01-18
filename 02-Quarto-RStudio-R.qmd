@@ -123,8 +123,8 @@ If Quarto is a car, then RStudio is the dashboard, and R is the engine
 
 ## 
 
--   More precisely, {{< fa brands r-project >}} is a programming language that runs code
--   In a car you have access to a speedometer, rear view mirrors, and a navigation system makes driving easier. RStudio makes using {{< fa brands r-project >}} easier as well
+-   More precisely, R is a programming language that runs code
+-   In a car you have access to a speedometer, rear view mirrors, and a navigation system makes driving easier. RStudio makes using R easier as well
 -   In a Quarto markdown file you include code like this
 ```{r}
 #| echo: true
@@ -133,7 +133,7 @@ If Quarto is a car, then RStudio is the dashboard, and R is the engine
 
 -   When you click the `Render` button a presentation is generated that includes content and the output of embedded code
 
-## Getting to know RStudio and R
+## Getting to know RStudio
 
 ![RStudio](figures/RStudio.png){width="800"}
 -   4 panels each with options. Some things I find useful
