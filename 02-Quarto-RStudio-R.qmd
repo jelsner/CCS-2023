@@ -48,15 +48,6 @@ editor: source
 -   Under `Files` open the file `02-Quarto-RStudio-R.qmd`
 -   Select `Render` (next to the blue arrow) to generate the slide deck for today's lesson
 
-## Labs
-
--   Rename the file `06-Lab-1.qmd` to `06-Lab-1-[your name].qmd`
--   Open the renamed file in RStudio
--   Type your name as Author
--   Answer the questions with code
--   Select `Render` to generate the answers as HTML
--   Email just the `.qmd` file (do not email the .html file)
-
 ## At the start of each class
 
 -   Go to the course site on `Canvas`
@@ -90,6 +81,15 @@ editor: source
 -   Select the Raw tab then Save page as
 -   Move that file to your local folder containing the class notes
 
+## Labs
+
+-   Rename the file `06-Lab-1.qmd` to `06-Lab-1-[your name].qmd`
+-   Open the renamed file in RStudio
+-   Type your name as Author
+-   Answer the questions with code
+-   Select `Render` to generate the answers as HTML
+-   Email just the `.qmd` file (do not email the .html file)
+
 ## What is Quarto? {.smaller}
 
 -   Quarto is an open-source publishing system built on a document converter (Pandoc). When you click on the file `02-Quarto-RStudio-R.qmd` you should see this ![](figures/RStudio.png){width="500"}
@@ -122,15 +122,7 @@ If Quarto is a car, then RStudio is the dashboard, and R is the engine
 ## Getting to know RStudio and R
 
 ![RStudio](figures/RStudio.png){width="800"}
--   4 panels each with various options. Some of the things I find useful
-
-## To render the notes to PDF
-
--   You need to install LaTeX on your computer
--   You can install a version of LaTeX (TinyTex) with the following command in the Terminal window of RStudio
--   Click on the `Terminal` tab and then type
-
-`quarto install tool tinytex`
+-   4 panels each with options. Some things I find useful
 
 ## How climate change works
 

@@ -3,16 +3,23 @@ title: "Lab 1"
 author: "PUT YOUR NAME HERE"
 format: html
 editor: source
+date: February 1, 2023
 ---
 
-## 1 
+Due: 4:30 p.m. February 1, 2023
+
+## 1
+
 Write code below to download and install the {ggplot2} package
 
-## 2 
+## 2
+
 Write code below to get the tornado data into your environment as a data frame called `Torn.df`
 
-## 3 
+## 3
+
 Write code below to get the average tornado path length. The path length variable is `len` in `Torn.df`
 
 ## 4
+
 Write code below to get the number of tornadoes in each state. The state variable is `st`. Hint: use the `table()` function
