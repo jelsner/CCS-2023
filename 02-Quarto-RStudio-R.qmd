@@ -13,6 +13,7 @@ editor: source
 
 -   Get the course notes
 -   Render the lesson file
+-   Keeping up to date
 -   How to do the lab assignments
 -   About R and RStudio
 
@@ -21,7 +22,7 @@ editor: source
 1. R and RStudio but no Git on your laptop
 2. R, RStudio, and Git on your laptop, but no GitHub account
 3. R, RStudio, Git, and a GitHub account
-4. R or RStudio does not install on your laptop
+4. R or RStudio fails to install on your laptop
 
 ## R and RStudio but not Git
 
