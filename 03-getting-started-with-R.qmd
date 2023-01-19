@@ -11,14 +11,14 @@ editor: source
 
 ## How do I code in R?
 
--   {{< fa brands r-project >}} is an interpreted language unlike Excel or SPSS with point-and-click interaction
--   You must type in commands written in {{< fa brands r-project >}} code. In other words, you must code/program. I use "coding" and "programming" interchangeably
+-   R is an interpreted language unlike Excel or SPSS with point-and-click interaction
+-   You must type in commands written in code. In other words, you must code/program. I use "coding" and "programming" interchangeably
 -   To begin you need some basic concepts
 
 ## 
 
 -   *Console pane*: where you enter in commands
--   *Running code*: the act of telling {{< fa brands r-project >}} to do something by giving it commands
+-   *Running code*: the act of telling R to do something by giving it commands
 -   *Objects*: where values are saved. Here you *assign* values 2 and 1, 2, 3, and 4 to objects `a` and `b`
 
 ```{r}
@@ -145,7 +145,7 @@ DamageRating |>
 
 ## Data frames
 
--   Data in {{< fa brands r-project >}} where rows are observations and columns are variables that describe the observations. They are rectangular spreadsheets
+-   Data in R where rows are observations and columns are variables that describe the observations. They are rectangular spreadsheets
 -   You will get data into your R environment as a data frame with the function `readr::read_csv()`
 
 ```{r}
