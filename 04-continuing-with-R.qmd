@@ -9,6 +9,8 @@ format:
 editor: source
 ---
 
+More material? See Lesson 2 from QG starting with line 213 Common problems
+
 ## Errors
 
 R reports errors, warnings, and messages in a red font
