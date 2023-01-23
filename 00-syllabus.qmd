@@ -1,12 +1,15 @@
 ---
 title: "Syllabus"
-format: 
+format:
   revealjs:
     code-fold: false
     theme: white
     footer: "GEO4251 Climate Change & Storms"
     chalkboard: true
+  pdf: default
 editor: source
+execute:
+  echo: true
 ---
 
 ## GEO4251: Climate Change & Storms
@@ -15,25 +18,25 @@ editor: source
 
 ## Contact information
 
--   {{< fa chalkboard-user >}} Professor James B. Elsner
--   Bellamy {{< fa building >}} Room 314
--   Lesson {{< fa clock >}} MW 3:05-4:20 p.m.
--   Student {{< fa clock >}} TR 9:15-9:45 a.m., MW 2:15-3 p.m.
--   {{< fa envelope >}} jelsner@fsu.edu
+-   Professor James B. Elsner
+-   Bellamy  Room 314
+-   Lesson times MW 3:05-4:20 p.m.
+-   Student times TR 9:15-9:45 a.m., MW 2:15-3 p.m.
+-   Email jelsner@fsu.edu
 
 ## Who am I?
 
--   [{{< fa house size=1x >}}](http://myweb.fsu.edu/jelsner/_site/) Web
--   [{{< fa graduation-cap size=1x >}}](https://scholar.google.com/citations?user=uF8tRWQAAAAJ) Research
--   [{{< fa brands github size=1x >}}](https://github.com/jelsner/) Code
--   [{{< fa brands mastodon size=1x >}}](https://fediscience.org/@jelsner) Social
--   [[{{< fa brands youtube size=1x >}}](https://www.youtube.com/channel/UCmvKrcWTnNGjoy9OTGTz1qQ)]{style="color:red"} Play
+-   <http://myweb.fsu.edu/jelsner/_site/> Web
+-   <https://scholar.google.com/citations?user=uF8tRWQAAAAJ> Research
+-   <https://github.com/jelsner/> Code
+-   <https://fediscience.org/@jelsner> Social
+-   <https://www.youtube.com/channel/UCmvKrcWTnNGjoy9OTGTz1qQ)> Play
 
 ## Description
 
 -   This course is for students who want to learn about the relationships between climate change and Earth's most powerful storms through the analysis and modeling of data
 
--   All course materials are available on GitHub {{< fa brands github >}} <https://github.com/jelsner/CCS-2023>
+-   All course materials are available on GitHub <https://github.com/jelsner/CCS-2023>
 
 ## Expected learning outcomes
 
