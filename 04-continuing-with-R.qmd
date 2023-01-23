@@ -9,7 +9,113 @@ format:
 editor: source
 ---
 
-More material? See Lesson 2 from QG starting with line 213 Common problems
+## Data science
+
+-   Our understanding of climate change and storms is largely through data science
+-   Data science is done on a computer with two choices, use a spreadsheet or write code
+-   A spreadsheet is convenient, but it makes the three conditions for a good data analysis *reproducibility*, *communication*, and *automation* difficult
+
+## Reproducibility {.smaller}
+
+-   A scientific paper is advertisement for a claim <https://journals.ametsoc.org/view/journals/bams/101/8/bamsD190338.xml?tab_body=fulltext-display>
+-   But the *proof* of the claim is the procedure that was used to obtain the result <https://github.com/jelsner/stronger-hur>
+-   If your science is to be convincing, the trail from the data you started with to the final output must be freely available to the public
+-   A reproducible trail with a spreadsheet is hard
+-   It is easy to make mistakes (e.g., accidentally sorting just a column rather than the entire table)
+-   A set of instructions written as computer code is the exact procedure
+
+## Communication {.smaller}
+
+-   Computer code is a recipe
+-   It communicates precisely what you did to get the result
+-   Communication to others and to your future self
+-   It's hard to explain precisely what you did when working with a spreadsheet. Click here, then right click here, then choose menu X, etc
+-   The words needed to describe these procedures are not standard
+-   Code is standardized so it provides an efficient way to communicate because all important information is given as plain text with no ambiguity
+
+## Automation {.smaller}
+
+-   If you've ever made a map using a geographic information system (GIS) you know how hard it is to make another one (even one that is quite similar) with a new set of data
+-   Running code with new data is simple
+-   Being able to code is an important skill for most technical jobs
+-   Learning to code doesn't mean you will be a coder
+
+## {.smaller}
+
+-   The ability to reproduce your work is important to the scientific process but it is also pragmatic
+-   The person most likely to reproduce your work is you
+-   This is especially true for graphs and figures which often have a finished quality to them as a result of tweaking and adjustments to the details but this makes it hard to reproduce them later
+-   The goal is to do as much of this tweaking as possible with the code you write, rather than in a way that is invisible (retrospectively). Contrast editing an image in Adobe Illustrator
+
+## More about your notes {.smaller}
+
+-   To do things efficiently you write code along with comments. This is where markdown files come into play (files that end with `.qmd` or `.Rmd`)
+-   A markdown file is a plain text document where text is interspersed with code
+-   When you `Render` the file the code is executed line by line starting at the top of the file and the output supplements or replaces the code
+-   The resulting file is converted into a readable document formatted in HTML, PDF, or Word
+-   The non-code segments of the document are plain text with simple formatting instructions (e.g., `##` for section header)
+-   If you keep your notes in this way, you will be able to see the code you write, the output it produces, and your own commentary or clarification on what the code did, all in a convenient way
+-   Then you can turn everything into a good-looking document straight away with the `Render` button
+
+## Copy/paste/tweek
+
+-   Copy, paste, and tweak: it is easier to take existing code that you know works and modify it to suit your ends as opposed to trying to type out the code from scratch
+-   Learn by doing: coding is easier when you have a goal, like analyzing data that is important to you
+-   Practice: Experiment by making small changes to the code I write in these notes
+
+## Packages
+
+-   Packages provide functions. They are written by a worldwide community and can be downloaded for free
+-   The package {ggplot2} has functions for making plots
+-   You will also use the package {hockeystick} that has functions for downloading and plotting climate change data
+
+## How to make a plot {.smaller}
+
+-   Let's start by making a graph. There are three things to learn
+
+1.  How to create a graph using functions from {ggplot2}
+2.  How to add variables to a graph with aesthetics
+3.  How to select the 'type' of graph with *geoms*
+
+-   Let's begin with a question. Do tornadoes with wider damage paths have longer damage paths?
+-   Given a large enough data set, there are only two possibilities
+-   A: Tornadoes with wider damage paths have longer paths
+-   B: Tornadoes with wider paths have shorter paths
+
+
+
+
+
+## Tips
+
+-   Copy, paste, and tweak: it is easier to take existing code that you know works and modify it to suit your ends as opposed to trying to type out the code from scratch
+-   Learn by doing: coding is easier when you have a goal in mind, like analyzing data that is important to you
+-   Practice: Experiment by making small changes to the code I write in these notes
+
+## Packages
+
+-   Packages provide functions. They are written by a worldwide community and can be downloaded for free
+-   The package {ggplot2} has functions for making plots. You will also use the package {hockeystick} that has functions for downloading and plotting climate data
+
+```{r}
+#| echo: true
+install.packages(pkgs = "hockeystick",
+                 repos = "https://cloud.r-project.org")
+```
+
+##
+
+![](figures/install-packages.png)
+
+## Getting data into R from your computer
+
+-   Consider monthly rainfall from the state of Florida from  <http://www.esrl.noaa.gov/psd/data/timeseries>. Using this portal I downloaded monthly average rainfall for division 1 (Northwest FL) and uploaded the file to GitHub
+
+```{r, eval=FALSE}
+#| echo: true
+Rain.df <- readr::read_table(here::here("data", "NWFL_MonthlyRain.txt"))
+```
+
 
 ## Errors
 
@@ -67,35 +173,6 @@ ggplot(data = df,
 ```{r, eval=FALSE}
 #| echo: true
 install.packages("tidyverse")
-```
-
-## Tips
-
--   Copy, paste, and tweak: it is easier to take existing code that you know works and modify it to suit your ends as opposed to trying to type out the code from scratch
--   Learn by doing: coding is easier when you have a goal in mind, like analyzing data that is important to you
--   Practice: practice will improve your coding skills. Experiment by making small changes to the code I write in these notes
-
-## Packages
-
--   Packages provide functions. They are written by a worldwide community and can be downloaded for free.
--   The package {ggplot2} has functions for making plots. You will also use the package {hockeystick} that has functions for downloading and plotting climate data
-
-```{r}
-#| echo: true
-install.packages(pkgs = "hockeystick",
-                 repos = "https://cloud.r-project.org")
-```
-
-##
-
-![](figures/install-packages.png)
-
-## Getting data into R from your computer
-
--   Consider monthly rainfall from the state of Florida from  <http://www.esrl.noaa.gov/psd/data/timeseries>. Using this portal I downloaded monthly average rainfall for division 1 (Northwest FL) and uploaded the file to GitHub
-
-```{r}
-Rain.df <- readr::read_table(here::here("data", "NWFL_MonthlyRain.txt"))
 ```
 
 ## Your turn
