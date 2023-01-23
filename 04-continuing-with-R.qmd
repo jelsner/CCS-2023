@@ -69,7 +69,7 @@ editor: source
 -   The package {ggplot2} has functions for making plots
 -   You will also use the package {hockeystick} that has functions for downloading and plotting climate change data
 
-## How to make a plot {.smaller}
+## How to make a graph {.smaller}
 
 -   Let's start by making a graph. There are three things to learn
 
@@ -82,9 +82,15 @@ editor: source
 -   A: Tornadoes with wider damage paths have longer paths
 -   B: Tornadoes with wider paths have shorter paths
 
+## Get the tornado data
 
+```{r}
+#| echo: true
+L <- here::here("data", "Tornadoes.csv")
 
-
+Torn.df <- L |>
+  readr::read_csv()
+```
 
 ## Tips
 
