@@ -11,7 +11,7 @@ editor: source
 
 ## Today
 
--   Working with code
+-   Learning code
 -   Types of values and vectors
 -   Data frames
 -   Conditionals
@@ -32,11 +32,12 @@ editor: source
 
 -   Go to the course site on `Canvas`
 -   Under `Modules` > `Course Notes` select the latest `.qmd` file
--   Download the file to your laptop and move it inside the course notes folder (you may need to override the older version)
+-   Download the file to your laptop and move it inside the course notes folder (you may need to overwrite the older version)
 -   If you are using `posit.cloud`, select `Upload` under the `Files` tab
 -   Open the folder and then open the file
 -   If there is a yield sign, select `Install`
 -   Select `Render` to generate the slide deck
+-   Demonstration
 
 ## If you have a forked repo on GitHub {.smaller}
 
@@ -46,10 +47,10 @@ editor: source
 -   Open the Folder `CCS-2023-[your name]` on your Desktop
 -   Open the file `CCS-2023.Rproj`
 -   Under the `Git` tab select blue arrow (pointing down) to `Pull` down changes from your GitHub repository
--   Select the `XX-name-of-lesson.qmd` file
+-   Select the `03-getting-started-with-R.qmd` file
 -   Select `Render` to generate the slide deck
 
-## Coding
+## Learning code
 
 -   R is a language that requires you to code
 -   Learning to code and learning to write
@@ -118,7 +119,7 @@ Years <- c(2004, 2005, 2017, 2018, 2022)
 ```
 
 -   The first element is the value 2004, the 2nd is the value 2005
--   What is a major hurricane? <https://chat.openai.com/chat>
+-   What is a major hurricane? <https://en.wikipedia.org/wiki/Saffir%E2%80%93Simpson_scale>
 
 ## 
 
@@ -234,7 +235,7 @@ Torn.df <- L |>
 
 ## Conditionals
 
--   Tests for equality use `==` (and not =)
+-   Check to see if two things are equal use `==`
 -   For example, 2 + 1 == 3 compares 2 + 1 to 3 will return a `TRUE`. Try it
 -   In contrast, 2 + 1 = 3 will return an error
 -   Type 9 > 5 in the Console
@@ -293,3 +294,6 @@ Torn.df$fat |>
 -   Write code to get the total number of injuries in the tornado record
 -   Write code to get the highest number of fatalities from a single tornado in the record
 -   Write code to get the average latitude of all tornadoes in the record
+-   Watch what's the big deal with a few degrees?
+
+{{< video https://www.youtube.com/embed/6cRCbgTA_78 >}} 9 minutes
