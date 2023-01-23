@@ -66,6 +66,11 @@ editor: source
 #| echo: true
 10^3
 ```
+
+```{r}
+rnorm(10)
+```
+
 -   From rendered slides you `copy` the code and paste it in the Console and press return
 -   These actions are called *Running code*: the act of telling R to do something by giving it commands to execute
 
