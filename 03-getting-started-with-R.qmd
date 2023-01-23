@@ -24,7 +24,7 @@ editor: source
 -   Sign up for a free account
 -   Select `New Project` > `New Project from Git Repository`
 -   Type `https://github/jelsner/CCS-2023`
--   Open `03-getting-started-with-R.Rmd`
+-   Open `03-getting-started-with-R.qmd`
 -   Next to the yield sign, select `Install`
 -   Select `Render` to generate the slide deck
 
