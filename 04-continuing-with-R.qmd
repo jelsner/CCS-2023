@@ -9,29 +9,59 @@ format:
 editor: source
 ---
 
+## Today
+
+-   Answers from Monday's "Your turn"
+-   Data science
+-   How tornadoes form (watch on YouTube)
+-   Making a graph
+
+## Getting the tornado data
+
+-   In Lesson 3 you specified the URL of the tornado data on the Storm Prediction Center's server and used the `readr::read_csv()` function to get a data frame into your R session
+-   Here the file `Tornadoes.csv` is in your `data` directory
+-   Specify this location with the `here::here()` command and get the data frame into your current R session
+
+```{r}
+#| echo: true
+L <- here::here("data", "Tornadoes.csv")
+
+Torn.df <- L |>
+  readr::read_csv()
+```
+
+## Answers from "Your turn" {.smaller}
+
+-   View `Torn.df`
+
+-   Write code to get the total number of injuries (`inj`) in the tornado record
+-   Write code to get the highest number of fatalities (`fat`) from a single tornado in the record
+-   Write code to get the average start latitude (`slat`) of all tornadoes in the record
+
 ## Data science
 
 -   Our understanding of climate change and storms is largely through data science
--   Data science is done on a computer with two choices, use a spreadsheet or write code
+-   Data science is done on a computer
+-   You have two choices either use a spreadsheet or write code
 -   A spreadsheet is convenient, but it makes the three conditions for a good data analysis *reproducibility*, *communication*, and *automation* difficult
 
 ## Reproducibility {.smaller}
 
--   A scientific paper is advertisement for a claim <https://journals.ametsoc.org/view/journals/bams/101/8/bamsD190338.xml?tab_body=fulltext-display>
--   But the *proof* of the claim is the procedure that was used to obtain the result <https://github.com/jelsner/stronger-hur>
--   If your science is to be convincing, the trail from the data you started with to the final output must be freely available to the public
+-   A scientific paper advertises a claim <https://journals.ametsoc.org/view/journals/bams/101/8/bamsD190338.xml?tab_body=fulltext-display>
+-   But *proof* of the claim is the procedure to obtain the result <https://github.com/jelsner/stronger-hur>
+-   If science is to be convincing, the trail from the data to the final output must be freely available
 -   A reproducible trail with a spreadsheet is hard
 -   It is easy to make mistakes (e.g., accidentally sorting just a column rather than the entire table)
--   A set of instructions written as computer code is the exact procedure
+-   Instructions written as computer code are the exact procedure
 
 ## Communication {.smaller}
 
--   Computer code is a recipe
+-   Computer code is a like a recipe
 -   It communicates precisely what you did to get the result
 -   Communication to others and to your future self
 -   It's hard to explain precisely what you did when working with a spreadsheet. Click here, then right click here, then choose menu X, etc
--   The words needed to describe these procedures are not standard
--   Code is standardized so it provides an efficient way to communicate because all important information is given as plain text with no ambiguity
+-   Words that describe these procedures are not standard
+-   Code is standardized providing an efficient way to communicate. All needed information (and no more) is given as text with no ambiguity
 
 ## Automation {.smaller}
 
@@ -47,73 +77,92 @@ editor: source
 -   This is especially true for graphs and figures which often have a finished quality to them as a result of tweaking and adjustments to the details but this makes it hard to reproduce them later
 -   The goal is to do as much of this tweaking as possible with the code you write, rather than in a way that is invisible (retrospectively). Contrast editing an image in Adobe Illustrator
 
-## More about your notes {.smaller}
+## More about your class notes {.smaller}
 
--   To do things efficiently you write code along with comments. This is where markdown files come into play (files that end with `.qmd` or `.Rmd`)
--   A markdown file is a plain text document where text is interspersed with code
--   When you `Render` the file the code is executed line by line starting at the top of the file and the output supplements or replaces the code
--   The resulting file is converted into a readable document formatted in HTML, PDF, or Word
--   The non-code segments of the document are plain text with simple formatting instructions (e.g., `##` for section header)
--   If you keep your notes in this way, you will be able to see the code you write, the output it produces, and your own commentary or clarification on what the code did, all in a convenient way
--   Then you can turn everything into a good-looking document straight away with the `Render` button
+-   To do things efficiently you write code along with comments. This is where markdown files come in (files that end with `.qmd` or `.Rmd`)
+-   A markdown file is a document where text is interspersed with code
+-   When you `Render` the file the code is executed starting at the top of the file and the output supplements or replaces the code
+-   The resulting file is converted into a formatted document (HTML, PDF, or Word)
+-   Text can be format with simple instructions (e.g., `##` for section header)
+-   If you keep your notes in this way, you will be able to see the code you write, the output it produces, and your own comments on what the code did
 
-## Copy/paste/tweek
+## Coding tips
 
--   Copy, paste, and tweak: it is easier to take existing code that you know works and modify it to suit your ends as opposed to trying to type out the code from scratch
+-   Copy, paste, and tweak: it is easier to take existing code that works and modify it to suit your needs than it is to code from scratch
 -   Learn by doing: coding is easier when you have a goal, like analyzing data that is important to you
 -   Practice: Experiment by making small changes to the code I write in these notes
 
 ## Packages
 
--   Packages provide functions. They are written by a worldwide community and can be downloaded for free
+-   Packages are groups of functions
+-   Written by a worldwide community of scientists
+-   Installed directly from R
 -   The package {ggplot2} has functions for making plots
--   You will also use the package {hockeystick} that has functions for downloading and plotting climate change data
-
-## How to make a graph {.smaller}
-
--   Let's start by making a graph. There are three things to learn
-
-1.  How to create a graph using functions from {ggplot2}
-2.  How to add variables to a graph with aesthetics
-3.  How to select the 'type' of graph with *geoms*
-
--   Let's begin with a question. Do tornadoes with wider damage paths have longer damage paths?
--   Given a large enough data set, there are only two possibilities
--   A: Tornadoes with wider damage paths have longer paths
--   B: Tornadoes with wider paths have shorter paths
-
-## Get the tornado data
-
-```{r}
+```{r, eval=FALSE}
 #| echo: true
-L <- here::here("data", "Tornadoes.csv")
-
-Torn.df <- L |>
-  readr::read_csv()
-```
-
-## Tips
-
--   Copy, paste, and tweak: it is easier to take existing code that you know works and modify it to suit your ends as opposed to trying to type out the code from scratch
--   Learn by doing: coding is easier when you have a goal in mind, like analyzing data that is important to you
--   Practice: Experiment by making small changes to the code I write in these notes
-
-## Packages
-
--   Packages provide functions. They are written by a worldwide community and can be downloaded for free
--   The package {ggplot2} has functions for making plots. You will also use the package {hockeystick} that has functions for downloading and plotting climate data
-
-```{r}
-#| echo: true
-install.packages(pkgs = "hockeystick",
+install.packages(pkgs = "ggplot2",
                  repos = "https://cloud.r-project.org")
 ```
+-   The package {hockeystick} has functions for downloading and plotting climate change data
+
+## How tornadoes form
+
+{{< video https://www.youtube.com/embed/aacHWoB7cmY >}} 6 minutes
+
+## How to make a graph
+
+-   Filter a data frame
+-   Use functions from the {ggplot2} package to make a graph
+-   Experiment
 
 ##
 
-![](figures/install-packages.png)
+-   Suppose you are interested in tornadoes only since 2007 (EF rating implemented)
+-   And in tornadoes with a damage rating
+-   If there is no damage rating, the `mag` value is `-9`
+-   You filter the `Torn.df` data frame using the `[]` notation
 
-## Getting data into R from your computer
+##
+
+-   A data frame `df` has rows and columns and they are indexed as `df[row, column]`
+-   You specify a conditional on the row index
+
+```{r}
+#| echo: true
+Torn2.df <- Torn.df[Torn.df$yr > 2006, ]
+Torn3.df <- Torn2.df[Torn2.df$mag != -9, ]
+```
+
+## 
+
+-   Do tornadoes with longer damage paths get a higher damage rating? 
+-   Three possibilities
+-   A: Tornadoes with longer damage paths have higher damage rating
+-   B: Tornadoes with longer paths have lower damage rating
+-   C: Tornadoes with longer paths have neither higher or lower damage rating
+
+##
+
+April 27, 2011
+
+<https://earthobservatory.nasa.gov/images/87972/tuscaloosa-tornado-track-fades>
+
+
+##
+
+-   Specify the data frame with the `data =` argument in the `ggplot()` function
+-   Indicate what kind of plot with the `geom_point()` function
+-   The `geom_point()` function creates a scatter plot
+-   Map variables in the data frame to aesthetics with the `aes()` function
+
+```{r}
+library(ggplot2)
+
+ggplot(data = Torn3.df) + 
+  geom_point(mapping = aes(x = mag, y = len))
+```
+
+## Your turn
 
 -   Consider monthly rainfall from the state of Florida from  <http://www.esrl.noaa.gov/psd/data/timeseries>. Using this portal I downloaded monthly average rainfall for division 1 (Northwest FL) and uploaded the file to GitHub
 
@@ -122,66 +171,4 @@ install.packages(pkgs = "hockeystick",
 Rain.df <- readr::read_table(here::here("data", "NWFL_MonthlyRain.txt"))
 ```
 
-
-## Errors
-
-R reports errors, warnings, and messages in a red font
-
--   Errors: When the red text starts with `Error in ...` it will continue with an explanation of what went wrong and the code will not run
--   For example, if you see `Error in ggplot(...) : could not find function "ggplot"`, it means that the `ggplot()` function is not accessible because the package {ggplot2} that contains the function was not loaded with `library(ggplot2)`. Thus you cannot use the `ggplot()` function without the package being loaded first
-
-## 
-
--   Copy to clipboard and paste the code below into your RStudio console
-
-```{r, eval=FALSE}
-#| echo: true
-
-df <- data.frame(a = 1:10, 
-                 b = rnorm(10, mean = 0))
-
-ggplot(data = df,
-       mapping = aes(x = a, y = b)) +
-  geom_point()
-```
-
-## Warnings
-
--   Warnings: When the red text is a warning, it will be prefaced with `Warning:`. Your code will still work
--   For example, if you create a plot based on a dataset where two of the rows of data have missing entries that would be needed to create points in the plot, you will see this warning: `Warning: Removed 2 rows containing missing values (geom_point)`
--   R will still produce the plot with all the remaining non-missing values, but it is warning you that two of the points aren't there
-
-## 
-
-Copy to clipboard and paste the code below into your RStudio console
-
-```{r, eval=FALSE}
-#| echo: true
-library(ggplot2)
-
-df <- data.frame(a = c(1:10, NA, NA), 
-                 b = rnorm(12, mean = 0))
-
-ggplot(data = df,
-       mapping = aes(x = a, y = b)) +
-  geom_point()
-```
-
-## Messages
-
--   Messages: When the red text doesn't start with either `Error` or `Warning`, it's just a friendly message. You'll see these messages when you load R packages or when you import data
--   These are helpful diagnostic messages and they don't stop your code from working. Additionally, you'll see these messages when you install packages too using `install.packages()`
-
-## 
-
--   Copy to clipboard and paste the code below into your RStudio console
-
-```{r, eval=FALSE}
-#| echo: true
-install.packages("tidyverse")
-```
-
-## Your turn
-
--   Download and install the {sf} package
-
+-   Write code to make a scatter plot showing January rainfall on the horizontal axis and April rainfall on the vertical axis

@@ -9,11 +9,11 @@ format:
 
 ## Formation and structure
 
-{{< video https://www.youtube.com/embed/aacHWoB7cmY >}} 6 minutes
+{{< video https://www.youtube.com/embed/aacHWoB7cmY >}} NG 6 minutes
 
 {{< video https://www.youtube.com/embed/wUNAXGSWVv4 >}} 30 minutes
 
-{{< video https://www.youtube.com/embed/uH9A-7Y3lL0 >}} 7 minutes
+{{< video https://www.youtube.com/embed/uH9A-7Y3lL0 >}} Supercells (Pecos Hank) 7 minutes
 
 {{< video https://www.youtube.com/embed/bq0-QXXtOro >}} 45 minutes
 
