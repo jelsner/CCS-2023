@@ -10,9 +10,8 @@ Due: 4:30 p.m. February 1, 2023
 
 ## 1
 
-Write code below to download and install the {ggplot2} package
+Write code below to make the functions from the {ggplot2} package available to your current R session
 ```{r}
-
 library(ggplot2)
 ```
 
@@ -28,3 +27,7 @@ Write code below to get the average tornado path length. The path length variabl
 ## 4
 
 Write code below to get the number of tornadoes in each state. The state variable is `st`. Hint: use the `table()` function
+
+## 5
+
+Answer the following question: What country experiences the most tornadoes per area in the world?
