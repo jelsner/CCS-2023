@@ -38,15 +38,31 @@ Torn.df <- L |>
 -   View `Torn.df`
 
 -   Write code to get the total number of injuries (`inj`) in the tornado record
+```{r}
+Torn.df$inj |>
+  sum()
+```
+
 -   Write code to get the highest number of fatalities (`fat`) from a single tornado in the record
+```{r}
+Torn.df$fat |>
+  max()
+```
 -   Write code to get the average start latitude (`slat`) of all tornadoes in the record
+```{r}
+Torn.df$slat |>
+  mean()
+Torn.df$slon |>
+  mean()
+```
 
 ## Data science
 
 -   Our understanding of climate change and storms comes largely through data science
 -   Data science is done on a computer
 -   You have two choices either use a spreadsheet or write code
--   A spreadsheet is convenient, but it makes the three necessary conditions for a good data analysis difficult -   -   *reproducibility*, *communication*, and *automation*
+-   A spreadsheet is convenient, but it makes the three necessary conditions for a good data analysis difficult 
+-   *reproducibility*, *communication*, and *automation*
 
 ## Reproducibility {.smaller}
 
@@ -184,5 +200,9 @@ Rain.df <- readr::read_table(here::here("data", "NWFL_MonthlyRain.txt"))
 ```
 
 -   Write code to make a scatter plot showing January rainfall on the horizontal axis and April rainfall on the vertical axis
+```{r}
+ggplot(data = Rain.df) +
+  geom_point(mapping = aes(x = Jan, y = Apr))
+```
 
 -   Lab 1 is next Wednesday (February 1)
