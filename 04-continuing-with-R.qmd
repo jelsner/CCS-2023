@@ -13,14 +13,15 @@ editor: source
 
 -   Answers from Monday's "Your turn"
 -   Data science
--   How tornadoes form (watch on YouTube)
+-   How tornadoes form (video)
 -   Making a graph
 
-## Getting the tornado data
+## Getting the tornado data {.smaller}
 
--   In Lesson 3 you specified the URL of the tornado data on the Storm Prediction Center's server and used the `readr::read_csv()` function to get a data frame into your R session
--   Here the file `Tornadoes.csv` is in your `data` directory
--   Specify this location with the `here::here()` command and get the data frame into your current R session
+-   In Lesson 3 you assigned the URL of the tornado data on the Storm Prediction Center's server and used the `readr::read_csv()` function to get a data frame into your R session
+-   Where the reports originate <https://www.spc.noaa.gov/climo/reports/today.html>
+-   The file `Tornadoes.csv` is in your `data` directory
+-   You assign this location with the `here()` function from the {here} package and get the data frame into your current R session using the following code chunk
 
 ```{r}
 #| echo: true
@@ -32,6 +33,8 @@ Torn.df <- L |>
 
 ## Answers from "Your turn" {.smaller}
 
+-   Each row is a separate tornado observation
+-   Each column is a different variable
 -   View `Torn.df`
 
 -   Write code to get the total number of injuries (`inj`) in the tornado record
@@ -40,61 +43,69 @@ Torn.df <- L |>
 
 ## Data science
 
--   Our understanding of climate change and storms is largely through data science
+-   Our understanding of climate change and storms comes largely through data science
 -   Data science is done on a computer
 -   You have two choices either use a spreadsheet or write code
--   A spreadsheet is convenient, but it makes the three conditions for a good data analysis *reproducibility*, *communication*, and *automation* difficult
+-   A spreadsheet is convenient, but it makes the three necessary conditions for a good data analysis difficult -   -   *reproducibility*, *communication*, and *automation*
 
 ## Reproducibility {.smaller}
 
--   A scientific paper advertises a claim <https://journals.ametsoc.org/view/journals/bams/101/8/bamsD190338.xml?tab_body=fulltext-display>
+-   Scientists advertise a new claim about how the world works by writing a paper <https://journals.ametsoc.org/view/journals/bams/101/8/bamsD190338.xml?tab_body=fulltext-display>
 -   But *proof* of the claim is the procedure to obtain the result <https://github.com/jelsner/stronger-hur>
--   If science is to be convincing, the trail from the data to the final output must be freely available
--   A reproducible trail with a spreadsheet is hard
--   It is easy to make mistakes (e.g., accidentally sorting just a column rather than the entire table)
--   Instructions written as computer code are the exact procedure
+-   Science that is convincing leaves a reproducible trail from the data to the final output
+-   The trail should be free and accessible to all
+-   Creating a reproducible trail with a spreadsheet is hard
+-   It is easy to make mistakes and instructions for repeating operations are not standard
+-   Instructions written as computer code are exact procedures
 
 ## Communication {.smaller}
 
--   Computer code is a like a recipe
--   It communicates precisely what you did to get the result
--   Communication to others and to your future self
--   It's hard to explain precisely what you did when working with a spreadsheet. Click here, then right click here, then choose menu X, etc
--   Words that describe these procedures are not standard
--   Code is standardized providing an efficient way to communicate. All needed information (and no more) is given as text with no ambiguity
+-   Computer code is a like a cake recipe
+-   It communicates precisely what you did to get the tasty result
+-   Communication is to others and to your future self
+-   It's hard to explain unambiguously what you did when working with a spreadsheet
+-   Click here, then click there, then choose menu X and so on
+-   Setting up the course notes is an example: not completely inter-operable
+-   Words that describe the protocols are not standard
+-   Code syntax IS standardized providing an efficient way to communicate
+-   All essential information (and no more) is given as text with no ambiguity
 
 ## Automation {.smaller}
 
--   If you've ever made a map using a geographic information system (GIS) you know how hard it is to make another one (even one that is quite similar) with a new set of data
--   Running code with new data is simple
--   Being able to code is an important skill for most technical jobs
--   Learning to code doesn't mean you will be a coder
-
-## {.smaller}
-
+-   If you've ever made a map using GIS you know how hard it is to make another similar one with a new set of data
+-   In contrast, running code with new data is simple
+-   Being able to code is an important skill for technical jobs
+-   Learning to code doesn't necessarily make you a coder
 -   The ability to reproduce your work is important to the scientific process but it is also pragmatic
+
+##
 -   The person most likely to reproduce your work is you
--   This is especially true for graphs and figures which often have a finished quality to them as a result of tweaking and adjustments to the details but this makes it hard to reproduce them later
--   The goal is to do as much of this tweaking as possible with the code you write, rather than in a way that is invisible (retrospectively). Contrast editing an image in Adobe Illustrator
+-   Especially graphs and figures 
+-   If you spend time tweaking and adjusting details to give them a polished look, it is hard to reproduce them later
+-   Try to do as much tweaking as possible with code 
+-   Contrast editing an image in Adobe Illustrator
+-   Art vs craft
 
 ## More about your class notes {.smaller}
 
--   To do things efficiently you write code along with comments. This is where markdown files come in (files that end with `.qmd` or `.Rmd`)
--   A markdown file is a document where text is interspersed with code
--   When you `Render` the file the code is executed starting at the top of the file and the output supplements or replaces the code
--   The resulting file is converted into a formatted document (HTML, PDF, or Word)
--   Text can be format with simple instructions (e.g., `##` for section header)
--   If you keep your notes in this way, you will be able to see the code you write, the output it produces, and your own comments on what the code did
+-   To be efficient you write code and comments within a markdown file
+-   A markdown file (ends with `.qmd` or `.Rmd`) is a document where code can be interspersed between text
+-   When you select `Render` code chunks in the file are executed starting at the top of the file and the output is printed
+-   The rendered file is converted to a formatted document (HTML, PDF, or Word)
+-   Formats are specified in the markdown file with specific characters (e.g., `##` for new slide)
+-   Keeping your notes this way will allow you to see the code you write, the output it produces, and your interpretation of the output
+-   And when you select `Render` you get a beautiful looking document
 
 ## Coding tips
 
--   Copy, paste, and tweak: it is easier to take existing code that works and modify it to suit your needs than it is to code from scratch
--   Learn by doing: coding is easier when you have a goal, like analyzing data that is important to you
--   Practice: Experiment by making small changes to the code I write in these notes
+-   Copy, paste, and tweak
+-   Easier to take existing working code and modify it to suit your needs than to code from scratch
+-   Learn by doing: things are easier when you have a goal, like analyzing data important to you
+-   Practice: Experiment by making small changes to the code I write in the notes
 
 ## Packages
 
--   Packages are groups of functions
+-   Packages comprise groups of functions
 -   Written by a worldwide community of scientists
 -   Installed directly from R
 -   The package {ggplot2} has functions for making plots
@@ -107,25 +118,25 @@ install.packages(pkgs = "ggplot2",
 
 ## How tornadoes form
 
+-   Before using the tornado data, lets hear about how tornadoes form
+
 {{< video https://www.youtube.com/embed/aacHWoB7cmY >}} 6 minutes
 
 ## How to make a graph
 
--   Filter a data frame
--   Use functions from the {ggplot2} package to make a graph
--   Experiment
+Step 1: Filter the data frame
 
-##
+Step 2: Use functions from the {ggplot2} package
 
 -   Suppose you are interested in tornadoes only since 2007 (EF rating implemented)
--   And in tornadoes with a damage rating
+-   Some tornado reports do not include a damage rating
 -   If there is no damage rating, the `mag` value is `-9`
--   You filter the `Torn.df` data frame using the `[]` notation
 
 ##
 
+-   You filter the `Torn.df` data frame using the `[]` notation
 -   A data frame `df` has rows and columns and they are indexed as `df[row, column]`
--   You specify a conditional on the row index
+-   You specify a conditional on the row index, first on the variable `yr` and then on the variable `mag`
 
 ```{r}
 #| echo: true
@@ -133,26 +144,27 @@ Torn2.df <- Torn.df[Torn.df$yr > 2006, ]
 Torn3.df <- Torn2.df[Torn2.df$mag != -9, ]
 ```
 
-## 
+-   How does this work?
+
+## {.smaller}
 
 -   Do tornadoes with longer damage paths get a higher damage rating? 
 -   Three possibilities
--   A: Tornadoes with longer damage paths have higher damage rating
--   B: Tornadoes with longer paths have lower damage rating
--   C: Tornadoes with longer paths have neither higher or lower damage rating
+-   Tornadoes with longer damage paths have higher damage rating
+-   Tornadoes with longer damage paths have lower damage rating
+-   Tornadoes with longer damage paths have neither higher or lower damage rating
 
-##
+## Damage path
 
-April 27, 2011
+Tuscaloosa, AL, April 27, 2011
 
 <https://earthobservatory.nasa.gov/images/87972/tuscaloosa-tornado-track-fades>
-
 
 ##
 
 -   Specify the data frame with the `data =` argument in the `ggplot()` function
 -   Indicate what kind of plot with the `geom_point()` function
--   The `geom_point()` function creates a scatter plot
+-   Use the `geom_point()` function to create a scatter plot
 -   Map variables in the data frame to aesthetics with the `aes()` function
 
 ```{r}
@@ -164,11 +176,13 @@ ggplot(data = Torn3.df) +
 
 ## Your turn
 
--   Consider monthly rainfall from the state of Florida from  <http://www.esrl.noaa.gov/psd/data/timeseries>. Using this portal I downloaded monthly average rainfall for division 1 (Northwest FL) and uploaded the file to GitHub
+-   Consider monthly rainfall from the state of Florida from  <http://www.esrl.noaa.gov/psd/data/timeseries>. Using this portal I downloaded monthly average rainfall for division 1 (Northwest FL) and uploaded the file to GitHub so the file `NWFL_MontlyRain.txt` is in your `data` directory
 
-```{r, eval=FALSE}
+```{r}
 #| echo: true
 Rain.df <- readr::read_table(here::here("data", "NWFL_MonthlyRain.txt"))
 ```
 
 -   Write code to make a scatter plot showing January rainfall on the horizontal axis and April rainfall on the vertical axis
+
+-   Lab 1 is next Wednesday (February 1)
