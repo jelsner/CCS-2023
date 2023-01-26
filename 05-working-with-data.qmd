@@ -12,12 +12,15 @@ editor: source
 ## Today
 
 -   Lab 1 on Wednesday
--   Using verbs to manipulate a data frame
+-   Verbs to munge data
+-   SLIM (shear-lift-instability-moisture)
 
 ## 
 
--   Through the semester you'll work with data saved in a spreadsheet-type format in your environment called a _data frame_
--   Inside a _data frame_ rows are observations and columns are variables. All columns have the same number of rows
+-   Through the semester you'll work with data as a data frame
+-   In a data frame rows are observations and columns are variables 
+-   All columns have the same number of rows
+-   The data frame is indexed as `df[rows, columns]`
 -   Considering the file listing hurricane counts by year in the United States
 -   <http://myweb.fsu.edu/jelsner/US.txt>
 -   The data are updated annually. For example, last year both Hurricane Ian and Hurricane Nicole hit Florida
@@ -46,7 +49,7 @@ LH.df |>
 
 ##
 
--   The `dim()` function applied to the data frame returns the size of the data frame in terms of how many rows (first number) and how many columns
+-   The function `dim()` applied to the data frame returns the size of the data frame in terms of how many rows (first number) and how many columns
 
 ```{r}
 #| echo: true
@@ -56,7 +59,7 @@ LH.df |>
 
 ##
 
-Using the `View()` function brings up RStudio's built-in data viewer
+Using the `View()` function brings up the data viewer
 ```{r, eval=FALSE}
 #| echo: true
 LH.df |>
@@ -84,7 +87,7 @@ Recall the tornado data. Note the different variable types `<dbl>`, `<chr>`, ...
 
 ## {.smaller}
 
-The `$` extraction operator is used to view single variables/columns
+The `$` operator is used to view single variables/columns
 
 ```{r}
 #| echo: true
