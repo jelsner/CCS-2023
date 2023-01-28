@@ -18,12 +18,12 @@ editor: source
 ## 
 
 -   Through the semester you'll work with data as a data frame
--   In a data frame rows are observations and columns are variables 
+-   Inside rows are observations and columns are variables 
 -   All columns have the same number of rows
 -   The data frame is indexed as `df[rows, columns]`
 -   Considering the file listing hurricane counts by year in the United States
 -   <http://myweb.fsu.edu/jelsner/US.txt>
--   The data are updated annually. For example, last year both Hurricane Ian and Hurricane Nicole hit Florida
+-   The data are updated annually. For example, last year both Hurricane Ian and Hurricane Nicole hit Florida so the count in the `FL` column is 2
 
 ## {.smaller}
 
@@ -46,6 +46,16 @@ LH.df |>
 
 -   The column names are `Year`, `All`, `MUS`, `G`, `FL` and `E`
 -   These are the variables. Each row is an observation for that year
+
+##
+
+![](figures/hurricaneStrikes.png)
+
+##
+
+Updated through 2014
+
+<https://www.ncei.noaa.gov/pub/data/images/2014-Landfalling-Hurricanes-34x28.pdf>
 
 ##
 
@@ -78,23 +88,31 @@ LH.df |>
 ## {.smaller}
 
 Recall the tornado data. Note the different variable types `<dbl>`, `<chr>`, ...
+
 ```{r}
 #| echo: true
-"http://www.spc.noaa.gov/wcm/data/1950-2021_actual_tornadoes.csv" |>
+here::here("data", "Tornadoes.csv") |>
   readr::read_csv(show_col_types = FALSE) |>
   dplyr::glimpse()
 ```
 
+## Damage path
+
+![](figures/BirminghamDamagePath.jpg)
+
+##
+![](figures/DamagePath.png)
+
 ## {.smaller}
 
-The `$` operator is used to view single variables/columns
+The `$` operator is used to view single columns by variable name
 
 ```{r}
 #| echo: true
 LH.df$FL
 ```
 
-How many more hurricanes have hit Florida than the East Coast?
+How many hurricane landfalls in Florida, how many hurricane landfalls along the East Coast?
 
 ## 
 
@@ -105,6 +123,7 @@ The number of years with 0, 1, 2, ... Florida hurricanes is obtained by typing
 LH.df$FL |>
   table()
 ```
+
 There are 95 years without a FL hurricane, 46 years with one hurricanes, 25 years with two hurricanes, and so on
 
 ##
@@ -151,14 +170,16 @@ Rain.df$Jun |>
 ## {.smaller}
 
 -   Get the tornado data
+
 ```{r}
 #| echo: true
-L <- "http://www.spc.noaa.gov/wcm/data/1950-2021_actual_tornadoes.csv"
+L <- here::here("data", "Tornadoes.csv")
 Torn.df <- readr::read_csv(file = L,
                            show_col_types = FALSE)
 ```
 
 -   Create a table showing the number of tornadoes by state
+
 ```{r}
 #| echo: true
 Torn.df$st |>
@@ -168,6 +189,7 @@ Torn.df$st |>
 ## Filter {.smaller}
 
 -   Create a new data frame with only tornadoes from Florida
+
 ```{r}
 #| echo: true
 FL_Torn.df <- Torn.df |>
@@ -177,14 +199,25 @@ FL_Torn.df |>
   head()
 ```
 
-## Mutate and select
+## Mutate
 
--   Add a new column to the data frame as the sum of the injuries and fatalities
+-   Create a new variable in the `Torn.df` data frame called `casualties` as the sum of the number of injuries and the number of fatalities for each tornado
+
+```{r}
+#| echo: true
+Torn.df <- Torn.df |>
+  dplyr::mutate(casualties = inj + fat) 
+```
+
+-   Check with `View()`
+
+## Select
+
+-   Create a new data frame containing the variables `yr`, `inj`, `fat`, and `casualties`
 ```{r}
 #| echo: true
 Casualties.df <- Torn.df |>
-  dplyr::mutate(casualties = inj + fat) |>
-  dplyr::select(inj, fat, casualties)
+  dplyr::select(yr, inj, fat, casualties)
   
 Casualties.df |>
   head(n = 8)
@@ -201,3 +234,38 @@ Torn.df |>
   dplyr::summarize(nFatalities = sum(fat)) |>
   dplyr::arrange(desc(nFatalities))
 ```
+
+## Review
+
+-   Everything has a name
+-   Variables, data, functions
+-   You refer to things by name as you examine, use, or modify them 
+-   Names are case sensitive
+-   Things you create are listed under the Environment tab
+
+##
+
+-   Everything is an object
+-   Some objects are part of R, some are added via packages, and some are created by you
+-   Code you write will create, manipulate, and use named objects
+-   You assign names to objects with the assignment operator (`<-`)
+
+##
+
+-   You do things using functions
+-   Functions are recognized by the parentheses at the end of the name
+-   Functions produce output based on the input 
+-   Inputs are given inside the function parentheses 
+
+##
+
+-   Functions come in packages (libraries)
+-   You install packages with the `install.packages()` function (one time)
+-   You make the functions available to your current session with the `library()` function (anytime you start a new session)
+-   Packages allow you to build on efforts of others
+
+## Your turn
+
+-   Install and load the package called {ggplot2}
+
+
