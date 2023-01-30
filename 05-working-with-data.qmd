@@ -11,9 +11,12 @@ editor: source
 
 ## Today
 
--   Lab 1 on Wednesday
+-   Data frames
 -   Verbs to munge data
--   SLIM (shear-lift-instability-moisture)
+-   Quantiles
+-   Riskiest places in the U.S. (video)
+-   Review for Lab 1
+
 
 ## 
 
@@ -96,11 +99,14 @@ here::here("data", "Tornadoes.csv") |>
   dplyr::glimpse()
 ```
 
-## Damage path
+## 
+
+-   Damage path
 
 ![](figures/BirminghamDamagePath.jpg)
 
 ##
+
 ![](figures/DamagePath.png)
 
 ## {.smaller}
@@ -235,7 +241,13 @@ Torn.df |>
   dplyr::arrange(desc(nFatalities))
 ```
 
-## Review
+## Hazards and risk
+
+-   What is the riskiest region in the U.S. as the climate changes?
+
+{{< video https://www.youtube.com/embed/l_Oe6YK0DgE >}} 13.5 minutes
+
+## Review for Lab 1
 
 -   Everything has a name
 -   Variables, data, functions
