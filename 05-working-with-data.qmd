@@ -11,26 +11,25 @@ editor: source
 
 ## Today
 
--   Data frames
--   Verbs to munge data
--   Quantiles
+-   Working with data frames
+-   Computing quantiles
+-   Munging data with verbs
 -   Riskiest places in the U.S. (video)
 -   Review
 
-
 ## 
 
--   Through the semester you'll work with data as a data frame
+-   You'll work with data as data frames
 -   Inside rows are observations and columns are variables 
 -   All columns have the same number of rows
 -   The data frame is indexed as `df[rows, columns]`
--   Considering the file listing hurricane counts by year in the United States
+-   Considering the file listing hurricane counts by year in the US
 -   <http://myweb.fsu.edu/jelsner/US.txt>
 -   The data are updated annually. For example, last year both Hurricane Ian and Hurricane Nicole hit Florida so the count in the `FL` column is 2
 
 ## {.smaller}
 
--   You get the data into your current R session as a data frame with the following code chunk
+-   You get the data into your R environment as a data frame with the following code chunk
 
 ```{r}
 #| echo: true
@@ -38,8 +37,8 @@ L <- "http://myweb.fsu.edu/jelsner/US.txt"
 LH.df <- readr::read_table(file = L)
 ```
 
--   The data frame name is `LH.df` and it is in your `Environment`
--   You list the first six rows of the data frame with the `head()` function
+-   The data frame name is `LH.df` as listed in your `Environment`
+-   You print the first six rows of the data frame with the `head()` function
 
 ```{r}
 #| echo: true
@@ -111,18 +110,19 @@ here::here("data", "Tornadoes.csv") |>
 
 ## {.smaller}
 
-The `$` operator is used to view single columns by variable name
+-   The `$` sign is used to view and access single columns by variable name
 
 ```{r}
 #| echo: true
 LH.df$FL
 ```
 
-How many hurricane landfalls in Florida, how many hurricane landfalls along the East Coast?
+-   Write code to determine how many hurricanes have occurred in Florida over the period
+-   Repeat but determining the how many hurricane have occurred along the East Coast
 
 ## 
 
-The number of years with 0, 1, 2, ... Florida hurricanes is obtained by typing
+-   The number of years with 0, 1, 2, ... Florida hurricanes is obtained by typing
 
 ```{r}
 #| echo: true
@@ -130,18 +130,20 @@ LH.df$FL |>
   table()
 ```
 
-There are 95 years without a FL hurricane, 46 years with one hurricanes, 25 years with two hurricanes, and so on
+-   There are 95 years without a FL hurricane, 46 years with one hurricanes, 25 years with two hurricanes, and so on
 
-##
+## {.smaller}
 
-Returning to the rainfall data from Northwest Florida
+-   Returning to the rainfall data from Northwest Florida. Get the data into your environment
 
 ```{r}
 #| echo: true
-Rain.df <- readr::read_table(here::here("data", "NWFL_MonthlyRain.txt"))
+L <- here::here("data", "NWFL_MonthlyRain.txt")
+Rain.df <- readr::read_table(file = L,
+                             show_col_types = FALSE)
 ```
 
-Consider rainfall during the month of June. Use the `sort()` function on the June values (column indicated by the label `Jun`).
+-   Use the `sort()` function on the June values (column indicated by the label `Jun`)
 
 ```{r}
 #| echo: true
@@ -164,8 +166,8 @@ Rain.df$Jun |>
 ##
 
 -   Quartile is the value the cuts the ordered data into 4 equal quarters
--   The lower (first) quartile cuts the data into the lower 25% and upper 75% of the values
--   The upper (third) quartile cuts the data into the lower 75% and upper 25% the values
+-   The first quartile cuts the data into the lower 25% and upper 75% of the values
+-   The third quartile cuts the data into the lower 75% and upper 25% the values
 
 ```{r}
 #| echo: true
@@ -175,7 +177,7 @@ Rain.df$Jun |>
 
 ## {.smaller}
 
--   Get the tornado data
+-   Get the tornado data into your R environment
 
 ```{r}
 #| echo: true
@@ -217,7 +219,7 @@ Torn.df <- Torn.df |>
 
 -   Check with `View()`
 
-## Select
+## Select {.smaller}
 
 -   Create a new data frame containing the variables `yr`, `inj`, `fat`, and `casualties`
 ```{r}
@@ -278,6 +280,4 @@ Torn.df |>
 
 ## Your turn
 
--   Install and load the package called {ggplot2}
-
-
+-   Write code to make the functions from the {ggplot2} package available to your current R session

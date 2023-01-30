@@ -12,11 +12,8 @@ editor: source
 ## 
 
 -   Graphs help you understand the processes that generated your data
-
--   The {ggplot2} package has functions to make graphs that are rooted in theory (grammar of graphics)
-
+-   The {ggplot2} package has functions to make graphs rooted in theory (grammar of graphics)
 -   A graph maps variables (columns in your data frame) to aesthetic attributes of geometric objects
-
 -   A graph requires `data`: data frame, `geom`: geometric object like a point or a line, and `aes`: aesthetic attribute like color shape, and size
 
 ## 
@@ -142,3 +139,12 @@ ggplot(data = RainL.df,
   xlab("Rain (in)") +
   facet_wrap(~ Month)
 ```
+
+Cheat sheets: <https://www.rstudio.com/resources/cheatsheets/>
+
+## Maps
+
+-   Spatial data frames
+-   USA boundaries
+-   ggplot
+-   tmap
