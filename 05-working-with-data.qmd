@@ -118,7 +118,19 @@ LH.df$FL
 ```
 
 -   Write code to determine how many hurricanes have occurred in Florida over the period
+```{r}
+sum(LH.df$FL)
+```
+
 -   Repeat but determining the how many hurricane have occurred along the East Coast
+```{r}
+LH.df$G |>
+  sum()
+```
+```{r}
+sum(LH.df$G)
+```
+
 
 ## 
 
