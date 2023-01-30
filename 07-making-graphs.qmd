@@ -11,7 +11,7 @@ editor: source
 
 ## 
 
--   Graphs help you understand the processes that generated your data
+-   Graphs can help you understand the processes that generated your data
 -   The {ggplot2} package has functions to make graphs rooted in theory (grammar of graphics)
 -   A graph maps variables (columns in your data frame) to aesthetic attributes of geometric objects
 -   A graph requires `data`: data frame, `geom`: geometric object like a point or a line, and `aes`: aesthetic attribute like color shape, and size
@@ -46,11 +46,8 @@ ggplot(data = Rain.df,
 ```
 
 -   The data frame is `Rain.df`
-
 -   The data column `Year` gets mapped to the `x` position aesthetic of the line
-
 -   The data column `Mar` gets mapped to the `y` position aesthetic of the line
-
 -   The `geom_line()` describes the geometric object as a line
 
 ## 
@@ -68,7 +65,7 @@ ggplot(data = Rain.df,
 
 ## Scatter plot
 
--   A common scientific graph is the scatter plot
+-   The scatter plot is a useful scientific graph
 -   It maps one variable to the `x` aesthetic and another variable to the `y` aesthetic
 -   Here you create a scatter plot mapping January rain to the `x` aesthetic and May rain to the `y` aesthetic
 
@@ -145,6 +142,21 @@ Cheat sheets: <https://www.rstudio.com/resources/cheatsheets/>
 ## Maps
 
 -   Spatial data frames
--   USA boundaries
+
+```{r}
+StateBorders.df <- tidycensus::state_laea
+CountyBorders.df <- tidycensus::county_laea
+```
+
+```{r}
+StateBorders.df |>
+  class()
+```
 -   ggplot
+
+```{r}
+ggplot(data = CountyBorders.df) +
+  geom_sf()
+```
+
 -   tmap

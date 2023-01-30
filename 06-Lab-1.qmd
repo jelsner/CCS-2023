@@ -19,16 +19,15 @@ Write code to get the tornado data (from file `Tornadoes.csv` in the directory `
 
 ## 2
 
-Write code to get the average tornado path length. The path length variable is `len` in `Torn.df` (4)
+Write code to get the average tornado path length. The path length variable is `len` in `Torn.df` from question 1 (4)
 
 ## 3
 
-Write code to get the number of tornadoes in each state. The state variable is `st`. Hint: use the `table()` function (4)
+Write code to create a new data frame containing only tornadoes with damage rating (`mag`) greater or equal to 4 (4)
 
 ## 4
 
 Write code to make the functions from the {ggplot2} package available to your current R session (4)
-
 
 ## 5
 
