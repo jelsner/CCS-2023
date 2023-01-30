@@ -10,22 +10,26 @@ Due: 4:30 p.m. February 1, 2023
 
 Total Points: 18
 
+Enter your answers below each question. Submit your answers through Canvas
+
+
 ## 1
 
-Write code below to make the functions from the {ggplot2} package available to your current R session (4)
+Write code to get the tornado data (from file `Tornadoes.csv` in the directory `data`) into your R environment as a data frame called `Torn.df` (4)
 
 ## 2
 
-Write code below to get the tornado data into your environment as a data frame called `Torn.df` (4)
+Write code to get the average tornado path length. The path length variable is `len` in `Torn.df` (4)
 
 ## 3
 
-Write code below to get the average tornado path length. The path length variable is `len` in `Torn.df` (4)
+Write code to get the number of tornadoes in each state. The state variable is `st`. Hint: use the `table()` function (4)
 
 ## 4
 
-Write code below to get the number of tornadoes in each state. The state variable is `st`. Hint: use the `table()` function (4)
+Write code to make the functions from the {ggplot2} package available to your current R session (4)
+
 
 ## 5
 
-Type your answer the following question: What country experiences the most tornadoes per area in the world? (2)
+Type your answer below to the following question: According to the PBS video entitled "What is the riskiest region in the US as the climate changes?" (linked in the file `05-working-with-data.qmd`), what county is most risky? (2)

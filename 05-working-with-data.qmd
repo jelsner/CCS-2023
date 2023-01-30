@@ -15,7 +15,7 @@ editor: source
 -   Verbs to munge data
 -   Quantiles
 -   Riskiest places in the U.S. (video)
--   Review for Lab 1
+-   Review
 
 
 ## 
@@ -247,7 +247,7 @@ Torn.df |>
 
 {{< video https://www.youtube.com/embed/l_Oe6YK0DgE >}} 13.5 minutes
 
-## Review for Lab 1
+## Review
 
 -   Everything has a name
 -   Variables, data, functions
