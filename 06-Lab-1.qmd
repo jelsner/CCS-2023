@@ -10,8 +10,7 @@ Due: 4:30 p.m. February 1, 2023
 
 Total Points: 18
 
-Enter your answers below each question. Submit your answers through Canvas
-
+Enter your answers below each question in the `.qmd` file. The number in parentheses after the question is the maximum number of points. When finished submit your `.qmd` file through Canvas
 
 ## 1
 
@@ -23,7 +22,7 @@ Write code to get the average tornado path length. The path length variable is `
 
 ## 3
 
-Write code to create a new data frame containing only tornadoes with damage rating (`mag`) greater or equal to 4 (4)
+Write code to create a new data frame from `Torn.df` containing only tornadoes with damage rating (`mag`) greater or equal to 4 (4)
 
 ## 4
 
@@ -31,4 +30,4 @@ Write code to make the functions from the {ggplot2} package available to your cu
 
 ## 5
 
-Type your answer below to the following question: According to the PBS video entitled "What is the riskiest region in the US as the climate changes?" (linked in the file `05-working-with-data.qmd`), what county is most risky? (2)
+Type your answers below to the following questions: According to the PBS video entitled "What is the riskiest region in the US as the climate changes?" (linked in the file `05-working-with-data.qmd`), what state has the county with the highest overall risk resulting from climate change? What is the name of the county? (2)
