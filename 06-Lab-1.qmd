@@ -15,6 +15,10 @@ Enter your answers below each question in the `.qmd` file. The number in parenth
 ## 1
 
 Write code to get the tornado data (from file `Tornadoes.csv` in the directory `data`) into your R environment as a data frame called `Torn.df` (4)
+```{r}
+
+```
+
 
 ## 2
 
