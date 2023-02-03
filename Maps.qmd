@@ -1,0 +1,143 @@
+---
+title: "Making maps"
+format: 
+  revealjs:
+    code-fold: false
+    theme: simple
+    footer: "GEO4251 Climate Change & Storms"
+    chalkboard: true
+editor: source
+---
+
+## Maps
+
+-   Spatial data frames
+
+```{r}
+StateBorders.df <- tidycensus::state_laea
+CountyBorders.df <- tidycensus::county_laea
+```
+
+```{r}
+StateBorders.df |>
+  class()
+```
+
+-   ggplot
+
+```{r}
+ggplot(data = CountyBorders.df) +
+  geom_sf()
+```
+
+## Tornado tracks {.smaller}
+
+-   Here we use the tornado data from the Storm Prediction Center (SPC) as a spatial data frame
+-   The file is in the `data` folder with directory name `1950-2021-torn-aspath`
+-   You get the spatial data frame into your current working session with the `sf::st_read()` function
+
+```{r}
+L <- here::here("data", "1950-2021-torn-aspath")
+Torn.sf <- sf::st_read(dsn = L, 
+                       layer = "1950-2021-torn-aspath")
+```
+
+The result is a simple feature data frame with 66244 features (observations) and 23 columns.
+
+Each observation is a unique tornado. The coordinate reference system is geographic (longitude, latitude) with EPSG number of 4326.
+
+You look inside the simple feature data frame with the `glimpse()` function from the {dplyr} package.
+
+```{r}
+Torn.sf |>
+  dplyr::glimpse()
+```
+
+The first 22 columns are variables (attributes). The last column contains the geometry. The column labeled `geometry` is a simple feature column in well-known text (WKT) format.
+
+Each tornado is a coded as a `POINT` as the start location. The simple feature column is where the `tmap::tm_shape()` and `geom_sf()` functions look for the spatial information.
+
+Start by mapping the locations of all tornadoes since 2011. First filter `Torn.sf` keeping only tornadoes occurring after 2010.
+
+```{r}
+Torn.sf <- Torn.sf |>
+             dplyr::filter(yr >= 2011) 
+```
+
+Next get a boundary file of the lower 48 states borders using the `USAboundaries::us_states()` function. Remove rows corresponding to Hawaii, Alaska, and Puerto Rico.
+
+```{r}
+USA_48.sf <- USAboundaries::us_states() |>
+   dplyr::filter(!state_name %in% c("Hawaii", "Alaska", "Puerto Rico"))
+
+str(USA_48.sf)
+```
+
+The objects `Torn.sf` and `USA_48.sf` are simple feature data frames so you map variables in them as layers with successive calls to the `tmap::tm_shape()` function. 
+
+For example, here you start with the boundaries of the lower 48 states using `tmap::tm_polygons()` and then overlay the tornadoes with `tmap::tm_shape()` and `tmap::tm_lines()`.
+
+```{r}
+tmap::tm_shape(shp = USA_48.sf) +
+  tmap::tm_polygons() +
+tmap::tm_shape(shp = Torn.sf) +
+    tmap::tm_dots(col = "red")
+```
+
+Let's try something a bit more complicated. Suppose you want a map displaying the total number of tornadoes originating in each state since 2011. 
+
+First filter `Torn.sf` to include only tornadoes occurring in the lower 48 states, then group by state and summarize with the `dplyr::n()` function that returns the number of cases by the grouping variable (`st`). Rename the variable `st` to match the variable `state_abbr` variable in the `USA_48.sf`. Then remove the `sfc` with the `sf::st_drop_geometry()` function.
+
+```{r}
+Torn_Counts.df <- Torn.sf |>
+  dplyr::filter(!st %in% c("PR", "HI" , "AK", "DC", "VI")) |>
+  dplyr::group_by(st) |>
+  dplyr::summarize(nT = dplyr::n()) |>
+  dplyr::rename(state_abbr = st) |>
+  sf::st_drop_geometry()
+
+Torn_Counts.df |>
+  dplyr::glimpse()
+```
+
+The resulting data frame contains the state abbreviation and the corresponding total number of tornadoes since 2011. There were 609 tornadoes in Alabama, 326 in Arkansas, etc.
+
+Next join the counts data frame with the map boundary simple feature data frame using the `dplyr::left_join()` function. Note the `y =` argument to the function only works with data frames so that is why you dropped the geometry with `sf::st_drop_geometry()` above.
+
+```{r}
+Count_Map.sf <- USA_48.sf |>
+  dplyr::left_join(y = Torn_Counts.df,
+                   by = "state_abbr") |>
+  dplyr::select(nT)
+
+Count_Map.sf |>
+  dplyr::glimpse()
+```
+
+Note: the `sf::st_join()` function can be used for spatial data joins. Instead of relying on a common (key) variable, it relies on spatial relations. More information is available here: <https://geocompr.robinlovelace.net/spatial-operations.html#spatial-joining>
+
+Finally you make a thematic map of the counts.
+
+```{r}
+tmap::tm_shape(shp = Count_Map.sf) +
+  tmap::tm_polygons(col = "nT", 
+                    title = "Tornado Counts",
+                    palette = "Reds")
+```
+
+You can improve the defaults with additional layers including text, compass, and scale bar.
+
+```{r}
+tmap::tm_shape(shp = Count_Map.sf) +
+  tmap::tm_polygons(col = "nT", 
+                    border.col = "gray70",
+                    title = "Tornado Counts",
+                    palette = "Reds") +
+  tmap::tm_text("nT", size = 1) +
+  tmap::tm_compass() + 
+  tmap::tm_scale_bar(lwd = .5)
+```
+
+Summary: The format of the {tmap} objects (meoms) are like those of the {ggplot2} geometric objects (geoms) making it easy to get to a publication-quality map that is reproducible. Fine details are worked out in production.
+
+[More information?](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html)

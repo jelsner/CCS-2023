@@ -1,5 +1,5 @@
 ---
-title: "Quantifying trends"
+title: "Quantifying changes over time"
 format: 
   revealjs:
     code-fold: false

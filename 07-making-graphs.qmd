@@ -1,5 +1,5 @@
 ---
-title: "Making graphs"
+title: "Graphing your data"
 format: 
   revealjs:
     code-fold: false
@@ -9,28 +9,52 @@ format:
 editor: source
 ---
 
+##
+
+-   Reflections on lab 1
+-   Lab 2 will be next Monday (February 13)
+-   It will cover material from Lessons 7 & 8
+
 ## 
 
--   A graph helps you understand the processes that generated the data
--   The {ggplot2} package has functions to make graphs rooted in theory (grammar of graphics)
--   A graph maps variables (columns in your data frame) to aesthetic attributes (aesthetic) of geometric objects
--   A graph requires `data`: data frame, `geom`: geometric object like a point or a line, and `aes`: aesthetic attribute like color shape, and size
+-   Climate is a data-generating machine
+-   Graphs of observed data help you to understand processes within the climate machine
+-   Collections of observed data reflect our view about climate
+-   Everything that is counted does not necessarily count
+-   Accumulated cyclone energy (ACE)
 
-## {.smaller}
+##
+
+-   The {ggplot2} package has functions to make graphs rooted in a visualization theory
+-   The theory is called the grammar of graphics
+-   A graph maps variables (columns in your data frame) to attributes (aesthetics) of geometric objects
+-   A graph requires data (`data.frame`), a geometric object like a point (`geom_point`) or a line (`geom_line`), and a set of aesthetics like location, color shape, and size
+
+##
+
+-   Monthly rain amount (inches) in northwestern Florida
+-   Data are in the file `NWFL_MonthlyRain.txt` in directory `data`
+-   Get the data into your current R session as a data frame called `Rain.df`
+-   View the data frame
 
 ```{r}
 #| echo: true
 L <- here::here("data", "NWFL_MonthlyRain.txt")
 Rain.df <- readr::read_table(file = L,
                              show_col_types = FALSE)
+```
 
+## 
+
+```{r}
+#| echo: true
 library(ggplot2)
 
 ggplot(data = Rain.df, 
        mapping = aes(x = Year, y = Mar)) +
   geom_line() +
   ylab("Inches") +
-  ggtitle(label = "March Rain in Northwest Florida",
+  ggtitle(label = "March rain amounts in northwestern Florida",
           subtitle = "1895-2021")
 ```
 
@@ -42,7 +66,7 @@ ggplot(data = Rain.df,
        mapping = aes(x = Year, y = Mar)) +
   geom_line() +
   ylab("Inches") +
-  ggtitle(label = "March Rain in Northwest Florida",
+  ggtitle(label = "March rain amounts in northwestern Florida",
           subtitle = "1895-2021")
 ```
 
@@ -60,7 +84,7 @@ ggplot(data = Rain.df,
        mapping = aes(x = Year, y = Mar, color = Mar)) +
   geom_point() + scale_x_continuous(breaks = seq(1900, 2020, 20)) +
   ylab("Inches") +
-  ggtitle(label = "March Rain in Northwest Florida",
+  ggtitle(label = "March rain amounts in northwestern Florida",
           subtitle = "1895-2021")
 ```
 
@@ -83,7 +107,7 @@ ggplot(data = Rain.df,
   scale_y_continuous(limits = c(0, 17)) +
   xlab("January Rain (in)") + 
   ylab("May Rain (in)") +
-  ggtitle(label = "January vs May Rain in Northwest Florida",
+  ggtitle(label = "January vs May rain amounts in northwestern Florida",
           subtitle = "Do you see a relationship? Can you think of a cause?")
 ```
 
@@ -110,8 +134,8 @@ ggplot(data = Rain.df,
 
 ## Small multiples
 
--   Suppose you want to plot a histogram of rain for each month of the year all on the same graph
--   First convert the data frame from wide to long with the `tidyr::pivot_longer()` function
+-   Suppose you want a histogram of rain for each month of the year all on the same graph
+-   First convert the data frame from a wide format to a long format with the `tidyr::pivot_longer()` function
 
 ```{r}
 #| echo: true
@@ -138,135 +162,15 @@ ggplot(data = RainL.df,
   facet_wrap(~ Month)
 ```
 
-Cheat sheets: <https://www.rstudio.com/resources/cheatsheets/>
+-   Cheat sheets: <https://www.rstudio.com/resources/cheatsheets/>
 
-## Maps
+## Getting help from AI
 
--   Spatial data frames
+-   <https://chat.openai.com/chat>
+-   Given some data show me how to make a scatter plot in R
 
-```{r}
-StateBorders.df <- tidycensus::state_laea
-CountyBorders.df <- tidycensus::county_laea
-```
+##
 
-```{r}
-StateBorders.df |>
-  class()
-```
--   ggplot
+-   Changes in rainfall over long periods of time
 
-```{r}
-ggplot(data = CountyBorders.df) +
-  geom_sf()
-```
-
-## Extended mapping example: tornado frequency {.unnumbered}
-
-Let's look at another example. Here we have the tornado data from the Storm Prediction Center (SPC) as a shapefile in the directory `1950-2018-torn-aspath`.
-
-The files are imported with the `sf::st_read()` function.
-
-```{r}
-Torn.sf <- sf::st_read(dsn = here::here("data", "1950-2020-torn-initpoint"), 
-                       layer = "1950-2020-torn-initpoint")
-```
-
-The result is a simple feature data frame with 66244 features (observations) and 23 columns.
-
-Each observation is a unique tornado. The coordinate reference system is geographic (longitude, latitude) with EPSG number of 4326.
-
-You look inside the simple feature data frame with the `glimpse()` function from the {dplyr} package.
-
-```{r}
-Torn.sf |>
-  dplyr::glimpse()
-```
-
-The first 22 columns are variables (attributes). The last column contains the geometry. The column labeled `geometry` is a simple feature column in well-known text (WKT) format.
-
-Each tornado is a coded as a `POINT` as the start location. The simple feature column is where the `tmap::tm_shape()` and `geom_sf()` functions look for the spatial information.
-
-Start by mapping the locations of all tornadoes since 2011. First filter `Torn.sf` keeping only tornadoes occurring after 2010.
-
-```{r}
-Torn.sf <- Torn.sf |>
-             dplyr::filter(yr >= 2011) 
-```
-
-Next get a boundary file of the lower 48 states borders using the `USAboundaries::us_states()` function. Remove rows corresponding to Hawaii, Alaska, and Puerto Rico.
-
-```{r}
-USA_48.sf <- USAboundaries::us_states() |>
-   dplyr::filter(!state_name %in% c("Hawaii", "Alaska", "Puerto Rico"))
-
-str(USA_48.sf)
-```
-
-The objects `Torn.sf` and `USA_48.sf` are simple feature data frames so you map variables in them as layers with successive calls to the `tmap::tm_shape()` function. 
-
-For example, here you start with the boundaries of the lower 48 states using `tmap::tm_polygons()` and then overlay the tornadoes with `tmap::tm_shape()` and `tmap::tm_lines()`.
-
-```{r}
-tmap::tm_shape(shp = USA_48.sf) +
-  tmap::tm_polygons() +
-tmap::tm_shape(shp = Torn.sf) +
-    tmap::tm_dots(col = "red")
-```
-
-Let's try something a bit more complicated. Suppose you want a map displaying the total number of tornadoes originating in each state since 2011. 
-
-First filter `Torn.sf` to include only tornadoes occurring in the lower 48 states, then group by state and summarize with the `dplyr::n()` function that returns the number of cases by the grouping variable (`st`). Rename the variable `st` to match the variable `state_abbr` variable in the `USA_48.sf`. Then remove the `sfc` with the `sf::st_drop_geometry()` function.
-
-```{r}
-Torn_Counts.df <- Torn.sf |>
-  dplyr::filter(!st %in% c("PR", "HI" , "AK", "DC", "VI")) |>
-  dplyr::group_by(st) |>
-  dplyr::summarize(nT = dplyr::n()) |>
-  dplyr::rename(state_abbr = st) |>
-  sf::st_drop_geometry()
-
-Torn_Counts.df |>
-  dplyr::glimpse()
-```
-
-The resulting data frame contains the state abbreviation and the corresponding total number of tornadoes since 2011. There were 609 tornadoes in Alabama, 326 in Arkansas, etc.
-
-Next join the counts data frame with the map boundary simple feature data frame using the `dplyr::left_join()` function. Note the `y =` argument to the function only works with data frames so that is why you dropped the geometry with `sf::st_drop_geometry()` above.
-
-```{r}
-Count_Map.sf <- USA_48.sf |>
-  dplyr::left_join(y = Torn_Counts.df,
-                   by = "state_abbr") |>
-  dplyr::select(nT)
-
-Count_Map.sf |>
-  dplyr::glimpse()
-```
-
-Note: the `sf::st_join()` function can be used for spatial data joins. Instead of relying on a common (key) variable, it relies on spatial relations. More information is available here: <https://geocompr.robinlovelace.net/spatial-operations.html#spatial-joining>
-
-Finally you make a thematic map of the counts.
-
-```{r}
-tmap::tm_shape(shp = Count_Map.sf) +
-  tmap::tm_polygons(col = "nT", 
-                    title = "Tornado Counts",
-                    palette = "Reds")
-```
-
-You can improve the defaults with additional layers including text, compass, and scale bar.
-
-```{r}
-tmap::tm_shape(shp = Count_Map.sf) +
-  tmap::tm_polygons(col = "nT", 
-                    border.col = "gray70",
-                    title = "Tornado Counts",
-                    palette = "Reds") +
-  tmap::tm_text("nT", size = 1) +
-  tmap::tm_compass() + 
-  tmap::tm_scale_bar(lwd = .5)
-```
-
-Summary: The format of the {tmap} objects (meoms) are like those of the {ggplot2} geometric objects (geoms) making it easy to get to a publication-quality map that is reproducible. Fine details are worked out in production.
-
-[More information?](https://cran.r-project.org/web/packages/tmap/vignettes/tmap-getstarted.html)
+{{< video https://www.youtube.com/embed/9XVr2KGR9s0 >}} 2:11 minutes
