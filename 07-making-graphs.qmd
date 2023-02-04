@@ -169,6 +169,9 @@ ggplot(data = RainL.df,
 
 -   <https://chat.openai.com/chat>
 -   Write code to make a scatter plot in R
+-   Copy/paste the generated code into your Console
+-   Good. Now write code to make a time series plot
+-   Copy/paste the code into your Console 
 
 ##
 
