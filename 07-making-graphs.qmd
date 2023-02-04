@@ -14,12 +14,13 @@ editor: source
 -   Reflections on lab 1
 -   Lab 2 will be next Monday (February 13)
 -   It will cover material from Lessons 7 & 8
+-   Today: graphing climate change data
 
 ## 
 
 -   Climate is a data-generating machine
 -   Graphs of observed data help you to understand processes within the climate machine
--   Collections of observed data reflect our view about climate
+-   Collections of observed data reflect our view about climate change
 -   Everything that is counted does not necessarily count
 -   Accumulated cyclone energy (ACE)
 
@@ -167,7 +168,7 @@ ggplot(data = RainL.df,
 ## Getting help from AI
 
 -   <https://chat.openai.com/chat>
--   Given some data show me how to make a scatter plot in R
+-   Write code to make a scatter plot in R
 
 ##
 
