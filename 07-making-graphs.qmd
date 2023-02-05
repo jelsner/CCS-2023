@@ -12,21 +12,23 @@ editor: source
 ##
 
 -   Reflections on lab 1
--   Lab 2 will be next Monday (February 13)
+-   Lab 2 is next Monday (February 13)
 -   It will cover material from Lessons 7 & 8
 -   Today: graphing climate change data
 
 ## 
 
 -   Climate is a data-generating machine
--   Graphs of observed data help you to understand processes within the climate machine
+-   Graphs of observed data help us understand processes within the climate machine
+-   The relationships between observed increases in ocean temperature and storminess
 -   Collections of observed data reflect our view about climate change
 -   Everything that is counted does not necessarily count
 -   Accumulated cyclone energy (ACE)
 
 ##
 
--   The {ggplot2} package has functions to make graphs rooted in a visualization theory
+-   How to think about graphing data
+-   The {ggplot2} package has graph-making functions rooted in visualization theory
 -   The theory is called the grammar of graphics
 -   A graph maps variables (columns in your data frame) to attributes (aesthetics) of geometric objects
 -   A graph requires data (`data.frame`), a geometric object like a point (`geom_point`) or a line (`geom_line`), and a set of aesthetics like location, color shape, and size
