@@ -15,6 +15,7 @@ editor: source
 -   Lab 2 is next Monday (February 13)
 -   It will cover material from Lessons 7 & 8
 -   Today: graphing climate change data
+-   Getting help from AI
 
 ## 
 
@@ -170,9 +171,9 @@ ggplot(data = RainL.df,
 ## Getting help from AI
 
 -   <https://chat.openai.com/chat>
--   Write code to make a scatter plot in R
+-   Ask it to write code to make a scatter plot in R
 -   Copy/paste the generated code into your Console
--   Good. Now write code to make a time series plot
+-   Good? Now ask it to write code to make a time series plot
 -   Copy/paste the code into your Console 
 
 ##
