@@ -14,7 +14,7 @@ editor: source
 -   Reflections on lab 1
 -   Lab 2 is next Monday (February 13)
 -   It will cover material from Lessons 7 & 8
--   Today: graphing climate change data
+-   Today: graphing climate data
 -   Getting help from AI
 
 ## 
@@ -86,7 +86,8 @@ ggplot(data = Rain.df,
 #| code-line-numbers: 2-3
 ggplot(data = Rain.df, 
        mapping = aes(x = Year, y = Mar, color = Mar)) +
-  geom_point() + scale_x_continuous(breaks = seq(1900, 2020, 20)) +
+  scale_x_continuous(breaks = seq(1900, 2020, 20)) +
+  geom_point() +
   ylab("Inches") +
   ggtitle(label = "March rain amounts in northwestern Florida",
           subtitle = "1895-2021")
@@ -94,7 +95,7 @@ ggplot(data = Rain.df,
 
 ## Scatter plot
 
--   The scatter plot is a useful scientific graph
+-   The scatter plot is perhaps the most useful scientific graph
 -   It maps one variable to the `x` aesthetic and another variable to the `y` aesthetic
 -   Here you create a scatter plot mapping January rain to the `x` aesthetic and May rain to the `y` aesthetic
 
@@ -106,7 +107,7 @@ ggplot(data = Rain.df,
 #| fig-height: 6
 ggplot(data = Rain.df, 
        mapping = aes(x = Jan, y = May)) +
-  geom_point(color = "green") +
+  geom_point(color = "red") +
   scale_x_continuous(limits = c(0, 17)) +
   scale_y_continuous(limits = c(0, 17)) +
   xlab("January Rain (in)") + 
