@@ -11,26 +11,33 @@ editor: source
 
 ## 
 
-Returning to the rain data from Northwest Florida
-
+-   Returning to the rain data from Northwest Florida
+-   Get the data into your current R session
+-   Select only the columns labeled `Year` and `Jun`
 -   Add a column with June rain values in units of centimeters
--   Make a time series plot showing the values over the years
+
+```{r}
+#| echo: true
+( Rain.df <- readr::read_table(here::here("data", "NWFL_MonthlyRain.txt")) |>
+  dplyr::select(Year, Jun) |>
+  dplyr::mutate(Rain_cm = Jun * 2.54) )
+```
+
+##
+
+-   Make a time series graph showing the values over the years
 -   Include a trend line
 
 ```{r}
 #| echo: true
-#| output-location: slide
-Rain.df <- readr::read_table(here::here("data", "NWFL_MonthlyRain.txt")) |>
-  dplyr::select(Year, Rain_in = Jun) |>
-  dplyr::mutate(Rain_cm = Rain_in * 2.54)
-
 library(ggplot2)
 
 ggplot(data = Rain.df,
        mapping = aes(x = Year, y = Rain_cm)) +
-  geom_line() + scale_x_continuous(breaks = seq(1900, 2020, 20)) +
-  geom_smooth(method = lm, se = FALSE) +
-  ylab("Rain (cm)")
+  geom_line() + 
+  scale_x_continuous(breaks = seq(1900, 2020, 20)) +
+  ylab("Rain (cm)") +
+  geom_smooth(method = lm, se = FALSE)
 ```
 
 ## 
@@ -146,6 +153,12 @@ lm(T_C ~ Year, data = T.df[T.df$Year >= 1973, ])
 
 -   The value below `Year` is the increase in temperature in °C per year
 -   +.019°C per year or about +1.9°C per 100 years
+
+## Tornadoes of 2022
+
+Pecos Hank
+
+{{< video https://www.youtube.com/embed/JtXPVxxiXqk >}} 17 minutes
 
 ## 
 
