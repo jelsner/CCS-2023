@@ -11,6 +11,148 @@ editor: source
 
 ## 
 
+Global humidity data <https://climate.metoffice.cloud/humidity.html#datasets>
+
+Specific humidity (q in g/kg)
+
+```{r}
+#| echo: true
+L <- "https://climate.metoffice.cloud/formatted_data/humidity_q_HadISDH%20blend%20q.csv"
+download.file(url = L,
+              destfile = here::here("data", "q.csv"))
+
+q.df <- readr::read_csv(here::here("data", "q.csv"),
+                        show_col_types = FALSE)
+names(q.df) <- c("Year", "q_gpkg", "u")
+
+q.df |>
+  head()
+```
+
+## 
+
+```{r}
+#| echo: true
+q.df |>
+ggplot(mapping = aes(x = Year, y = q_gpkg)) +
+  geom_line() +
+  geom_smooth(method = lm, se = FALSE) +
+  scale_x_continuous(breaks = seq(1980, 2020, 10)) +
+  ylab("g/kg")
+```
+
+## 
+
+-   The slope of the blue line is the average increase in specific humidity over the years
+-   You quantify this change using the following code
+
+```{r}
+#| echo: true
+lm(q_gpkg ~ Year, data = q.df)
+```
+
+-   The value below `Year` is the increase in specific humidity in g/kg per year
+-   +.008 g/kg per year
+
+## 
+
+Relative humidity
+
+```{r}
+#| echo: TRUE
+download.file(url = "https://climate.metoffice.cloud/formatted_data/humidity_RH_HadISDH%20blend%20RH.csv",
+              destfile = here::here("data", "RH.csv"))
+
+RH.df <- readr::read_csv(here::here("data", "RH.csv"),
+                        show_col_types = FALSE)
+names(RH.df) <- c("Year", "RH_p", "u")
+
+RH.df |>
+  head()
+```
+
+## 
+
+```{r}
+#| echo: true
+RH.df |>
+ggplot(mapping = aes(x = Year, y = RH_p)) +
+  geom_line() +
+  geom_smooth(method = lm, se = FALSE) +
+  scale_x_continuous(breaks = seq(1980, 2020, 10)) +
+  ylab("%")
+```
+
+## 
+
+-   The slope of the blue line is the average decrease in relative humidity over the years
+-   You quantify this change using the following code
+
+```{r}
+#| echo: true
+lm(RH_p ~ Year, data = RH.df)
+```
+
+-   The value below `Year` is the decrease in relative humidity in percentage points per year
+-   -1.3 percentage points per 100 years
+-   Why the decrease?
+
+## 
+
+Dew point temperature
+
+```{r}
+#| echo: TRUE
+download.file(url = "https://climate.metoffice.cloud/formatted_data/humidity_Td_HadISDH%20blend%20Td.csv",
+              destfile = here::here("data", "Td.csv"))
+
+Td.df <- readr::read_csv(here::here("data", "Td.csv"),
+                        show_col_types = FALSE)
+names(Td.df) <- c("Year", "Td_C", "u")
+
+Td.df |>
+  head()
+```
+
+## 
+
+```{r}
+#| echo: true
+Td.df |>
+ggplot(mapping = aes(x = Year, y = Td_C)) +
+  geom_line() +
+  geom_smooth(method = lm, se = FALSE) +
+  scale_x_continuous(breaks = seq(1980, 2020, 10)) +
+  ylab("°C")
+```
+
+## 
+
+-   The slope of the blue line is the average increase in dew point temperature over the years
+-   You quantify this change using the following code
+
+```{r}
+#| echo: true
+lm(Td_C ~ Year, data = Td.df)
+```
+
+-   The value below `Year` is the increase in dew point in °C per year
+-   +1.3°C per 100 years
+
+## 
+
+Explore the relationships between humidity and temperature
+
+```{r}
+#| echo: true
+dplyr::left_join(q.df, T.df, by = "Year") |>
+  ggplot(mapping = aes(x = T_C, y = q_gpkg)) +
+  geom_point() +
+  geom_smooth(method = lm)
+```
+
+## 
+
 ::: {style="text-align: center; margin-top: 1em"}
 [Today's weather maps](https://climatereanalyzer.org/wx/todays-weather/){preview-link="true" style="text-align: center"}
 :::
@@ -50,3 +192,8 @@ editor: source
 ::: {style="text-align: center; margin-top: 1em"}
 [Global reanalysis data](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels-monthly-means?tab=overview){preview-link="true" style="text-align: center"}
 :::
+
+## 2023 tornado season forecast
+
+{{< video https://www.youtube.com/embed/5kVeEf7CtCE >}} 8 minutes
+
