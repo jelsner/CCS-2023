@@ -288,3 +288,7 @@ dplyr::left_join(q.df, T.df, by = "Year") |>
   geom_point() +
   geom_smooth(method = lm)
 ```
+
+## 2023 tornado season forecast
+
+{{< video https://www.youtube.com/embed/5kVeEf7CtCE >}} 8 minutes
