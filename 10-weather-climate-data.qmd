@@ -9,6 +9,11 @@ format:
 editor: source
 ---
 
+## 
+
+-   Weather and climate observations
+-   Humidity and its relationship to temperature
+
 ## {.smaller}
 
 -   [Today's weather](https://climatereanalyzer.org/wx/todays-weather/)
@@ -31,7 +36,8 @@ editor: source
 -   Water makes Earth special
 -   Water exists in all three phases on Earth
 -   Relative vs absolute humidity
--   Saturation
+-   Let the science show explain
+{{< video https://www.youtube.com/embed/wB3Yyq4xy_Y >}} 3 minutes
 
 ## 
 
