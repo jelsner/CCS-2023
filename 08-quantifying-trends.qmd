@@ -17,7 +17,7 @@ editor: source
     -   Quantifying changes over time (graphically and numerically)
     -   Tornadoes up close: Storm chasing escapades of Pecos Hank during 2022
 
-##
+## 
 
 -   Returning to the monthly rain data from Northwest Florida
 -   Get the data into your current R session as a data frame with name `Rain.df`
@@ -46,7 +46,7 @@ ggplot(data = Rain.df,
   geom_line()
 ```
 
-## {.smaller}
+##  {.smaller}
 
 -   Include a line that shows the changes over time
 
@@ -61,7 +61,7 @@ ggplot(data = Rain.df,
 -   There appears to be a tendency for more rain in June now than in the past
 -   The change is close to a straight line increase over the years
 
-## {.smaller}
+##  {.smaller}
 
 -   The line is made using local regression
 -   Default when nothing is inside the parentheses of `geom_smooth()`
@@ -76,7 +76,7 @@ ggplot(data = Rain.df,
   geom_smooth(method = lm)
 ```
 
-## {.smaller}
+##  {.smaller}
 
 ```{r warning=FALSE, message=FALSE}
 ggplot(data = Rain.df,
@@ -96,7 +96,7 @@ lm(Rain_cm ~ Year, data = Rain.df)
 -   The value below `Year` is the increase in rain amount in units of centimeters per year
 -   +.023 cm per year or +2.3 cm per 100 years (1 inch per 100 years)
 
-##
+## 
 
 -   Temperature is a key climate indicator
 -   Measurements made across the globe indicate how things have changed over time
@@ -129,7 +129,7 @@ T.df <- readr::read_csv(here::here("data", "T.csv"),
                         show_col_types = FALSE)
 ```
 
-##
+## 
 
 -   Change the column names with the `names()` function
 
@@ -159,7 +159,7 @@ ggplot(data = T.df,
   scale_x_continuous(breaks = seq(1860, 2020, 20)) + ylab("°C")
 ```
 
-## {.smaller}
+##  {.smaller}
 
 ```{r}
 ggplot(data = T.df,
@@ -175,7 +175,7 @@ ggplot(data = T.df,
     -   Land has generally warmed faster than the oceans
     -   The Arctic has warmed twice as fast as the rest of the world
 
-## {.smaller}
+##  {.smaller}
 
 ```{r}
 ggplot(data = T.df,
