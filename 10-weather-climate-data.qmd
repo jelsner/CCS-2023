@@ -9,18 +9,34 @@ format:
 editor: source
 ---
 
+## {.smaller}
+
+-   [Today's weather](https://climatereanalyzer.org/wx/todays-weather/)
+-   [Tropical weather resources](https://www.tropicaltidbits.com/analysis/models/)
+-   [Climate change indicators](https://zacklabe.com/climate-change-indicators/)
+-   [Tracking the changing climate with Earth observations](https://climate.metoffice.cloud/)
+-   [International Best Track Archive for Climate Stewardship (IBTrACS)](https://www.ncei.noaa.gov/products/international-best-track-archive)
+-   [NOAA NWS Storm Prediction Center](https://www.spc.noaa.gov/)
+-   [Global reanalysis data](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels-monthly-means?tab=overview)
+
 ##
 
+-   Data science legacy
 -   Prior to the data science movement of the last 15 years, it was seen as inappropriate for people “in the business” to write code
--   Code was a black art reserved for specially trained wizards in IT dev teams
--   In most organizations now it’s totally normal to run R or Python in the business
--   This is the data science legacy
+-   Code was a black art reserved for specially trained wizards in information technology development teams
+-   Now in most organizations it’s normal to run R or Python in the business
 
 ## 
 
-Global humidity data <https://climate.metoffice.cloud/humidity.html#datasets>
+-   Water makes Earth special
+-   Water exists in all three phases on Earth
+-   Relative vs absolute humidity
+-   Saturation
 
-Specific humidity (q in g/kg)
+## 
+
+-   Global humidity data <https://climate.metoffice.cloud/humidity.html#datasets>
+-   Specific humidity (q in g/kg)
 
 ```{r}
 #| echo: true
@@ -40,6 +56,8 @@ q.df |>
 
 ```{r}
 #| echo: true
+library(ggplot2)
+
 q.df |>
 ggplot(mapping = aes(x = Year, y = q_gpkg)) +
   geom_line() +
@@ -63,7 +81,7 @@ lm(q_gpkg ~ Year, data = q.df)
 
 ## 
 
-Relative humidity
+-   Relative humidity
 
 ```{r}
 #| echo: TRUE
@@ -106,7 +124,7 @@ lm(RH_p ~ Year, data = RH.df)
 
 ## 
 
-Dew point temperature
+-   Dew point temperature
 
 ```{r}
 #| echo: TRUE
@@ -148,7 +166,23 @@ lm(Td_C ~ Year, data = Td.df)
 
 ## 
 
-Explore the relationships between humidity and temperature
+-   The relationship between humidity and temperature
+-   Get the temperature data
+
+```{r}
+#| echo: true
+L <- "https://climate.metoffice.cloud/formatted_data/gmt_HadCRUT5.csv"
+download.file(url = L,
+              destfile = here::here("data", "T.csv"))
+
+T.df <- readr::read_csv(here::here("data", "T.csv"),
+                        show_col_types = FALSE) 
+names(T.df) <- c("Year", "T_C", "u")
+```
+
+## 
+
+-   Join the temperature data to the humidity data
 
 ```{r}
 #| echo: true
@@ -160,47 +194,7 @@ dplyr::left_join(q.df, T.df, by = "Year") |>
 
 ## 
 
-::: {style="text-align: center; margin-top: 1em"}
-[Today's weather maps](https://climatereanalyzer.org/wx/todays-weather/){preview-link="true" style="text-align: center"}
-:::
-
-## 
-
-::: {style="text-align: center; margin-top: 1em"}
-[Tropical weather resources](https://www.tropicaltidbits.com/analysis/models/){preview-link="true" style="text-align: center"}
-:::
-
-## 
-
-::: {style="text-align: center; margin-top: 1em"}
-[Climate change indicators](https://zacklabe.com/climate-change-indicators/){preview-link="true" style="text-align: center"}
-:::
-
-## 
-
-::: {style="text-align: center; margin-top: 1em"}
-[Tracking the changing climate with Earth observations](https://climate.metoffice.cloud/){preview-link="true" style="text-align: center"}
-:::
-
-## 
-
-::: {style="text-align: center; margin-top: 1em"}
-[International Best Track Archive for Climate Stewardship (IBTrACS)](https://www.ncei.noaa.gov/products/international-best-track-archive){preview-link="true" style="text-align: center"}
-:::
-
-## 
-
-::: {style="text-align: center; margin-top: 1em"}
-[NOAA NWS Storm Prediction Center](https://www.spc.noaa.gov/){preview-link="true" style="text-align: center"}
-:::
-
-##
-
-::: {style="text-align: center; margin-top: 1em"}
-[Global reanalysis data](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels-monthly-means?tab=overview){preview-link="true" style="text-align: center"}
-:::
-
-## 2023 tornado season forecast
+-   A tornado season forecast for 2023
 
 {{< video https://www.youtube.com/embed/5kVeEf7CtCE >}} 8 minutes
 
