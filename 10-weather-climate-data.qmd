@@ -9,6 +9,13 @@ format:
 editor: source
 ---
 
+##
+
+-   Prior to the data science movement of the last 15 years, it was seen as inappropriate for people “in the business” to write code
+-   Code was a black art reserved for specially trained wizards in IT dev teams
+-   In most organizations now it’s totally normal to run R or Python in the business
+-   This is the data science legacy
+
 ## 
 
 Global humidity data <https://climate.metoffice.cloud/humidity.html#datasets>

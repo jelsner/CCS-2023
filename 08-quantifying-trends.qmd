@@ -11,25 +11,18 @@ editor: source
 
 ## 
 
--   Lab 2, next Monday (February 13)
--   Material from Lessons 7 & 8
--   Today
-    -   Quantifying changes over time
-    -   Tornadoes up close: Storm chasing escapades of Pecos Hank
+-   Lab 2 is next Monday (February 13)
+-   Lab 2 will cover material from Lessons 7 & 8
+-   Today (Lesson 8)
+    -   Quantifying changes over time (graphically and numerically)
+    -   Tornadoes up close: Storm chasing escapades of Pecos Hank during 2022
 
 ##
-
--   Prior to the data science movement of the last 15 years, it was seen as inappropriate for people “in the business” to write code
--   Code was a black art reserved for specially trained wizards in IT dev teams
--   In most organizations now it’s totally normal to run R or Python in the business
--   This is the data science legacy
-
-## 
 
 -   Returning to the monthly rain data from Northwest Florida
 -   Get the data into your current R session as a data frame with name `Rain.df`
 -   Select the columns labeled `Year` and `Jun`
--   Add a column (`dplyr::mutate()`) with June rain values in centimeters
+-   Include a column called `Rain_cm` with June rain values in centimeters (use the `dplyr::mutate()` function)
 
 ```{r}
 #| echo: true
@@ -42,7 +35,7 @@ Rain.df <- readr::read_table(here::here("data", "NWFL_MonthlyRain.txt")) |>
 
 ## 
 
--   Make a time series graph showing the June rainfall values over the years
+-   Make a time series graph showing the amount of June rainfall each year
 
 ```{r}
 #| echo: true
@@ -53,9 +46,9 @@ ggplot(data = Rain.df,
   geom_line()
 ```
 
-## 
+## {.smaller}
 
--   Include a line that shows the smoothed changes over time
+-   Include a line that shows the changes over time
 
 ```{r}
 #| echo: true
@@ -66,22 +59,31 @@ ggplot(data = Rain.df,
 ```
 
 -   There appears to be a tendency for more rain in June now than in the past
--   The change is almost linear
+-   The change is close to a straight line increase over the years
 
-## 
+## {.smaller}
 
--   To make the blue line straight, you change the default local regression smoother
--   You do this by including the argument `method = lm` inside the `geom_smooth()` function
+-   The line is made using local regression
+-   Default when nothing is inside the parentheses of `geom_smooth()`
+-   To make the blue line straight, you include the argument `method = lm` inside the `geom_smooth()` function
 
 ```{r warning=FALSE, message=FALSE}
 #| echo: true
+#| code-line-numbers: 4
 ggplot(data = Rain.df,
        mapping = aes(x = Year, y = Rain_cm)) +
   geom_line() +
   geom_smooth(method = lm)
 ```
 
-## 
+## {.smaller}
+
+```{r warning=FALSE, message=FALSE}
+ggplot(data = Rain.df,
+       mapping = aes(x = Year, y = Rain_cm)) +
+  geom_line() +
+  geom_smooth(method = lm)
+```
 
 -   The slope of the blue line is the average amount of change over the years
 -   You quantify this change using the following code
@@ -91,30 +93,31 @@ ggplot(data = Rain.df,
 lm(Rain_cm ~ Year, data = Rain.df)
 ```
 
--   The value below `Year` is the increase in the amount of rain in centimeters per year
--   +.023 cm per year or +2.3 cm per 100 years
--   Convert to inches?
+-   The value below `Year` is the increase in rain amount in units of centimeters per year
+-   +.023 cm per year or +2.3 cm per 100 years (1 inch per 100 years)
 
-## 
+##
 
 -   Temperature is a key climate indicator
--   Measurements made on land and in water across the globe indicate how temperature has changed over years, decades and centuries
--   They also tell us how temperature varies from one place to another
--   Global temperature is an aggregate over all the local temperatures
--   It summarizes the overall tendency in surface air temperature
--   It is the longest instrumental series of global climate change that we have
+-   Measurements made across the globe indicate how things have changed over time
+-   They also indicate how things vary from place to place
+-   Global temperature is an aggregation over all local temperature measurements
+    -   Summarizing the overall tendency in surface air temperature
+    -   Representing the longest series of global climate change indicator from observations that we have
 
 ## 
 
 -   Global temperature data from various research labs <https://climate.metoffice.cloud/temperature.html>
--   Annual global mean temperatures expressed as a difference from pre-industrial conditions (anomalies)
--   Four data sets are available and there is a large agreement between them
--   Temperature anomalies are calculated relative to a 1981 to 2010 baseline and offset by .69°C, which is the best estimate difference for that period from the 1850-1900 average given in the IPCC sixth assessment report
+-   Annual global mean temperatures expressed as a difference from pre-industrial conditions (temperature anomalies)
+-   Temperature anomalies are calculated relative to a baseline period between 1981 and 2010
+-   Four data sets are available
+-   Significant agreement between them
 
 ## 
 
--   Global mean temperature from the Climatic Research Unit
--   A leading institution concerned with the study of natural and anthropogenic climate change
+-   Global mean temperature from the Climatic Research Unit (CRU)
+    -   A leading institution concerned with the study of natural and human-caused climate change
+-   Download the data and get it into your current R session assigning it to the data frame called `T.df`
 
 ```{r}
 #| echo: true
@@ -124,34 +127,65 @@ download.file(url = L,
 
 T.df <- readr::read_csv(here::here("data", "T.csv"),
                         show_col_types = FALSE)
+```
+
+##
+
+-   Change the column names with the `names()` function
+
+```{r}
+#| echo: true
 names(T.df) <- c("Year", "T_C", "u")
 
 T.df |>
   head()
 ```
 
+-   `T_C` temperature anomaly in degrees Celsius
+-   `u` an estimate of the uncertainty surrounding the temperature anomaly
+
 ##  {.smaller}
 
--   Create a time series graph of the temperature anomalies. Include a ribbon indicating the uncertainty around the estimated values
+-   Create a time series graph of the temperature anomalies
+-   Include a ribbon indicating the uncertainty around the estimated values
 
 ```{r}
 #| echo: true
 ggplot(data = T.df,
-       mapping = aes(x = Year, y = T_C, ymin = T_C-u, ymax = T_C+u)) +
-  geom_ribbon(fill = "gray") + 
+       mapping = aes(x = Year, y = T_C, 
+                     ymin = T_C - u, ymax = T_C + u)) +
+  geom_ribbon(fill = "pink") + 
   geom_line() +
   scale_x_continuous(breaks = seq(1860, 2020, 20)) + ylab("°C")
 ```
 
-## 
+## {.smaller}
 
--   Overall, average temperatures have increased in most areas since the start of the 20th Century. This is reflected in the long-term increase in global temperature
--   However, temperatures have not increased at the same rate everywhere
--   Some general patterns of warming are to be noted: the land has generally warmed faster than the oceans; and over the past two decades, the Arctic has warmed twice as fast as the rest of the world
+```{r}
+ggplot(data = T.df,
+       mapping = aes(x = Year, y = T_C, ymin = T_C-u, ymax = T_C+u)) +
+  geom_ribbon(fill = "pink") + 
+  geom_line() +
+  scale_x_continuous(breaks = seq(1860, 2020, 20)) + ylab("°C")
+```
 
-## 
+-   Temperatures have been increasing in most areas since about 1920
+-   Uncertainty has decreased over the years
+-   Temperatures have not increased at the same rate everywhere
+    -   Land has generally warmed faster than the oceans
+    -   The Arctic has warmed twice as fast as the rest of the world
 
--   The increase in global temperatures is not steady
+## {.smaller}
+
+```{r}
+ggplot(data = T.df,
+       mapping = aes(x = Year, y = T_C, ymin = T_C-u, ymax = T_C+u)) +
+  geom_ribbon(fill = "pink") + 
+  geom_line() +
+  scale_x_continuous(breaks = seq(1860, 2020, 20)) + ylab("°C")
+```
+
+-   The increase in global temperature is not steady
 -   Slight cooling until about 1920 followed by a warming until the mid 1940s
 -   No warming from mid 1940s until the late 1970s
 -   Nearly linear warming since then
@@ -187,7 +221,7 @@ ggplot(mapping = aes(x = Year, y = T_C)) +
 
 ## 
 
--   The slope of the blue line is the average increase in temperatures over the years
+-   The slope of the blue line is the average increase in temperature over the years
 -   You quantify this change using the following code
 
 ```{r}
@@ -195,7 +229,7 @@ ggplot(mapping = aes(x = Year, y = T_C)) +
 lm(T_C ~ Year, data = T.df[T.df$Year >= 1973, ])
 ```
 
--   The value below `Year` is the increase in temperature in °C per year
+-   The value below `Year` is the increase in temperature in units of °C per year
 -   +.019°C per year or about +1.9°C per 100 years
 
 ## 
