@@ -19,13 +19,12 @@ Write code to get the `NWCA_MonthlyRain.txt` data into your current R session as
 Write code to make a time series graph of the December rain in Northwest California (column labeled `Dec` in the `Rain.df` data frame) (4)
 
 ## 3 
-Add a trend line to the graph (4)
+Add a straight line trend to the graph from question 2 (4)
 
 ## 4
-Quantify the amount of change using a linear regression model (4)
+Quantify the amount of change shown by the trend line in question 3 using linear regression model (4)
 
 ## 5
-Type your answers below to the following questions: According to Pacos Hank video entitled "Tornadoes of 2022", how many tornadoes were recorded across the United States last year (2022)? (2)
-
+Type your answers below to the following questions: According to Pecos Hank's video entitled "Tornadoes of 2022" (from Lesson 8), how many tornadoes were recorded across the United States last year (2022)? (2)
 
 

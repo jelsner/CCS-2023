@@ -86,7 +86,7 @@ ggplot(data = Rain.df,
 ```
 
 -   The slope of the blue line is the average amount of change over the years
--   You quantify this change using the following code
+-   You quantify the change in the above graph using linear regression with the following code
 
 ```{r}
 #| echo: true
