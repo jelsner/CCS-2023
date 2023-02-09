@@ -14,6 +14,13 @@ editor: source
 -   Weather and climate observations
 -   Humidity and its relationship to temperature
 
+##
+
+-   Storm chasing with my kids in 2008
+
+<https://www.dropbox.com/s/qdr9849tjpn6mv6/May23_2008_StormChase2.mov?dl=0>
+
+
 ## {.smaller}
 
 -   [Today's weather](https://climatereanalyzer.org/wx/todays-weather/)
@@ -27,7 +34,7 @@ editor: source
 ##
 
 -   Data science legacy
--   Prior to the data science movement of the last 15 years, it was seen as inappropriate for people “in the business” to write code
+-   Prior to the data science movement (last 15 years) it was seen as inappropriate for people “in the business” to write code
 -   Code was a black art reserved for specially trained wizards in information technology development teams
 -   Now in most organizations it’s normal to run R or Python in the business
 
@@ -37,6 +44,7 @@ editor: source
 -   Water exists in all three phases on Earth
 -   Relative vs absolute humidity
 -   Let the science show explain
+
 {{< video https://www.youtube.com/embed/wB3Yyq4xy_Y >}} 3 minutes
 
 ## 

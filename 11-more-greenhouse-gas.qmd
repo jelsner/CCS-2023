@@ -176,7 +176,10 @@ emits.df |>
   hockeystick::plot_emissions()
 ```
 
-## By country/region in 2020
+## 
+
+-   Total CO~2 emission by country/region in 2020
+
 ```{r}
 #| echo: true
 emits.df |>
@@ -186,3 +189,16 @@ emits.df |>
 ```
 
 China, United States, India, Russia, Japan, Iran, Germany, Saudi Arabia, South Korea, Indonesia, Canada, Brazil, South Africa, Turkey, Australia, United Kingdom, Italy, Poland, Kazakhstan, France, Taiwan, Malaysia
+
+
+## 
+
+-   Total CO~2 per person by country/region in 2020
+
+```{r}
+#| echo: true
+emits.df |>
+  dplyr::filter(year == 2020) |>
+  dplyr::select(country, co2, co2_per_capita) |>
+  dplyr::arrange(desc(co2_per_capita))
+```
