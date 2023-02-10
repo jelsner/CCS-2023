@@ -12,7 +12,7 @@ editor: source
 ## 
 
 -   Weather and climate observations
--   Humidity and its relationship to temperature
+-   Humidity and temperature
 
 ##
 
@@ -37,6 +37,12 @@ editor: source
 -   Prior to the data science movement (last 15 years) it was seen as inappropriate for people “in the business” to write code
 -   Code was a black art reserved for specially trained wizards in information technology development teams
 -   Now in most organizations it’s normal to run R or Python in the business
+
+##
+
+-   Changes in extremes
+-   Quantile regression
+-   Rainfall from Lesson 8 then `geom_quantile()`
 
 ## 
 
