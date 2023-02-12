@@ -11,14 +11,15 @@ editor: source
 
 ## 
 
--   Sources for weather and climate data
+-   Reliable resources for weather and climate data
 -   Quantify changes in extremes
--   Humidity and temperature
+-   Humidity
+-   Early storm chase video
 
-## {.smaller}
+## Reliable resources for weather and climate data {.smaller}
 
 -   [Today's weather](https://climatereanalyzer.org/wx/todays-weather/)
--   [Tropical weather resources](https://www.tropicaltidbits.com/analysis/models/)
+-   [Weather models](https://www.tropicaltidbits.com/analysis/models/)
 -   [Climate change indicators](https://zacklabe.com/climate-change-indicators/)
 -   [Tracking the changing climate with Earth observations](https://climate.metoffice.cloud/)
 -   [International Best Track Archive for Climate Stewardship (IBTrACS)](https://www.ncei.noaa.gov/products/international-best-track-archive)
@@ -27,12 +28,22 @@ editor: source
 
 ##
 
--   Data science legacy
--   Before the data science revolution (~15 years) it was seen as inappropriate for people “in the business” to write code
+-   The data science revolution refers to the increasing importance and widespread adoption of data-driven decision-making
+-   It is a result of the massive amounts of data that are generated and collected by businesses, organizations, and individuals
+-   And the advancements in computing power, storage, and algorithms that enable the processing and analysis of these data
+-   Data science involves the use of statistical and computational techniques to extract insights and knowledge from data, and to inform and optimize decision-making processes
+-   It draws on statistics, computer science, mathematics, and domain-specific knowledge, and utilizes machine learning, data mining, and visualization
+
+##
+
+-   It has had a transformative impact on finance, healthcare, retail, and marketing 
+-   It has enabled businesses to gain a deeper understanding of their customers, optimize their operations, and develop new products and services
+-   It has also opened up new opportunities for research and innovation in many areas, from climate science to social science
+-   Before the revolution it was seen as inappropriate for people “in the business” to write code
 -   Code was a black art reserved for specially trained wizards in information technology development teams
 -   Now in most organizations it’s normal to run R or Python in the business
 
-##
+## Quantify changes in extremes
 
 -   Rain data from NW Florida
 
@@ -69,7 +80,7 @@ ggplot(data = Rain.df,
 ```
 -   The atmosphere can hold an additional 7% more water vapor for every one degree C increase in temperature
 
-## 
+## Humidity
 
 -   Water is special
 -   Water exists in all three phases on Earth
@@ -78,9 +89,25 @@ ggplot(data = Rain.df,
 
 {{< video https://www.youtube.com/embed/wB3Yyq4xy_Y >}} 3 minutes
 
+## {.smaller}
+
+-   Relative humidity and dew point temperature are both measures of the amount of moisture in the air, but they represent different aspects of that moisture
+-   Relative humidity is a measure of how much moisture is in the air relative to the maximum amount it could hold at that temperature
+    -   It is expressed as a percentage and indicates how close the air is to being saturated with moisture
+    -   For example, if the relative humidity is 50%, the air is holding half of the maximum amount of moisture it could hold at that temperature
+    
+##
+
+-   Dew point temperature, on the other hand, is the temperature at which the air would become saturated with moisture, causing dew to form
+    -   It is a measure of the actual amount of moisture in the air, regardless of the temperature
+    
+-   When the dew point temperature and the air temperature are close, the air is close to being saturated and the relative humidity is high
+-   When the dew point temperature and air temperature are far apart, the air is relatively dry and the relative humidity is low
+
 ## 
 
--   Global relative humidity data 
+-   Global humidity data <https://climate.metoffice.cloud/humidity.html#datasets>
+-   Relative humidity data 
 
 ```{r}
 #| echo: TRUE
@@ -124,7 +151,7 @@ lm(RH_p ~ Year, data = RH.df)
 
 ## 
 
--   Dew point temperature
+-   Dew point temperature data
 
 ```{r}
 #| echo: TRUE
@@ -164,11 +191,9 @@ lm(Td_C ~ Year, data = Td.df)
 -   The value below `Year` is the increase in dew point in °C per year
 -   +1.3°C per 100 years
 
-
 ## 
 
--   Global humidity data <https://climate.metoffice.cloud/humidity.html#datasets>
--   Specific humidity (q in g/kg)
+-   Specific humidity (g/kg) data
 
 ```{r}
 #| echo: true
@@ -244,10 +269,8 @@ dplyr::left_join(q.df, T.df, by = "Year") |>
 
 <https://www.dropbox.com/s/qdr9849tjpn6mv6/May23_2008_StormChase2.mov?dl=0>
 
-
 ## 
 
 -   A tornado season forecast for 2023
 
 {{< video https://www.youtube.com/embed/5kVeEf7CtCE >}} 8 minutes
-

@@ -10,10 +10,10 @@ Due: 4:30 p.m. February 13, 2023
 
 Total Points: 18
 
-Enter your answers below each question in the `.qmd` file. The number in parentheses after the question is the maximum number of points. When finished submit your `.qmd` file through Canvas
+Enter your answers below each question in the `.qmd` file. The number in parentheses after the question is the maximum number of points. When finished submit your `.qmd` file via email through Canvas
 
 ## 1 
-Write code to get the `NWCA_MonthlyRain.txt` data into your current R session as a data frame called `Rain.df`. The file is located in the `data` directory (4)
+Write code to get the Northwest California rain data (`NWCA_MonthlyRain.txt`) into your current R session as a data frame called `Rain.df`. The file is located in the `data` directory (4)
 
 ## 2 
 Write code to make a time series graph of the December rain in Northwest California (column labeled `Dec` in the `Rain.df` data frame) (4)
@@ -22,7 +22,7 @@ Write code to make a time series graph of the December rain in Northwest Califor
 Add a straight line trend to the graph from question 2 (4)
 
 ## 4
-Quantify the amount of change shown by the trend line in question 3 using linear regression model (4)
+Quantify the amount of change shown by the trend line in question 3 using a linear regression model (4)
 
 ## 5
 Type your answers below to the following questions: According to Pecos Hank's video entitled "Tornadoes of 2022" (from Lesson 8), how many tornadoes were recorded across the United States last year (2022)? (2)
