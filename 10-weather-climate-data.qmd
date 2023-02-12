@@ -28,17 +28,17 @@ editor: source
 
 ##
 
--   The data science revolution refers to the increasing importance and widespread adoption of data-driven decision-making
--   It is a result of the massive amounts of data that are generated and collected by businesses, organizations, and individuals
--   And the advancements in computing power, storage, and algorithms that enable the processing and analysis of these data
--   Data science involves the use of statistical and computational techniques to extract insights and knowledge from data, and to inform and optimize decision-making processes
--   It draws on statistics, computer science, mathematics, and domain-specific knowledge, and utilizes machine learning, data mining, and visualization
+-   The data science revolution is the increasing importance and widespread adoption of data-driven decision-making
+-   It is a result of massive amounts of data generated and collected by businesses, organizations, and individuals
+-   And advancements in computing power, storage, and algorithms enabling the processing and analysis of these data
+-   Data science is the use of techniques to extract insights and knowledge from data, and to inform and optimize decision-making processes
+-   It draws on statistics, computer science, mathematics, and domain-specific knowledge, and makes use of machine learning, data mining, and visualization
 
 ##
 
--   It has had a transformative impact on finance, healthcare, retail, and marketing 
+-   It has transformed finance, healthcare, retail, and marketing 
 -   It has enabled businesses to gain a deeper understanding of their customers, optimize their operations, and develop new products and services
--   It has also opened up new opportunities for research and innovation in many areas, from climate science to social science
+-   It has opened up new opportunities for research and innovation in areas from climate science to social science
 -   Before the revolution it was seen as inappropriate for people “in the business” to write code
 -   Code was a black art reserved for specially trained wizards in information technology development teams
 -   Now in most organizations it’s normal to run R or Python in the business
@@ -78,29 +78,28 @@ ggplot(data = Rain.df,
   geom_line() +
   geom_quantile(quantiles = c(.25, .5, .75, .95))
 ```
--   The atmosphere can hold an additional 7% more water vapor for every one degree C increase in temperature
+
+-   Air can hold an additional 7% more water vapor for every one degree C increase in temperature
 
 ## Humidity
 
 -   Water is special
 -   Water exists in all three phases on Earth
 -   Relative vs absolute humidity
--   Let the science show explain
 
 {{< video https://www.youtube.com/embed/wB3Yyq4xy_Y >}} 3 minutes
 
 ## {.smaller}
 
--   Relative humidity and dew point temperature are both measures of the amount of moisture in the air, but they represent different aspects of that moisture
+-   Relative humidity and dew point temperature are measures of the amount of moisture in the air, but they represent different aspects of that moisture
 -   Relative humidity is a measure of how much moisture is in the air relative to the maximum amount it could hold at that temperature
-    -   It is expressed as a percentage and indicates how close the air is to being saturated with moisture
-    -   For example, if the relative humidity is 50%, the air is holding half of the maximum amount of moisture it could hold at that temperature
+    -   Expressed as a percentage indicating how close the air is to being saturated with moisture
+    -   If the relative humidity is 50%, the air is holding half of the maximum amount of moisture it could hold at that temperature
     
 ##
 
 -   Dew point temperature, on the other hand, is the temperature at which the air would become saturated with moisture, causing dew to form
     -   It is a measure of the actual amount of moisture in the air, regardless of the temperature
-    
 -   When the dew point temperature and the air temperature are close, the air is close to being saturated and the relative humidity is high
 -   When the dew point temperature and air temperature are far apart, the air is relatively dry and the relative humidity is low
 
