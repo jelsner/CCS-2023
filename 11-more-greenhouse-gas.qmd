@@ -16,15 +16,16 @@ format:
 
 -   A greenhouse gas (GHG) is air that absorbs and emits radiant energy within the thermal infrared range, causing the greenhouse effect
 -   The primary greenhouse gases in Earth's atmosphere are water vapor (H~2~O), carbon dioxide (CO~2~), methane (CH~4~), nitrous oxide (N~2~O), and ozone (O~3~)
--   Without greenhouse gases, the average temperature of Earth's surface would be about −18°C (0°F), rather than the present average of 15°C (59°F)
+-   Without greenhouse gases, the average temperature at the ground would be about −18°C (0°F)
+-   With greenhouse gases it is 15°C (59°F)
 
 ##
 
--   Human activities since the beginning of the Industrial Revolution (around 1750) have increased the atmospheric concentration of carbon dioxide by over 50%, from 280 ppm in 1750 to 421 ppm in 2022
--   The last time the atmospheric concentration of carbon dioxide was this high was over 3 million years ago
--   The vast majority of anthropogenic carbon dioxide emissions come from combustion of fossil fuels, principally coal, petroleum (including oil) and natural gas, with additional contributions from cement manufacturing, fertilizer production, deforestation and other changes in land use
--   The most abundant greenhouse gases in Earth's atmosphere are water vapor, carbon dioxide, and methane
-
+-   Humans have increased the atmospheric concentration of carbon dioxide by more than 50% since the Industrial Revolution
+-   280 ppm in 1750 to 421 ppm in 2022
+-   Last time carbon dioxide was this high was 3 million years ago
+-   The vast majority of anthropogenic carbon dioxide emissions come from combustion of fossil fuels, coal, petroleum, and natural gas
+-   Additional contributions from cement making, fertilizer production, deforestation
 
 ## Carbon dioxide (CO~2~) data from NOAA
 
@@ -189,7 +190,6 @@ emits.df |>
 ```
 
 China, United States, India, Russia, Japan, Iran, Germany, Saudi Arabia, South Korea, Indonesia, Canada, Brazil, South Africa, Turkey, Australia, United Kingdom, Italy, Poland, Kazakhstan, France, Taiwan, Malaysia
-
 
 ## 
 
