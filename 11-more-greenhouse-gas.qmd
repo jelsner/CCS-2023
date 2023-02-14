@@ -8,33 +8,42 @@ format:
     chalkboard: true
 ---
 
-## How climate change works
+##
+
+-   How climate change works
+-   Plotting greenhouse gas data (historical and current)
+-   Emission data
+
+## 
+
+-   How climate change works
 
 {{< video https://www.youtube.com/embed/CGoNpwN0mrs >}}
 
 ##
 
--   A greenhouse gas (GHG) is air that absorbs and emits radiant energy within the thermal infrared range, causing the greenhouse effect
+-   A greenhouse gas (GHG) is air that absorbs and emits radiant energy within the thermal (infrared) range, causing the greenhouse effect
 -   The primary greenhouse gases in Earth's atmosphere are water vapor (H~2~O), carbon dioxide (CO~2~), methane (CH~4~), nitrous oxide (N~2~O), and ozone (O~3~)
 -   Without greenhouse gases, the average temperature at the ground would be about −18°C (0°F)
 -   With greenhouse gases it is 15°C (59°F)
 
 ##
 
--   Humans have increased the atmospheric concentration of carbon dioxide by more than 50% since the Industrial Revolution
+-   Humans have increased the concentration of carbon dioxide in the air by more than 50% since the Industrial Revolution
 -   280 ppm in 1750 to 421 ppm in 2022
 -   Last time carbon dioxide was this high was 3 million years ago
--   The vast majority of anthropogenic carbon dioxide emissions come from combustion of fossil fuels, coal, petroleum, and natural gas
--   Additional contributions from cement making, fertilizer production, deforestation
+-   The vast majority of anthropogenic carbon dioxide comes from burning fossil fuels, coal, petroleum, and natural gas
+-   Other contributions are from cement making, fertilizer production, deforestation
 
-## Carbon dioxide (CO~2~) data from NOAA
+## 
+
+-   Carbon dioxide (CO~2~) data from NOAA
 
 <https://gml.noaa.gov/ccgg/trends/data.html>
 
-```{r}
+```{r, message=FALSE}
 #| echo: true
-co2.df <- readr::read_table(file = here::here("data", "co2_mm_mlo.txt"), 
-                            show_col_types = FALSE) |>
+co2.df <- readr::read_table(file = here::here("data", "co2_mm_mlo.txt")) |>
   dplyr::select(Year, Month, CO2_ppm) |>
   dplyr::mutate(Date = paste("01", month.abb[Month], Year)) |>
   dplyr::mutate(Date = as.Date(Date, format = "%d %b %Y"))
@@ -54,14 +63,17 @@ ggplot(data = co2.df,
   geom_line()
 ```
 
-## Methane (CH~4~) data from NOAA 
+-   Add a smooth line through the monthly values
+
+## 
+
+-   Methane (CH~4~) data from NOAA 
 
 <https://gml.noaa.gov/webdata/ccgg/trends/ch4/ch4_mm_gl.txt>
 
-```{r}
+```{r, message=FALSE}
 #| echo: true
-ch4.df <- readr::read_table(file = here::here("data", "ch4_mm_gl.txt"), 
-                             show_col_types = FALSE) |>
+ch4.df <- readr::read_table(file = here::here("data", "ch4_mm_gl.txt")) |>
   dplyr::select(Year, Month, CH4_ppb) |>
   dplyr::mutate(Date = paste("01", month.abb[Month], Year)) |>
   dplyr::mutate(Date = as.Date(Date, format = "%d %b %Y"))
@@ -76,26 +88,31 @@ ch4.df |>
 #| echo: true
 ggplot(data = ch4.df,
        mapping = aes(x = Date, y = CH4_ppb)) +
-  geom_line()
+  geom_line() +
+  geom_smooth()
 ```
 
 <https://www.climate.gov/news-features/understanding-climate/after-2000-era-plateau-global-methane-levels-hitting-new-highs>
 
-## {hockeystick} package
+## {.smaller}
 
--   The package *hockeystick* has functions that make climate data easily available to you
+-   The package {hockeystick} has functions that make climate data easily available to you
 -   You can download the latest raw data from authoritative sources as well as view it with pre-defined charts
 -   The name of the package stems from the well-known [hockey stick](https://en.wikipedia.org/wiki/Hockey_stick_graph) temperature chart
 
+-   Select the Packages tab then Install and search for `hockeystick`
+-   Or use the following code chunk
 ```{r}
 #| echo: true
 install.packages("hockeystick",
                  repo = "https://cloud.r-project.org")
 ```
 
-## Get the lastest CO~2~ data
+## 
 
--   Download the CO~2~ data using the `get_carbon()` function from the {hockeystick} package. The data are atmospheric CO~2~ measurements at Mauna Loa Observatory, Hawaii
+-   Get the latest CO~2~ data
+-   Download the CO~2~ data using the `get_carbon()` function from the {hockeystick} package
+-   The data are atmospheric CO~2~ measurements at Mauna Loa Observatory, Hawaii
 
 ```{r}
 #| echo: true
@@ -106,7 +123,7 @@ co2.df2 <- hockeystick::get_carbon(write_cache = TRUE)
 
 ## 
 
-Take a look at the first six rows of the data frame using the `head()` function.
+Take a look at the first six rows of the data frame using the `head()` function
 
 ```{r}
 #| echo: true
@@ -114,7 +131,9 @@ co2.df2 |>
   head()
 ```
 
-## Make a time series plot
+## 
+
+-   Make a time series plot
 
 ```{r}
 #| echo: true
@@ -132,7 +151,9 @@ hockeystick::plot_carbon(co2.df2)
   dplyr::select(Year, Month, CO2_ppm) )
 ```
 
-## Seasonal change
+## 
+
+-   Seasonal change
 
 ```{r}
 #| echo: true
@@ -143,32 +164,27 @@ co2.df3 |>
   dplyr::summarize(Avg_ppm = mean(CO2_ppm)) |>
   ggplot(mapping = aes(x = Month, y = Avg_ppm)) +
     geom_point() +
-    ylab("Parts per million") +
-    theme_minimal()
+    geom_line() +
+    ylab("Parts per million") 
 ```
 
-## Get the emissions data
+## 
 
-Download the emissions data using the `get_emissions()` function from the {hockeystick} package.
+-   Get the emissions data
+-   Download the emissions data using the `get_emissions()` function from the {hockeystick} package
+-   Look at the first six rows of the data frame using the `head()` function
 
 ```{r}
 #| echo: true
-library(hockeystick)
-
 emits.df <- hockeystick::get_emissions(write_cache = TRUE)
-```
 
-##
-
-Look at the first six rows of the data frame using the `head()` function.
-
-```{r}
-#| echo: true
 emits.df |>
   head()
 ```
 
-## Make a time-series plot
+## 
+
+-   Make a time-series plot
 
 ```{r}
 #| echo: true
@@ -202,3 +218,28 @@ emits.df |>
   dplyr::select(country, co2, co2_per_capita) |>
   dplyr::arrange(desc(co2_per_capita))
 ```
+
+##
+
+-   Compare emissions between the U.S. and China
+-   What would you expect?
+
+```{r}
+#| echo: true
+df <- emits.df |>
+  dplyr::filter(country %in% c("China", "United States"),
+                year >= 1910) |>
+  dplyr::select(country, year, co2, co2_per_capita)
+```
+
+```{r}
+#| echo: true
+ggplot(data = df,
+       mapping = aes(x = year, y = co2, color = country)) +
+  geom_line()
+```
+
+##
+
+-   Your turn. Repeat this graph with the co2_per_capita variable
+-   What do you expect?
