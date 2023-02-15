@@ -35,6 +35,12 @@ format:
 -   The vast majority of anthropogenic carbon dioxide comes from burning fossil fuels, coal, petroleum, and natural gas
 -   Other contributions are from cement making, fertilizer production, deforestation
 
+##
+
+-   How CO~2~ travels around the world
+
+<https://svs.gsfc.nasa.gov/vis/a010000/a011700/a011719/> 3 minutes
+
 ## 
 
 -   Carbon dioxide (CO~2~) data from NOAA
