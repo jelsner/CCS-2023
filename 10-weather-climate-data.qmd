@@ -11,19 +11,19 @@ editor: source
 
 ## 
 
--   Reliable resources for weather and climate data
--   Quantify changes in extremes
--   Humidity and humidity data
--   Storm chasing with my kids (15 years ago)
+-   Linking to reliable sources for weather and climate data
+-   Increasing importance of data science
+-   Quantifying changes in extremes
+-   Defining humidity and working with humidity data
+-   Chasing storms with my kids (15 years ago)
 
 ## Reliable resources for weather and climate data {.smaller}
 
 -   [Today's weather](https://climatereanalyzer.org/wx/todays-weather/)
--   [Weather models](https://www.tropicaltidbits.com/analysis/models/)
+-   [Weather forecast models](https://www.tropicaltidbits.com/analysis/models/)
 -   [Climate change indicators](https://zacklabe.com/climate-change-indicators/)
--   [Tracking the changing climate with Earth observations](https://climate.metoffice.cloud/)
--   [International Best Track Archive for Climate Stewardship (IBTrACS)](https://www.ncei.noaa.gov/products/international-best-track-archive)
--   [NOAA NWS Storm Prediction Center](https://www.spc.noaa.gov/)
+-   [Global tropical cyclone data](https://www.ncei.noaa.gov/products/international-best-track-archive)
+-   [U.S. tornado data](https://www.spc.noaa.gov/)
 -   [Global reanalysis data](https://cds.climate.copernicus.eu/cdsapp#!/dataset/reanalysis-era5-single-levels-monthly-means?tab=overview)
 
 ##
@@ -36,9 +36,9 @@ editor: source
 
 ##
 
--   It transforms finance, healthcare, retail, and marketing 
--   It enables businesses to gain a deep understanding of their customers, optimize operations, and develop new products and services
--   It opens new opportunities for research and innovation from climate science to social science
+-   Transforms finance, healthcare, retail, and marketing 
+-   Enables businesses to gain a deep understanding of their customers, optimize operations, and develop new products and services
+-   Opens new opportunities for research and innovation from climate science to social science
 -   Before the revolution it was seen as inappropriate for people “in the business” to write code
 -   Code was a black art reserved for specially trained wizards in information technology development teams
 -   Now in most organizations it’s normal to run R or Python in the business
@@ -69,7 +69,17 @@ ggplot(data = Rain.df,
 ```
 ##
 
--   Increasing extremes
+-   Quantifying the change in the _average_ rain
+
+```{r}
+#| echo: true
+lm(Rain_cm ~ Year, data = Rain.df)
+```
+-   2.3 cm per 100 years (about 1 inch)
+
+##
+
+-   Plotting the increasing extremes
 
 ```{r warning=FALSE, message=FALSE}
 #| echo: true
@@ -81,6 +91,17 @@ ggplot(data = Rain.df,
 
 -   Air can hold an additional 7% more water vapor for every one degree C increase in temperature
 
+##
+
+-   Quantifying the increasing extremes with quantile regression
+
+```{r, message=FALSE}
+library(quantreg)
+
+rq(Rain_cm ~ Year, data = Rain.df,
+   tau = c(.25, .5, .75, .95))
+```
+
 ## Humidity
 
 -   Water is special
@@ -89,7 +110,7 @@ ggplot(data = Rain.df,
 
 {{< video https://www.youtube.com/embed/wB3Yyq4xy_Y >}} 3 minutes
 
-## {.smaller}
+##
 
 -   Relative humidity and dew point temperature measure how much moisture is in the air, but they represent different aspects of that moisture
 -   Relative humidity is a measure of how much moisture is in the air _relative_ to the maximum amount it could hold at that temperature
@@ -109,13 +130,13 @@ ggplot(data = Rain.df,
 -   Global humidity <https://climate.metoffice.cloud/humidity.html#datasets>
 -   Relative humidity data 
 
-```{r}
+```{r, message=FALSE}
 #| echo: TRUE
-download.file(url = "https://climate.metoffice.cloud/formatted_data/humidity_RH_HadISDH%20blend%20RH.csv",
+L <- "https://climate.metoffice.cloud/formatted_data/humidity_RH_HadISDH%20blend%20RH.csv"
+download.file(url = L,
               destfile = here::here("data", "RH.csv"))
 
-RH.df <- readr::read_csv(here::here("data", "RH.csv"),
-                        show_col_types = FALSE)
+RH.df <- readr::read_csv(here::here("data", "RH.csv"))
 names(RH.df) <- c("Year", "RH_p", "u")
 
 RH.df |>
@@ -132,6 +153,7 @@ ggplot(mapping = aes(x = Year, y = RH_p)) +
   geom_line() +
   geom_smooth(method = lm, se = FALSE) +
   scale_x_continuous(breaks = seq(1980, 2020, 10)) +
+  ggtitle(label = "Decreasing relative humidity") +
   ylab("%")
 ```
 
@@ -146,7 +168,7 @@ lm(RH_p ~ Year, data = RH.df)
 ```
 
 -   The value below `Year` is the decrease in relative humidity in percentage points per year
--   -1.3 percentage points per 100 years
+-   -1.4 percentage points per 100 years
 -   Why the decrease?
 
 ## 
@@ -155,7 +177,8 @@ lm(RH_p ~ Year, data = RH.df)
 
 ```{r, message=FALSE}
 #| echo: TRUE
-download.file(url = "https://climate.metoffice.cloud/formatted_data/humidity_Td_HadISDH%20blend%20Td.csv",
+L <- "https://climate.metoffice.cloud/formatted_data/humidity_Td_HadISDH%20blend%20Td.csv"
+download.file(url = L,
               destfile = here::here("data", "Td.csv"))
 
 Td.df <- readr::read_csv(here::here("data", "Td.csv"))
@@ -174,6 +197,7 @@ ggplot(mapping = aes(x = Year, y = Td_C)) +
   geom_line() +
   geom_smooth(method = lm, se = FALSE) +
   scale_x_continuous(breaks = seq(1980, 2020, 10)) +
+  ggtitle(label = "Increasing dew point temperature") +
   ylab("°C")
 ```
 
@@ -253,6 +277,7 @@ names(T.df) <- c("Year", "T_C", "u")
 ## 
 
 -   Join the temperature data to the humidity data
+-   Draw a scatter plot
 
 ```{r}
 #| echo: true
