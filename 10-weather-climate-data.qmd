@@ -96,6 +96,7 @@ ggplot(data = Rain.df,
 -   Quantifying the increasing extremes with quantile regression
 
 ```{r, message=FALSE}
+#| echo: true
 library(quantreg)
 
 rq(Rain_cm ~ Year, data = Rain.df,
