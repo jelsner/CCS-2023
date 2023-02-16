@@ -10,28 +10,28 @@ format:
 editor: source
 ---
 
-## Get the temperature data
+##
 
-Download the temperature data using the `get_temp()` function from the {hockeystick} package.
+-   Plotting global temperatures
+
+## 
+
+-   Download the temperature data using the `get_temp()` function from the {hockeystick} package
+-   Look at the first six rows
 
 ```{r}
 #| echo: true
 library(hockeystick)
 
-t.df <- hockeystick::get_temp(write_cache = TRUE)
-```
+T.df <- hockeystick::get_temp(write_cache = TRUE)
 
-##
-
-Look at the first six rows using the `head()` function.
-
-```{r}
-#| echo: true
-t.df |>
+T.df |>
   head()
 ```
 
-## Make a time-series plot
+## 
+
+-   Make a time-series plot
 
 ```{r}
 #| echo: true
@@ -42,12 +42,17 @@ t.df |>
 
 ##
 
+-   Plot the time-series as stripes (warming stripes)
+
 ```{r}
 t.df |>
   warming_stripes()
 ```
 
-## Convert wide data to long data
+## 
+
+-   Convert wide data to long data
+
 ```{r}
 #| echo: true
 t.dfL <- t.df |>
@@ -58,11 +63,14 @@ t.dfL <- t.df |>
   dplyr::mutate(Year = lubridate::year(Year),
                 Month = factor(Month, 
                                levels = month.abb))
-
-head(t.dfL)
+t.dfL |>
+  head()
 ```
 
-## Plot temperatures by month
+## 
+
+-   Plot temperatures by month
+
 ```{r}
 #| echo: true
 library(ggplot2)
@@ -77,7 +85,9 @@ t.dfL |>
   facet_wrap(~ Month, ncol = 4)
 ```
 
-## Common era temperatures
+## 
+
+-   Common era temperatures
 
 ```{r}
 #| echo: true

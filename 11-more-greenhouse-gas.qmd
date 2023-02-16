@@ -102,8 +102,8 @@ ggplot(data = ch4.df,
 
 ## {.smaller}
 
--   The package {hockeystick} has functions that make climate data easily available to you
--   You can download the latest raw data from authoritative sources as well as view it with pre-defined charts
+-   The package {hockeystick} has functions that make climate data easily available
+-   You download the latest data from authoritative sources and make pre-defined plots
 -   The name of the package stems from the well-known [hockey stick](https://en.wikipedia.org/wiki/Hockey_stick_graph) temperature chart
 
 -   Select the Packages tab then Install and search for `hockeystick`
@@ -228,7 +228,7 @@ emits.df |>
 ##
 
 -   Compare emissions between the U.S. and China
--   What would you expect?
+-   What do you expect?
 
 ```{r}
 #| echo: true
