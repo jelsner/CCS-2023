@@ -1,5 +1,5 @@
 ---
-title: "Increasing greenhouse gases"
+title: "More greenhouse gases"
 format: 
   revealjs:
     code-fold: false
@@ -22,30 +22,32 @@ format:
 
 ##
 
--   A greenhouse gas (GHG) is air that absorbs and emits radiant energy within the thermal (infrared) range, causing the greenhouse effect
--   The primary greenhouse gases in Earth's atmosphere are water vapor (H~2~O), carbon dioxide (CO~2~), methane (CH~4~), nitrous oxide (N~2~O), and ozone (O~3~)
--   Without greenhouse gases, the average temperature at the ground would be about −18°C (0°F)
--   With greenhouse gases it is 15°C (59°F)
+-   A greenhouse gas (GHG) absorbs and emits radiant energy within the thermal (infrared) range, causing the greenhouse effect
+-   The main greenhouse gases are water vapor (H~2~O), carbon dioxide (CO~2~), methane (CH~4~), nitrous oxide (N~2~O), and ozone (O~3~)
+-   Without these gases the average temperature at the ground would be −18°C (0°F)
+-   With them it is 15°C (59°F)
 
 ##
 
 -   Humans have increased the concentration of carbon dioxide in the air by more than 50% since the Industrial Revolution
--   280 ppm in 1750 to 421 ppm in 2022
--   Last time carbon dioxide was this high was 3 million years ago
--   The vast majority of anthropogenic carbon dioxide comes from burning fossil fuels, coal, petroleum, and natural gas
--   Other contributions are from cement making, fertilizer production, deforestation
+-   Going from 280 ppm in 1750 to 421 ppm today
+-   The majority of human injected carbon dioxide comes from burning fossil fuels, coal, petroleum, and natural gas
+-   Other contributing process include cement making, fertilizer production, deforestation
 
 ##
 
 -   How CO~2~ travels around the world
-
 <https://svs.gsfc.nasa.gov/vis/a010000/a011700/a011719/> 3 minutes
 
-## 
-
 -   Carbon dioxide (CO~2~) data from NOAA
-
 <https://gml.noaa.gov/ccgg/trends/data.html>
+
+-   A copy of the file named `co2_mm_mlo.txt` is available in your `data` directory
+
+## {.smaller}
+
+-   Get the data into your current R session as a data frame
+-   Selecting and mutating (adding a `Date` variable)
 
 ```{r, message=FALSE}
 #| echo: true
@@ -54,11 +56,15 @@ co2.df <- readr::read_table(file = here::here("data", "co2_mm_mlo.txt")) |>
   dplyr::mutate(Date = paste("01", month.abb[Month], Year)) |>
   dplyr::mutate(Date = as.Date(Date, format = "%d %b %Y"))
 
-co2.df |>
-  head()
+co2.df
 ```
 
+-   CO~2~ values are in parts per million (by volume)
+
 ##
+
+-   Plot CO~2~ concentrations as a function of the date
+-   You map the `Date` variable to the `x` aesthetic and the `CO2_ppm` variable to the `y` aesthetic
 
 ```{r}
 #| echo: true
@@ -69,12 +75,52 @@ ggplot(data = co2.df,
   geom_line()
 ```
 
--   Add a smooth line through the monthly values
+-   Upward trend in CO~2~
+-   Why does the line wiggle up and down?
+
+##
+
+-   Add a trend line through the values
+-   The trend does not look linear so use the default local regression smoother
+
+```{r}
+#| echo: true
+ggplot(data = co2.df,
+       mapping = aes(x = Date, y = CO2_ppm)) +
+  geom_line() +
+  geom_smooth()
+```
+
+-   [Keeling curve](https://en.wikipedia.org/wiki/Keeling_Curve)
+
+##
+
+
+
+##
+
+-   What is the annual average increase of CO~2~ during May since 2010?
+
+```{r}
+co2.df2 <- co2.df |>
+  dplyr::filter(Month == 5) |>
+  dplyr::filter(Year >= 2010)
+```
+
+```{r}
+lm(CO2_ppm ~ Year, data = co2.df2)
+```
+## {.smaller}
+
+-   Analysis shows a steady increase in mean atmospheric CO~2~ concentration from 313 parts per million by volume (ppmv) in March 1958 to 420 ppmv last month
+-   Current increase is 2.4 ppm per year
+-   The increase is due to burning fossil fuels
+-   Since CO~2~ is a greenhouse gas, this has implications for global warming
+-   Measurements of CO~2~ concentration in air trapped in polar ice cores show that average CO~2~ concentration was between 275 and 285 ppm during the Holocene (since 9000 years ago), but started rising sharply at the beginning of the nineteenth century
 
 ## 
 
--   Methane (CH~4~) data from NOAA 
-
+-   Repeat this analysis using the methane (CH~4~) data from NOAA 
 <https://gml.noaa.gov/webdata/ccgg/trends/ch4/ch4_mm_gl.txt>
 
 ```{r, message=FALSE}
@@ -84,8 +130,7 @@ ch4.df <- readr::read_table(file = here::here("data", "ch4_mm_gl.txt")) |>
   dplyr::mutate(Date = paste("01", month.abb[Month], Year)) |>
   dplyr::mutate(Date = as.Date(Date, format = "%d %b %Y"))
 
-ch4.df |>
-  head()
+ch4.df
 ```
 
 ##
@@ -98,7 +143,7 @@ ggplot(data = ch4.df,
   geom_smooth()
 ```
 
-<https://www.climate.gov/news-features/understanding-climate/after-2000-era-plateau-global-methane-levels-hitting-new-highs>
+[Global methane levels](https://www.climate.gov/news-features/understanding-climate/after-2000-era-plateau-global-methane-levels-hitting-new-highs)
 
 ## {.smaller}
 
@@ -124,17 +169,9 @@ install.packages("hockeystick",
 #| echo: true
 library(hockeystick)
 
-co2.df2 <- hockeystick::get_carbon(write_cache = TRUE)
-```
+co2.df3 <- hockeystick::get_carbon(write_cache = TRUE)
 
-## 
-
-Take a look at the first six rows of the data frame using the `head()` function
-
-```{r}
-#| echo: true
-co2.df2 |>
-  head()
+co2.df3
 ```
 
 ## 
@@ -143,29 +180,28 @@ co2.df2 |>
 
 ```{r}
 #| echo: true
-hockeystick::plot_carbon(co2.df2)
+co2.df3 |>
+  hockeystick::plot_carbon()
 ```
 
 ## 
 
 ```{r}
 #| echo: true
-( co2.df3 <- co2.df2 |>
+( co2.df4 <- co2.df3 |>
   dplyr::rename(CO2_ppm = average) |>
   dplyr::mutate(Year = lubridate::year(date),
                 Month = lubridate::month(month, label = TRUE)) |>
   dplyr::select(Year, Month, CO2_ppm) )
 ```
 
-## 
+## {.smaller}
 
 -   Seasonal change
 
 ```{r}
 #| echo: true
-#| output-location: slide 
-#| fig-cap: "Seasonal change in carbon dioxide at Mauna Loa"
-co2.df3 |>
+co2.df4 |>
   dplyr::group_by(Month) |>
   dplyr::summarize(Avg_ppm = mean(CO2_ppm)) |>
   ggplot(mapping = aes(x = Month, y = Avg_ppm)) +
@@ -176,16 +212,15 @@ co2.df3 |>
 
 ## 
 
+-   Where is these gases coming from?
 -   Get the emissions data
 -   Download the emissions data using the `get_emissions()` function from the {hockeystick} package
--   Look at the first six rows of the data frame using the `head()` function
 
 ```{r}
 #| echo: true
 emits.df <- hockeystick::get_emissions(write_cache = TRUE)
 
-emits.df |>
-  head()
+emits.df
 ```
 
 ## 
@@ -227,8 +262,8 @@ emits.df |>
 
 ##
 
--   Compare emissions between the U.S. and China
--   What do you expect?
+-   Compare emissions between the U.S. and China over time
+-   What do you expect to find?
 
 ```{r}
 #| echo: true
@@ -247,8 +282,19 @@ ggplot(data = df,
 
 ##
 
--   Your turn. Repeat this graph with the co2_per_capita variable
--   What do you expect?
+-   Your turn 
+-   Repeat this graph with the `co2_per_capita` variable. What do you expect to find?
+-   Compare emissions per capita between Europe and the United States over time
+
+```{r}
+#| echo: true
+emits.df |>
+  dplyr::filter(country %in% c("Europe", "United States"),
+                year >= 1910) |>
+  dplyr::select(country, year, co2, co2_per_capita) |>
+ggplot(mapping = aes(x = year, y = co2, color = country)) +
+  geom_line()
+```
 
 ## 
 

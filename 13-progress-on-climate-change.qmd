@@ -1,0 +1,19 @@
+---
+title: "Progress on solving climate change"
+format: 
+  revealjs:
+    slide-number: c/t
+    code-fold: false
+    chalkboard: true
+    theme: white
+    footer: "GEO4251 Climate Change & Storms"
+editor: source
+---
+
+
+##
+
+-   Progress on solving climate change: Where are we and where are we going?
+
+{{< video https://www.youtube.com/embed/vFDnknU0h0s >}} 14 minutes
+{{< video https://www.youtube.com/embed/n5Z_O4Y7gz0 >}} 25 minutes
