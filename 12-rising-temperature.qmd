@@ -208,3 +208,118 @@ vostok |>
 climate_grid()
 ```
 
+##
+
+-   Is Tallahassee getting hotter?
+-   Get the daily high temperature from the official airport site since 1940
+```{r, message=FALSE}
+#| echo: true
+L <- "http://myweb.fsu.edu/jelsner/temp/data/TLH_Daily1940-2020.csv"
+TLH_Daily.df <- readr::read_csv(L) |>
+  dplyr::mutate(Year = lubridate::year(DATE)) |>
+  dplyr::filter(Year >= 1969 & Year < 2021)
+
+TLH_Daily.df
+```
+
+##
+
+-   Graph the annual average temperature
+```{r, message=FALSE}
+#| echo: true
+library(ggplot2)
+
+TLH_Annual.df <- TLH_Daily.df |>
+  dplyr::group_by(Year) |>
+  dplyr::summarize(AvgT = mean(TMAX, na.rm = TRUE))
+
+ggplot(data = TLH_Annual.df,
+       mapping = aes(x = Year, y = AvgT)) +
+  geom_point() +
+  geom_line() +
+  geom_smooth(method = lm)
+```
+
+```{r}
+lm(AvgT ~ Year, data = TLH_Annual.df)
+```
+
+##
+
+-   Is Las Vegas getting hotter?
+-   Get the daily high temperature from the official airport site since 1969
+```{r, message=FALSE}
+#| echo: true
+L <- "http://myweb.fsu.edu/jelsner/temp/data/LVG_Daily1940-2020.csv"
+LVG_Daily.df <- readr::read_csv(L) |>
+  dplyr::mutate(DATE = readr::parse_datetime(DATE, "%m/%d/%y")) |>
+  dplyr::mutate(Year = lubridate::year(DATE)) |>
+  dplyr::filter(Year >= 1969 & Year < 2021)
+
+LVG_Daily.df
+```
+
+-   Graph the annual average temperature
+```{r, message=FALSE}
+#| echo: true
+LVG_Annual.df <- LVG_Daily.df |>
+  dplyr::group_by(Year) |>
+  dplyr::summarize(AvgT = mean(TMAX, na.rm = TRUE))
+
+ggplot(data = LVG_Annual.df,
+       mapping = aes(x = Year, y = AvgT)) +
+    geom_point() +
+    geom_line() +
+    geom_smooth(method = lm)
+```
+
+```{r}
+lm(AvgT ~ Year, data = LVG_Annual.df)
+```
+
+##
+
+Is the frequency of extremely hot days increasing? Here we define a hot day as one in which the high temperatures reaches 100° F
+
+```{r}
+TLH_Daily.df |>
+  dplyr::group_by(Year) |>
+  dplyr::summarize(N100 = sum(TMAX >= 100)) |>
+ggplot(mapping = aes(x = Year, y = N100)) +
+  geom_col() +
+  ylab("Number of days in Tallahassee at or exceeding 100° F")
+```
+
+The hots are getting hotter
+
+##
+
+```{r, message=FALSE}
+TLH_Daily.df |>
+  dplyr::group_by(TMAX) |>
+  dplyr::summarize(nH = dplyr::n()) |>
+ggplot(mapping = aes(x = TMAX, y = nH)) +
+  geom_col(col = 'white', fill = "gray70") +
+  labs(title = "Frequency of Daily High Temperatures",
+       subtitle = "Tallahassee, FL, USA (1969-2020)",
+       x = "Daily High Temperature (°F)",
+       y = "Number of Days") +
+ scale_x_continuous(breaks = seq(from = 20, to = 110, by = 10)) +
+ theme_minimal()
+```
+
+##
+
+```{r, message=FALSE}
+LVG_Daily.df |>
+  dplyr::group_by(TMAX) |>
+  dplyr::summarize(nH = dplyr::n()) |>
+ggplot(mapping = aes(x = TMAX, y = nH)) +
+  geom_col(col = 'white', fill = "gray70") +
+  labs(title = "Frequency of Daily High Temperatures",
+       subtitle = "Las Vegas, NV, USA (1969-2020)",
+       x = "Daily High Temperature (°F)",
+       y = "Number of Days") +
+ scale_x_continuous(breaks = seq(from = 20, to = 110, by = 10)) +
+ theme_minimal()
+```
