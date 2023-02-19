@@ -12,7 +12,7 @@ format:
 
 -   How climate change works
 -   Plotting greenhouse gas data (historical and current)
--   Emissions data
+-   Data and plots of greenhouse gas emissions by country
 
 ## 
 
@@ -22,7 +22,7 @@ format:
 
 ##
 
--   A greenhouse gas (GHG) absorbs and emits radiant energy within the thermal (infrared) range, causing the greenhouse effect
+-   A greenhouse gas (GHG) absorbs and emits energy within the thermal (infrared) range, causing the greenhouse effect
 -   The main greenhouse gases are water vapor (H~2~O), carbon dioxide (CO~2~), methane (CH~4~), nitrous oxide (N~2~O), and ozone (O~3~)
 -   Without these gases the average temperature at the ground would be −18°C (0°F)
 -   With them it is 15°C (59°F)
@@ -32,7 +32,7 @@ format:
 -   Humans have increased the concentration of carbon dioxide in the air by more than 50% since the Industrial Revolution
 -   Going from 280 ppm in 1750 to 421 ppm today
 -   The majority of human injected carbon dioxide comes from burning fossil fuels, coal, petroleum, and natural gas
--   Other contributing process include cement making, fertilizer production, deforestation
+-   Other processes include cement making, fertilizer production, and deforestation
 
 ##
 
