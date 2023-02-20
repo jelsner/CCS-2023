@@ -98,12 +98,14 @@ ggplot(data = co2.df,
 -   What is the annual average increase of CO~2~ during May since 2010?
 
 ```{r}
+#| echo: true
 co2.df2 <- co2.df |>
   dplyr::filter(Month == 5) |>
   dplyr::filter(Year >= 2010)
 ```
 
 ```{r}
+#| echo: true
 lm(CO2_ppm ~ Year, data = co2.df2)
 ```
 
@@ -281,6 +283,12 @@ ggplot(data = df,
 
 -   Your turn 
 -   Repeat this graph with the `co2_per_capita` variable. What do you expect to find?
+```{r}
+ggplot(data = df,
+       mapping = aes(x = year, y = co2_per_capita, color = country)) +
+  geom_line()
+```
+
 -   Compare annual emissions per capita between Europe and the United States since 1910
 
 ```{r, eval=FALSE}
