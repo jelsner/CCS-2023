@@ -14,6 +14,8 @@ format:
 -   Plotting greenhouse gas data (historical and current)
 -   Plotting greenhouse gas emissions by country
 
+-   Smoke in the air today <https://www.star.nesdis.noaa.gov/GOES/sector_band.php?sat=G16&sector=se&band=GEOCOLOR&length=24>
+
 ## 
 
 -   How climate change works
@@ -22,25 +24,25 @@ format:
 
 ##
 
--   A greenhouse gas (GHG) absorbs and emits energy within the thermal (infrared) range, causing the greenhouse effect
--   The main greenhouse gases are water vapor (H~2~O), carbon dioxide (CO~2~), methane (CH~4~), nitrous oxide (N~2~O), and ozone (O~3~)
+-   Greenhouse gases (GHGs) absorb and emit energy within the thermal (infrared) range, causing the greenhouse effect
+-   The main ones are water vapor (H~2~O), carbon dioxide (CO~2~), methane (CH~4~), nitrous oxide (N~2~O), and ozone (O~3~)
 -   Without these gases the average temperature at the ground would be −18°C (0°F)
 -   With them it is 15°C (59°F)
 
 ##
 
--   Humans have increased the concentration of carbon dioxide in the air by more than 50% since the Industrial Revolution
+-   We have increased the amount of carbon dioxide in the air by more than 50% since the Industrial Revolution
 -   Going from 280 ppm in 1750 to 421 ppm today
--   The majority of human injected carbon dioxide comes from burning fossil fuels, coal, petroleum, and natural gas
+-   The majority of our carbon dioxide comes from burning fossil fuels, coal, petroleum, and natural gas
 -   Other processes include cement making, fertilizer production, and deforestation
 
 ##
 
--   How CO~2~ travels around the world
+-   Locally how much CO~2~ is in the air depends on proximity to industry and on the weather and climate cycles
 <https://svs.gsfc.nasa.gov/vis/a010000/a011700/a011719/> 3 minutes
 -   Carbon dioxide (CO~2~) data from NOAA
 <https://gml.noaa.gov/ccgg/trends/data.html>
--   A copy of the file named `co2_mm_mlo.txt` is available in your `data` directory
+-   The file named `co2_mm_mlo.txt` is available in your `data` directory
 
 ## {.smaller}
 
@@ -57,7 +59,7 @@ co2.df <- readr::read_table(file = here::here("data", "co2_mm_mlo.txt")) |>
 co2.df
 ```
 
--   CO~2~ values are in parts per million by volum (ppm or ppmv)
+-   CO~2~ numbers have units of parts per million by volume (ppm or ppmv)
 
 ## {.smaller}
 
@@ -161,7 +163,7 @@ install.packages("hockeystick",
 -   Download the CO~2~ data using the `get_carbon()` function from the {hockeystick} package
 -   The data are atmospheric CO~2~ measurements at Mauna Loa Observatory, Hawaii
 
-```{r}
+```{r, eval=FALSE}
 #| echo: true
 library(hockeystick)
 
@@ -174,7 +176,7 @@ co2.df3
 
 -   Make a time series plot
 
-```{r}
+```{r, eval=FALSE}
 #| echo: true
 co2.df3 |>
   hockeystick::plot_carbon()
@@ -182,7 +184,7 @@ co2.df3 |>
 
 ## 
 
-```{r}
+```{r, eval=FALSE}
 #| echo: true
 co2.df4 <- co2.df3 |>
   dplyr::rename(CO2_ppm = average) |>
@@ -199,7 +201,7 @@ co2.df4
 
 ```{r}
 #| echo: true
-co2.df4 |>
+co2.df |>
   dplyr::group_by(Month) |>
   dplyr::summarize(Avg_ppm = mean(CO2_ppm)) |>
   ggplot(mapping = aes(x = Month, y = Avg_ppm)) +
@@ -281,7 +283,7 @@ ggplot(data = df,
 -   Repeat this graph with the `co2_per_capita` variable. What do you expect to find?
 -   Compare annual emissions per capita between Europe and the United States since 1910
 
-```{r}
+```{r, eval=FALSE}
 #| echo: false
 emits.df |>
   dplyr::filter(country %in% c("Europe", "United States"),
