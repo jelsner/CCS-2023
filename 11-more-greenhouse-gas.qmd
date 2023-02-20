@@ -10,9 +10,9 @@ format:
 
 ##
 
--   How climate change works
+-   Greenhouse gases and how climate change works
 -   Plotting greenhouse gas data (historical and current)
--   Data and plots of greenhouse gas emissions by country
+-   Plotting greenhouse gas emissions by country
 
 ## 
 
@@ -38,10 +38,8 @@ format:
 
 -   How CO~2~ travels around the world
 <https://svs.gsfc.nasa.gov/vis/a010000/a011700/a011719/> 3 minutes
-
 -   Carbon dioxide (CO~2~) data from NOAA
 <https://gml.noaa.gov/ccgg/trends/data.html>
-
 -   A copy of the file named `co2_mm_mlo.txt` is available in your `data` directory
 
 ## {.smaller}
@@ -59,9 +57,9 @@ co2.df <- readr::read_table(file = here::here("data", "co2_mm_mlo.txt")) |>
 co2.df
 ```
 
--   CO~2~ values are in parts per million (by volume)
+-   CO~2~ values are in parts per million by volum (ppm or ppmv)
 
-##
+## {.smaller}
 
 -   Plot CO~2~ concentrations as a function of the date
 -   You map the `Date` variable to the `x` aesthetic and the `CO2_ppm` variable to the `y` aesthetic
@@ -81,7 +79,7 @@ ggplot(data = co2.df,
 ##
 
 -   Add a trend line through the values
--   The trend does not look linear so use the default local regression smoother
+-   The increase is not steady, so use the default local regression smoother
 
 ```{r}
 #| echo: true
@@ -92,10 +90,6 @@ ggplot(data = co2.df,
 ```
 
 -   [Keeling curve](https://en.wikipedia.org/wiki/Keeling_Curve)
-
-##
-
-
 
 ##
 
@@ -110,6 +104,9 @@ co2.df2 <- co2.df |>
 ```{r}
 lm(CO2_ppm ~ Year, data = co2.df2)
 ```
+
+-   Answer: 2.4 ppm per year
+
 ## {.smaller}
 
 -   Analysis shows a steady increase in mean atmospheric CO~2~ concentration from 313 parts per million by volume (ppmv) in March 1958 to 420 ppmv last month
@@ -143,14 +140,13 @@ ggplot(data = ch4.df,
   geom_smooth()
 ```
 
-[Global methane levels](https://www.climate.gov/news-features/understanding-climate/after-2000-era-plateau-global-methane-levels-hitting-new-highs)
+-   [Global methane levels](https://www.climate.gov/news-features/understanding-climate/after-2000-era-plateau-global-methane-levels-hitting-new-highs)
 
 ## {.smaller}
 
 -   The package {hockeystick} has functions that make climate data easily available
 -   You download the latest data from authoritative sources and make pre-defined plots
 -   The name of the package stems from the well-known [hockey stick](https://en.wikipedia.org/wiki/Hockey_stick_graph) temperature chart
-
 -   Select the Packages tab then Install and search for `hockeystick`
 -   Or use the following code chunk
 ```{r}
@@ -159,7 +155,7 @@ install.packages("hockeystick",
                  repo = "https://cloud.r-project.org")
 ```
 
-## 
+## {.smaller}
 
 -   Get the latest CO~2~ data
 -   Download the CO~2~ data using the `get_carbon()` function from the {hockeystick} package
@@ -188,11 +184,13 @@ co2.df3 |>
 
 ```{r}
 #| echo: true
-( co2.df4 <- co2.df3 |>
+co2.df4 <- co2.df3 |>
   dplyr::rename(CO2_ppm = average) |>
   dplyr::mutate(Year = lubridate::year(date),
                 Month = lubridate::month(month, label = TRUE)) |>
-  dplyr::select(Year, Month, CO2_ppm) )
+  dplyr::select(Year, Month, CO2_ppm)
+
+co2.df4
 ```
 
 ## {.smaller}
@@ -210,9 +208,9 @@ co2.df4 |>
     ylab("Parts per million") 
 ```
 
-## 
+## {.smaller}
 
--   Where is these gases coming from?
+-   Where are these gases coming from?
 -   Get the emissions data
 -   Download the emissions data using the `get_emissions()` function from the {hockeystick} package
 
@@ -248,7 +246,7 @@ emits.df |>
 
 China, United States, India, Russia, Japan, Iran, Germany, Saudi Arabia, South Korea, Indonesia, Canada, Brazil, South Africa, Turkey, Australia, United Kingdom, Italy, Poland, Kazakhstan, France, Taiwan, Malaysia
 
-## 
+## {.smaller}
 
 -   Total CO~2 per person by country/region in 2020
 
@@ -271,10 +269,7 @@ df <- emits.df |>
   dplyr::filter(country %in% c("China", "United States"),
                 year >= 1910) |>
   dplyr::select(country, year, co2, co2_per_capita)
-```
 
-```{r}
-#| echo: true
 ggplot(data = df,
        mapping = aes(x = year, y = co2, color = country)) +
   geom_line()
@@ -284,10 +279,10 @@ ggplot(data = df,
 
 -   Your turn 
 -   Repeat this graph with the `co2_per_capita` variable. What do you expect to find?
--   Compare emissions per capita between Europe and the United States over time
+-   Compare annual emissions per capita between Europe and the United States since 1910
 
 ```{r}
-#| echo: true
+#| echo: false
 emits.df |>
   dplyr::filter(country %in% c("Europe", "United States"),
                 year >= 1910) |>
@@ -295,9 +290,3 @@ emits.df |>
 ggplot(mapping = aes(x = year, y = co2, color = country)) +
   geom_line()
 ```
-
-## 
-
--   A tornado season forecast for 2023
-
-{{< video https://www.youtube.com/embed/5kVeEf7CtCE >}} 8 minutes
