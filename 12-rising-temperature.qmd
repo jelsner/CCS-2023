@@ -1,5 +1,5 @@
 ---
-title: "More CO2, increasing temperature, rising seas, melting ice"
+title: "Increasing temperature, rising seas, melting ice"
 format: 
   revealjs:
     slide-number: c/t
@@ -12,14 +12,15 @@ editor: source
 
 ##
 
--   More CO~2~
--   Increasing temperature
--   Rising seas
--   Melting ice
+-   Temperature changes across time
+-   The hockey stick graph
+-   Rising seas, melting ice
+-   Local temperature changes
+-   Lapse rates of temperature
 
-## 
+## {.smaller}
 
--   Download the temperature data using the `get_temp()` function from the {hockeystick} package
+-   Download the latest temperature data using the `get_temp()` function from the {hockeystick} package
 
 ```{r}
 #| echo: true
@@ -46,11 +47,12 @@ t.df |>
 -   Plot the time-series as stripes (warming stripes)
 
 ```{r}
+#| echo: true
 t.df |>
   warming_stripes()
 ```
 
-## 
+## {.smaller}
 
 -   Convert the wide data to long data
 
@@ -80,14 +82,15 @@ t.dfL |>
   dplyr::filter(Year >= 1980) |>
   ggplot(mapping = aes(x = Year, 
                        y = Anom_C)) +
-#  geom_line() +
+  geom_line() +
   geom_smooth(method = lm, color = "red") +
   facet_wrap(~ Month, ncol = 4)
 ```
 
 ## 
 
--   Common era temperatures
+-   Temperatures since the birth of Christ (Common Era)
+-   Modeled, instrumental, filtered
 
 ```{r}
 #| echo: true
@@ -106,9 +109,13 @@ anomaly2k |>
 
 ##
 
--   Dr. Jennifer Francis on warming and emissions
+-    Warming and emissions (Dr. Jennifer Francis)
 
 {{< video https://www.youtube.com/embed/JKrkiZM1asQ >}} 5 minutes
+
+-   The hockey stick graph (Simon Clark)
+
+{{< video https://www.youtube.com/embed/CqtZdnpfgIc >}} 9 minutes
 
 ## 
 
@@ -131,14 +138,14 @@ gmsl |>
   plot_sealevel()
 ```
 
-##
+## {.smaller}
 
 -   Download the sea ice data using the `get_seaice()` function from the {hockeystick} package
 -   Sea ice extent in millions of square kilometers every July 31 since 1979
 
 ```{r}
 #| echo: true
-seaice <- get_seaice(write_cache = TRUE)
+seaice <- get_seaice(write_cache = TRUE) 
 
 seaice 
 ```
@@ -155,18 +162,20 @@ seaice |>
 
 ## 
 
--   Quantify the change
+-   Quantify the loss of sea ice in square kilometers per year
 
 ```{r}
 #| echo: true
 seaice <- seaice |>
   dplyr::mutate(Year = lubridate::year(date),
-                Extent = extent * 10^6)
+                Extent_km2 = extent * 10^6)
 
-lm(Extent ~ Year, data = seaice)
+lm(Extent_km2 ~ Year, data = seaice)
 ```
 
-## 
+-     A loss of 68 and a half thousand square kilometers per year
+
+## {.smaller}
 
 -   Download the Arctic ice data using the `get_icecurves()` function from the {hockeystick} package
 -   Arctic ice extent in millions of square kilometers every month since 1979.
@@ -174,6 +183,7 @@ lm(Extent ~ Year, data = seaice)
 ```{r}
 #| echo: true
 arcticice <- get_icecurves()
+
 arcticice 
 ```
 
@@ -208,10 +218,12 @@ vostok |>
 climate_grid()
 ```
 
-##
+## {.smaller}
 
--   Is Tallahassee getting hotter?
+-   Regional warming
+-   Is Tallahassee getting warmer?
 -   Get the daily high temperature from the official airport site since 1940
+
 ```{r, message=FALSE}
 #| echo: true
 L <- "http://myweb.fsu.edu/jelsner/temp/data/TLH_Daily1940-2020.csv"
@@ -222,9 +234,10 @@ TLH_Daily.df <- readr::read_csv(L) |>
 TLH_Daily.df
 ```
 
-##
+## {.smaller}
 
 -   Graph the annual average temperature
+
 ```{r, message=FALSE}
 #| echo: true
 library(ggplot2)
@@ -240,14 +253,20 @@ ggplot(data = TLH_Annual.df,
   geom_smooth(method = lm)
 ```
 
+##
+
+-   Quantify the change
+
 ```{r}
+#| echo: true
 lm(AvgT ~ Year, data = TLH_Annual.df)
 ```
 
-##
+## {.smaller}
 
--   Is Las Vegas getting hotter?
+-   Is Las Vegas getting warmer?
 -   Get the daily high temperature from the official airport site since 1969
+
 ```{r, message=FALSE}
 #| echo: true
 L <- "http://myweb.fsu.edu/jelsner/temp/data/LVG_Daily1940-2020.csv"
@@ -259,7 +278,10 @@ LVG_Daily.df <- readr::read_csv(L) |>
 LVG_Daily.df
 ```
 
+## {.smaller}
+
 -   Graph the annual average temperature
+
 ```{r, message=FALSE}
 #| echo: true
 LVG_Annual.df <- LVG_Daily.df |>
@@ -273,29 +295,40 @@ ggplot(data = LVG_Annual.df,
     geom_smooth(method = lm)
 ```
 
+##
+
+-   Quantify the change
+
 ```{r}
+#| echo: true
 lm(AvgT ~ Year, data = LVG_Annual.df)
 ```
 
-##
+## {.smaller}
 
-Is the frequency of extremely hot days increasing? Here we define a hot day as one in which the high temperatures reaches 100° F
+-   Is the frequency of extremely hot days increasing? 
+-   Here you define a hot day as one in which the high temperatures reaches 100°F
 
 ```{r}
+#| echo: true
+library(MASS)
+
 TLH_Daily.df |>
   dplyr::group_by(Year) |>
-  dplyr::summarize(N100 = sum(TMAX >= 100)) |>
+  dplyr::summarize(N100 = sum(TMAX >= 100, na.rm = TRUE)) |>
 ggplot(mapping = aes(x = Year, y = N100)) +
   geom_col() +
-  ylab("Number of days in Tallahassee at or exceeding 100° F")
+  geom_smooth(method = "glm.nb", formula = y ~ x, se = FALSE, col = "orange") +
+  ylab("Number of days in Tallahassee at or exceeding 100°F")
 ```
 
-The hots are getting hotter
+## {.smaller}
 
-##
+-   Compare the frequency of daily high temperatures between Tallahassee and Las Vegas
 
 ```{r, message=FALSE}
-TLH_Daily.df |>
+#| echo: true
+( TLH.p <- TLH_Daily.df |>
   dplyr::group_by(TMAX) |>
   dplyr::summarize(nH = dplyr::n()) |>
 ggplot(mapping = aes(x = TMAX, y = nH)) +
@@ -305,13 +338,14 @@ ggplot(mapping = aes(x = TMAX, y = nH)) +
        x = "Daily High Temperature (°F)",
        y = "Number of Days") +
  scale_x_continuous(breaks = seq(from = 20, to = 110, by = 10)) +
- theme_minimal()
+ theme_minimal() )
 ```
 
-##
+## {.smaller}
 
 ```{r, message=FALSE}
-LVG_Daily.df |>
+#| echo: true
+( LVG.p <- LVG_Daily.df |>
   dplyr::group_by(TMAX) |>
   dplyr::summarize(nH = dplyr::n()) |>
 ggplot(mapping = aes(x = TMAX, y = nH)) +
@@ -321,5 +355,23 @@ ggplot(mapping = aes(x = TMAX, y = nH)) +
        x = "Daily High Temperature (°F)",
        y = "Number of Days") +
  scale_x_continuous(breaks = seq(from = 20, to = 110, by = 10)) +
- theme_minimal()
+ theme_minimal() )
 ```
+
+##
+
+-   Plot together
+
+```{r}
+#| echo: true
+library(patchwork)
+
+TLH.p / LVG.p
+```
+
+-   Why the difference?
+
+##
+
+-   Lapse rate of temperature (dry vs moist)
+-   Parcel theory
