@@ -10,23 +10,23 @@ format:
 editor: source
 ---
 
-##
+## 
 
 -   Temperature changes across time
--   The hockey stick graph
--   Rising seas, melting ice
+-   The climate stripes and hockey stick graphs
+-   Rising seas and melting ice
 -   Local temperature changes
 -   Lapse rates of temperature
 
-## {.smaller}
+##  {.smaller}
 
--   Download the latest temperature data using the `get_temp()` function from the {hockeystick} package
+-   Get the global average temperature data by month using the `get_temp()` function from the {hockeystick} package
 
 ```{r}
 #| echo: true
 library(hockeystick)
 
-t.df <- hockeystick::get_temp(write_cache = TRUE)
+t.df <- hockeystick::get_temp()
 
 t.df
 ```
@@ -42,7 +42,7 @@ t.df |>
   plot_temp()
 ```
 
-##
+## 
 
 -   Plot the time-series as stripes (warming stripes)
 
@@ -52,9 +52,11 @@ t.df |>
   warming_stripes()
 ```
 
-## {.smaller}
+-   An international symbol of global warming (Dr. Ed Hawkins) {{< video https://www.youtube.com/embed/3VIHRLUnVOI >}} 3 minutes
 
--   Convert the wide data to long data
+##  {.smaller}
+
+-   Convert the wide data frame to a long data frame
 
 ```{r}
 #| echo: true
@@ -71,7 +73,7 @@ t.dfL
 
 ## 
 
--   Plot temperatures by month
+-   Plot temperature trends by month since 1980
 
 ```{r}
 #| echo: true
@@ -89,8 +91,8 @@ t.dfL |>
 
 ## 
 
--   Temperatures since the birth of Christ (Common Era)
--   Modeled, instrumental, filtered
+-   Get a temperature index since the birth of Christ (Common Era)
+-   Combined modeled, instrumental, and proxy data
 
 ```{r}
 #| echo: true
@@ -99,7 +101,7 @@ anomaly2k <- get_temp2k()
 anomaly2k 
 ```
 
-##
+## 
 
 ```{r}
 #| echo: true
@@ -107,23 +109,18 @@ anomaly2k |>
   plot_temp2k()
 ```
 
-##
+## 
 
--    Warming and emissions (Dr. Jennifer Francis)
-
-{{< video https://www.youtube.com/embed/JKrkiZM1asQ >}} 5 minutes
-
--   The hockey stick graph (Simon Clark)
-
-{{< video https://www.youtube.com/embed/CqtZdnpfgIc >}} 9 minutes
+-   Warming and emissions (Dr. Jennifer Francis) {{< video https://www.youtube.com/embed/JKrkiZM1asQ >}} 5 minutes
+-   The hockey stick graph (Simon Clark) {{< video https://www.youtube.com/embed/CqtZdnpfgIc >}} 9 minutes
 
 ## 
 
--   Download the sea level data using the `get_sealevel()` function from the {hockeystick} package
+-   Get the sea level data using the `get_sealevel()` function from the {hockeystick} package
 
 ```{r}
 #| echo: true
-gmsl <- get_sealevel(write_cache = TRUE)
+gmsl <- get_sealevel()
 
 gmsl
 ```
@@ -138,14 +135,14 @@ gmsl |>
   plot_sealevel()
 ```
 
-## {.smaller}
+##  {.smaller}
 
--   Download the sea ice data using the `get_seaice()` function from the {hockeystick} package
+-   Get the sea ice data using the `get_seaice()` function from the {hockeystick} package
 -   Sea ice extent in millions of square kilometers every July 31 since 1979
 
 ```{r}
 #| echo: true
-seaice <- get_seaice(write_cache = TRUE) 
+seaice <- get_seaice() 
 
 seaice 
 ```
@@ -173,11 +170,11 @@ seaice <- seaice |>
 lm(Extent_km2 ~ Year, data = seaice)
 ```
 
--     A loss of 68 and a half thousand square kilometers per year
+-   A loss of more than 68 thousand square kilometers per year
 
-## {.smaller}
+##  {.smaller}
 
--   Download the Arctic ice data using the `get_icecurves()` function from the {hockeystick} package
+-   Get the Arctic ice data using the `get_icecurves()` function from the {hockeystick} package
 -   Arctic ice extent in millions of square kilometers every month since 1979.
 
 ```{r}
@@ -189,12 +186,17 @@ arcticice
 
 ## 
 
--   Make a time-series plot
+-   Make a time-series plot of September sea-ice extent
 
-```{r}
+```{r, message=FALSE}
 #| echo: true
+library(ggplot2)
+
 arcticice |>
-  plot_icecurves()
+  dplyr::filter(mo == 9) |>
+ggplot(mapping = aes(x = year, y = extent)) +
+  geom_line() +
+  geom_smooth()
 ```
 
 ## 
@@ -209,7 +211,7 @@ vostok |>
   plot_paleo()
 ```
 
-##
+## 
 
 -   All together
 
@@ -218,7 +220,7 @@ vostok |>
 climate_grid()
 ```
 
-## {.smaller}
+##  {.smaller}
 
 -   Regional warming
 -   Is Tallahassee getting warmer?
@@ -234,14 +236,12 @@ TLH_Daily.df <- readr::read_csv(L) |>
 TLH_Daily.df
 ```
 
-## {.smaller}
+##  {.smaller}
 
 -   Graph the annual average temperature
 
 ```{r, message=FALSE}
 #| echo: true
-library(ggplot2)
-
 TLH_Annual.df <- TLH_Daily.df |>
   dplyr::group_by(Year) |>
   dplyr::summarize(AvgT = mean(TMAX, na.rm = TRUE))
@@ -253,7 +253,7 @@ ggplot(data = TLH_Annual.df,
   geom_smooth(method = lm)
 ```
 
-##
+## 
 
 -   Quantify the change
 
@@ -262,7 +262,7 @@ ggplot(data = TLH_Annual.df,
 lm(AvgT ~ Year, data = TLH_Annual.df)
 ```
 
-## {.smaller}
+##  {.smaller}
 
 -   Is Las Vegas getting warmer?
 -   Get the daily high temperature from the official airport site since 1969
@@ -278,7 +278,7 @@ LVG_Daily.df <- readr::read_csv(L) |>
 LVG_Daily.df
 ```
 
-## {.smaller}
+##  {.smaller}
 
 -   Graph the annual average temperature
 
@@ -295,7 +295,7 @@ ggplot(data = LVG_Annual.df,
     geom_smooth(method = lm)
 ```
 
-##
+## 
 
 -   Quantify the change
 
@@ -304,9 +304,9 @@ ggplot(data = LVG_Annual.df,
 lm(AvgT ~ Year, data = LVG_Annual.df)
 ```
 
-## {.smaller}
+##  {.smaller}
 
--   Is the frequency of extremely hot days increasing? 
+-   Is the frequency of extremely hot days increasing?
 -   Here you define a hot day as one in which the high temperatures reaches 100°F
 
 ```{r}
@@ -322,7 +322,7 @@ ggplot(mapping = aes(x = Year, y = N100)) +
   ylab("Number of days in Tallahassee at or exceeding 100°F")
 ```
 
-## {.smaller}
+##  {.smaller}
 
 -   Compare the frequency of daily high temperatures between Tallahassee and Las Vegas
 
@@ -341,7 +341,7 @@ ggplot(mapping = aes(x = TMAX, y = nH)) +
  theme_minimal() )
 ```
 
-## {.smaller}
+##  {.smaller}
 
 ```{r, message=FALSE}
 #| echo: true
@@ -358,7 +358,7 @@ ggplot(mapping = aes(x = TMAX, y = nH)) +
  theme_minimal() )
 ```
 
-##
+## 
 
 -   Plot together
 
@@ -371,7 +371,7 @@ TLH.p / LVG.p
 
 -   Why the difference?
 
-##
+## 
 
 -   Lapse rate of temperature (dry vs moist)
 -   Parcel theory
