@@ -3,16 +3,21 @@ title: "Lab 3"
 author: "PUT YOUR NAME HERE"
 format: html
 editor: source
+date: March 1, 2023
 ---
 
+Due: 4:30 p.m. March 1, 2023
+
+Total Points: 18
+
 ## 1 
-Write code to download and import the latest greenhouse gas emissions data
+Write code to download the greenhouse gas emissions data using the `get_emissions()` function from the {hockeystick} package (4)
 
 ## 2 
-Write code to list the largest emitters of methane in the year 2010 by country/region
+Using the data frame from question 1, write code to list the largest emitters of methane in the year 2010 by country (4)
 
 ## 3
-Write code to download and import the latest global air temperature data and make a time series plot of showing July temperatures across the years
+Write code to download the global air temperature data using a function from the {hockeystick} package and make a time series plot using functions from the {ggplot2} package showing July temperatures across the years (4)
 
 ## 4
-Write code to quantify the increase per year in global temperatures during July
+Write code to quantify the increase per year in global temperatures during July (4)
