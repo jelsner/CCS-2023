@@ -26,7 +26,7 @@ editor: source
 #| echo: true
 library(hockeystick)
 
-t.df <- hockeystick::get_temp()
+t.df <- get_temp()
 
 t.df
 ```
@@ -52,7 +52,7 @@ t.df |>
   warming_stripes()
 ```
 
--   An international symbol of global warming (Dr. Ed Hawkins) {{< video https://www.youtube.com/embed/3VIHRLUnVOI >}} 3 minutes
+-   International symbol of global warming (Dr. Ed Hawkins) {{< video https://www.youtube.com/embed/3VIHRLUnVOI >}} 3 minutes
 
 ##  {.smaller}
 
@@ -309,7 +309,7 @@ lm(AvgT ~ Year, data = LVG_Annual.df)
 -   Is the frequency of extremely hot days increasing?
 -   Here you define a hot day as one in which the high temperatures reaches 100°F
 
-```{r}
+```{r, message=FALSE}
 #| echo: true
 library(MASS)
 
@@ -318,7 +318,7 @@ TLH_Daily.df |>
   dplyr::summarize(N100 = sum(TMAX >= 100, na.rm = TRUE)) |>
 ggplot(mapping = aes(x = Year, y = N100)) +
   geom_col() +
-  geom_smooth(method = "glm.nb", formula = y ~ x, se = FALSE, col = "orange") +
+  geom_smooth(method = "glm.nb", col = "orange") +
   ylab("Number of days in Tallahassee at or exceeding 100°F")
 ```
 
@@ -373,5 +373,5 @@ TLH.p / LVG.p
 
 ## 
 
--   Lapse rate of temperature (dry vs moist)
--   Parcel theory
+-   Lapse rate of temperature
+-   Parcel theory (dry vs moist lapse rates)
