@@ -17,6 +17,7 @@ editor: source
 -   Rising seas and melting ice
 -   Local temperature changes
 -   Lapse rates of temperature
+-   Today's winds <https://weather.rap.ucar.edu/surface/>
 
 ##  {.smaller}
 
@@ -172,34 +173,7 @@ lm(Extent_km2 ~ Year, data = seaice)
 
 -   A loss of more than 68 thousand square kilometers per year
 
-##  {.smaller}
-
--   Get the Arctic ice data using the `get_icecurves()` function from the {hockeystick} package
--   Arctic ice extent in millions of square kilometers every month since 1979.
-
-```{r}
-#| echo: true
-arcticice <- get_icecurves()
-
-arcticice 
-```
-
-## 
-
--   Make a time-series plot of September sea-ice extent
-
-```{r, message=FALSE}
-#| echo: true
-library(ggplot2)
-
-arcticice |>
-  dplyr::filter(mo == 9) |>
-ggplot(mapping = aes(x = year, y = extent)) +
-  geom_line() +
-  geom_smooth()
-```
-
-## 
+##
 
 -   Paleo ice core
 
