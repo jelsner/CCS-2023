@@ -8,10 +8,16 @@ format:
 editor: source
 ---
 
-## How El Niño works
+##
+
+-   <http://coolwx.com/record/>
+-   lapse rates on SkewT-logP charts from <https://www.tropicaltidbits.com/>
+
+## 
+
+-   How El Niño works
 
 {{< video https://www.youtube.com/embed/WPA-KpldDVc >}} 4 minutes
-
 
 ## 
 
