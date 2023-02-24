@@ -15,6 +15,8 @@ format:
 
 {{< video https://www.youtube.com/embed/uH9A-7Y3lL0 >}} Supercell morphology (Pecos Hank) 7 minutes
 
+{{< video https://www.youtube.com/embed/EnSIkaIECMiOmarE >}} Pecos Hank interview (lightning) 28 minutes
+
 {{< video https://www.youtube.com/embed/bq0-QXXtOro >}} Storm spotting secrets 45 minutes
 
 {{< video https://www.youtube.com/embed/oEyotBDN1YU >}} Future tornado in major city 50 minutes
