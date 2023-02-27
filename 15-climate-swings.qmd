@@ -5,13 +5,21 @@ format:
     slide-number: c/t
     code-fold: false
     chalkboard: true
+    theme: white
+    footer: "GEO4251 Climate Change & Storms"
 editor: source
 ---
 
 ##
 
--   <http://coolwx.com/record/>
--   lapse rates on SkewT-logP charts from <https://www.tropicaltidbits.com/>
+-   Climate changes (outside & inside factors)
+-   Orbital cycles (Milankovitch cycles)
+    - The shape of Earth’s orbit: eccentricity
+    - The angle Earth’s axis is tilted with respect to Earth’s orbital plane: obliquity
+    - The direction Earth’s axis of rotation is pointed: precession
+-   Volcanoes, solar intensity
+-   Internal factors
+    - El Niño
 
 ## 
 
@@ -19,33 +27,34 @@ editor: source
 
 {{< video https://www.youtube.com/embed/WPA-KpldDVc >}} 4 minutes
 
+-   The Ocean Niño Index (ONI) tracks the development and intensity of El Niño using ocean temperatures across the east tropical Pacific
+-   It is a three-month average sea-surface temperature anomalies (relative to 1961-1990) in degrees Celsius for an area in the east tropical Pacific
+-   Large positive values indicate the occurrence of El Niño, large negative values indicate the occurrence of La Niña
+
 ## 
 
--   The Ocean Niño Index (ONI) gives and indication of the development and intensity of El Niño using temperatures at the ocean's surface across the east tropical Pacific
--   Specifically the ONI is a three-month mean sea-surface temperature anomalies (relative to 1961-1990) in degrees Celsius for an area in the east tropical Pacific
+-   Values of the ONI are in your file `ONI.csv` in your directory `data`
+-   Get the values into your R session environment as a data frame called `oni.df` using the `read_csv()` function from the {readr} package
 
-## 
-
--   The values are in the file `ONI.csv` in the directory `data`
--   Get the data into your R session using the `read_csv()` function from the {readr} package
-
-```{r}
+```{r, message=FALSE}
 #| echo: true
-oni.df <- readr::read_csv(here::here("data", "ONI.csv")) |>
-  data.frame()
+oni.df <- readr::read_csv(here::here("data", "ONI.csv")) 
+oni.df
 ```
 
--   Add a date column using the `as.Date()` function
+-   Add a date column in `oni.df` using the `as.Date()` function combining the `Year` and `Month` columns
 
 ```{r}
 #| echo: true
 oni.df <- oni.df |>
   dplyr::mutate(Date = as.Date(paste0(Year, "-", Month, "-01")))
+
+oni.df
 ```
 
 ## 
 
--   Make a time-series plot
+-   Make a time-series plot. Add horizontal lines corresponding to values greater than 2 and less than -1.5
 
 ```{r}
 #| echo: true
@@ -53,19 +62,28 @@ oni.df <- oni.df |>
 library(ggplot2)
 
 ggplot(data = oni.df,
-       mapping = aes(x = Date, 
-                     y = ONI_C)) +
+       mapping = aes(x = Date, y = ONI_C)) +
   geom_line() +
   geom_hline(yintercept = c(2, -1.5), col = "red") +
   labs(x = "Year", y = "ONI (°C)") +
   theme_minimal()
 ```
 
+-   Values above 1°C indicate moderate El Niño months and values above 2°C indicate strong El Niño months
+-   Note the trend toward stronger El Ninos
+
 ## 
 
--   The Southern Oscillation Index (SOI) gives an indication of the development and intensity of El Niño and La Niña events using air pressure
--   The SOI is calculated from the monthly fluctuations in the air pressure between Tahiti and Darwin, Australia
+-   The Southern Oscillation Index (SOI) tracks the development and intensity of El Niño using air pressure
+-   The SOI is calculated from the monthly fluctuations in the air pressure between the island of Tahiti and the city of Darwin in Australia
 -   Sustained negative values of the SOI indicate El Niño episodes
+
+```{r}
+r <- terra::rast()
+terra::values(r) <- 0
+tmap::tmap_mode("view")
+tmap::tm_shape(r) + tmap::tm_raster(alpha = .1)
+```
 
 ## 
 
@@ -163,12 +181,6 @@ ggplot(data = TNA.df,
 
 -   More information <https://www.metoffice.gov.uk/research/climate/seasonal-to-decadal/gpc-outlooks/el-nino-la-nina/enso-description>
 
-## 
-
--   Experts at FSU discuss the relationship between hurricanes and El Niño
-
-{{< video https://www.youtube.com/embed/Z41VCN5phTM >}} 21 minutes
-
 ## North Atlantic Oscillation
 
 {{< video https://www.youtube.com/embed/KOYJG7j4Iy8 >}} 3 minutes
@@ -204,3 +216,9 @@ ggplot(data = ssn.df,
   geom_line() +
   geom_smooth(span = .05, method = "loess")
 ```
+
+## 
+
+-   Experts at FSU discuss the relationship between hurricanes and El Niño
+
+{{< video https://www.youtube.com/embed/Z41VCN5phTM >}} 21 minutes

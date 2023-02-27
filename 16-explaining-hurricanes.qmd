@@ -1,10 +1,13 @@
 ---
-title: "Hurricanes"
+title: "Explaining hurricanes"
 format:
   revealjs:
     slide-number: c/t
     code-fold: false
     chalkboard: true
+    theme: white
+    footer: "GEO4251 Climate Change & Storms"
+editor: source
 ---
 
 ## Hurricane basics
@@ -18,6 +21,3 @@ format:
 {{< video https://www.youtube.com/embed/Gtt4DqifHNo >}} 45 minutes Hurricane-climate change stories
 
 {{< video https://wwww.youtube.com/embed/MuwA3wWQ538 >}} 10 minutes
-
-
-

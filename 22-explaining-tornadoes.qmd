@@ -1,11 +1,20 @@
 ---
-title: "Tornado formation"
+title: "Explaining tornadoes"
 format:
   revealjs:
     slide-number: c/t
     code-fold: false
     chalkboard: true
+    theme: white
+    footer: "GEO4251 Climate Change & Storms"
+editor: source
 ---
+
+##
+
+-   <http://coolwx.com/record/>
+-   lapse rates on SkewT-logP charts from <https://www.tropicaltidbits.com/>
+
 
 ## Formation and structure
 
