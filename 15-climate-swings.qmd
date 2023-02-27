@@ -27,6 +27,8 @@ editor: source
 
 {{< video https://www.youtube.com/embed/WPA-KpldDVc >}} 4 minutes
 
+##
+
 -   The Ocean Niño Index (ONI) tracks the development and intensity of El Niño using ocean temperatures across the east tropical Pacific
 -   It is a three-month average sea-surface temperature anomalies (relative to 1961-1990) in degrees Celsius for an area in the east tropical Pacific
 -   Large positive values indicate the occurrence of El Niño, large negative values indicate the occurrence of La Niña
@@ -72,13 +74,14 @@ ggplot(data = oni.df,
 -   Values above 1°C indicate moderate El Niño months and values above 2°C indicate strong El Niño months
 -   Note the trend toward stronger El Ninos
 
-## 
+## {.smaller}
 
 -   The Southern Oscillation Index (SOI) tracks the development and intensity of El Niño using air pressure
 -   The SOI is calculated from the monthly fluctuations in the air pressure between the island of Tahiti and the city of Darwin in Australia
 -   Sustained negative values of the SOI indicate El Niño episodes
 
 ```{r}
+#| echo: true
 r <- terra::rast()
 terra::values(r) <- 0
 tmap::tmap_mode("view")
