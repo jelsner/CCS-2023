@@ -14,13 +14,14 @@ Total Points: 22
 Write code to get the greenhouse gas emissions data into your R session as a data frame using the `get_emissions()` function from the {hockeystick} package (4)
 
 ## 2 
-Using the data frame from question 1, write code to list the largest emitters of methane in the year 2010 by country (4)
+Using the data frame from question 1, write code to list the largest emitters of methane (variable name `methane`) in the year 2010 (4)
 
 ## 3
-Write code to get the global air temperature data into your R session as a data frame using the appropriate function from the {hockeystick} package and make a time series plot showing July temperatures across the years (6)
+Write code to get the globally averaged air temperature data by month into your R session as a data frame using the `get_temp()` function from the {hockeystick} package and make a time series plot showing July temperatures since 1880. Include a local regression curve through the values (6)
 
 ## 4
-Using the data frame from question 3, write code to quantify the increase per year in global temperatures during the month of July (4)
+Using the data frame from question 3, write code to quantify the increase per year in global temperatures during the month of July since 1970. Hint: Convert the column labeled `Year` using `lubridate::year(Year)` within the `dplyr::mutate()` function as you did when quantifying the loss of sea ice in Lesson 12  (4)
 
 ## 5
-According to parcel theory, rising volumes of dry air cool at a rate of how many degrees Celsius per kilometer? How does this lapse rate of temperature compare with the lapse rate for rising volumes of moist (saturated) air? (4)
+According to parcel theory, rising volumes of _dry_ air cool at a rate of how many degrees Celsius per kilometer? How does this lapse rate of temperature compare with the lapse rate for rising volumes of _moist_ (saturated) air? Why the difference? (4)
+
