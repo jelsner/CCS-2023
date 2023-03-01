@@ -1,0 +1,46 @@
+---
+title: "Lab 2"
+author: "ANSWERS"
+format: pdf
+editor: source
+---
+
+## 1 
+Write code to make a time series plot of December rain in Northwest California (`NWCA_MonthlyRain.txt`)
+
+```{r}
+#| echo: true
+#| output-location: slide
+Rain.df <- readr::read_table(here::here("data", "NWCA_MonthlyRain.txt")) |>
+  dplyr::select(Year, Rain_in = Dec) |>
+  dplyr::mutate(Rain_cm = Rain_in * 2.54)
+
+library(ggplot2)
+
+ggplot(data = Rain.df,
+       mapping = aes(x = Year, y = Rain_cm)) +
+  geom_line() + scale_x_continuous(breaks = seq(1900, 2020, 20)) +
+  ylab("Rain (cm)")
+```
+
+## 2 
+Add a trend line to the graph
+
+```{r}
+ggplot(data = Rain.df,
+       mapping = aes(x = Year, y = Rain_cm)) +
+  geom_line() + scale_x_continuous(breaks = seq(1900, 2020, 20)) +
+  geom_smooth(method = lm, se = FALSE)
+  ylab("Rain (cm)")
+```
+
+## 3 
+Quantify the amount of change
+
+```{r}
+#| echo: true
+lm(Rain_cm ~ Year, data = Rain.df)
+```
+
+## 4
+
