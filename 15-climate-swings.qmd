@@ -12,7 +12,24 @@ editor: source
 
 ##
 
+<<<<<<< HEAD
 -   The swinging climate outside and inside pushes
+=======
+This shit doesn't work!
+
+{{< video https://www.youtube.com/embed/SVDEE30XB5A >}}
+
+##
+
+-   Climate changes (outside & inside factors)
+-   Orbital cycles (Milankovitch cycles)
+    - The shape of Earth’s orbit: eccentricity
+    - The angle Earth’s axis is tilted with respect to Earth’s orbital plane: obliquity
+    - The direction Earth’s axis of rotation is pointed: precession
+-   Volcanoes, solar intensity
+-   Internal factors
+    - El Niño
+>>>>>>> edef961334679c91a0625c2ed92bef59f203c9f7
 
 ##
 
@@ -75,7 +92,7 @@ ggplot(data = ssn.df,
 
 ## 
 
--   Values of the ONI are in your file `ONI.csv` in your directory `data`
+-   Monthly values of the ONI are in your file `ONI.csv` in your directory `data`
 -   Get the values into your R session environment as a data frame called `oni.df` using the `read_csv()` function from the {readr} package
 
 ```{r, message=FALSE}
