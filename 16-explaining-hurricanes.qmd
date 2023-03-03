@@ -21,3 +21,8 @@ editor: source
 {{< video https://www.youtube.com/embed/Gtt4DqifHNo >}} 45 minutes Hurricane-climate change stories
 
 {{< video https://wwww.youtube.com/embed/MuwA3wWQ538 >}} 10 minutes
+
+## Hurricanes and El Niño
+
+-   Experts at FSU discuss the relationship between hurricanes and El Niño
+{{< video https://www.youtube.com/embed/Z41VCN5phTM >}} 21 minutes
