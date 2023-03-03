@@ -12,12 +12,7 @@ editor: source
 
 ##
 
-<<<<<<< HEAD
 -   The swinging climate outside and inside pushes
-=======
-This shit doesn't work!
-
-{{< video https://www.youtube.com/embed/SVDEE30XB5A >}}
 
 ##
 
@@ -26,10 +21,6 @@ This shit doesn't work!
     - The shape of Earth’s orbit: eccentricity
     - The angle Earth’s axis is tilted with respect to Earth’s orbital plane: obliquity
     - The direction Earth’s axis of rotation is pointed: precession
--   Volcanoes, solar intensity
--   Internal factors
-    - El Niño
->>>>>>> edef961334679c91a0625c2ed92bef59f203c9f7
 
 ##
 
@@ -61,7 +52,7 @@ This shit doesn't work!
 ssn.df <- readr::read_table(file = here::here("data", "Sunspots.txt"),
                             col_names = c("Year", "Month", "Day", "YearF", 
                                           "SSN", "SSN_error", "Nobs", "X")) |>
-  dplyr::filter(Year >= 1900, Year <= 2021)
+  dplyr::filter(Year >= 1950, Year <= 2021)
 ```
 
 ##
