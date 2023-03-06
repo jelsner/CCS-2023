@@ -12,35 +12,40 @@ editor: source
 
 ##
 
--   The swinging climate pushed from outside and from inside
+-   The climate is constantly changing being pushed from outside as well as from inside
+-   Orbital changes, volcanoes, solar activity
+-   El Niño and other oscillations
 
 ##
 
--   Outside pushes over centuries to millennium
--   Orbital changes (Milankovitch cycles)
+-   Centuries to millennium
+    - Orbital changes (Milankovitch cycles)
     - Shape of Earth’s orbit: eccentricity
     - Angle at which Earth’s axis is tilted with respect to Earth’s orbital plane: obliquity
     - Direction Earth’s axis of rotation is pointed: precession
     
 ##
 
--   Outside pushes on months to years
--   Volcanic activity can affect the climate
--   Large volcano eruptions --> first cool, then warm 
+-   Months to years
+    - Large volcano eruptions: first cool, then warm
 
 {{< video https://www.youtube.com/embed/7zoycrMusK4 >}} 2 minutes
 
+    - Superposed epoch method
+
 ##
 
--   Changes on the sun can affect the climate
--   Times of maximum sunspot activity are times with slightly more energy output from the sun (mostly ultraviolet) 
+-   Changes to the sun
+-   Times of maximum sunspot activity are times with more energy output from the sun (mostly ultraviolet) 
 
 {{< video https://www.youtube.com/embed/wWIh3PvQscQ >}} 5 minutes
+
+-   Solar changes and hurricanes in the Caribbean <https://myweb.fsu.edu/jelsner/PDF/Research/ElsnerJagger2008.pdf>
 
 ##
 
 -   Daily sunspot counts from <https://www.sidc.be/silso/datafiles#total>
--   Data are in your file `Sunspots.txt` in your directory `data`
+-   Data are in the file `Sunspots.txt` in your directory `data`
 -   Get the values into your R session environment as a data frame called `ssn.df` using the `read_table()` function from the {readr} package
 
 ```{r, message=FALSE}
@@ -53,7 +58,7 @@ ssn.df <- readr::read_table(file = here::here("data", "Sunspots.txt"),
 
 ##
 
--   Create a time series plot
+-   Create a time series plot of daily sunspot numbers
 
 ```{r}
 #| echo: true
@@ -202,7 +207,8 @@ df <- oni.df |>
   dplyr::select(Date, ONI_C, SOI_times10sd) |>
   na.omit()
 
-head(df)
+df |>
+  head()
 ```
 
 ## 
@@ -238,7 +244,8 @@ ggplot(data = df,
 ##
 
 -   Tropical North Atlantic SST <https://psl.noaa.gov/data/climateindices/list/>
--   In the file `data/TNA_SST.txt`
+-   In the file `TNA_SST.txt` in directory `data`
+-   Get the data into your R session and make a plot
 
 ```{r}
 #| echo: true
