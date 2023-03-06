@@ -14,15 +14,15 @@ editor: source
 
 -   The climate is constantly changing being pushed from outside as well as from inside
 -   Orbital changes, volcanoes, solar activity
--   El Niño and other oscillations
+-   El Niño and other internal oscillations
 
 ##
 
 -   Centuries to millennium
     - Orbital changes (Milankovitch cycles)
-    - Shape of Earth’s orbit: eccentricity
-    - Angle at which Earth’s axis is tilted with respect to Earth’s orbital plane: obliquity
-    - Direction Earth’s axis of rotation is pointed: precession
+    - Shape of Earth’s orbit: eccentricity (100K)
+    - Angle at which Earth’s axis is tilted with respect to Earth’s orbital plane: obliquity (41K)
+    - Direction Earth’s axis of rotation is pointed: precession (26K)
     
 ##
 
@@ -33,7 +33,7 @@ editor: source
 
   - Superposed epoch method
 
-## {.smaller+
+## {.smaller}
 
 -   Changes to the sun
 -   Times of maximum sunspot activity are times with more energy output from the sun (mostly ultraviolet) 
@@ -86,7 +86,7 @@ ggplot(data = ssn.df,
 -   It is the three-month average sea-surface temperature anomaly (relative to 1961-1990) in degrees Celsius for an area in the east tropical Pacific
 -   Large positive values of the ONI indicate the occurrence of El Niño, large negative values indicate the occurrence of La Niña
 
-## {.smaller}
+##
 
 -   Monthly values of the ONI are in your file `ONI.csv` in your directory `data`
 -   Get the values into your R session environment as a data frame called `oni.df` using the `read_csv()` function from the {readr} package
@@ -96,6 +96,8 @@ ggplot(data = ssn.df,
 oni.df <- readr::read_csv(here::here("data", "ONI.csv")) 
 oni.df
 ```
+
+##
 
 -   Add a date column called `Date` in `oni.df` using the `as.Date()` function combining the `Year` and `Month` columns
 
