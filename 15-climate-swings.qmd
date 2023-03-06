@@ -31,9 +31,9 @@ editor: source
 
 {{< video https://www.youtube.com/embed/7zoycrMusK4 >}} 2 minutes
 
-    - Superposed epoch method
+  - Superposed epoch method
 
-##
+## {.smaller+
 
 -   Changes to the sun
 -   Times of maximum sunspot activity are times with more energy output from the sun (mostly ultraviolet) 
@@ -42,7 +42,7 @@ editor: source
 
 -   Solar changes and hurricanes in the Caribbean <https://myweb.fsu.edu/jelsner/PDF/Research/ElsnerJagger2008.pdf>
 
-##
+## {.smaller}
 
 -   Daily sunspot counts from <https://www.sidc.be/silso/datafiles#total>
 -   Data are in the file `Sunspots.txt` in your directory `data`
@@ -76,7 +76,9 @@ ggplot(data = ssn.df,
 
 ##
 
--   El Niño is part of an internal climate swing {{< video https://www.youtube.com/embed/WPA-KpldDVc >}} 4 minutes
+-   El Niño is part of an internal climate swing 
+
+{{< video https://www.youtube.com/embed/WPA-KpldDVc >}} 4 minutes
 
 ##
 
@@ -107,7 +109,7 @@ oni.df
 
 ## 
 
--   Make a time-series plot. Add horizontal lines corresponding to values greater than 2 and less than -1.5
+-   Make a time-series plot. Add lines corresponding to values greater than 2 and less than -1.5
 
 ```{r, message=FALSE}
 #| echo: true
@@ -121,12 +123,12 @@ ggplot(data = oni.df,
   theme_minimal()
 ```
 
--   Values above 1°C indicate moderate El Niño months and values above 2°C indicate strong El Niño months
--   Note the upward trend toward stronger El Ninos
+-   Values above 1°C indicate moderate El Niño conditions and values above 2°C indicate strong El Niño conditions
+-   Note the upward trend toward even stronger El Niño conditions
 
 ##
 
--   Plot the upward trend in the strong El Ninos with the `geom_quantiles()` function setting `quantiles = .99`
+-   Plot the upward trend in the strong El Niño conditions with the `geom_quantiles()` function setting `quantiles = .99`
 
 ```{r, message=FALSE}
 #| echo: true
@@ -143,6 +145,7 @@ ggplot(data = oni.df,
 ## {.smaller}
 
 -   The Southern Oscillation Index (SOI) tracks the development and intensity of El Niño using air pressure
+-   El Niño - Southern Oscillation (ENSO)
 -   The SOI is calculated from the monthly fluctuations in the air pressure between the island of Tahiti and the city of Darwin in Australia
 -   Sustained negative values of the SOI indicate El Niño episodes
 
