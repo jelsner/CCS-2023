@@ -12,17 +12,21 @@ editor: source
 
 ## Hurricane basics
 
-{{< video https://www.youtube.com/embed/LlXVikDkyTg >}} 3 minutes Introduction
-{{< video https://www.youtube.com/embed/Xtu2_ziBI_w >}} 6 minutes Physics/thermodynamics
+{{< video https://www.youtube.com/embed/LlXVikDkyTg >}} 
+3 minutes Introduction
+{{< video https://www.youtube.com/embed/Xtu2_ziBI_w >}} 
+6 minutes Physics/thermodynamics
 
 ## Hurricanes and climate change
 
-{{< video https://www.youtube.com/embed/5m68_07Sav4 >}} 7 minutes Introduction
-{{< video https://www.youtube.com/embed/Gtt4DqifHNo >}} 45 minutes Hurricane-climate change stories
+{{< video https://www.youtube.com/embed/5m68_07Sav4 >}} 
+7 minutes Introduction
+{{< video https://www.youtube.com/embed/Gtt4DqifHNo >}} 
+45 minutes Hurricane-climate change stories
 
-{{< video https://wwww.youtube.com/embed/MuwA3wWQ538 >}} 10 minutes
+## Hurricanes and climate change
 
-## Hurricanes and El Niño
-
--   Experts at FSU discuss the relationship between hurricanes and El Niño
-{{< video https://www.youtube.com/embed/Z41VCN5phTM >}} 21 minutes
+{{< video https://www.youtube.com/embed/MuwA3wWQ538 >}} 
+10 minutes Rapid intensification
+{{< video https://www.youtube.com/embed/Z41VCN5phTM >}} 
+21 minutes Experts at FSU discuss the relationship between hurricanes and El Niño
