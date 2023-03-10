@@ -13,6 +13,5 @@ Write code to compute the mean, variance, and ratio of the variance to the mean 
 
 ## 3 
 Write code to determine the total number of hurricanes in each of the three regions (Gulf coast, Florida, or East coast) since 1851 
-
 ## 4
 Write code to compute the correlation between the annual count of Gulf coast hurricanes and the annual count of East coast hurricanes
