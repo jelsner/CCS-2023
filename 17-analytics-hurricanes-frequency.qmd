@@ -276,4 +276,3 @@ Counts.df |>
 ```
 
 -   Total (`CONUS`), major (`MUS`), Gulf (`G`), Florida (`FL`), East Coast (`E`)
--   Lab 4
