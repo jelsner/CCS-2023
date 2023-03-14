@@ -13,9 +13,10 @@ editor_options:
 ## 
 
 -   Hurricane frequency
--   How many? Are the numbers changing?
+-   How many storms? Are they becoming more common?
 -   Count data is different than measured data
 -   Analyzing and modeling hurricane frequency
+-   No class on Thursday, Lab 4 next 
 
 ## 
 
@@ -29,31 +30,35 @@ editor_options:
     - <https://www.nhc.noaa.gov/data/>
     - <https://www.aoml.noaa.gov/hrd/hurdat/Data_Storm.html>
 
-##
+## {.smaller}
 
--   Annual basin-wide counts of North Atlantic hurricanes
 -   The file `NATL_Counts.txt` in the folder `data` contains annual counts of tropical storms, hurricanes, and major hurricanes across the North Atlantic basin back to 1851
 -   Click on it
--   Get the data into your current R session
+-   Get these data into your current R session
 
 ```{r, message=FALSE}
+#| echo: true
 Counts.df <- readr::read_table(file = here::here("data", "NATL_Counts.txt"))
 
 Counts.df |>
   head()
 ```
 
-##
+-   `TS` number of tropical storms (tropical cyclone with winds of at least 17 m/s, 33 kt, 40 mph)
+-   `H` number of hurricanes (tropical storms with winds of at least 33 m/s, 64 kt, 75 mph)
+-   `MH` number of major hurricanes (hurricanes with winds of at least 50 m/s, 97 kt, 111 mph)
+-   wind speed is the maximum sustained for 1 minute at a height of 10 m
 
--   `TS` number of tropical storms (tropical cyclone with maximum sustained winds of at least 17 m/s, 33 kt, 40 mph)
--   `H` number of hurricanes (tropical storms with maximum sustained winds of at least 33 m/s, 64 kt, 75 mph)
--   `MH` number of major hurricanes (hurricanes with maximum sustained winds of at least 50 m/s, 97 kt, 111 mph)
+## 
+
+-   Write code to determine the average number of major hurricanes per year
 -   Write code to determine what year had the most hurricanes
--   Write code to determine the average number of hurricanes per year
 
 ##  {.smaller}
 
+-   All numbers are not the same
 -   Count data is different than measured data
+-   Annual number of hurricanes vs annual average temperature
 
 ```{r}
 #| echo: true
@@ -61,7 +66,7 @@ Counts.df |>
   dplyr::pull(H)
 ```
 
--   Large variations from one year to the next
+-   Big swings from one year to the next
 -   Use the `table()` function on count data
 
 ```{r}
@@ -71,7 +76,7 @@ Counts.df |>
   table()
 ```
 
--   What count is most common? What is the average count? What is the variance?
+-   What number is most common? What is the average count? What is the variance?
 
 ##
 
@@ -106,7 +111,16 @@ ggplot(data = Counts.df,
 
 ## {.smaller}
 
--   A set of 172 counts having the same average as the hurricane counts
+-   Random number generator
+-   200 random numbers from a normal distribution with a average of 180 and a standard deviation of 15
+
+```{r}
+rnorm(n = 200, mean = 180, sd = 15)
+```
+
+## {.smaller}
+
+-   172 random counts from a Poisson distribution with an average equal to the average annual number of hurricanes
 
 ```{r}
 #| echo: true
@@ -119,11 +133,12 @@ H1 |>
   table()
 ```
 
--   A proposed model for the counts
+-   A model for the counts
+-   Uncertainty: aleatory and epistemic
 
 ##
 
--   The actual counts are a bit unusual relative to the modeled counts in two ways
+-   The observed counts are a bit unusual relative to the modeled counts in two ways
 -   Greater variance (dispersion) and serial correlation
 
 ```{r}
