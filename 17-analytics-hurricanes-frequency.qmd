@@ -58,6 +58,7 @@ Counts.df |>
 
 -   Count data is different than measured data
 -   Annual number of hurricanes vs annual average temperature
+-   Write code to list the hurricane counts
 
 ```{r}
 #| echo: true
@@ -66,7 +67,7 @@ Counts.df |>
 ```
 
 -   Big swings from one year to the next
--   Use the `table()` function on count data
+-   Use the `table()` function on the hurricane counts to get the distribution of counts by year
 
 ```{r}
 #| echo: true
@@ -75,10 +76,11 @@ Counts.df |>
   table()
 ```
 
--   What count is most common? What is the value of the average count? What is the value of the variance? What is the value of the ratio of the variance to the average?
+-   How do you interpret that output?
+-   What count is most common? How many years without a hurricane? How many years had at least 12 hurricanes?
 
 ##
-
+-   What is the average count? What is the variance in the counts? What is the ratio of the standard deviation in the the counts to the average count?
 -   These questions are answered with the following code chunk
 
 ```{r}
@@ -94,7 +96,7 @@ Counts.df |>
 
 ##
 
--   The distribution of counts
+-   Create a graph displaying the distribution of counts
 
 ```{r}
 #| echo: true
