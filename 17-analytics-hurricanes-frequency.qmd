@@ -54,7 +54,7 @@ Counts.df |>
 -   Write code to determine the average number of major hurricanes per year
 -   Write code to determine what year had the most hurricanes
 
-##
+## {.smaller}
 
 -   Count data is different than measured data
 -   Annual number of hurricanes vs annual average temperature
@@ -91,7 +91,7 @@ Counts.df |>
   dplyr::summarize(NYears = dplyr::n(),
                    Avg = mean(H),
                    Var = var(H),
-                   Ratio = Var/Avg)
+                   Ratio = sqrt(Var)/Avg)
 ```
 
 -   Observations versus statistics
@@ -214,7 +214,7 @@ Counts.df |>
   dplyr::summarize(NYears = dplyr::n(),
                    Avg = mean(MH),
                    Var = var(MH),
-                   Ratio = Var/Avg)
+                   Ratio = sqrt(Var)/Avg)
 ```
 
 ##

@@ -8,7 +8,7 @@ date: March 27, 2023
 
 Due: 4:30 p.m. March 27, 2023
 
-Total Points: xx
+Total Points: 20
 
 ## 1 
 The annual counts of U.S. hurricanes are in the file `CONUS_Counts.txt` in the directory (folder) `data`. Write code to get these data into your R session as a data frame (4)
@@ -17,10 +17,10 @@ The annual counts of U.S. hurricanes are in the file `CONUS_Counts.txt` in the d
 Using the data frame from question 1, write code to create a time series graph showing the the number of Florida hurricanes each year (4)
 
 ## 3
-Using the data frame from question 1, write code to compute the mean, the standard deviation, and the ratio of the standard deviation to the mean (coefficient of variation) for the annual number of Florida hurricanes
+Using the data frame from question 1, write code to compute the mean, the standard deviation, and the ratio of the standard deviation to the mean (coefficient of variation) for the annual Florida hurricane counts (4)
 
 ## 4 
-Using the data frame from question 1, write code to determine the total number of hurricanes in each of the three regions (Gulf coast, Florida, or East coast) since 1851
+Using the data frame from question 1, write code to make a graph displaying the distribution of annual Florida hurricane counts (6)
 
-## 4
-Write code to compute the correlation between the annual count of Gulf coast hurricanes and the annual count of East coast hurricanes
+## 5
+What causes the winds of a hurricane to spin (rotating counterclockwise in the Northern Hemisphere)? (2)
