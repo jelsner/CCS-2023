@@ -44,10 +44,10 @@ Counts.df |>
   head()
 ```
 
--   `TS` number of tropical storms (tropical cyclone with winds of at least 17 m/s, 33 kt, 40 mph)
--   `H` number of hurricanes (tropical storms with winds of at least 33 m/s, 64 kt, 75 mph)
--   `MH` number of major hurricanes (hurricanes with winds of at least 50 m/s, 97 kt, 111 mph)
--   winds refer to the maximum sustained (1 minute) at a height of 10 m above the surface (land or ocean)
+-   `TS` number of tropical storms (wind of at least 17 m/s, 33 kt, 40 mph)
+-   `H` number of hurricanes (wind of at least 33 m/s, 64 kt, 75 mph)
+-   `MH` number of major hurricanes (wind of at least 50 m/s, 97 kt, 111 mph)
+-   wind refer to the maximum sustained (1 minute) at a height of 10 m above the surface (land or ocean)
 
 ## 
 
@@ -217,6 +217,8 @@ Counts.df |>
                    Ratio = Var/Avg)
 ```
 
+##
+
 -   Distribution of the number of major hurricanes by year
 
 ```{r}
@@ -224,12 +226,12 @@ Counts.df |>
 ggplot(data = Counts.df,
        mapping = aes(x = MH)) +
   geom_bar(color = "gray") +
-  scale_x_continuous(breaks = 0:15)
+  scale_x_continuous(breaks = 0:8)
 ```
 
 ##
 
--   Change over the years in the number of major hurricanes
+-   Change in the number of major hurricanes over the years
 
 ```{r}
 #| echo: true
@@ -283,6 +285,8 @@ model <- glm(H ~ SST + ENSO,
              data = df,
              family = poisson)
 ```
+
+-   Prediction grid
 
 ```{r}
 #| echo: true
