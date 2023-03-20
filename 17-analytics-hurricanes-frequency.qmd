@@ -15,8 +15,8 @@ editor_options:
 -   Hurricane frequency
 -   How many storms? Are they becoming more common?
 -   Count data vs measured data
--   Analyzing and modeling frequency
--   No class on Thursday, Lab 4 next Tuesday
+-   Analyzing and modeling hurricane frequency
+-   No class on Wednesday, Lab 4 next Monday (March 27)
 
 ## 
 
@@ -54,7 +54,7 @@ Counts.df |>
 -   Write code to determine the average number of major hurricanes per year
 -   Write code to determine what year had the most hurricanes
 
-##  {.smaller}
+##
 
 -   Count data is different than measured data
 -   Annual number of hurricanes vs annual average temperature
@@ -67,6 +67,8 @@ Counts.df |>
 ```
 
 -   Big swings from one year to the next
+
+## 
 -   Use the `table()` function on the hurricane counts to get the distribution of counts by year
 
 ```{r}
@@ -81,7 +83,7 @@ Counts.df |>
 
 ##
 -   What is the average count? What is the variance in the counts? What is the ratio of the standard deviation in the the counts to the average count?
--   These questions are answered with the following code chunk
+-   These questions are answered with the following code
 
 ```{r}
 #| echo: true
@@ -93,8 +95,9 @@ Counts.df |>
 ```
 
 -   Observations versus statistics
+-   Descriptive versus inferential statistics
 
-##
+## {.smaller}
 
 -   Create a graph displaying the distribution of counts
 
@@ -109,6 +112,7 @@ ggplot(data = Counts.df,
 ```
 
 -   Right skewed and bounded on the left by zero
+-   Compare with distribution of daily high temperatures in Tallahassee
 
 ## {.smaller}
 
@@ -116,7 +120,7 @@ ggplot(data = Counts.df,
 -   172 random values from a normal distribution with a average of 180 and a standard deviation of 15
 
 ```{r}
-rnorm(n = 200, mean = 180, sd = 15)
+rnorm(n = 172, mean = 180, sd = 15)
 ```
 
 ## {.smaller}
@@ -141,6 +145,7 @@ H1 |>
 
 -   The observed counts are a bit unusual relative to the modeled counts in two ways
 -   Greater variance (dispersion) and serial correlation
+-   The chance that a random set of counts has a greater dispersion
 
 ```{r}
 #| echo: true
@@ -149,10 +154,12 @@ for(i in 1:10000){
   H <- rpois(n = 172, lambda = 5.55)
   Ratio <- c(Ratio, var(H)/mean(H)) 
 }
-sum(Ratio > 1.22) / 10000
+sum(Ratio > 1.22) / 10000 * 100
 ```
 
 ##
+
+-   Does the count in one year tell you anything about the count in the next year? Autocorrelation
 
 ```{r}
 #| echo: true
@@ -162,15 +169,18 @@ Counts.df$H |>
 
 ##
 
+-   How does the autocorrelation compare with a random set of counts?
+
 ```{r}
 #| echo: true
 rpois(n = 172, lambda = 5.55) |>
   acf()
 ```
 
-##
+## {.smaller}
 
 -   Change over the years in the number of hurricanes
+-   Observed vs modeled
 
 ```{r}
 #| echo: true
@@ -235,7 +245,7 @@ glm(MH ~ Year, data = Counts.df, family = poisson)
 
 ## 
 
--   Seasonal prediction model
+-   How well can hurricane counts be predicted from ocean temperature and ENSO?
 -   Get the data (annual hurricane counts, SST, ENSO) and collate the observations
 -   <https://psl.noaa.gov/data/climateindices/list/>
 
@@ -255,7 +265,7 @@ df <- data.frame(Year = Counts.df$Year,
 
 ##
 
--   Poisson regression
+-   Poisson regression model
 
 ```{r}
 #| echo: true
@@ -283,6 +293,7 @@ ggplot(data = grd,
 
 ## 
 
+-   Your turn
 -   Annual U.S. counts
 
 ```{r, message=FALSE}
@@ -293,3 +304,6 @@ Counts.df |>
 ```
 
 -   Total (`CONUS`), major (`MUS`), Gulf (`G`), Florida (`FL`), East Coast (`E`)
+
+-   Write code to determine the average number of Gulf hurricanes per year
+-   Write code to determine what year had the most Florida hurricanes
