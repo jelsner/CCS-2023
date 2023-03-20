@@ -16,7 +16,8 @@ editor_options:
 -   How many storms? Are they becoming more common?
 -   Count data vs measured data
 -   Analyzing and modeling hurricane frequency
--   No class on Wednesday, Lab 4 next Monday (March 27)
+-   No class this Wednesday (March 22)
+-   Lab 4 next Monday (March 27)
 
 ## 
 
@@ -33,8 +34,7 @@ editor_options:
 ## {.smaller}
 
 -   The file `NATL_Counts.txt` in the folder `data` contains annual counts of tropical storms, hurricanes, and major hurricanes across the North Atlantic basin back to 1851
--   Click on it
--   Get these data into your current R session
+-   Click on it. Get these data into your current R session
 
 ```{r, message=FALSE}
 #| echo: true
@@ -57,7 +57,7 @@ Counts.df |>
 ## {.smaller}
 
 -   Count data is different than measured data
--   Annual number of hurricanes vs annual average temperature
+-   Annual average number of hurricanes vs annual average temperature
 -   Write code to list the hurricane counts
 
 ```{r}
@@ -78,11 +78,11 @@ Counts.df |>
   table()
 ```
 
--   How do you interpret that output?
+-   How do you interpret this output?
 -   What count is most common? How many years without a hurricane? How many years had at least 12 hurricanes?
 
 ##
--   What is the average count? What is the variance in the counts? What is the ratio of the standard deviation in the the counts to the average count?
+-   What is the average count? What is the variance in the counts? What is the ratio of the variance in the the counts to the average count?
 -   These questions are answered with the following code
 
 ```{r}
@@ -91,7 +91,7 @@ Counts.df |>
   dplyr::summarize(NYears = dplyr::n(),
                    Avg = mean(H),
                    Var = var(H),
-                   Ratio = sqrt(Var)/Avg)
+                   Ratio = Var/Avg)
 ```
 
 -   Observations versus statistics
@@ -214,7 +214,17 @@ Counts.df |>
   dplyr::summarize(NYears = dplyr::n(),
                    Avg = mean(MH),
                    Var = var(MH),
-                   Ratio = sqrt(Var)/Avg)
+                   Ratio = Var/Avg)
+```
+
+-   Distribution of the number of major hurricanes by year
+
+```{r}
+#| echo: true
+ggplot(data = Counts.df,
+       mapping = aes(x = MH)) +
+  geom_bar(color = "gray") +
+  scale_x_continuous(breaks = 0:15)
 ```
 
 ##
@@ -269,7 +279,8 @@ df <- data.frame(Year = Counts.df$Year,
 
 ```{r}
 #| echo: true
-model <- glm(H ~ SST + ENSO, data = df,
+model <- glm(H ~ SST + ENSO, 
+             data = df,
              family = poisson)
 ```
 
