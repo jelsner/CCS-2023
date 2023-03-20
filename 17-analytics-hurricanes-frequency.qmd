@@ -7,7 +7,7 @@ format:
     chalkboard: true
 editor: source
 editor_options: 
-  chunk_output_type: console
+  chunk_output_type: inline
 ---
 
 ## 
@@ -52,7 +52,19 @@ Counts.df |>
 ## 
 
 -   Write code to determine the average number of major hurricanes per year
+```{r}
+Counts.df |>
+  dplyr::summarize(Avg = mean(MH))
+
+mean(Counts.df$MH)
+```
+
 -   Write code to determine what year had the most hurricanes
+```{r}
+Counts.df |>
+  dplyr::arrange(desc(H))
+```
+
 
 ## {.smaller}
 
@@ -120,7 +132,7 @@ ggplot(data = Counts.df,
 -   172 random values from a normal distribution with a average of 180 and a standard deviation of 15
 
 ```{r}
-rnorm(n = 172, mean = 180, sd = 15)
+rnorm(n = 172, mean = 180, sd = 150)
 ```
 
 ## {.smaller}
@@ -129,7 +141,7 @@ rnorm(n = 172, mean = 180, sd = 15)
 
 ```{r}
 #| echo: true
-( H1 <- rpois(n = 172, lambda = 5.55) )
+( H1 <- rpois(n = 172, lambda = 6) )
 ```
 
 ```{r}
