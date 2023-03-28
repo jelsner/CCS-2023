@@ -37,7 +37,7 @@ Counts.df <- get_hurricanes()
 -   Click on the `Counts.df` in your Environment
 -   'Revised' indicates post reanalysis efforts
 
-## {.smaller}
+##  {.smaller}
 
 -   Make a time series graph
 
@@ -46,11 +46,8 @@ Counts.df |>
   plot_hurricane_nrg()
 ```
 
-<<<<<<< HEAD
-=======
 ## 
 
->>>>>>> 54efc394d42e97f0afbfdfb5565f23433444eb0c
 -   Decrease the span on the smoother (default is .75)
 
 ```{r}
@@ -77,7 +74,6 @@ Here you will
 3.  Glimpse the contents of the data frame
 4.  Filter removing all observations except those from Hurricane Michael (2018)
 5.  Create a map showing the track of this hurricane
-
 
 ## 
 
@@ -125,9 +121,9 @@ Tracks.sf |>
 
 -   Hurricane Michael was a powerful and destructive tropical cyclone that became the first Category 5 hurricane to make landfall in the contiguous United States since Andrew in 1992
 -   It was the third-most intense Atlantic hurricane to make landfall in the contiguous United States in terms of pressure, behind the 1935 Labor Day hurricane and Hurricane Camille in 1969
--   It was the first Category 5 hurricane on record to impact the Florida Panhandle, the fourth-strongest hurricane in the contiguous United States, in terms of wind speed, and the most intense hurricane on record to strike the United States in the month of October [^1]
+-   It was the first Category 5 hurricane on record to impact the Florida Panhandle, the fourth-strongest hurricane in the contiguous United States, in terms of wind speed, and the most intense hurricane on record to strike the United States in the month of October \[\^1\]
 
-## {.smaller}
+##  {.smaller}
 
 -   Here you remove all rows from `Track.sf` except the rows corresponding to Hurricane Michael in 2018
 -   Since names are recycled every six years, you need to filter on `SEASON` and `NAME`
