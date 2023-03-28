@@ -10,15 +10,15 @@ editor_options:
   chunk_output_type: console
 ---
 
-##
+## 
 
 ![Map showing the tracks and intensities of all the tropical cyclones over the North Atlantic basin during a hurricane season](https://www.nhc.noaa.gov/data/tracks/tracks-at-2020.png)
 
 ## Accumulated cyclone energy
 
--   Accumulated cyclone energy (ACE) is a measure of energy in a tropical cyclone 
--   It is calculating by summing the square of a TC's maximum sustained winds ($w$), measured (estimated) every six hours
--   It is multiplied by .0001 to make it more manageable
+-   Accumulated cyclone energy (ACE) is a measure of energy in a tropical cyclone
+-   It is the sum of the maximum sustained winds ($w$) squared, when the winds are estimated every six hours
+-   It is multiplied by .0001
 -   $\text{ACE} = .0001 \times\sum w^2$
 -   Summing ACE across each tropical cyclone throughout a season is a measure of total season activity
 
@@ -39,6 +39,7 @@ Counts.df |>
 ```
 
 ## 
+
 -   Decrease the span on the smoother (default is .75)
 
 ```{r}
@@ -62,11 +63,11 @@ Here you will
 2.  Get the data into R as a data frame
 3.  Glimpse the contents of the data frame
 4.  Filter removing all observations except those from Hurricane Michael (2018)
-5.  Create a map showing Michael's track
+5.  Create a map showing the track of this hurricane
 
 ## 
 
--   Download and unzip the shapefile (lines geometry) 
+-   Download and unzip the shapefile (lines geometry)
 
 ```{r}
 #| echo: true
@@ -93,7 +94,7 @@ Tracks.sf <- sf::st_read(dsn = here::here("data"),
                          layer = "IBTrACS.NA.list.v04r00.lines")
 ```
 
-## {.smaller}
+##  {.smaller}
 
 -   Glimpse the contents of the data frame
 -   Each row is a separate three-hourly observation
@@ -108,7 +109,7 @@ Tracks.sf |>
 
 -   Hurricane Michael was a powerful and destructive tropical cyclone that became the first Category 5 hurricane to make landfall in the contiguous United States since Andrew in 1992
 -   It was the third-most intense Atlantic hurricane to make landfall in the contiguous United States in terms of pressure, behind the 1935 Labor Day hurricane and Hurricane Camille in 1969
--   It was the first Category 5 hurricane on record to impact the Florida Panhandle, the fourth-strongest landfalling hurricane in the contiguous United States, in terms of wind speed, and the most intense hurricane on record to strike the United States in the month of October [^1]
+-   It was the first Category 5 hurricane on record to impact the Florida Panhandle, the fourth-strongest hurricane in the contiguous United States, in terms of wind speed, and the most intense hurricane on record to strike the United States in the month of October [^1]
 
 [^1]: [Read more](https://en.wikipedia.org/wiki/Hurricane_Michael).
 
@@ -144,7 +145,7 @@ tmap::tm_shape(Michael_Track.sf) +
   tmap::tm_lines(col = "USA_WIND", lwd = 3)
 ```
 
-##
+## 
 
 -   Compute the ACE for Hurricane Michael
 
@@ -155,7 +156,7 @@ Michael_Track.sf |>
   dplyr::summarize(ACE = .0001 * sum(USA_WIND^2))
 ```
 
-##
+## 
 
 -   Map all tracks from 2022
 -   Filter and select
@@ -167,7 +168,7 @@ Tracks2022.sf <- Tracks.sf |>
   dplyr::select(NAME, USA_WIND)
 ```
 
-##
+## 
 
 -   Create the map
 
@@ -178,7 +179,7 @@ tmap::tm_shape(Tracks2022.sf) +
   tmap::tm_lines(col = "USA_WIND", lwd = 3)
 ```
 
-## {.smaller}
+##  {.smaller}
 
 -   Seasonal ACE and percentage by cyclone
 
@@ -192,7 +193,7 @@ Tracks2022.sf |>
   dplyr::arrange(desc(ACEp))
 ```
 
-##
+## 
 
 -   10.1038/nature13278
 -   Keep only observations with winds at or exceeding 64 kn since 1950
@@ -205,7 +206,7 @@ Hurricane_Obs.df <- Tracks.sf |>
   dplyr::select(year, USA_WIND, NAME, LAT, LON)
 ```
 
-##
+## 
 
 ```{r}
 #| echo: true
@@ -224,7 +225,7 @@ ggplot(mapping = aes(x = year, y = AvgLATmax, weight = nS)) +
   geom_smooth(method = lm)
 ```
 
-##
+## 
 
 Western Pacific typhoons
 
@@ -241,7 +242,7 @@ unzip(here::here("data", "IBTrACS.WP.list.v04r00.lines.zip"),
 }
 ```
 
-##
+## 
 
 ```{r}
 #| echo: true
@@ -278,7 +279,7 @@ fetch_best_tracks_data(path,
                        src = "https://www.nhc.noaa.gov/data/hurdat/hurdat2-1851-2021-100522.txt")
 ```
 
-##
+## 
 
 -   Load the data for Hurricane Michael (2018, ID = AL142018) as a simple feature data frame with CRS UTM16 (EPSG 32616)
 
@@ -296,7 +297,7 @@ library(terra)
 data("geographic")
 ```
 
-##
+## 
 
 -   Create raster of winds. This takes a long time
 
@@ -312,7 +313,7 @@ library(tidyraster)
 ggplot() + geom_spatraster(data = Wind.r)
 ```
 
-## {.smaller}
+##  {.smaller}
 
 -   Include only track observations when the track is within 500 km of a location
 
