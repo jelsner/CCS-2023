@@ -24,10 +24,10 @@ editor_options:
 ## Accumulated cyclone energy (ACE)
 
 -   Accumulated cyclone energy (ACE) is a measure of energy in a tropical cyclone
--   It is the sum of the maximum sustained winds ($w$) squared, when the winds are estimated every six hours
+-   It is the sum of the maximum sustained wind speed ($w$) squared, when the wind speeds are estimated every six hours
 -   It is multiplied by .0001 and expressed in knots squared $kn^2$
 -   $\text{ACE} = .0001 \times\sum w^2$
--   Summing ACE across each tropical cyclone throughout a season is a measure of seasonal activity
+-   Summing ACE over all tropical cyclones in a season gives a measure of seasonal hurricane activity
 
 ## 
 
@@ -43,12 +43,14 @@ Counts.df <- get_hurricanes()
 
 -   Click on the `Counts.df` in your Environment
 -   'Revised' indicates reanalysis efforts
+-   Compute the seasonal average and seasonal range of ACE
 
 ##  {.smaller}
 
 -   Make a time series graph
 
 ```{r}
+#| echo: true
 Counts.df |>
   plot_hurricane_nrg()
 ```
@@ -80,7 +82,7 @@ Here you will
 
 1.  Download and unzip the file
 2.  Get the data into R as a data frame
-3.  Glimpse the contents of the data frame
+3.  Check the contents of the data frame
 4.  Remove all observations except those from Hurricane Michael (2018)
 5.  Create a map showing the hurricane track
 
@@ -116,7 +118,7 @@ Tracks.sf <- sf::st_read(dsn = here::here("data"),
 
 ##  {.smaller}
 
--   Glimpse the contents of the data frame
+-   Check the contents of the data frame
 
 ```{r}
 #| echo: true
@@ -124,7 +126,7 @@ Tracks.sf |>
   dplyr::glimpse()
 ```
 
--   Each row is a separate three-hourly observation
+-   Each row is a successive three-hourly observation
 
 ## Hurricane Michael (2018) {.smaller}
 
@@ -135,7 +137,7 @@ Tracks.sf |>
 ##  {.smaller}
 
 -   Here you remove all rows from your data frame `Track.sf` except those corresponding to Hurricane Michael in 2018
--   Since names are recycled every six years, you need to filter on `SEASON` and `NAME`
+-   Since tropical cyclone names are recycled every six years, you need to filter on `SEASON` and `NAME`
 
 ```{r}
 #| echo: true
