@@ -10,6 +10,31 @@ editor_options:
   chunk_output_type: console
 ---
 
+## 
+
+-   Paleotempestology 
+![overwash](figures/ovrwsh.gif)
+
+##
+
+![Vibracore](figures/Vibracore.jpg) 
+![Sedimentcore](figures/SedimentCore.jpg)
+
+
+## 
+
+-   Maximum potential intensity (MPI) ![MPI](figures/MPI.png)
+-   Lifetime maximum intensity (LMI) ![LMI](figures/LMI.png)
+
+## 
+
+-   Limiting intensity (LI) ![LI](figures/LI.png)
+-   LI vs SST ![LIvsSST](figures/LIvsSST.png)
+
+## 
+
+-   Sensitivity of LI to SST ![sensitivity](Sensitivity.png)
+
 ##  {.smaller}
 
 -   Import the IBTrACS Atlantic hurricane csv file
@@ -35,7 +60,7 @@ readr::write_csv(Tracks.df,
 
 ## 
 
--   Get wind speed quantiles for tropical cyclones with winds at least 33 m/s (hurricane intensity). First get per storm fastest wind speed
+-   Get wind speed quantiles for tropical cyclones with winds at least 33 m/s (hurricane intensity). First get per storm fastest wind speed. Lifetime maximum intensity
 
 ```{r}
 #| echo: true
@@ -50,7 +75,7 @@ LMI.df <- Tracks.df |>
   dplyr::filter(MaxW_mps >= 33)
 ```
 
-##
+## 
 
 -   Number of hurricanes
 
@@ -78,7 +103,7 @@ Increases in the number of hurricanes
 glm(nH ~ Year, data = Frequency.df, family = poisson)
 ```
 
-.004 implies that the average of about 5.9 in 1950 increases to 7.9 by 2022 [5.9 * (1 + .004)^73 = 7.9]
+.004 implies that the average of about 5.9 in 1950 increases to 7.9 by 2022 \[5.9 \* (1 + .004)\^73 = 7.9\]
 
 ## Intensity
 
@@ -96,7 +121,7 @@ ggplot(mapping = aes(x = Year, y = AvgMaxW, weight = nH)) +
   geom_smooth(method = lm)
 ```
 
-##
+## 
 
 -   Quantile intensities by year
 
@@ -114,7 +139,7 @@ Intensity.df |>
   head()
 ```
 
-##
+## 
 
 ```{r}
 #| echo: true
@@ -126,6 +151,7 @@ ggplot(data = Intensity.df,
 ```
 
 ## 
+
 -   Quantify the trend at the 90th percentile
 
 ```{r}
@@ -134,9 +160,9 @@ quantreg::rq(MaxW_mps ~ Year, tau = .9, data = LMI.df) |>
   summary()
 ```
 
-The value of .11 says there has been an average increase of the strongest hurricanes of .11 m/s per year or .11 * 73 = 8 m/s over the period of record
+The value of .11 says there has been an average increase of the strongest hurricanes of .11 m/s per year or .11 \* 73 = 8 m/s over the period of record
 
-##
+## 
 
 -   Insured losses from hurricane winds in the United States
 -   Data from <https://www.icatdamageestimator.com/faq#4q>
@@ -144,6 +170,7 @@ The value of .11 says there has been an average increase of the strongest hurric
 -   <https://www.iii.org/fact-statistic/facts-statistics-hurricanes>
 
 Read in the data only through 2017
+
 ```{r}
 PerLandfall.df <- readr::read_csv(here::here("data", "stormData.csv")) |>
   dplyr::rename(Name = `STORM NAME`, 
@@ -165,9 +192,10 @@ PerLandfall.df <- PerLandfall.df |>
   dplyr::filter(Year >= 1987)
 ```
 
-##
+## 
 
 -   Insured damages (losses) are .5 of the total economic damages.
+
 ```{r}
 PerStorm.df <- PerLandfall.df |>
   dplyr::mutate(InsuredLosses2022 = .5 * CurrentDamage2022) |>
@@ -178,9 +206,9 @@ PerStorm.df <- PerLandfall.df |>
 ```
 
 Tranches
+
 ```{r}
 Z <- PerStorm.df$PerStormInsuredLosses2022
 
 quantile(Z, probs = seq(0, 1, 1/7))
 ```
-
