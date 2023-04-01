@@ -12,28 +12,41 @@ editor_options:
 
 ## 
 
--   Paleotempestology 
-![overwash](figures/ovrwsh.gif)
+![](figures/ovrwsh.gif){height=600}
 
 ##
 
-![Vibracore](figures/Vibracore.jpg) 
-![Sedimentcore](figures/SedimentCore.jpg)
-
+![](figures/Vibracore.jpg){height=600} ![](figures/SedimentCore.jpg){height=600}
 
 ## 
 
--   Maximum potential intensity (MPI) ![MPI](figures/MPI.png)
--   Lifetime maximum intensity (LMI) ![LMI](figures/LMI.png)
+-   Maximum potential intensity (MPI)
+
+![](figures/MPI.png)
+
+##
+
+-   Lifetime maximum intensity (LMI) 
+
+![](figures/LMI.png)
 
 ## 
 
--   Limiting intensity (LI) ![LI](figures/LI.png)
--   LI vs SST ![LIvsSST](figures/LIvsSST.png)
+-   Limiting intensity (LI) 
+
+![](figures/LI.png)
+
+##
+
+-   LI vs SST
+
+![](figures/LIvsSST.png)
 
 ## 
 
--   Sensitivity of LI to SST ![sensitivity](Sensitivity.png)
+-   Sensitivity of LI to SST
+
+![](figures/Sensitivity.png)
 
 ##  {.smaller}
 
@@ -172,7 +185,8 @@ The value of .11 says there has been an average increase of the strongest hurric
 Read in the data only through 2017
 
 ```{r}
-PerLandfall.df <- readr::read_csv(here::here("data", "stormData.csv")) |>
+L <- "https://myweb.fsu.edu/jelsner/temp/data/stormData.csv"
+PerLandfall.df <- readr::read_csv(L) |>
   dplyr::rename(Name = `STORM NAME`, 
                 LandfallDate = `LANDFALL DATE`,
                 DamageRank = `DAMAGE RANK`, 
@@ -212,3 +226,9 @@ Z <- PerStorm.df$PerStormInsuredLosses2022
 
 quantile(Z, probs = seq(0, 1, 1/7))
 ```
+
+##
+
+Coring Western Lake, FL
+
+{{<video https://www.youtube.com/embed/zQWU6OKRHMI >}} 5 minuts
