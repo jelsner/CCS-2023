@@ -5,6 +5,15 @@ format: html
 editor: source
 ---
 
+
+## 1
+Write code to get the data file `IBTrACS.NA.list.v04r00.lines` from the `data` directory into your current R session as a simple feature data frame
+
+```{r}
+#| echo: true
+Tracks.sf <- sf::st_read(dsn = here::here("data"), 
+                         layer = "IBTrACS.NA.list.v04r00.lines")
+```
 ## 1 
 Write code to create a map of Hurricane Ian from 2022
 
