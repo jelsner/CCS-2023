@@ -10,7 +10,7 @@ editor_options:
   chunk_output_type: console
 ---
 
-##
+## 
 
 -   Today: hurricane intensity and climate change
 -   Last Friday's tornado outbreak <https://www.spc.noaa.gov/climo/reports/230331_rpts.html>
@@ -19,20 +19,19 @@ editor_options:
 
 ## 
 
-![](figures/ovrwsh.gif){height=600}
+![](figures/ovrwsh.gif){height="600"}
 
-##
+## 
 
-![](figures/Vibracore.jpg){height=600} ![](figures/SedimentCore.jpg){height=600}
+![](figures/Vibracore.jpg){height="600"} ![](figures/SedimentCore.jpg){height="600"}
 
-##
+## 
 
 Coring Western Lake, FL
 
-{{<video https://www.youtube.com/embed/zQWU6OKRHMI >}} 5 minutes
+{{< video https://www.youtube.com/embed/zQWU6OKRHMI >}} 5 minutes
 
-
-##
+## 
 
 -   Maximum potential intensity (MPI): Theory
 -   Lifetime maximum intensity (LMI): Observation
@@ -45,19 +44,19 @@ Coring Western Lake, FL
 
 ![](figures/MPI.png)
 
-##
+## 
 
--   Lifetime maximum intensity (LMI) 
+-   Lifetime maximum intensity (LMI)
 
 ![](figures/LMI.png)
 
 ## 
 
--   Limiting intensity (LI) 
+-   Limiting intensity (LI)
 
 ![](figures/LI.png)
 
-##
+## 
 
 -   LI vs SST
 
@@ -137,7 +136,7 @@ Increases in the number of hurricanes
 glm(nH ~ Year, data = Frequency.df, family = poisson)
 ```
 
-.004 implies that the average of about 5.9 in 1950 increases to 7.9 by 2022 [5.9 * (1 + .004)^73 = 7.9]
+.004 implies that the average of about 5.9 in 1950 increases to 7.9 by 2022 (5.9 * (1 + .004)^73 = 7.9)
 
 ## Intensity
 
@@ -196,7 +195,7 @@ quantreg::rq(MaxW_mps ~ Year, tau = .9, data = LMI.df) |>
 
 The value of .11 says there has been an average increase of the strongest hurricanes of .11 m/s per year or .11 \* 73 = 8 m/s over the period of record
 
-## {.smaller} 
+##  {.smaller}
 
 -   Insured losses from hurricane winds in the United States
 -   Could update with <https://www.reinsurancene.ws/insurance-industry-losses-events-data/>
@@ -218,7 +217,7 @@ PerLandfall.df <- readr::read_csv(L) |>
                 WindsAtLandfall_mph = `WINDS(MPH)`)
 ```
 
-##
+## 
 
 ```{r}
 #| echo: true
