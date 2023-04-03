@@ -10,6 +10,13 @@ editor_options:
   chunk_output_type: console
 ---
 
+##
+
+-   Today: hurricane intensity and climate change
+-   Last Friday's tornado outbreak <https://www.spc.noaa.gov/climo/reports/230331_rpts.html>
+-   More tornadoes predicted for tomorrow <https://www.spc.noaa.gov/products/outlook/day2otlk.html>
+-   Last Wednesday: hurricane frequency
+
 ## 
 
 ![](figures/ovrwsh.gif){height=600}
@@ -17,6 +24,20 @@ editor_options:
 ##
 
 ![](figures/Vibracore.jpg){height=600} ![](figures/SedimentCore.jpg){height=600}
+
+##
+
+Coring Western Lake, FL
+
+{{<video https://www.youtube.com/embed/zQWU6OKRHMI >}} 5 minutes
+
+
+##
+
+-   Maximum potential intensity (MPI): Theory
+-   Lifetime maximum intensity (LMI): Observation
+-   Limiting intensity (LI): Model (statistical)
+-   Sensitivity of LI to ocean temperature (SST)
 
 ## 
 
@@ -116,7 +137,7 @@ Increases in the number of hurricanes
 glm(nH ~ Year, data = Frequency.df, family = poisson)
 ```
 
-.004 implies that the average of about 5.9 in 1950 increases to 7.9 by 2022 \[5.9 \* (1 + .004)\^73 = 7.9\]
+.004 implies that the average of about 5.9 in 1950 increases to 7.9 by 2022 [5.9 * (1 + .004)^73 = 7.9]
 
 ## Intensity
 
@@ -175,16 +196,16 @@ quantreg::rq(MaxW_mps ~ Year, tau = .9, data = LMI.df) |>
 
 The value of .11 says there has been an average increase of the strongest hurricanes of .11 m/s per year or .11 \* 73 = 8 m/s over the period of record
 
-## 
+## {.smaller} 
 
 -   Insured losses from hurricane winds in the United States
--   Data from <https://www.icatdamageestimator.com/faq#4q>
 -   Could update with <https://www.reinsurancene.ws/insurance-industry-losses-events-data/>
 -   <https://www.iii.org/fact-statistic/facts-statistics-hurricanes>
 
-Read in the data only through 2017
+I put the insured loss data (through 2017) on my website
 
 ```{r}
+#| echo: true
 L <- "https://myweb.fsu.edu/jelsner/temp/data/stormData.csv"
 PerLandfall.df <- readr::read_csv(L) |>
   dplyr::rename(Name = `STORM NAME`, 
@@ -197,7 +218,10 @@ PerLandfall.df <- readr::read_csv(L) |>
                 WindsAtLandfall_mph = `WINDS(MPH)`)
 ```
 
+##
+
 ```{r}
+#| echo: true
 PerLandfall.df <- PerLandfall.df |>
   dplyr::mutate(Date = lubridate::parse_date_time(LandfallDate,
                                                   orders = 'mdy'),
@@ -211,6 +235,7 @@ PerLandfall.df <- PerLandfall.df |>
 -   Insured damages (losses) are .5 of the total economic damages.
 
 ```{r}
+#| echo: true
 PerStorm.df <- PerLandfall.df |>
   dplyr::mutate(InsuredLosses2022 = .5 * CurrentDamage2022) |>
   dplyr::group_by(YearName) |>
@@ -219,16 +244,11 @@ PerStorm.df <- PerLandfall.df |>
                    PerStormInsuredLosses2022 = sum(InsuredLosses2022))
 ```
 
-Tranches
+-   Prediction market
 
 ```{r}
+#| echo: true
 Z <- PerStorm.df$PerStormInsuredLosses2022
 
 quantile(Z, probs = seq(0, 1, 1/7))
 ```
-
-##
-
-Coring Western Lake, FL
-
-{{<video https://www.youtube.com/embed/zQWU6OKRHMI >}} 5 minuts
