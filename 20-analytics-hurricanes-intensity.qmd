@@ -136,7 +136,7 @@ Increases in the number of hurricanes
 glm(nH ~ Year, data = Frequency.df, family = poisson)
 ```
 
-.004 implies that the average of about 5.9 in 1950 increases to 7.9 by 2022 (5.9 * (1 + .004)^73 = 7.9)
+.004 implies that the average of about 5.9 in 1950 increases to 7.9 by 2022 (5.9 \* (1 + .004)\^73 = 7.9)
 
 ## Intensity
 
