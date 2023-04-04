@@ -3,29 +3,25 @@ title: "Lab 5"
 author: "PUT YOUR NAME HERE"
 format: html
 editor: source
+date: April 5, 2023
 ---
+
+Due: 4:30 p.m. April 5, 2023
+
+Total Points: 20
 
 
 ## 1
-Write code to get the data file `IBTrACS.NA.list.v04r00.lines` from the `data` directory into your current R session as a simple feature data frame
-
-```{r}
-#| echo: true
-Tracks.sf <- sf::st_read(dsn = here::here("data"), 
-                         layer = "IBTrACS.NA.list.v04r00.lines")
-```
-## 1 
-Write code to create a map of Hurricane Ian from 2022
+Write code to get the data file `IBTrACS.NA.list.v04r00.lines` from the `data` directory into your current R session as a simple feature data frame called `Tracks.sf` (4)
 
 ## 2
-Write code to compute ACE for Hurricane Ian from 2022
+Using the simple feature data frame `Tracks.sf` from (1) above, write code to create a new data frame called `Ian_Track.sf` containing only the rows corresponding to Hurricane Ian from 2022 and selecting the columns `NAME` and `USA_WIND` (4)
 
 ## 3
-Write code to graph the 95th percentile wind speeds by year
+Using the simple feature data frame `Ian_Tracks.sf` from (2) above, write code to create a map showing the track of Hurricane Ian from 2022 with the lines colored by wind speed (the column labeled `USA_WIND`) (4)
 
 ## 4
-Write code to estimate the amount of change in the 95th percentile wind speed per year
+Using the simple feature data frame `Ian_Tracks.sf` from (2) above, write code to compute ACE for Hurricane Ian from 2022 (4)
 
 ## 5
-List three different genesis mechanisms for hurricane formation. (3)
-
+List three different genesis mechanisms for hurricane formation (4)
