@@ -11,26 +11,27 @@ editor_options:
   chunk_output_type: console
 ---
 
-##
-
-![Tornado tracks](https://farm8.staticflickr.com/7090/7157010997_2a92fa603c_o.jpg)
-
 ## Topics
 
 -   Shifting location
 -   More clustering
 -   Stronger
 
+##
+
+![Tornado tracks](https://farm8.staticflickr.com/7090/7157010997_2a92fa603c_o.jpg)
+
 ## 
 
--   Where do you find data on tornadoes?
+-   Where do you find these historical data on tornadoes?
 -   How do you get the data into a format you can work with?
 -   The Storm Prediction Center has data on severe local storms in the U.S. back to 1950. The data are available [here](https://www.spc.noaa.gov/wcm/)
 -   The European Severe Storms Laboratory has data on severe local storms across Europe. The data are available [here](https://www.eswd.eu/?)
 
-##
+## {.smaller}
 
--   You are interested in the file called `1950-2021_actual_tornadoes.csv`. First download the file from the site with the `download.file()` function specifying the location (`url =`) and a name you want the file to be called on your computer (`destfile =`)
+-   For this lesson you are interested in the file called `1950-2021_actual_tornadoes.csv`
+-   First download the file from the site with the `download.file()` function specifying the location (`url =`) and a name you want the file to be called on your computer (`destfile =`)
 
 ```{r, eval=FALSE}
 #| echo: true
@@ -39,7 +40,8 @@ download.file(url = L,
               destfile = here::here("data", "Tornadoes.csv"))
 ```
 
--   A file called `Tornadoes.csv` should now be located in the directory `data`. Click on the *Files* tab in the lower-right panel, then select the `data` folder
+-   A file called `Tornadoes.csv` should now be located in the directory `data`
+-   Click on the *Files* tab in the lower-right panel, then select the `data` folder
 
 ##  {.smaller}
 
@@ -54,7 +56,8 @@ Torn.df |>
   head()
 ```
 
--   Each row is a separate tornado report. Observations in each report include the day and time, the state (`st`), the maximum EF rating (`mag`), the number of injuries (`inj`), the number of fatalities (`fat`), estimated property losses (`loss`), estimated crop losses (`closs`), start and end locations in decimal degrees longitude and latitude, length of the damage path in miles (`len`), width of the damage in yards (`wid`)
+-   Each row is a tornado report
+-   Observations include the day and time, the state (`st`), the maximum EF rating (`mag`), the number of injuries (`inj`), the number of fatalities (`fat`), estimated property losses (`loss`), estimated crop losses (`closs`), start and end locations in decimal degrees longitude and latitude, length of the damage path in miles (`len`), width of the damage in yards (`wid`)
 
 ## 
 
@@ -67,18 +70,19 @@ Torn.df |>
 
 ##
 
--   The total number of tornado reports in the data set is returned using the `nrow()` function
+-   The number of tornado reports in the data set is returned using the `nrow()` function
 
 ```{r}
 #| echo: true
 Torn.df |>
   nrow()
 ```
--   67,558 separate tornado reports since 1950
+
+-   67,558 tornado reports since 1950
 
 ## {.smaller}
 
--   Count by state
+-   Tornado frequency by state
 
 ```{r}
 #| echo: true
@@ -290,3 +294,8 @@ Yearly.df <- Combined.df |>
   dplyr::summarize(AvgSSN = mean(SSN),
                    nT = sum(nT))
 ```
+
+##
+
+-   <http://coolwx.com/record/>
+-   lapse rates on SkewT-logP charts from <https://www.tropicaltidbits.com/>
