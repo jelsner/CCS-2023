@@ -222,7 +222,7 @@ Tracks2022.sf |>
 ## 
 
 -   Shifting storminess
--   <https://www.nature.com/articles/nature13278>
+- https://www.nature.com/articles/nature13278>
 -   Keep only observations with winds at or exceeding 64 kn since 1950
 
 ```{r}
