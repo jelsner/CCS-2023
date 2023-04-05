@@ -20,6 +20,8 @@ editor: source
 
 ##
 
+{{< video https://www.youtube.com/embed/rSCfv4z18lA >}} 8 minutes chasing with a drone pilot
+
 {{< video https://www.youtube.com/embed/EnSIkaIECMiOmarE >}} Pecos Hank interview (lightning) 28 minutes
 
 {{< video https://www.youtube.com/embed/bq0-QXXtOro >}} Storm spotting secrets 45 minutes
