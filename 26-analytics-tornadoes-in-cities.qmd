@@ -406,8 +406,15 @@ RuralTors.sf |>
 ```
 
 Greensburg, KS tornado of May 4, 2007. Only EF5 not within a current CBSA
+
 ```{r}
 tmap::tmap_mode("view")
 tmap::tm_shape(RuralTors.sf[RuralTors.sf$mag == 5,]) +
   tmap::tm_lines()
 ```
+
+##
+
+{{< video https://www.youtube.com/embed/oEyotBDN1YU >}} A future tornado in a major city 50 minutes
+
+{{< video https://www.youtube.com/embed/LGcGFU_Hi9U>}} Picture perfect tornado cross highway 8 minutes

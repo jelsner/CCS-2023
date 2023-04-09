@@ -225,3 +225,7 @@ ggplot(data = AnnualCount.df,
 ## Other severe local storm data
 
 <https://mesonet.agron.iastate.edu/request/gis/lsrs.phtml>
+
+## Tornadoes and climate change
+
+{{< video https://www.youtube.com/embed/jqzU9ECKP5A >}} 45 minutes
