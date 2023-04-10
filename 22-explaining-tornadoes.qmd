@@ -10,19 +10,24 @@ format:
 editor: source
 ---
 
-## Formation and structure
+## {.smaller}
 
-{{< video https://www.youtube.com/embed/aacHWoB7cmY >}} NG 6 minutes
+Tornado formation and structure
 
-{{< video https://www.youtube.com/embed/wUNAXGSWVv4 >}} 30 minutes Lots of information Full lecture
+{{< video https://www.youtube.com/embed/aacHWoB7cmY >}} National Geographic 6 minutes
+
+{{< video https://www.youtube.com/embed/wUNAXGSWVv4 >}} Full lecture on tornadoes 30 minutes
 
 {{< video https://www.youtube.com/embed/uH9A-7Y3lL0 >}} Supercells (Pecos Hank) 7 minutes
 
-## Other tornado videos (optional)
+## {.smaller} 
 
-{{< video https://www.youtube.com/embed/rSCfv4z18lA >}} 8 minutes chasing with a drone pilot
+Other videos (optional material)
 
 {{< video https://www.youtube.com/embed/EnSIkaIECMiOmarE >}} Pecos Hank interview (lightning) 28 minutes
 
 {{< video https://www.youtube.com/embed/bq0-QXXtOro >}} Storm spotting secrets 45 minutes
+
+{{< video https://www.youtube.com/embed/rSCfv4z18lA >}} Storm chasing with a drone pilot 8 minutes
+
 
