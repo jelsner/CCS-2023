@@ -14,7 +14,8 @@ editor_options:
 ## 
 
 -   Record warmth in the Midwest today <http://coolwx.com/record/>
--   Today's lesson is part one of a two part series on tornado analytics focusing on frequency
+-   Today's lesson is part one of two on tornado data analytics
+-   This one focuses on frequency
 
 ## 
 
@@ -91,7 +92,14 @@ ST_Counts.df |>
   head()
 ```
 
--   Write code to arrange by descreasing counts
+-   Write code to arrange by decreasing counts
+
+```{r}
+Torn.df |>
+  dplyr::group_by(st) |>
+  dplyr::summarize(nT = dplyr::n()) |>
+  dplyr::arrange(desc(nT))
+```
 
 ##  {.smaller}
 
@@ -127,7 +135,7 @@ ggplot(data = States.sf,
 ## 
 
 -   Larger states will tend to have more tornadoes all else the same
--   Annual rate per 100 square kilometers (km\^2)
+-   Annual rate per 100,000 square kilometers (km^2)
 
 ```{r}
 #| echo: true
@@ -156,8 +164,8 @@ ggplot(data = States.sf,
 Counts.df <- Torn.df |>
   dplyr::filter(mag >= 2) |>
   dplyr::mutate(Alley = dplyr::case_when(st %in% c("KS", "OK") ~ "Tornado Alley",
-                                          st %in% c("MS", "AL") ~ "Dixie Alley",
-                                          TRUE ~ "Outside")) |>
+                                         st %in% c("MS", "AL") ~ "Dixie Alley",
+                                         TRUE ~ "Outside")) |>
   dplyr::group_by(Alley, yr) |>
   dplyr::summarize(nT = dplyr::n())
 
