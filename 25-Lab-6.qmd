@@ -6,14 +6,16 @@ editor: source
 ---
 
 ## 1 
-Write code to create a plot of the annual number of tornadoes in Florida since 1950
+Write code to get the tornado file `Tornadoes.csv` into your R session as a data frame called `Torn.df`
 
 ## 2
-Write code to compute the correlation between the annual number of tornadoes in Florida and the annual number of tornadoes in Kansas
+Write code to create a new data frame called `Torn2.df` from `Torn.df` containing only tornadoes with an EF rating greater or equal to 2
 
 ## 3
-Write code to find the day of year with the most EF2+ tornadoes
+Using the data frame `Torn2.df` from (2) above, write code to count the number tornadoes in each state and list them by decreasing amount
 
 ## 4
-Write code to map the track of the western Kentucky tornado of December 10, 2021 <https://en.wikipedia.org/wiki/2021_Western_Kentucky_tornado>
+Using the data frame `Torn.df` from (1) above, write code to compute the correlation between the annual number of tornadoes in Florida and the annual number of tornadoes in Kansas
 
+## 5
+Who wrote the book published by Oxford University Press entitle "Hurricane Climatology: A Modern Statistical Guide Using R"?
