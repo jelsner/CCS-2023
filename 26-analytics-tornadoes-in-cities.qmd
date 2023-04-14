@@ -13,6 +13,12 @@ editor_options:
 
 ##
 
+-   Climate solutions
+
+{{< video https://www.youtube.com/embed/n2udBaZJ22I >}}
+
+##
+
 -   Are we seeing more damaging tornadoes in urban areas?
 -   Expanding bull's eye is a conceptual model to illustrate how development sprawl in metropolitan region leads to an increasing number of built ‘targets’ (houses, buildings, power lines, etc) in harm's way
 -   Given a tornado hitting a city, what is the chance that it does least EF2 level damage? 
@@ -66,6 +72,8 @@ Torn.sf <- sf::st_read(dsn = here::here("data", "1950-2021-torn-aspath"),
 -   All (E)F2+ tornadoes by year
 
 ```{r}
+library(ggplot2)
+
 Torn.sf |>
   sf::st_drop_geometry() |>
   dplyr::group_by(yr) |>
