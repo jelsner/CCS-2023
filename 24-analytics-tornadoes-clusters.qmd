@@ -1,5 +1,5 @@
 ---
-title: "Tornado analytics: path characteristics & clusters"
+title: "Tornado analytics: damage path characteristics & clusters"
 format: 
   revealjs:
     code-fold: false
@@ -11,8 +11,8 @@ editor: source
 
 ##
 
--   As noted in the syllabus, I'm traveling this week so there is no class on Wednesday (April 19)
 -   Lesson 24 today and Lesson 25 (lab) next Monday (April 24)
+-   As noted in the syllabus, I'm traveling this week so there is no class on Wednesday (April 19)
 -   Final lesson (this will be optional) next Wednesday (April 26)
 -   Today: Continue with tornado analytics. Focus is on (1) path characteristics and (2) clustering
 -   Start by looking at the relationship between the damage rating and the length of the damage path
@@ -40,6 +40,7 @@ Torn.df |>
 library(ggplot2)
 
 Torn.df |>
+  dplyr::filter(mag >= 1) |>
   dplyr::group_by(yr) |>
   dplyr::summarize(nT = dplyr::n()) |>
   ggplot(mapping = aes(x = yr, y = nT)) +
@@ -82,6 +83,13 @@ cor(Torn2.df$mag, Torn2.df$len) |>
 -   How do you interpret this value? Statistically and physically
 -   Is it significant in the statistical sense?
 
+```{r}
+cor.test(Torn2.df$mag, Torn2.df$len)
+```
+
+
+
+
 ## 
 
 -   Path length is recorded in miles and path width in yards and the EF damage rating variable `mag` is numeric
@@ -122,12 +130,14 @@ ggplot(data = Torn2.df,
 
 ```{r}
 Torn2.df |>
-#  dplyr::filter(mag >= 2) |>
+  dplyr::filter(mag >= 2) |>
   dplyr::group_by(yr) |>
   dplyr::summarize(nT = dplyr::n(),
+                   Lavg = mean(Length),
+                   Wavg = mean(Width),
                    Lq = quantile(Length, probs = .9),
                    Wq = quantile(Width, probs = .9)) |>
-  ggplot(mapping = aes(x = yr, y = Wq)) +
+  ggplot(mapping = aes(x = yr, y = Lavg)) +
   geom_point() +
   geom_smooth(method = lm)
 ```
@@ -229,7 +239,7 @@ AnnualCount.df <- DailyCount.df |>
 ggplot(data = AnnualCount.df,
        mapping = aes(x = Year, y = Proportion)) +
   geom_point() +
-  geom_smooth(method = lm, se = FALSE) +
+  geom_smooth(method = lm) +
   labs(title = "Proportion of all tornadoes occurring on days with at least 10 tornadoes")
 ```
 
