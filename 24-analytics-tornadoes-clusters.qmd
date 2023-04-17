@@ -37,13 +37,16 @@ Torn.df |>
 -   All tornadoes versus EF1+ tornadoes
 
 ```{r}
+library(ggplot2)
+
 Torn.df |>
   dplyr::group_by(yr) |>
   dplyr::summarize(nT = dplyr::n()) |>
   ggplot(mapping = aes(x = yr, y = nT)) +
   geom_line()
 ```
--   Add a `dplyr::filter(mag >= 1) |>` line in the code
+
+-   For comparison, add a `dplyr::filter(mag >= 1) |>` line in the code
 
 ##
 
@@ -58,7 +61,7 @@ Torn2.df |>
   dim()
 ```
 
-## 
+## {.smaller}
 
 -   Now subset again, keeping only tornadoes with EF ratings (`mag` variable) greater than zero and path length greater than a hundredth of a mile. Note that you reuse the name `Torn2.df`
 
@@ -75,6 +78,9 @@ Torn2.df <- Torn2.df |>
 cor(Torn2.df$mag, Torn2.df$len) |>
   round(digits = 3)
 ```
+
+-   How do you interpret this value? Statistically and physically
+-   Is it significant in the statistical sense?
 
 ## 
 
@@ -116,17 +122,17 @@ ggplot(data = Torn2.df,
 
 ```{r}
 Torn2.df |>
-#  dplyr::filter(mag >= 3) |>
+#  dplyr::filter(mag >= 2) |>
   dplyr::group_by(yr) |>
   dplyr::summarize(nT = dplyr::n(),
-                   Lq50 = median(Length),
-                   Wq50 = median(Width),
-                   Lq95 = quantile(Length, probs = .95),
-                   Wq95 = quantile(Width, probs = .95)) |>
-  ggplot(mapping = aes(x = yr, y = Lq95)) +
+                   Lq = quantile(Length, probs = .9),
+                   Wq = quantile(Width, probs = .9)) |>
+  ggplot(mapping = aes(x = yr, y = Wq)) +
   geom_point() +
   geom_smooth(method = lm)
 ```
+
+-   Other quantiles and more damaging tornadoes
 
 
 ## 
@@ -151,8 +157,8 @@ unzip(zipfile = here::here("data", "1950-2021-torn-aspath.zip"),
 
 ```{r}
 #| echo: true
-Torn.sf <- sf::st_read(dsn = here::here("data", "1950-2021-torn-aspath"), 
-                       layer = "1950-2021-torn-aspath") 
+Torn3.sf <- sf::st_read(dsn = here::here("data", "1950-2021-torn-aspath"), 
+                        layer = "1950-2021-torn-aspath") 
 ```
 
 The geometry type is line string representing the straight-line approximate track of each tornado. The coordinate reference system (CRS) is WGS84
@@ -164,7 +170,7 @@ The geometry type is line string representing the straight-line approximate trac
 ```{r}
 #| echo: true
 #| output-location: slide
-Birmingham_Track.sf <- Torn.sf |>
+Birmingham_Track.sf <- Torn3.sf |>
   dplyr::filter(date == "2011-04-27" & mag == 4 & st == "AL", fat == 64)
 
 tmap::tmap_mode("view")
@@ -178,22 +184,12 @@ tmap::tm_shape(Birmingham_Track.sf) +
 ## Outbreaks
 
 -   Tornadoes come in bunches called 'outbreaks'
+-   End of March
 
-<https://www.spc.noaa.gov/climo/reports/221129_prt_rpts.html>
-<https://www.spc.noaa.gov/climo/reports/221104_prt_rpts.html>
-
-## {.smaller}
-
--   Import the file as a data frame using the `readr::read_csv()` function 
-```{r}
-#| echo: true
-Torn.df <- readr::read_csv(file = here::here("data", "Tornadoes.csv"))
-
-Torn.df |>
-  head()
-```
+<https://www.spc.noaa.gov/climo/reports/230331_prt_rpts.html>
 
 ##
+
 -   Count the number of tornadoes (damage rating 1 or worse) reported in each day since 1950
 
 ```{r}
@@ -208,7 +204,10 @@ DailyCount.df |>
   head()
 ```
 
-##
+## {.smaller}
+
+-   Count the number of days with at least N tornadoes. Start with N = 10
+-   Also compute the proportion of all tornadoes occurring in days with at least N tornadoes
 
 ```{r}
 #| echo: true
@@ -222,13 +221,11 @@ AnnualCount.df <- DailyCount.df |>
   dplyr::mutate(Proportion = NBD_T / ALL_T)
 ```
 
-##
+-   View the data frame `AnnualCount.df`
+-   Make a time series plot
 
 ```{r}
 #| echo: true
-
-library(ggplot2)
-
 ggplot(data = AnnualCount.df,
        mapping = aes(x = Year, y = Proportion)) +
   geom_point() +
@@ -236,26 +233,25 @@ ggplot(data = AnnualCount.df,
   labs(title = "Proportion of all tornadoes occurring on days with at least 10 tornadoes")
 ```
 
+-   Update from a paper I published in 2014 <https://myweb.fsu.edu/jelsner/PDF/Research/ElsnerElsnerJagger2015.pdf>
+
 ## 
+
+-   Tornadoes and climate change: more clusters
+
+{{< video https://www.youtube.com/embed/jqzU9ECKP5A >}} 45 minutes
+
+
+## {.smaller}
 
 -   Tornado damage paths from Google Earth
 
 {{< video https://www.youtube.com/embed/jcIR9Hl62yo >}} 22 minutes
 
-## 
-
 -   Damage assessment toolkit
 
 <https://apps.dat.noaa.gov/stormdamage/damageviewer/>
 
-## 
-
 -   Other severe local storm data
 
 <https://mesonet.agron.iastate.edu/request/gis/lsrs.phtml>
-
-## 
-
--   Tornadoes and climate change
-
-{{< video https://www.youtube.com/embed/jqzU9ECKP5A >}} 45 minutes
