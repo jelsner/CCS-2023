@@ -9,24 +9,45 @@ format:
 editor: source
 ---
 
+##
+
+-   As noted in the syllabus, I'm traveling this week so there is no class on Wednesday (April 19)
+-   Lesson 24 today and Lesson 25 (lab) next Monday (April 24)
+-   Final lesson (this will be optional) next Wednesday (April 26)
+-   Today: Continue with tornado analytics. Focus is on (1) path characteristics and (2) clustering
+-   Start by looking at the relationship between the damage rating and the length of the damage path
+
 ##  {.smaller}
 
+-   The tornado records file (`Tornadoes.csv`) in the `data` directory (if not, see Lesson 23)
 -   Import the file as a data frame using the `readr::read_csv()` function and then preview it with the `head()` function
 
 ```{r}
 #| echo: true
-Torn.df <- readr::read_csv(file = here::here("data", "Tornadoes.csv"),
-                           show_col_types = FALSE)
+Torn.df <- readr::read_csv(file = here::here("data", "Tornadoes.csv"))
 
 Torn.df |>
   head()
 ```
 
--   Each row is a separate tornado report. Observations in each report include the day and time, the state (`st`), the maximum EF rating (`mag`), the number of injuries (`inj`), the number of fatalities (`fat`), estimated property losses (`loss`), estimated crop losses (`closs`), start and end locations in decimal degrees longitude and latitude, length of the damage path in miles (`len`), width of the damage in yards (`wid`)
+-   Each row is a separate tornado report. Observations in each report include the day and time, the state (`st`), the maximum EF rating (`mag`), the number of injuries (`inj`), the number of fatalities (`fat`), start and end locations in decimal degrees longitude and latitude, length of the damage path in miles (`len`), width of the damage in yards (`wid`)
 
 ##
 
--   Create a subset of the data frame that contains only tornadoes in the years (`yr`) since 2007 (EF rating implemented) by including the logical operator `yr >= 2007` inside the `dplyr::filter()` function
+-   All tornadoes versus EF1+ tornadoes
+
+```{r}
+Torn.df |>
+  dplyr::group_by(yr) |>
+  dplyr::summarize(nT = dplyr::n()) |>
+  ggplot(mapping = aes(x = yr, y = nT)) +
+  geom_line()
+```
+-   Add a `dplyr::filter(mag >= 1) |>` line in the code
+
+##
+
+-   Create a subset of the data frame containing only tornadoes in the years (`yr`) since 2007 (EF rating implemented). You do this by including the logical operator `yr >= 2007` inside the `dplyr::filter()` function
 
 ```{r}
 #| echo: true
@@ -39,7 +60,7 @@ Torn2.df |>
 
 ## 
 
--   Subset again keeping only tornadoes with EF ratings (`mag` variable) greater than zero and path length greater than a hundredth of a mile. You *recycle* the name `Torn2.df`
+-   Now subset again, keeping only tornadoes with EF ratings (`mag` variable) greater than zero and path length greater than a hundredth of a mile. Note that you reuse the name `Torn2.df`
 
 ```{r}
 #| echo: true
@@ -70,7 +91,7 @@ Torn2.df <- Torn2.df |>
 
 ##
 
--   Create box plots of path length by EF rating
+-   Create violin plots of path length by EF rating
 
 ```{r}
 #| echo: true
@@ -108,8 +129,9 @@ Torn2.df |>
 ```
 
 
-## Tracks as spatial lines
+## 
 
+-   Tracks as spatial lines
 -   Download the data and put it into the folder called `data`
 
 ```{r}
@@ -214,18 +236,26 @@ ggplot(data = AnnualCount.df,
   labs(title = "Proportion of all tornadoes occurring on days with at least 10 tornadoes")
 ```
 
-## Tornado damage paths from Google Earth
+## 
+
+-   Tornado damage paths from Google Earth
 
 {{< video https://www.youtube.com/embed/jcIR9Hl62yo >}} 22 minutes
 
-## Damage assessment toolkit
+## 
+
+-   Damage assessment toolkit
 
 <https://apps.dat.noaa.gov/stormdamage/damageviewer/>
 
-## Other severe local storm data
+## 
+
+-   Other severe local storm data
 
 <https://mesonet.agron.iastate.edu/request/gis/lsrs.phtml>
 
-## Tornadoes and climate change
+## 
+
+-   Tornadoes and climate change
 
 {{< video https://www.youtube.com/embed/jqzU9ECKP5A >}} 45 minutes
