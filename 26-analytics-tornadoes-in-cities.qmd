@@ -13,17 +13,11 @@ editor_options:
 
 ##
 
--   Climate solutions
-
-{{< video https://www.youtube.com/embed/n2udBaZJ22I >}}
-
-##
-
 -   Are we seeing more damaging tornadoes in urban areas?
 -   Expanding bull's eye is a conceptual model to illustrate how development sprawl in metropolitan region leads to an increasing number of built ‘targets’ (houses, buildings, power lines, etc) in harm's way
 -   Given a tornado hitting a city, what is the chance that it does least EF2 level damage? 
 -   The assumption is, that all else being equal, the chance will be higher with more targets to damage
--   The expanding bull's eye model predicts this chance to be higher now then in the past
+-   The expanding bull's eye model predicts this chance to be higher now then in the past, but is it?
 
 ##
 
@@ -35,7 +29,7 @@ editor_options:
 
 ##
 
--   Divide the tornado record into two 36-year periods: 1986-2021 and 1950-1985. Count the number of tornadoes within each core-based metropolitan statistical area during each epoch
+-   Divide the tornado record into two 18-year periods: 2004-2021 and 1986-2003. Count the number of tornadoes within each core-based metropolitan statistical area during each epoch
 -   Get CBSA polygons from {tigris}
 
 ```{r}
@@ -426,3 +420,6 @@ tmap::tm_shape(RuralTors.sf[RuralTors.sf$mag == 5,]) +
 {{< video https://www.youtube.com/embed/oEyotBDN1YU >}} A future tornado in a major city 50 minutes
 
 {{< video https://www.youtube.com/embed/LGcGFU_Hi9U>}} Picture perfect tornado cross highway 8 minutes
+
+{{< video https://www.youtube.com/embed/n2udBaZJ22I >}} Climate solutions
+
